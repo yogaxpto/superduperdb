@@ -164,11 +164,7 @@
 <li class="toctree-l2"><a class="reference internal" href="../getting_started/features.html">Supported Features</a></li>
 </ul>
 </li>
-<li class="toctree-l1 has-children"><a class="reference internal" href="../background/index.html">Background of SuperDuperDB</a><input class="toctree-checkbox" id="toctree-checkbox-2" name="toctree-checkbox-2" role="switch" type="checkbox"/><label for="toctree-checkbox-2"><div class="visually-hidden">Toggle navigation of Background of SuperDuperDB</div><i class="icon"><svg><use href="#svg-arrow-right"></use></svg></i></label><ul>
-<li class="toctree-l2"><a class="reference internal" href="../background/common_issues.html">Common issues in AI-data development</a></li>
-</ul>
-</li>
-<li class="toctree-l1 has-children"><a class="reference internal" href="../usage/index.html">SuperDuperDB Usage</a><input class="toctree-checkbox" id="toctree-checkbox-3" name="toctree-checkbox-3" role="switch" type="checkbox"/><label for="toctree-checkbox-3"><div class="visually-hidden">Toggle navigation of SuperDuperDB Usage</div><i class="icon"><svg><use href="#svg-arrow-right"></use></svg></i></label><ul>
+<li class="toctree-l1 has-children"><a class="reference internal" href="../usage/index.html">SuperDuperDB Usage</a><input class="toctree-checkbox" id="toctree-checkbox-2" name="toctree-checkbox-2" role="switch" type="checkbox"/><label for="toctree-checkbox-2"><div class="visually-hidden">Toggle navigation of SuperDuperDB Usage</div><i class="icon"><svg><use href="#svg-arrow-right"></use></svg></i></label><ul>
 <li class="toctree-l2"><a class="reference internal" href="../usage/datalayer.html">Datalayer</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../usage/queries.html">Queries</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../usage/encoders.html">Encoders</a></li>
@@ -176,11 +172,15 @@
 <li class="toctree-l2"><a class="reference internal" href="../usage/vector_search.html">Vector Search</a></li>
 </ul>
 </li>
-<li class="toctree-l1 has-children"><a class="reference internal" href="../infrastructure/index.html">Infrastructural support</a><input class="toctree-checkbox" id="toctree-checkbox-4" name="toctree-checkbox-4" role="switch" type="checkbox"/><label for="toctree-checkbox-4"><div class="visually-hidden">Toggle navigation of Infrastructural support</div><i class="icon"><svg><use href="#svg-arrow-right"></use></svg></i></label><ul>
+<li class="toctree-l1 has-children"><a class="reference internal" href="../infrastructure/index.html">Infrastructural support</a><input class="toctree-checkbox" id="toctree-checkbox-3" name="toctree-checkbox-3" role="switch" type="checkbox"/><label for="toctree-checkbox-3"><div class="visually-hidden">Toggle navigation of Infrastructural support</div><i class="icon"><svg><use href="#svg-arrow-right"></use></svg></i></label><ul>
 <li class="toctree-l2"><a class="reference internal" href="../infrastructure/single_host_cluster.html">SuperDuperDB single host cluster deployment</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../infrastructure/architecture.html">SuperDuperDB architecture</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../infrastructure/change_data_capture.html">Change data capture</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../infrastructure/client_server.html">Client-server implementation</a></li>
+</ul>
+</li>
+<li class="toctree-l1 has-children"><a class="reference internal" href="../background/index.html">Background of SuperDuperDB</a><input class="toctree-checkbox" id="toctree-checkbox-4" name="toctree-checkbox-4" role="switch" type="checkbox"/><label for="toctree-checkbox-4"><div class="visually-hidden">Toggle navigation of Background of SuperDuperDB</div><i class="icon"><svg><use href="#svg-arrow-right"></use></svg></i></label><ul>
+<li class="toctree-l2"><a class="reference internal" href="../background/common_issues.html">Common issues in AI-data development</a></li>
 </ul>
 </li>
 <li class="toctree-l1 current has-children"><a class="reference internal" href="index.html">Example notebooks</a><input checked="" class="toctree-checkbox" id="toctree-checkbox-5" name="toctree-checkbox-5" role="switch" type="checkbox"/><label for="toctree-checkbox-5"><div class="visually-hidden">Toggle navigation of Example notebooks</div><i class="icon"><svg><use href="#svg-arrow-right"></use></svg></i></label><ul class="current">
@@ -267,9 +267,11 @@
         </div>
         <article role="main">
           <section id="Training-and-maintaining-MNIST-predictions">
-<h1>Training and maintaining MNIST predictions<a class="headerlink" href="#Training-and-maintaining-MNIST-predictions" title="Permalink to this heading"></a></h1>
-<div class="nbinput nblast docutils container">
-<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[2]:
+<h1>Training and maintaining MNIST predictions<a class="headerlink" href="#Training-and-maintaining-MNIST-predictions" title="Permalink to this heading">#</a></h1>
+<p>In this notebook we’ll be implementing a classic machine learning classification task: MNIST hand written digit recognition, using a convolution neural network, but with a twist: we’ll be implementing the task <em>in database</em> using SuperDuperDB.</p>
+<p>SuperDuperDB supports MongoDB as a databackend. Correspondingly, we’ll import the python MongoDB client <code class="docutils literal notranslate"><span class="pre">pymongo</span></code> and “wrap” our database to convert it to a SuperDuper <code class="docutils literal notranslate"><span class="pre">Datalayer</span></code>:</p>
+<div class="nbinput docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[1]:
 </pre></div>
 </div>
 <div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">pymongo</span>
@@ -277,11 +279,110 @@
 <span class="kn">import</span> <span class="nn">torchvision</span>
 
 <span class="kn">from</span> <span class="nn">superduperdb</span> <span class="kn">import</span> <span class="n">superduper</span>
+
+<span class="n">db</span> <span class="o">=</span> <span class="n">pymongo</span><span class="o">.</span><span class="n">MongoClient</span><span class="p">()</span><span class="o">.</span><span class="n">documents</span>
+
+<span class="n">db</span> <span class="o">=</span> <span class="n">superduper</span><span class="p">(</span><span class="n">db</span><span class="p">)</span>
 </pre></div>
 </div>
 </div>
-<div class="nbinput nblast docutils container">
+<div class="nboutput nblast docutils container">
+<div class="prompt empty docutils container">
+</div>
+<div class="output_area stderr docutils container">
+<div class="highlight"><pre>
+INFO:numexpr.utils:NumExpr defaulting to 8 threads.
+</pre></div></div>
+</div>
+<p>Now that we’ve connected to SuperDuperDB, let’s add some data. MNIST is a good show case for one of the key benefits of SuperDuperDB - adding “difficult” data types. This can be done using an <code class="docutils literal notranslate"><span class="pre">Encoder</span></code> which is a key wrapper in SuperDuperDB’s arsenal. The <code class="docutils literal notranslate"><span class="pre">Encoder</span></code> works closely together with the <code class="docutils literal notranslate"><span class="pre">Document</span></code> wrapper. Together they allow Python dictionaries containing non-JSONable/ <code class="docutils literal notranslate"><span class="pre">bytes</span></code> objects, to be insert into SuperDuperDB:</p>
+<div class="nbinput docutils container">
 <div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[3]:
+</pre></div>
+</div>
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">superduperdb.encoders.pillow.image</span> <span class="kn">import</span> <span class="n">pil_image</span> <span class="k">as</span> <span class="n">i</span>
+<span class="kn">from</span> <span class="nn">superduperdb.core.document</span> <span class="kn">import</span> <span class="n">Document</span> <span class="k">as</span> <span class="n">D</span>
+<span class="kn">from</span> <span class="nn">superduperdb.datalayer.mongodb.query</span> <span class="kn">import</span> <span class="n">Collection</span>
+
+<span class="kn">import</span> <span class="nn">random</span>
+
+<span class="n">collection</span> <span class="o">=</span> <span class="n">Collection</span><span class="p">(</span><span class="n">name</span><span class="o">=</span><span class="s1">&#39;mnist&#39;</span><span class="p">)</span>
+
+<span class="n">mnist_data</span> <span class="o">=</span> <span class="nb">list</span><span class="p">(</span><span class="n">torchvision</span><span class="o">.</span><span class="n">datasets</span><span class="o">.</span><span class="n">MNIST</span><span class="p">(</span><span class="n">root</span><span class="o">=</span><span class="s1">&#39;./data&#39;</span><span class="p">,</span> <span class="n">download</span><span class="o">=</span><span class="kc">True</span><span class="p">))</span>
+<span class="n">data</span> <span class="o">=</span> <span class="p">[</span><span class="n">D</span><span class="p">({</span><span class="s1">&#39;img&#39;</span><span class="p">:</span> <span class="n">i</span><span class="p">(</span><span class="n">x</span><span class="p">[</span><span class="mi">0</span><span class="p">]),</span> <span class="s1">&#39;class&#39;</span><span class="p">:</span> <span class="n">x</span><span class="p">[</span><span class="mi">1</span><span class="p">]})</span> <span class="k">for</span> <span class="n">x</span> <span class="ow">in</span> <span class="n">mnist_data</span><span class="p">]</span>
+<span class="n">random</span><span class="o">.</span><span class="n">shuffle</span><span class="p">(</span><span class="n">data</span><span class="p">)</span>
+
+<span class="n">db</span><span class="o">.</span><span class="n">execute</span><span class="p">(</span>
+    <span class="n">collection</span><span class="o">.</span><span class="n">insert_many</span><span class="p">(</span><span class="n">data</span><span class="p">[:</span><span class="o">-</span><span class="mi">1000</span><span class="p">],</span> <span class="n">encoders</span><span class="o">=</span><span class="p">[</span><span class="n">i</span><span class="p">])</span>
+<span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="nboutput docutils container">
+<div class="prompt empty docutils container">
+</div>
+<div class="output_area stderr docutils container">
+<div class="highlight"><pre>
+INFO:root:found 0 uris
+</pre></div></div>
+</div>
+<div class="nboutput nblast docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[3]:
+</pre></div>
+</div>
+<div class="output_area docutils container">
+<div class="highlight"><pre>
+(&lt;pymongo.results.InsertManyResult at 0x185416c20&gt;,
+ TaskWorkflow(database=&lt;superduperdb.datalayer.base.datalayer.Datalayer object at 0x1812fee90&gt;, G=&lt;networkx.classes.digraph.DiGraph object at 0x16be61dd0&gt;))
+</pre></div></div>
+</div>
+<p>Now that we’ve inserted the images and their classes to the database, let’s query some data:</p>
+<div class="nbinput docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[4]:
+</pre></div>
+</div>
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">r</span> <span class="o">=</span> <span class="n">db</span><span class="o">.</span><span class="n">execute</span><span class="p">(</span><span class="n">collection</span><span class="o">.</span><span class="n">find_one</span><span class="p">())</span>
+<span class="n">r</span>
+</pre></div>
+</div>
+</div>
+<div class="nboutput nblast docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[4]:
+</pre></div>
+</div>
+<div class="output_area docutils container">
+<div class="highlight"><pre>
+Document({&#39;_id&#39;: ObjectId(&#39;64bb3671117eb460ca78cdcd&#39;), &#39;img&#39;: Encodable(x=&lt;PIL.PngImagePlugin.PngImageFile image mode=L size=28x28 at 0x18133DF90&gt;, encoder=Encoder(identifier=&#39;pil_image&#39;, decoder=&lt;Artifact artifact=&lt;function decode_pil_image at 0x18134a840&gt; serializer=dill&gt;, encoder=&lt;Artifact artifact=&lt;function encode_pil_image at 0x1812dfa60&gt; serializer=dill&gt;, shape=None, version=0)), &#39;class&#39;: 7, &#39;_fold&#39;: &#39;valid&#39;})
+</pre></div></div>
+</div>
+<p>When we query the data, it’s in exactly the format we inserted it. In particular, we can use the <code class="docutils literal notranslate"><span class="pre">PIL.Image</span></code> instances to inspect the data:</p>
+<div class="nbinput docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[5]:
+</pre></div>
+</div>
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">r</span><span class="p">[</span><span class="s1">&#39;img&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">x</span>
+</pre></div>
+</div>
+</div>
+<div class="nboutput nblast docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[5]:
+</pre></div>
+</div>
+<div class="output_area docutils container">
+<img alt="../_images/examples_mnist_clean_9_0.png" src="../_images/examples_mnist_clean_9_0.png" />
+</div>
+</div>
+<p>Now let’s create our model. SuperDuperDB supports these frameworks, out-of-the-box:</p>
+<ul class="simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">torch</span></code></p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">sklearn</span></code></p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">transformers</span></code></p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">sentence_transformers</span></code></p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">openai</span></code></p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">langchain</span></code></p></li>
+</ul>
+<p>In this case, we’re going to use PyTorch, since it’s great for computer vision use-cases. We can combine <code class="docutils literal notranslate"><span class="pre">torch</span></code> with <code class="docutils literal notranslate"><span class="pre">torchvision</span></code> in SuperDuperDB.</p>
+<div class="nbinput nblast docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[6]:
 </pre></div>
 </div>
 <div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="k">class</span> <span class="nc">LeNet5</span><span class="p">(</span><span class="n">torch</span><span class="o">.</span><span class="n">nn</span><span class="o">.</span><span class="n">Module</span><span class="p">):</span>
@@ -328,98 +429,18 @@
 </pre></div>
 </div>
 </div>
-<div class="nbinput nblast docutils container">
-<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[8]:
-</pre></div>
-</div>
-<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">db</span><span class="o">.</span><span class="n">db</span><span class="o">.</span><span class="n">client</span><span class="o">.</span><span class="n">drop_database</span><span class="p">(</span><span class="s1">&#39;documents&#39;</span><span class="p">)</span>
-</pre></div>
-</div>
-</div>
-<div class="nbinput nblast docutils container">
-<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[5]:
-</pre></div>
-</div>
-<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">db</span> <span class="o">=</span> <span class="n">pymongo</span><span class="o">.</span><span class="n">MongoClient</span><span class="p">()</span><span class="o">.</span><span class="n">documents</span>
-</pre></div>
-</div>
-</div>
+<p>We’ve created <code class="docutils literal notranslate"><span class="pre">postprocess</span></code> and <code class="docutils literal notranslate"><span class="pre">preprocess</span></code> functions to handle the communication with the SuperDuperDB <code class="docutils literal notranslate"><span class="pre">Datalayer</span></code>. In order to create a native SuperDuperDB model, we wrap the model, preprocessing and postprocessing:</p>
 <div class="nbinput nblast docutils container">
 <div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[7]:
-</pre></div>
-</div>
-<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">db</span> <span class="o">=</span> <span class="n">superduper</span><span class="p">(</span><span class="n">db</span><span class="p">)</span>
-</pre></div>
-</div>
-</div>
-<div class="nbinput docutils container">
-<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[9]:
-</pre></div>
-</div>
-<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">superduperdb.encoders.pillow.image</span> <span class="kn">import</span> <span class="n">pil_image</span> <span class="k">as</span> <span class="n">i</span>
-<span class="kn">from</span> <span class="nn">superduperdb.core.documents</span> <span class="kn">import</span> <span class="n">Document</span> <span class="k">as</span> <span class="n">D</span>
-<span class="kn">from</span> <span class="nn">superduperdb.datalayer.mongodb.query</span> <span class="kn">import</span> <span class="n">Collection</span>
-
-<span class="kn">import</span> <span class="nn">random</span>
-
-<span class="n">collection</span> <span class="o">=</span> <span class="n">Collection</span><span class="p">(</span><span class="n">name</span><span class="o">=</span><span class="s1">&#39;mnist&#39;</span><span class="p">)</span>
-
-<span class="n">mnist_data</span> <span class="o">=</span> <span class="nb">list</span><span class="p">(</span><span class="n">torchvision</span><span class="o">.</span><span class="n">datasets</span><span class="o">.</span><span class="n">MNIST</span><span class="p">(</span><span class="n">root</span><span class="o">=</span><span class="s1">&#39;./data&#39;</span><span class="p">,</span> <span class="n">download</span><span class="o">=</span><span class="kc">True</span><span class="p">))</span>
-<span class="n">data</span> <span class="o">=</span> <span class="p">[</span><span class="n">D</span><span class="p">({</span><span class="s1">&#39;img&#39;</span><span class="p">:</span> <span class="n">i</span><span class="p">(</span><span class="n">x</span><span class="p">[</span><span class="mi">0</span><span class="p">]),</span> <span class="s1">&#39;class&#39;</span><span class="p">:</span> <span class="n">x</span><span class="p">[</span><span class="mi">1</span><span class="p">]})</span> <span class="k">for</span> <span class="n">x</span> <span class="ow">in</span> <span class="n">mnist_data</span><span class="p">]</span>
-<span class="n">random</span><span class="o">.</span><span class="n">shuffle</span><span class="p">(</span><span class="n">data</span><span class="p">)</span>
-
-<span class="n">db</span><span class="o">.</span><span class="n">execute</span><span class="p">(</span>
-    <span class="n">collection</span><span class="o">.</span><span class="n">insert_many</span><span class="p">(</span><span class="n">data</span><span class="p">[:</span><span class="o">-</span><span class="mi">1000</span><span class="p">],</span> <span class="n">encoders</span><span class="o">=</span><span class="p">[</span><span class="n">i</span><span class="p">])</span>
-<span class="p">)</span>
-</pre></div>
-</div>
-</div>
-<div class="nboutput docutils container">
-<div class="prompt empty docutils container">
-</div>
-<div class="output_area stderr docutils container">
-<div class="highlight"><pre>
-INFO:root:Created encoder/pil_image/0
-INFO:root:found 0 uris
-</pre></div></div>
-</div>
-<div class="nboutput nblast docutils container">
-<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[9]:
-</pre></div>
-</div>
-<div class="output_area docutils container">
-<div class="highlight"><pre>
-(&lt;pymongo.results.InsertManyResult at 0x17d7beb50&gt;,
- TaskWorkflow(database=&lt;superduperdb.datalayer.base.database.BaseDatabase object at 0x17db79700&gt;, G=&lt;networkx.classes.digraph.DiGraph object at 0x167808bb0&gt;))
-</pre></div></div>
-</div>
-<div class="nbinput docutils container">
-<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[10]:
-</pre></div>
-</div>
-<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">db</span><span class="o">.</span><span class="n">execute</span><span class="p">(</span><span class="n">collection</span><span class="o">.</span><span class="n">find_one</span><span class="p">())</span>
-</pre></div>
-</div>
-</div>
-<div class="nboutput nblast docutils container">
-<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[10]:
-</pre></div>
-</div>
-<div class="output_area docutils container">
-<div class="highlight"><pre>
-Document({&#39;_id&#39;: ObjectId(&#39;64b174e4d50ad8f852218d47&#39;), &#39;img&#39;: Encodable(x=&lt;PIL.PngImagePlugin.PngImageFile image mode=L size=28x28 at 0x17DB797F0&gt;, encoder=Encoder(identifier=&#39;pil_image&#39;, decoder=&lt;Artifact artifact=&lt;function decode_pil_image at 0x17dbb7ca0&gt; serializer=dill&gt;, encoder=&lt;Artifact artifact=&lt;function encode_pil_image at 0x17d809b80&gt; serializer=dill&gt;, shape=None, version=0)), &#39;class&#39;: 2, &#39;_fold&#39;: &#39;train&#39;})
-</pre></div></div>
-</div>
-<div class="nbinput nblast docutils container">
-<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[11]:
 </pre></div>
 </div>
 <div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">model</span> <span class="o">=</span> <span class="n">superduper</span><span class="p">(</span><span class="n">LeNet5</span><span class="p">(</span><span class="mi">10</span><span class="p">),</span> <span class="n">preprocess</span><span class="o">=</span><span class="n">preprocess</span><span class="p">,</span> <span class="n">postprocess</span><span class="o">=</span><span class="n">postprocess</span><span class="p">)</span>
 </pre></div>
 </div>
 </div>
+<p>The model predicts human readable outputs, directly from the <code class="docutils literal notranslate"><span class="pre">PIL.Image</span></code> objects. All models in SuperDuperDB are equipped with a <code class="docutils literal notranslate"><span class="pre">sklearn</span></code>-style <code class="docutils literal notranslate"><span class="pre">.predict</span></code> method. This makes it easy to know how each AI-framework will operate in combination with the <code class="docutils literal notranslate"><span class="pre">Datalayer</span></code>.</p>
 <div class="nbinput docutils container">
-<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[12]:
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[8]:
 </pre></div>
 </div>
 <div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">model</span><span class="o">.</span><span class="n">predict</span><span class="p">([</span><span class="n">r</span><span class="p">[</span><span class="s1">&#39;img&#39;</span><span class="p">]</span> <span class="k">for</span> <span class="n">r</span> <span class="ow">in</span> <span class="n">data</span><span class="p">[:</span><span class="mi">10</span><span class="p">]])</span>
@@ -431,20 +452,21 @@ Document({&#39;_id&#39;: ObjectId(&#39;64b174e4d50ad8f852218d47&#39;), &#39;img&
 </div>
 <div class="output_area stderr docutils container">
 <div class="highlight"><pre>
-100%|█████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████| 10/10 [00:00&lt;00:00, 455.96it/s]
+100%|█████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████| 10/10 [00:00&lt;00:00, 466.14it/s]
 </pre></div></div>
 </div>
 <div class="nboutput nblast docutils container">
-<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[12]:
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[8]:
 </pre></div>
 </div>
 <div class="output_area docutils container">
 <div class="highlight"><pre>
-[5, 0, 0, 0, 0, 5, 0, 5, 0, 5]
+[0, 0, 0, 0, 0, 0, 0, 0, 0, 0]
 </pre></div></div>
 </div>
+<p>Now we’re ready to “train” or “fit” the model. Trainable models in SuperDuperDB are equipped with a <code class="docutils literal notranslate"><span class="pre">sklearn</span></code>-like <code class="docutils literal notranslate"><span class="pre">.fit</span></code> method:</p>
 <div class="nbinput docutils container">
-<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[13]:
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[9]:
 </pre></div>
 </div>
 <div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">torch.optim</span> <span class="kn">import</span> <span class="n">Adam</span>
@@ -465,8 +487,8 @@ Document({&#39;_id&#39;: ObjectId(&#39;64b174e4d50ad8f852218d47&#39;), &#39;img&
         <span class="n">identifier</span><span class="o">=</span><span class="s1">&#39;my_configuration&#39;</span><span class="p">,</span>
         <span class="n">objective</span><span class="o">=</span><span class="n">cross_entropy</span><span class="p">,</span>
         <span class="n">loader_kwargs</span><span class="o">=</span><span class="p">{</span><span class="s1">&#39;batch_size&#39;</span><span class="p">:</span> <span class="mi">10</span><span class="p">},</span>
-        <span class="n">max_iterations</span><span class="o">=</span><span class="mi">100</span><span class="p">,</span>
-        <span class="n">validation_interval</span><span class="o">=</span><span class="mi">10</span><span class="p">,</span>
+        <span class="n">max_iterations</span><span class="o">=</span><span class="mi">1000</span><span class="p">,</span>
+        <span class="n">validation_interval</span><span class="o">=</span><span class="mi">50</span><span class="p">,</span>
         <span class="n">compute_metrics</span><span class="o">=</span><span class="n">compute_classification_metrics</span><span class="p">,</span>
     <span class="p">),</span>
     <span class="n">metrics</span><span class="o">=</span><span class="p">[</span><span class="n">Metric</span><span class="p">(</span><span class="n">identifier</span><span class="o">=</span><span class="s1">&#39;acc&#39;</span><span class="p">,</span> <span class="nb">object</span><span class="o">=</span><span class="k">lambda</span> <span class="n">x</span><span class="p">,</span> <span class="n">y</span><span class="p">:</span> <span class="n">x</span> <span class="o">==</span> <span class="n">y</span><span class="p">)],</span>
@@ -474,7 +496,6 @@ Document({&#39;_id&#39;: ObjectId(&#39;64b174e4d50ad8f852218d47&#39;), &#39;img&
         <span class="n">Dataset</span><span class="p">(</span>
             <span class="n">identifier</span><span class="o">=</span><span class="s1">&#39;my_valid&#39;</span><span class="p">,</span>
             <span class="n">select</span><span class="o">=</span><span class="n">Collection</span><span class="p">(</span><span class="n">name</span><span class="o">=</span><span class="s1">&#39;mnist&#39;</span><span class="p">)</span><span class="o">.</span><span class="n">find</span><span class="p">({</span><span class="s1">&#39;_fold&#39;</span><span class="p">:</span> <span class="s1">&#39;valid&#39;</span><span class="p">}),</span>
-            <span class="n">db</span><span class="o">=</span><span class="n">db</span><span class="p">,</span>
         <span class="p">)</span>
     <span class="p">],</span>
     <span class="n">distributed</span><span class="o">=</span><span class="kc">False</span>
@@ -487,189 +508,1053 @@ Document({&#39;_id&#39;: ObjectId(&#39;64b174e4d50ad8f852218d47&#39;), &#39;img&
 </div>
 <div class="output_area stderr docutils container">
 <div class="highlight"><pre>
-INFO:root:Created dataset/my_valid/0
-INFO:root:Created model/lenet5/0
-INFO:root:fold: TRAIN; iteration: 0; objective: 2.2636027336120605;
-100%|████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████| 2917/2917 [00:01&lt;00:00, 1473.80it/s]
-INFO:root:fold: VALID; iteration: 0; my_valid/acc: 0.10558793280767913; objective: 2.3024406808696383;
-INFO:root:fold: TRAIN; iteration: 1; objective: 2.451305389404297;
-INFO:root:fold: TRAIN; iteration: 2; objective: 2.3206772804260254;
-INFO:root:fold: TRAIN; iteration: 3; objective: 2.3094427585601807;
-INFO:root:fold: TRAIN; iteration: 4; objective: 2.27115797996521;
-INFO:root:fold: TRAIN; iteration: 5; objective: 2.251753330230713;
-INFO:root:fold: TRAIN; iteration: 6; objective: 2.184605598449707;
-INFO:root:fold: TRAIN; iteration: 7; objective: 2.1559717655181885;
-INFO:root:fold: TRAIN; iteration: 8; objective: 2.1100094318389893;
-INFO:root:fold: TRAIN; iteration: 9; objective: 2.0685362815856934;
-INFO:root:fold: TRAIN; iteration: 10; objective: 2.1121528148651123;
-100%|████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████| 2917/2917 [00:01&lt;00:00, 1464.42it/s]
-INFO:root:fold: VALID; iteration: 10; my_valid/acc: 0.3225917038052794; objective: 2.1036537154896617;
-INFO:root:fold: TRAIN; iteration: 11; objective: 2.029461622238159;
-INFO:root:fold: TRAIN; iteration: 12; objective: 2.2553775310516357;
-INFO:root:fold: TRAIN; iteration: 13; objective: 1.8924827575683594;
-INFO:root:fold: TRAIN; iteration: 14; objective: 1.9548372030258179;
-INFO:root:fold: TRAIN; iteration: 15; objective: 2.0213944911956787;
-INFO:root:fold: TRAIN; iteration: 16; objective: 2.0866830348968506;
-INFO:root:fold: TRAIN; iteration: 17; objective: 2.0644917488098145;
-INFO:root:fold: TRAIN; iteration: 18; objective: 1.9964416027069092;
-INFO:root:fold: TRAIN; iteration: 19; objective: 1.9441416263580322;
-INFO:root:fold: TRAIN; iteration: 20; objective: 2.0588316917419434;
-100%|████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████| 2917/2917 [00:02&lt;00:00, 1428.87it/s]
-INFO:root:fold: VALID; iteration: 20; my_valid/acc: 0.38189921151868356; objective: 1.8714400391056114;
-INFO:root:fold: TRAIN; iteration: 21; objective: 1.9128974676132202;
-INFO:root:fold: TRAIN; iteration: 22; objective: 2.1311848163604736;
-INFO:root:fold: TRAIN; iteration: 23; objective: 1.6903291940689087;
-INFO:root:fold: TRAIN; iteration: 24; objective: 1.4871370792388916;
-INFO:root:fold: TRAIN; iteration: 25; objective: 1.6468786001205444;
-INFO:root:fold: TRAIN; iteration: 26; objective: 1.7011289596557617;
-INFO:root:fold: TRAIN; iteration: 27; objective: 1.765293836593628;
-INFO:root:fold: TRAIN; iteration: 28; objective: 1.8704679012298584;
-INFO:root:fold: TRAIN; iteration: 29; objective: 1.5048846006393433;
-INFO:root:fold: TRAIN; iteration: 30; objective: 1.9058284759521484;
-100%|████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████| 2917/2917 [00:02&lt;00:00, 1457.82it/s]
-INFO:root:fold: VALID; iteration: 30; my_valid/acc: 0.6208433321906068; objective: 1.5691545797537452;
-INFO:root:fold: TRAIN; iteration: 31; objective: 1.7245668172836304;
-INFO:root:fold: TRAIN; iteration: 32; objective: 1.4949722290039062;
-INFO:root:fold: TRAIN; iteration: 33; objective: 1.6434568166732788;
-INFO:root:fold: TRAIN; iteration: 34; objective: 1.9197380542755127;
-INFO:root:fold: TRAIN; iteration: 35; objective: 1.1581300497055054;
-INFO:root:fold: TRAIN; iteration: 36; objective: 1.105804681777954;
-INFO:root:fold: TRAIN; iteration: 37; objective: 1.014953851699829;
-INFO:root:fold: TRAIN; iteration: 38; objective: 1.281571388244629;
-INFO:root:fold: TRAIN; iteration: 39; objective: 1.1979343891143799;
-INFO:root:fold: TRAIN; iteration: 40; objective: 1.1496556997299194;
-100%|████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████| 2917/2917 [00:01&lt;00:00, 1462.75it/s]
-INFO:root:fold: VALID; iteration: 40; my_valid/acc: 0.624614329790881; objective: 1.3270199231497228;
-INFO:root:fold: TRAIN; iteration: 41; objective: 1.3481894731521606;
-INFO:root:fold: TRAIN; iteration: 42; objective: 1.5499541759490967;
-INFO:root:fold: TRAIN; iteration: 43; objective: 1.0678093433380127;
-INFO:root:fold: TRAIN; iteration: 44; objective: 1.4036829471588135;
-INFO:root:fold: TRAIN; iteration: 45; objective: 1.144822597503662;
-INFO:root:fold: TRAIN; iteration: 46; objective: 1.2246692180633545;
-INFO:root:fold: TRAIN; iteration: 47; objective: 1.2673747539520264;
-INFO:root:fold: TRAIN; iteration: 48; objective: 1.057615041732788;
-INFO:root:fold: TRAIN; iteration: 49; objective: 1.2163496017456055;
-INFO:root:fold: TRAIN; iteration: 50; objective: 1.530818223953247;
-100%|████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████| 2917/2917 [00:01&lt;00:00, 1468.03it/s]
-INFO:root:fold: VALID; iteration: 50; my_valid/acc: 0.655810764484059; objective: 1.0999873921479264;
-INFO:root:fold: TRAIN; iteration: 51; objective: 0.9093157052993774;
-INFO:root:fold: TRAIN; iteration: 52; objective: 0.8649141192436218;
-INFO:root:fold: TRAIN; iteration: 53; objective: 0.6769917011260986;
-INFO:root:fold: TRAIN; iteration: 54; objective: 0.8237091302871704;
-INFO:root:fold: TRAIN; iteration: 55; objective: 0.9051357507705688;
-INFO:root:fold: TRAIN; iteration: 56; objective: 1.1652888059616089;
-INFO:root:fold: TRAIN; iteration: 57; objective: 0.9721485376358032;
-INFO:root:fold: TRAIN; iteration: 58; objective: 0.7873251438140869;
-INFO:root:fold: TRAIN; iteration: 59; objective: 0.5108793377876282;
-INFO:root:fold: TRAIN; iteration: 60; objective: 0.9073575139045715;
-100%|████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████| 2917/2917 [00:02&lt;00:00, 1453.45it/s]
-INFO:root:fold: VALID; iteration: 60; my_valid/acc: 0.7871100445663353; objective: 0.8137197722106764;
-INFO:root:fold: TRAIN; iteration: 61; objective: 0.955818772315979;
-INFO:root:fold: TRAIN; iteration: 62; objective: 0.5989598035812378;
-INFO:root:fold: TRAIN; iteration: 63; objective: 0.6877775192260742;
-INFO:root:fold: TRAIN; iteration: 64; objective: 0.6506100296974182;
-INFO:root:fold: TRAIN; iteration: 65; objective: 0.44473332166671753;
-INFO:root:fold: TRAIN; iteration: 66; objective: 0.6296674013137817;
-INFO:root:fold: TRAIN; iteration: 67; objective: 0.9905365705490112;
-INFO:root:fold: TRAIN; iteration: 68; objective: 1.3020446300506592;
-INFO:root:fold: TRAIN; iteration: 69; objective: 0.6622214913368225;
-INFO:root:fold: TRAIN; iteration: 70; objective: 0.9807332754135132;
-100%|████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████| 2917/2917 [00:02&lt;00:00, 1447.80it/s]
-INFO:root:fold: VALID; iteration: 70; my_valid/acc: 0.8097360301679808; objective: 0.6732703569306903;
-INFO:root:fold: TRAIN; iteration: 71; objective: 0.5036309957504272;
-INFO:root:fold: TRAIN; iteration: 72; objective: 0.5353643298149109;
-INFO:root:fold: TRAIN; iteration: 73; objective: 0.4259582459926605;
-INFO:root:fold: TRAIN; iteration: 74; objective: 0.7156941890716553;
-INFO:root:fold: TRAIN; iteration: 75; objective: 1.0036942958831787;
-INFO:root:fold: TRAIN; iteration: 76; objective: 0.38229840993881226;
-INFO:root:fold: TRAIN; iteration: 77; objective: 0.6550864577293396;
-INFO:root:fold: TRAIN; iteration: 78; objective: 0.750899076461792;
-INFO:root:fold: TRAIN; iteration: 79; objective: 0.41404104232788086;
-INFO:root:fold: TRAIN; iteration: 80; objective: 0.4526310861110687;
-100%|████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████| 2917/2917 [00:01&lt;00:00, 1475.50it/s]
-INFO:root:fold: VALID; iteration: 80; my_valid/acc: 0.8663009941720946; objective: 0.5408257470045188;
-INFO:root:fold: TRAIN; iteration: 81; objective: 0.5113770365715027;
-INFO:root:fold: TRAIN; iteration: 82; objective: 0.5134092569351196;
-INFO:root:fold: TRAIN; iteration: 83; objective: 0.5849499702453613;
-INFO:root:fold: TRAIN; iteration: 84; objective: 0.6738963723182678;
-INFO:root:fold: TRAIN; iteration: 85; objective: 0.2836281657218933;
-INFO:root:fold: TRAIN; iteration: 86; objective: 0.2135278731584549;
-INFO:root:fold: TRAIN; iteration: 87; objective: 0.6622745990753174;
-INFO:root:fold: TRAIN; iteration: 88; objective: 0.4997749924659729;
-INFO:root:fold: TRAIN; iteration: 89; objective: 0.5573866963386536;
-INFO:root:fold: TRAIN; iteration: 90; objective: 0.24344868957996368;
-100%|████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████| 2917/2917 [00:01&lt;00:00, 1463.02it/s]
-INFO:root:fold: VALID; iteration: 90; my_valid/acc: 0.8549880013712718; objective: 0.5347362626599123;
-INFO:root:fold: TRAIN; iteration: 91; objective: 0.8370794057846069;
-INFO:root:fold: TRAIN; iteration: 92; objective: 0.353643000125885;
-INFO:root:fold: TRAIN; iteration: 93; objective: 0.48435693979263306;
-INFO:root:fold: TRAIN; iteration: 94; objective: 1.3528252840042114;
-INFO:root:fold: TRAIN; iteration: 95; objective: 0.3474675118923187;
-INFO:root:fold: TRAIN; iteration: 96; objective: 0.44265326857566833;
-INFO:root:fold: TRAIN; iteration: 97; objective: 0.38781458139419556;
-INFO:root:fold: TRAIN; iteration: 98; objective: 1.1820679903030396;
-INFO:root:fold: TRAIN; iteration: 99; objective: 0.32649117708206177;
-INFO:root:fold: TRAIN; iteration: 100; objective: 0.6596584916114807;
-100%|████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████| 2917/2917 [00:01&lt;00:00, 1479.94it/s]
-INFO:root:fold: VALID; iteration: 100; my_valid/acc: 0.8615015426808365; objective: 0.523688334257227;
+INFO:root:fold: TRAIN; iteration: 0; objective: 2.363863229751587;
+100%|████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████| 2795/2795 [00:02&lt;00:00, 1330.81it/s]
+INFO:root:fold: VALID; iteration: 0; my_valid/acc: 0.12307692307692308; objective: 2.2970970397076362;
+INFO:root:fold: TRAIN; iteration: 1; objective: 2.2729060649871826;
+INFO:root:fold: TRAIN; iteration: 2; objective: 2.2369041442871094;
+INFO:root:fold: TRAIN; iteration: 3; objective: 2.2382397651672363;
+INFO:root:fold: TRAIN; iteration: 4; objective: 2.202420473098755;
+INFO:root:fold: TRAIN; iteration: 5; objective: 2.3318538665771484;
+INFO:root:fold: TRAIN; iteration: 6; objective: 2.1153736114501953;
+INFO:root:fold: TRAIN; iteration: 7; objective: 2.1380786895751953;
+INFO:root:fold: TRAIN; iteration: 8; objective: 2.1284658908843994;
+INFO:root:fold: TRAIN; iteration: 9; objective: 2.1368746757507324;
+INFO:root:fold: TRAIN; iteration: 10; objective: 2.142636775970459;
+INFO:root:fold: TRAIN; iteration: 11; objective: 2.040879487991333;
+INFO:root:fold: TRAIN; iteration: 12; objective: 2.1650052070617676;
+INFO:root:fold: TRAIN; iteration: 13; objective: 2.092538833618164;
+INFO:root:fold: TRAIN; iteration: 14; objective: 1.9793440103530884;
+INFO:root:fold: TRAIN; iteration: 15; objective: 2.2555463314056396;
+INFO:root:fold: TRAIN; iteration: 16; objective: 1.9081045389175415;
+INFO:root:fold: TRAIN; iteration: 17; objective: 1.7794746160507202;
+INFO:root:fold: TRAIN; iteration: 18; objective: 1.7596642971038818;
+INFO:root:fold: TRAIN; iteration: 19; objective: 2.0829274654388428;
+INFO:root:fold: TRAIN; iteration: 20; objective: 1.8304080963134766;
+INFO:root:fold: TRAIN; iteration: 21; objective: 1.9775842428207397;
+INFO:root:fold: TRAIN; iteration: 22; objective: 1.839608907699585;
+INFO:root:fold: TRAIN; iteration: 23; objective: 1.7932897806167603;
+INFO:root:fold: TRAIN; iteration: 24; objective: 1.5775578022003174;
+INFO:root:fold: TRAIN; iteration: 25; objective: 1.7222795486450195;
+INFO:root:fold: TRAIN; iteration: 26; objective: 1.462323546409607;
+INFO:root:fold: TRAIN; iteration: 27; objective: 1.71010422706604;
+INFO:root:fold: TRAIN; iteration: 28; objective: 1.5892508029937744;
+INFO:root:fold: TRAIN; iteration: 29; objective: 1.4793213605880737;
+INFO:root:fold: TRAIN; iteration: 30; objective: 1.3916422128677368;
+INFO:root:fold: TRAIN; iteration: 31; objective: 1.3435744047164917;
+INFO:root:fold: TRAIN; iteration: 32; objective: 1.4169710874557495;
+INFO:root:fold: TRAIN; iteration: 33; objective: 1.2705694437026978;
+INFO:root:fold: TRAIN; iteration: 34; objective: 1.2070626020431519;
+INFO:root:fold: TRAIN; iteration: 35; objective: 1.3303269147872925;
+INFO:root:fold: TRAIN; iteration: 36; objective: 1.1275440454483032;
+INFO:root:fold: TRAIN; iteration: 37; objective: 0.9777840375900269;
+INFO:root:fold: TRAIN; iteration: 38; objective: 0.9953492879867554;
+INFO:root:fold: TRAIN; iteration: 39; objective: 1.4759154319763184;
+INFO:root:fold: TRAIN; iteration: 40; objective: 1.1693804264068604;
+INFO:root:fold: TRAIN; iteration: 41; objective: 1.082204818725586;
+INFO:root:fold: TRAIN; iteration: 42; objective: 1.0449740886688232;
+INFO:root:fold: TRAIN; iteration: 43; objective: 1.4971110820770264;
+INFO:root:fold: TRAIN; iteration: 44; objective: 0.6739886403083801;
+INFO:root:fold: TRAIN; iteration: 45; objective: 0.8098205327987671;
+INFO:root:fold: TRAIN; iteration: 46; objective: 1.1776292324066162;
+INFO:root:fold: TRAIN; iteration: 47; objective: 1.0817911624908447;
+INFO:root:fold: TRAIN; iteration: 48; objective: 0.7726315259933472;
+INFO:root:fold: TRAIN; iteration: 49; objective: 0.9469982981681824;
+INFO:root:fold: TRAIN; iteration: 50; objective: 1.007532000541687;
+100%|████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████| 2795/2795 [00:01&lt;00:00, 1462.55it/s]
+INFO:root:fold: VALID; iteration: 50; my_valid/acc: 0.7477638640429338; objective: 0.8727521760685969;
+INFO:root:fold: TRAIN; iteration: 51; objective: 1.073225736618042;
+INFO:root:fold: TRAIN; iteration: 52; objective: 0.8068607449531555;
+INFO:root:fold: TRAIN; iteration: 53; objective: 1.3685731887817383;
+INFO:root:fold: TRAIN; iteration: 54; objective: 0.47122254967689514;
+INFO:root:fold: TRAIN; iteration: 55; objective: 1.034374475479126;
+INFO:root:fold: TRAIN; iteration: 56; objective: 0.8252367973327637;
+INFO:root:fold: TRAIN; iteration: 57; objective: 0.686427652835846;
+INFO:root:fold: TRAIN; iteration: 58; objective: 0.5280839204788208;
+INFO:root:fold: TRAIN; iteration: 59; objective: 0.863735020160675;
+INFO:root:fold: TRAIN; iteration: 60; objective: 1.010704755783081;
+INFO:root:fold: TRAIN; iteration: 61; objective: 1.3543674945831299;
+INFO:root:fold: TRAIN; iteration: 62; objective: 0.28073549270629883;
+INFO:root:fold: TRAIN; iteration: 63; objective: 0.5196174383163452;
+INFO:root:fold: TRAIN; iteration: 64; objective: 0.8394654989242554;
+INFO:root:fold: TRAIN; iteration: 65; objective: 0.4904133677482605;
+INFO:root:fold: TRAIN; iteration: 66; objective: 0.38067132234573364;
+INFO:root:fold: TRAIN; iteration: 67; objective: 0.4356301724910736;
+INFO:root:fold: TRAIN; iteration: 68; objective: 0.28206831216812134;
+INFO:root:fold: TRAIN; iteration: 69; objective: 0.5958660244941711;
+INFO:root:fold: TRAIN; iteration: 70; objective: 0.41328367590904236;
+INFO:root:fold: TRAIN; iteration: 71; objective: 0.5031411051750183;
+INFO:root:fold: TRAIN; iteration: 72; objective: 1.5562970638275146;
+INFO:root:fold: TRAIN; iteration: 73; objective: 0.5933594703674316;
+INFO:root:fold: TRAIN; iteration: 74; objective: 0.5156792402267456;
+INFO:root:fold: TRAIN; iteration: 75; objective: 0.3545549511909485;
+INFO:root:fold: TRAIN; iteration: 76; objective: 0.4007033407688141;
+INFO:root:fold: TRAIN; iteration: 77; objective: 0.5214440822601318;
+INFO:root:fold: TRAIN; iteration: 78; objective: 0.2949453592300415;
+INFO:root:fold: TRAIN; iteration: 79; objective: 0.23721516132354736;
+INFO:root:fold: TRAIN; iteration: 80; objective: 0.49611225724220276;
+INFO:root:fold: TRAIN; iteration: 81; objective: 0.17609068751335144;
+INFO:root:fold: TRAIN; iteration: 82; objective: 0.2590857446193695;
+INFO:root:fold: TRAIN; iteration: 83; objective: 0.38204458355903625;
+INFO:root:fold: TRAIN; iteration: 84; objective: 0.7552739977836609;
+INFO:root:fold: TRAIN; iteration: 85; objective: 0.23448777198791504;
+INFO:root:fold: TRAIN; iteration: 86; objective: 1.1086177825927734;
+INFO:root:fold: TRAIN; iteration: 87; objective: 0.5347605347633362;
+INFO:root:fold: TRAIN; iteration: 88; objective: 0.32952409982681274;
+INFO:root:fold: TRAIN; iteration: 89; objective: 0.2291378229856491;
+INFO:root:fold: TRAIN; iteration: 90; objective: 0.8610868453979492;
+INFO:root:fold: TRAIN; iteration: 91; objective: 0.5499035120010376;
+INFO:root:fold: TRAIN; iteration: 92; objective: 0.5411171913146973;
+INFO:root:fold: TRAIN; iteration: 93; objective: 0.30027976632118225;
+INFO:root:fold: TRAIN; iteration: 94; objective: 0.7478784918785095;
+INFO:root:fold: TRAIN; iteration: 95; objective: 0.5608859062194824;
+INFO:root:fold: TRAIN; iteration: 96; objective: 0.4511832594871521;
+INFO:root:fold: TRAIN; iteration: 97; objective: 0.2853698432445526;
+INFO:root:fold: TRAIN; iteration: 98; objective: 0.2620917856693268;
+INFO:root:fold: TRAIN; iteration: 99; objective: 0.5825877785682678;
+INFO:root:fold: TRAIN; iteration: 100; objective: 0.26885125041007996;
+100%|████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████| 2795/2795 [00:01&lt;00:00, 1422.74it/s]
+INFO:root:fold: VALID; iteration: 100; my_valid/acc: 0.8737030411449016; objective: 0.4545349068500859;
+INFO:root:fold: TRAIN; iteration: 101; objective: 0.15309324860572815;
+INFO:root:fold: TRAIN; iteration: 102; objective: 0.3196447491645813;
+INFO:root:fold: TRAIN; iteration: 103; objective: 0.825721263885498;
+INFO:root:fold: TRAIN; iteration: 104; objective: 0.26087695360183716;
+INFO:root:fold: TRAIN; iteration: 105; objective: 0.2015361487865448;
+INFO:root:fold: TRAIN; iteration: 106; objective: 0.40795230865478516;
+INFO:root:fold: TRAIN; iteration: 107; objective: 0.43206238746643066;
+INFO:root:fold: TRAIN; iteration: 108; objective: 0.6310314536094666;
+INFO:root:fold: TRAIN; iteration: 109; objective: 0.4129571318626404;
+INFO:root:fold: TRAIN; iteration: 110; objective: 0.7782865166664124;
+INFO:root:fold: TRAIN; iteration: 111; objective: 0.26991739869117737;
+INFO:root:fold: TRAIN; iteration: 112; objective: 0.5479233860969543;
+INFO:root:fold: TRAIN; iteration: 113; objective: 0.6278750896453857;
+INFO:root:fold: TRAIN; iteration: 114; objective: 0.12283837795257568;
+INFO:root:fold: TRAIN; iteration: 115; objective: 0.6172191500663757;
+INFO:root:fold: TRAIN; iteration: 116; objective: 0.25614017248153687;
+INFO:root:fold: TRAIN; iteration: 117; objective: 0.4172891080379486;
+INFO:root:fold: TRAIN; iteration: 118; objective: 0.23731879889965057;
+INFO:root:fold: TRAIN; iteration: 119; objective: 0.642974853515625;
+INFO:root:fold: TRAIN; iteration: 120; objective: 0.46148228645324707;
+INFO:root:fold: TRAIN; iteration: 121; objective: 0.7525163888931274;
+INFO:root:fold: TRAIN; iteration: 122; objective: 0.21257548034191132;
+INFO:root:fold: TRAIN; iteration: 123; objective: 1.014782190322876;
+INFO:root:fold: TRAIN; iteration: 124; objective: 0.922336220741272;
+INFO:root:fold: TRAIN; iteration: 125; objective: 0.4267090857028961;
+INFO:root:fold: TRAIN; iteration: 126; objective: 0.18807686865329742;
+INFO:root:fold: TRAIN; iteration: 127; objective: 0.3418106138706207;
+INFO:root:fold: TRAIN; iteration: 128; objective: 0.450528085231781;
+INFO:root:fold: TRAIN; iteration: 129; objective: 0.5448653697967529;
+INFO:root:fold: TRAIN; iteration: 130; objective: 0.4703153967857361;
+INFO:root:fold: TRAIN; iteration: 131; objective: 1.3047049045562744;
+INFO:root:fold: TRAIN; iteration: 132; objective: 0.25693243741989136;
+INFO:root:fold: TRAIN; iteration: 133; objective: 0.2459905594587326;
+INFO:root:fold: TRAIN; iteration: 134; objective: 0.7978575229644775;
+INFO:root:fold: TRAIN; iteration: 135; objective: 0.26676130294799805;
+INFO:root:fold: TRAIN; iteration: 136; objective: 0.3229697346687317;
+INFO:root:fold: TRAIN; iteration: 137; objective: 0.3952118456363678;
+INFO:root:fold: TRAIN; iteration: 138; objective: 0.05321764945983887;
+INFO:root:fold: TRAIN; iteration: 139; objective: 0.5103310942649841;
+INFO:root:fold: TRAIN; iteration: 140; objective: 1.0548890829086304;
+INFO:root:fold: TRAIN; iteration: 141; objective: 0.12794825434684753;
+INFO:root:fold: TRAIN; iteration: 142; objective: 0.37868601083755493;
+INFO:root:fold: TRAIN; iteration: 143; objective: 0.4716174006462097;
+INFO:root:fold: TRAIN; iteration: 144; objective: 0.49061545729637146;
+INFO:root:fold: TRAIN; iteration: 145; objective: 0.29327234625816345;
+INFO:root:fold: TRAIN; iteration: 146; objective: 0.7619428634643555;
+INFO:root:fold: TRAIN; iteration: 147; objective: 0.352782279253006;
+INFO:root:fold: TRAIN; iteration: 148; objective: 0.9109509587287903;
+INFO:root:fold: TRAIN; iteration: 149; objective: 0.21074846386909485;
+INFO:root:fold: TRAIN; iteration: 150; objective: 0.18710651993751526;
+100%|████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████| 2795/2795 [00:01&lt;00:00, 1405.34it/s]
+INFO:root:fold: VALID; iteration: 150; my_valid/acc: 0.9026833631484794; objective: 0.3293560099169233;
+INFO:root:fold: TRAIN; iteration: 151; objective: 0.5066665410995483;
+INFO:root:fold: TRAIN; iteration: 152; objective: 0.22694210708141327;
+INFO:root:fold: TRAIN; iteration: 153; objective: 0.20732617378234863;
+INFO:root:fold: TRAIN; iteration: 154; objective: 0.3642050623893738;
+INFO:root:fold: TRAIN; iteration: 155; objective: 0.2479131668806076;
+INFO:root:fold: TRAIN; iteration: 156; objective: 0.18691286444664001;
+INFO:root:fold: TRAIN; iteration: 157; objective: 0.05603101849555969;
+INFO:root:fold: TRAIN; iteration: 158; objective: 0.5177914500236511;
+INFO:root:fold: TRAIN; iteration: 159; objective: 0.3155861794948578;
+INFO:root:fold: TRAIN; iteration: 160; objective: 0.11417373269796371;
+INFO:root:fold: TRAIN; iteration: 161; objective: 0.13115599751472473;
+INFO:root:fold: TRAIN; iteration: 162; objective: 0.18603405356407166;
+INFO:root:fold: TRAIN; iteration: 163; objective: 0.284945011138916;
+INFO:root:fold: TRAIN; iteration: 164; objective: 0.07729689031839371;
+INFO:root:fold: TRAIN; iteration: 165; objective: 0.2014426738023758;
+INFO:root:fold: TRAIN; iteration: 166; objective: 0.2836061418056488;
+INFO:root:fold: TRAIN; iteration: 167; objective: 0.16982659697532654;
+INFO:root:fold: TRAIN; iteration: 168; objective: 0.254835844039917;
+INFO:root:fold: TRAIN; iteration: 169; objective: 0.23677615821361542;
+INFO:root:fold: TRAIN; iteration: 170; objective: 0.04982123523950577;
+INFO:root:fold: TRAIN; iteration: 171; objective: 0.3081645369529724;
+INFO:root:fold: TRAIN; iteration: 172; objective: 0.48649659752845764;
+INFO:root:fold: TRAIN; iteration: 173; objective: 1.2496771812438965;
+INFO:root:fold: TRAIN; iteration: 174; objective: 0.16038227081298828;
+INFO:root:fold: TRAIN; iteration: 175; objective: 0.5293569564819336;
+INFO:root:fold: TRAIN; iteration: 176; objective: 0.053239576518535614;
+INFO:root:fold: TRAIN; iteration: 177; objective: 0.32311853766441345;
+INFO:root:fold: TRAIN; iteration: 178; objective: 0.13007543981075287;
+INFO:root:fold: TRAIN; iteration: 179; objective: 0.3164497911930084;
+INFO:root:fold: TRAIN; iteration: 180; objective: 0.21463052928447723;
+INFO:root:fold: TRAIN; iteration: 181; objective: 0.5351088643074036;
+INFO:root:fold: TRAIN; iteration: 182; objective: 1.5187832117080688;
+INFO:root:fold: TRAIN; iteration: 183; objective: 0.20453140139579773;
+INFO:root:fold: TRAIN; iteration: 184; objective: 0.2912450432777405;
+INFO:root:fold: TRAIN; iteration: 185; objective: 0.2459617406129837;
+INFO:root:fold: TRAIN; iteration: 186; objective: 0.44143614172935486;
+INFO:root:fold: TRAIN; iteration: 187; objective: 0.30719423294067383;
+INFO:root:fold: TRAIN; iteration: 188; objective: 0.8586209416389465;
+INFO:root:fold: TRAIN; iteration: 189; objective: 0.5154301524162292;
+INFO:root:fold: TRAIN; iteration: 190; objective: 0.13524702191352844;
+INFO:root:fold: TRAIN; iteration: 191; objective: 0.1025480255484581;
+INFO:root:fold: TRAIN; iteration: 192; objective: 0.4178592264652252;
+INFO:root:fold: TRAIN; iteration: 193; objective: 0.9203904271125793;
+INFO:root:fold: TRAIN; iteration: 194; objective: 0.3484005630016327;
+INFO:root:fold: TRAIN; iteration: 195; objective: 1.196751594543457;
+INFO:root:fold: TRAIN; iteration: 196; objective: 0.4018944799900055;
+INFO:root:fold: TRAIN; iteration: 197; objective: 0.8029531240463257;
+INFO:root:fold: TRAIN; iteration: 198; objective: 0.2127852737903595;
+INFO:root:fold: TRAIN; iteration: 199; objective: 0.14830172061920166;
+INFO:root:fold: TRAIN; iteration: 200; objective: 0.4572196900844574;
+100%|████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████| 2795/2795 [00:01&lt;00:00, 1427.53it/s]
+INFO:root:fold: VALID; iteration: 200; my_valid/acc: 0.918783542039356; objective: 0.2867259380286086;
+INFO:root:fold: TRAIN; iteration: 201; objective: 0.1468924731016159;
+INFO:root:fold: TRAIN; iteration: 202; objective: 0.49580031633377075;
+INFO:root:fold: TRAIN; iteration: 203; objective: 0.33121800422668457;
+INFO:root:fold: TRAIN; iteration: 204; objective: 0.2853262722492218;
+INFO:root:fold: TRAIN; iteration: 205; objective: 0.18103662133216858;
+INFO:root:fold: TRAIN; iteration: 206; objective: 0.43514999747276306;
+INFO:root:fold: TRAIN; iteration: 207; objective: 0.1331053376197815;
+INFO:root:fold: TRAIN; iteration: 208; objective: 0.11663862317800522;
+INFO:root:fold: TRAIN; iteration: 209; objective: 0.26353922486305237;
+INFO:root:fold: TRAIN; iteration: 210; objective: 0.6625453233718872;
+INFO:root:fold: TRAIN; iteration: 211; objective: 0.24764487147331238;
+INFO:root:fold: TRAIN; iteration: 212; objective: 0.14141540229320526;
+INFO:root:fold: TRAIN; iteration: 213; objective: 0.1697022020816803;
+INFO:root:fold: TRAIN; iteration: 214; objective: 0.47940078377723694;
+INFO:root:fold: TRAIN; iteration: 215; objective: 0.5861667394638062;
+INFO:root:fold: TRAIN; iteration: 216; objective: 0.1877790242433548;
+INFO:root:fold: TRAIN; iteration: 217; objective: 0.651258111000061;
+INFO:root:fold: TRAIN; iteration: 218; objective: 0.15991437435150146;
+INFO:root:fold: TRAIN; iteration: 219; objective: 0.07596201449632645;
+INFO:root:fold: TRAIN; iteration: 220; objective: 0.516636848449707;
+INFO:root:fold: TRAIN; iteration: 221; objective: 0.13039268553256989;
+INFO:root:fold: TRAIN; iteration: 222; objective: 0.04523100703954697;
+INFO:root:fold: TRAIN; iteration: 223; objective: 0.09795337915420532;
+INFO:root:fold: TRAIN; iteration: 224; objective: 0.16521605849266052;
+INFO:root:fold: TRAIN; iteration: 225; objective: 0.31131622195243835;
+INFO:root:fold: TRAIN; iteration: 226; objective: 0.9594112634658813;
+INFO:root:fold: TRAIN; iteration: 227; objective: 0.32940077781677246;
+INFO:root:fold: TRAIN; iteration: 228; objective: 0.3008807301521301;
+INFO:root:fold: TRAIN; iteration: 229; objective: 0.3101782500743866;
+INFO:root:fold: TRAIN; iteration: 230; objective: 0.20000164210796356;
+INFO:root:fold: TRAIN; iteration: 231; objective: 0.12684080004692078;
+INFO:root:fold: TRAIN; iteration: 232; objective: 0.10550083220005035;
+INFO:root:fold: TRAIN; iteration: 233; objective: 0.3622719645500183;
+INFO:root:fold: TRAIN; iteration: 234; objective: 0.5941425561904907;
+INFO:root:fold: TRAIN; iteration: 235; objective: 0.1337440311908722;
+INFO:root:fold: TRAIN; iteration: 236; objective: 0.1456109583377838;
+INFO:root:fold: TRAIN; iteration: 237; objective: 0.2276095151901245;
+INFO:root:fold: TRAIN; iteration: 238; objective: 0.4151540696620941;
+INFO:root:fold: TRAIN; iteration: 239; objective: 0.2366350144147873;
+INFO:root:fold: TRAIN; iteration: 240; objective: 1.091727375984192;
+INFO:root:fold: TRAIN; iteration: 241; objective: 0.08672483265399933;
+INFO:root:fold: TRAIN; iteration: 242; objective: 0.2641479969024658;
+INFO:root:fold: TRAIN; iteration: 243; objective: 0.11427812278270721;
+INFO:root:fold: TRAIN; iteration: 244; objective: 0.08976273238658905;
+INFO:root:fold: TRAIN; iteration: 245; objective: 0.08111724257469177;
+INFO:root:fold: TRAIN; iteration: 246; objective: 0.32761141657829285;
+INFO:root:fold: TRAIN; iteration: 247; objective: 0.07742445915937424;
+INFO:root:fold: TRAIN; iteration: 248; objective: 0.1810007244348526;
+INFO:root:fold: TRAIN; iteration: 249; objective: 0.07379838824272156;
+INFO:root:fold: TRAIN; iteration: 250; objective: 0.08176630735397339;
+100%|████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████| 2795/2795 [00:01&lt;00:00, 1486.26it/s]
+INFO:root:fold: VALID; iteration: 250; my_valid/acc: 0.9223613595706619; objective: 0.27997272079210667;
+INFO:root:fold: TRAIN; iteration: 251; objective: 0.686284601688385;
+INFO:root:fold: TRAIN; iteration: 252; objective: 0.052154190838336945;
+INFO:root:fold: TRAIN; iteration: 253; objective: 0.26447808742523193;
+INFO:root:fold: TRAIN; iteration: 254; objective: 0.4080298840999603;
+INFO:root:fold: TRAIN; iteration: 255; objective: 0.36051705479621887;
+INFO:root:fold: TRAIN; iteration: 256; objective: 0.024043215438723564;
+INFO:root:fold: TRAIN; iteration: 257; objective: 0.22643573582172394;
+INFO:root:fold: TRAIN; iteration: 258; objective: 0.2605906128883362;
+INFO:root:fold: TRAIN; iteration: 259; objective: 0.22615201771259308;
+INFO:root:fold: TRAIN; iteration: 260; objective: 0.06964845955371857;
+INFO:root:fold: TRAIN; iteration: 261; objective: 0.10589037835597992;
+INFO:root:fold: TRAIN; iteration: 262; objective: 0.397953599691391;
+INFO:root:fold: TRAIN; iteration: 263; objective: 0.20215921103954315;
+INFO:root:fold: TRAIN; iteration: 264; objective: 0.49600428342819214;
+INFO:root:fold: TRAIN; iteration: 265; objective: 0.6991430521011353;
+INFO:root:fold: TRAIN; iteration: 266; objective: 0.24614453315734863;
+INFO:root:fold: TRAIN; iteration: 267; objective: 0.05962110683321953;
+INFO:root:fold: TRAIN; iteration: 268; objective: 0.34552764892578125;
+INFO:root:fold: TRAIN; iteration: 269; objective: 0.07734736800193787;
+INFO:root:fold: TRAIN; iteration: 270; objective: 0.4758540689945221;
+INFO:root:fold: TRAIN; iteration: 271; objective: 0.09811554849147797;
+INFO:root:fold: TRAIN; iteration: 272; objective: 0.2388308346271515;
+INFO:root:fold: TRAIN; iteration: 273; objective: 0.42163267731666565;
+INFO:root:fold: TRAIN; iteration: 274; objective: 0.435197114944458;
+INFO:root:fold: TRAIN; iteration: 275; objective: 0.40220722556114197;
+INFO:root:fold: TRAIN; iteration: 276; objective: 0.11999642848968506;
+INFO:root:fold: TRAIN; iteration: 277; objective: 0.08574064075946808;
+INFO:root:fold: TRAIN; iteration: 278; objective: 0.2313290536403656;
+INFO:root:fold: TRAIN; iteration: 279; objective: 0.07354725152254105;
+INFO:root:fold: TRAIN; iteration: 280; objective: 0.17748884856700897;
+INFO:root:fold: TRAIN; iteration: 281; objective: 0.5567058324813843;
+INFO:root:fold: TRAIN; iteration: 282; objective: 0.09296704828739166;
+INFO:root:fold: TRAIN; iteration: 283; objective: 0.1139514222741127;
+INFO:root:fold: TRAIN; iteration: 284; objective: 0.24787981808185577;
+INFO:root:fold: TRAIN; iteration: 285; objective: 0.3913573622703552;
+INFO:root:fold: TRAIN; iteration: 286; objective: 0.3035629689693451;
+INFO:root:fold: TRAIN; iteration: 287; objective: 0.23612482845783234;
+INFO:root:fold: TRAIN; iteration: 288; objective: 1.045594334602356;
+INFO:root:fold: TRAIN; iteration: 289; objective: 0.1691906601190567;
+INFO:root:fold: TRAIN; iteration: 290; objective: 0.07004072517156601;
+INFO:root:fold: TRAIN; iteration: 291; objective: 0.08421418070793152;
+INFO:root:fold: TRAIN; iteration: 292; objective: 0.2902909517288208;
+INFO:root:fold: TRAIN; iteration: 293; objective: 0.36854028701782227;
+INFO:root:fold: TRAIN; iteration: 294; objective: 0.4839993119239807;
+INFO:root:fold: TRAIN; iteration: 295; objective: 0.06890686601400375;
+INFO:root:fold: TRAIN; iteration: 296; objective: 0.07312992960214615;
+INFO:root:fold: TRAIN; iteration: 297; objective: 0.27639883756637573;
+INFO:root:fold: TRAIN; iteration: 298; objective: 0.07540592551231384;
+INFO:root:fold: TRAIN; iteration: 299; objective: 0.3445470631122589;
+INFO:root:fold: TRAIN; iteration: 300; objective: 0.33732786774635315;
+100%|████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████| 2795/2795 [00:01&lt;00:00, 1438.80it/s]
+INFO:root:fold: VALID; iteration: 300; my_valid/acc: 0.9194991055456172; objective: 0.26709294573040837;
+INFO:root:fold: TRAIN; iteration: 301; objective: 0.11143507808446884;
+INFO:root:fold: TRAIN; iteration: 302; objective: 0.459622323513031;
+INFO:root:fold: TRAIN; iteration: 303; objective: 0.05999782681465149;
+INFO:root:fold: TRAIN; iteration: 304; objective: 0.4344213902950287;
+INFO:root:fold: TRAIN; iteration: 305; objective: 0.18171578645706177;
+INFO:root:fold: TRAIN; iteration: 306; objective: 0.29097723960876465;
+INFO:root:fold: TRAIN; iteration: 307; objective: 0.3051708936691284;
+INFO:root:fold: TRAIN; iteration: 308; objective: 0.060571037232875824;
+INFO:root:fold: TRAIN; iteration: 309; objective: 0.41241487860679626;
+INFO:root:fold: TRAIN; iteration: 310; objective: 0.5393298864364624;
+INFO:root:fold: TRAIN; iteration: 311; objective: 0.08070963621139526;
+INFO:root:fold: TRAIN; iteration: 312; objective: 1.0198813676834106;
+INFO:root:fold: TRAIN; iteration: 313; objective: 0.15690955519676208;
+INFO:root:fold: TRAIN; iteration: 314; objective: 0.203146293759346;
+INFO:root:fold: TRAIN; iteration: 315; objective: 0.4245741367340088;
+INFO:root:fold: TRAIN; iteration: 316; objective: 0.24221165478229523;
+INFO:root:fold: TRAIN; iteration: 317; objective: 0.14641089737415314;
+INFO:root:fold: TRAIN; iteration: 318; objective: 0.11784374713897705;
+INFO:root:fold: TRAIN; iteration: 319; objective: 0.32602548599243164;
+INFO:root:fold: TRAIN; iteration: 320; objective: 0.490569531917572;
+INFO:root:fold: TRAIN; iteration: 321; objective: 0.07706607133150101;
+INFO:root:fold: TRAIN; iteration: 322; objective: 0.21348270773887634;
+INFO:root:fold: TRAIN; iteration: 323; objective: 0.05144655704498291;
+INFO:root:fold: TRAIN; iteration: 324; objective: 0.4836699068546295;
+INFO:root:fold: TRAIN; iteration: 325; objective: 0.02294750325381756;
+INFO:root:fold: TRAIN; iteration: 326; objective: 0.2328677922487259;
+INFO:root:fold: TRAIN; iteration: 327; objective: 0.2678130269050598;
+INFO:root:fold: TRAIN; iteration: 328; objective: 0.6195663809776306;
+INFO:root:fold: TRAIN; iteration: 329; objective: 0.5054172277450562;
+INFO:root:fold: TRAIN; iteration: 330; objective: 0.06643521785736084;
+INFO:root:fold: TRAIN; iteration: 331; objective: 0.34908610582351685;
+INFO:root:fold: TRAIN; iteration: 332; objective: 0.3452475070953369;
+INFO:root:fold: TRAIN; iteration: 333; objective: 0.618963360786438;
+INFO:root:fold: TRAIN; iteration: 334; objective: 0.07796187698841095;
+INFO:root:fold: TRAIN; iteration: 335; objective: 0.13622400164604187;
+INFO:root:fold: TRAIN; iteration: 336; objective: 0.04580806568264961;
+INFO:root:fold: TRAIN; iteration: 337; objective: 0.05700220540165901;
+INFO:root:fold: TRAIN; iteration: 338; objective: 0.4464491307735443;
+INFO:root:fold: TRAIN; iteration: 339; objective: 0.17659634351730347;
+INFO:root:fold: TRAIN; iteration: 340; objective: 0.11637841165065765;
+INFO:root:fold: TRAIN; iteration: 341; objective: 0.06766936182975769;
+INFO:root:fold: TRAIN; iteration: 342; objective: 0.3036425709724426;
+INFO:root:fold: TRAIN; iteration: 343; objective: 0.060650430619716644;
+INFO:root:fold: TRAIN; iteration: 344; objective: 0.028753723949193954;
+INFO:root:fold: TRAIN; iteration: 345; objective: 0.7570750713348389;
+INFO:root:fold: TRAIN; iteration: 346; objective: 0.21355381608009338;
+INFO:root:fold: TRAIN; iteration: 347; objective: 0.10150565207004547;
+INFO:root:fold: TRAIN; iteration: 348; objective: 0.008201008662581444;
+INFO:root:fold: TRAIN; iteration: 349; objective: 0.21918344497680664;
+INFO:root:fold: TRAIN; iteration: 350; objective: 0.1318446397781372;
+100%|████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████| 2795/2795 [00:01&lt;00:00, 1429.41it/s]
+INFO:root:fold: VALID; iteration: 350; my_valid/acc: 0.9270125223613596; objective: 0.2464128448917941;
+INFO:root:fold: TRAIN; iteration: 351; objective: 0.04254886135458946;
+INFO:root:fold: TRAIN; iteration: 352; objective: 0.32556575536727905;
+INFO:root:fold: TRAIN; iteration: 353; objective: 0.52833092212677;
+INFO:root:fold: TRAIN; iteration: 354; objective: 0.1525522917509079;
+INFO:root:fold: TRAIN; iteration: 355; objective: 0.05748070403933525;
+INFO:root:fold: TRAIN; iteration: 356; objective: 0.5875385403633118;
+INFO:root:fold: TRAIN; iteration: 357; objective: 0.07732971757650375;
+INFO:root:fold: TRAIN; iteration: 358; objective: 0.42406877875328064;
+INFO:root:fold: TRAIN; iteration: 359; objective: 0.036810752004384995;
+INFO:root:fold: TRAIN; iteration: 360; objective: 0.9758270978927612;
+INFO:root:fold: TRAIN; iteration: 361; objective: 0.18628530204296112;
+INFO:root:fold: TRAIN; iteration: 362; objective: 0.09549762308597565;
+INFO:root:fold: TRAIN; iteration: 363; objective: 0.012016845867037773;
+INFO:root:fold: TRAIN; iteration: 364; objective: 0.043423254042863846;
+INFO:root:fold: TRAIN; iteration: 365; objective: 0.20193620026111603;
+INFO:root:fold: TRAIN; iteration: 366; objective: 0.57774817943573;
+INFO:root:fold: TRAIN; iteration: 367; objective: 0.046430304646492004;
+INFO:root:fold: TRAIN; iteration: 368; objective: 0.7991007566452026;
+INFO:root:fold: TRAIN; iteration: 369; objective: 0.1164792999625206;
+INFO:root:fold: TRAIN; iteration: 370; objective: 0.10737277567386627;
+INFO:root:fold: TRAIN; iteration: 371; objective: 0.15727980434894562;
+INFO:root:fold: TRAIN; iteration: 372; objective: 0.7169342637062073;
+INFO:root:fold: TRAIN; iteration: 373; objective: 0.055646590888500214;
+INFO:root:fold: TRAIN; iteration: 374; objective: 0.02189205214381218;
+INFO:root:fold: TRAIN; iteration: 375; objective: 0.077306367456913;
+INFO:root:fold: TRAIN; iteration: 376; objective: 0.5929446220397949;
+INFO:root:fold: TRAIN; iteration: 377; objective: 0.3114333748817444;
+INFO:root:fold: TRAIN; iteration: 378; objective: 0.44644564390182495;
+INFO:root:fold: TRAIN; iteration: 379; objective: 0.1848442256450653;
+INFO:root:fold: TRAIN; iteration: 380; objective: 0.12785141170024872;
+INFO:root:fold: TRAIN; iteration: 381; objective: 0.5191003084182739;
+INFO:root:fold: TRAIN; iteration: 382; objective: 0.7381711006164551;
+INFO:root:fold: TRAIN; iteration: 383; objective: 0.16423998773097992;
+INFO:root:fold: TRAIN; iteration: 384; objective: 0.017154913395643234;
+INFO:root:fold: TRAIN; iteration: 385; objective: 0.2864687740802765;
+INFO:root:fold: TRAIN; iteration: 386; objective: 0.036809854209423065;
+INFO:root:fold: TRAIN; iteration: 387; objective: 0.09239023923873901;
+INFO:root:fold: TRAIN; iteration: 388; objective: 0.5366479158401489;
+INFO:root:fold: TRAIN; iteration: 389; objective: 0.0452193059027195;
+INFO:root:fold: TRAIN; iteration: 390; objective: 0.1792188584804535;
+INFO:root:fold: TRAIN; iteration: 391; objective: 0.07929879426956177;
+INFO:root:fold: TRAIN; iteration: 392; objective: 0.2861258387565613;
+INFO:root:fold: TRAIN; iteration: 393; objective: 0.1067412719130516;
+INFO:root:fold: TRAIN; iteration: 394; objective: 0.48468032479286194;
+INFO:root:fold: TRAIN; iteration: 395; objective: 0.49004119634628296;
+INFO:root:fold: TRAIN; iteration: 396; objective: 0.23033380508422852;
+INFO:root:fold: TRAIN; iteration: 397; objective: 0.13510820269584656;
+INFO:root:fold: TRAIN; iteration: 398; objective: 0.11395092308521271;
+INFO:root:fold: TRAIN; iteration: 399; objective: 0.059020668268203735;
+INFO:root:fold: TRAIN; iteration: 400; objective: 0.16898086667060852;
+100%|████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████| 2795/2795 [00:02&lt;00:00, 1367.55it/s]
+INFO:root:fold: VALID; iteration: 400; my_valid/acc: 0.9388193202146691; objective: 0.20565560277772404;
+INFO:root:fold: TRAIN; iteration: 401; objective: 0.13015945255756378;
+INFO:root:fold: TRAIN; iteration: 402; objective: 0.7504738569259644;
+INFO:root:fold: TRAIN; iteration: 403; objective: 0.7663453221321106;
+INFO:root:fold: TRAIN; iteration: 404; objective: 0.5704246759414673;
+INFO:root:fold: TRAIN; iteration: 405; objective: 0.2781035304069519;
+INFO:root:fold: TRAIN; iteration: 406; objective: 0.29011860489845276;
+INFO:root:fold: TRAIN; iteration: 407; objective: 0.43461164832115173;
+INFO:root:fold: TRAIN; iteration: 408; objective: 0.0357496552169323;
+INFO:root:fold: TRAIN; iteration: 409; objective: 0.06499097496271133;
+INFO:root:fold: TRAIN; iteration: 410; objective: 0.09172870218753815;
+INFO:root:fold: TRAIN; iteration: 411; objective: 0.19462794065475464;
+INFO:root:fold: TRAIN; iteration: 412; objective: 0.28791338205337524;
+INFO:root:fold: TRAIN; iteration: 413; objective: 0.4538206160068512;
+INFO:root:fold: TRAIN; iteration: 414; objective: 0.10176382213830948;
+INFO:root:fold: TRAIN; iteration: 415; objective: 0.07425433397293091;
+INFO:root:fold: TRAIN; iteration: 416; objective: 0.021834006533026695;
+INFO:root:fold: TRAIN; iteration: 417; objective: 0.320465624332428;
+INFO:root:fold: TRAIN; iteration: 418; objective: 0.1355956494808197;
+INFO:root:fold: TRAIN; iteration: 419; objective: 0.06744175404310226;
+INFO:root:fold: TRAIN; iteration: 420; objective: 0.10178782045841217;
+INFO:root:fold: TRAIN; iteration: 421; objective: 0.03058372065424919;
+INFO:root:fold: TRAIN; iteration: 422; objective: 0.024025363847613335;
+INFO:root:fold: TRAIN; iteration: 423; objective: 0.47765272855758667;
+INFO:root:fold: TRAIN; iteration: 424; objective: 0.3734216094017029;
+INFO:root:fold: TRAIN; iteration: 425; objective: 0.12184029817581177;
+INFO:root:fold: TRAIN; iteration: 426; objective: 0.02956344559788704;
+INFO:root:fold: TRAIN; iteration: 427; objective: 0.08791376650333405;
+INFO:root:fold: TRAIN; iteration: 428; objective: 0.293939471244812;
+INFO:root:fold: TRAIN; iteration: 429; objective: 0.5632980465888977;
+INFO:root:fold: TRAIN; iteration: 430; objective: 0.4465118944644928;
+INFO:root:fold: TRAIN; iteration: 431; objective: 0.06741072982549667;
+INFO:root:fold: TRAIN; iteration: 432; objective: 0.13470956683158875;
+INFO:root:fold: TRAIN; iteration: 433; objective: 0.1853802502155304;
+INFO:root:fold: TRAIN; iteration: 434; objective: 0.19897744059562683;
+INFO:root:fold: TRAIN; iteration: 435; objective: 0.2132691890001297;
+INFO:root:fold: TRAIN; iteration: 436; objective: 0.052054595202207565;
+INFO:root:fold: TRAIN; iteration: 437; objective: 0.035254526883363724;
+INFO:root:fold: TRAIN; iteration: 438; objective: 0.10495642572641373;
+INFO:root:fold: TRAIN; iteration: 439; objective: 0.034915097057819366;
+INFO:root:fold: TRAIN; iteration: 440; objective: 0.15746654570102692;
+INFO:root:fold: TRAIN; iteration: 441; objective: 0.12140728533267975;
+INFO:root:fold: TRAIN; iteration: 442; objective: 0.07709898054599762;
+INFO:root:fold: TRAIN; iteration: 443; objective: 0.053460560739040375;
+INFO:root:fold: TRAIN; iteration: 444; objective: 0.37945300340652466;
+INFO:root:fold: TRAIN; iteration: 445; objective: 0.1177845448255539;
+INFO:root:fold: TRAIN; iteration: 446; objective: 0.24692502617835999;
+INFO:root:fold: TRAIN; iteration: 447; objective: 0.019469300284981728;
+INFO:root:fold: TRAIN; iteration: 448; objective: 0.03398948162794113;
+INFO:root:fold: TRAIN; iteration: 449; objective: 0.009219719097018242;
+INFO:root:fold: TRAIN; iteration: 450; objective: 1.204500436782837;
+100%|████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████| 2795/2795 [00:02&lt;00:00, 1371.33it/s]
+INFO:root:fold: VALID; iteration: 450; my_valid/acc: 0.9431127012522361; objective: 0.19031622999596362;
+INFO:root:fold: TRAIN; iteration: 451; objective: 0.04163219407200813;
+INFO:root:fold: TRAIN; iteration: 452; objective: 0.1456630676984787;
+INFO:root:fold: TRAIN; iteration: 453; objective: 0.4482308328151703;
+INFO:root:fold: TRAIN; iteration: 454; objective: 1.1153438091278076;
+INFO:root:fold: TRAIN; iteration: 455; objective: 0.03643948584794998;
+INFO:root:fold: TRAIN; iteration: 456; objective: 0.3184501528739929;
+INFO:root:fold: TRAIN; iteration: 457; objective: 0.13791480660438538;
+INFO:root:fold: TRAIN; iteration: 458; objective: 0.09025402367115021;
+INFO:root:fold: TRAIN; iteration: 459; objective: 0.20125742256641388;
+INFO:root:fold: TRAIN; iteration: 460; objective: 0.23244361579418182;
+INFO:root:fold: TRAIN; iteration: 461; objective: 0.06927972286939621;
+INFO:root:fold: TRAIN; iteration: 462; objective: 0.4844911992549896;
+INFO:root:fold: TRAIN; iteration: 463; objective: 0.19981692731380463;
+INFO:root:fold: TRAIN; iteration: 464; objective: 0.12312746047973633;
+INFO:root:fold: TRAIN; iteration: 465; objective: 0.08441494405269623;
+INFO:root:fold: TRAIN; iteration: 466; objective: 0.024925846606492996;
+INFO:root:fold: TRAIN; iteration: 467; objective: 0.08581750839948654;
+INFO:root:fold: TRAIN; iteration: 468; objective: 0.08208142220973969;
+INFO:root:fold: TRAIN; iteration: 469; objective: 0.01358036883175373;
+INFO:root:fold: TRAIN; iteration: 470; objective: 0.04274259880185127;
+INFO:root:fold: TRAIN; iteration: 471; objective: 0.21534669399261475;
+INFO:root:fold: TRAIN; iteration: 472; objective: 0.3006569445133209;
+INFO:root:fold: TRAIN; iteration: 473; objective: 0.26145029067993164;
+INFO:root:fold: TRAIN; iteration: 474; objective: 0.014731047675013542;
+INFO:root:fold: TRAIN; iteration: 475; objective: 0.3598945438861847;
+INFO:root:fold: TRAIN; iteration: 476; objective: 0.08284465223550797;
+INFO:root:fold: TRAIN; iteration: 477; objective: 0.29235243797302246;
+INFO:root:fold: TRAIN; iteration: 478; objective: 0.08497448265552521;
+INFO:root:fold: TRAIN; iteration: 479; objective: 0.8671764135360718;
+INFO:root:fold: TRAIN; iteration: 480; objective: 0.9247446060180664;
+INFO:root:fold: TRAIN; iteration: 481; objective: 1.1636621952056885;
+INFO:root:fold: TRAIN; iteration: 482; objective: 0.014021670445799828;
+INFO:root:fold: TRAIN; iteration: 483; objective: 0.15540149807929993;
+INFO:root:fold: TRAIN; iteration: 484; objective: 0.29995185136795044;
+INFO:root:fold: TRAIN; iteration: 485; objective: 0.14794090390205383;
+INFO:root:fold: TRAIN; iteration: 486; objective: 0.22624480724334717;
+INFO:root:fold: TRAIN; iteration: 487; objective: 1.1335170269012451;
+INFO:root:fold: TRAIN; iteration: 488; objective: 0.1290103644132614;
+INFO:root:fold: TRAIN; iteration: 489; objective: 0.2315673530101776;
+INFO:root:fold: TRAIN; iteration: 490; objective: 0.1106322854757309;
+INFO:root:fold: TRAIN; iteration: 491; objective: 0.015338800847530365;
+INFO:root:fold: TRAIN; iteration: 492; objective: 0.3423294723033905;
+INFO:root:fold: TRAIN; iteration: 493; objective: 0.09408513456583023;
+INFO:root:fold: TRAIN; iteration: 494; objective: 0.3586696982383728;
+INFO:root:fold: TRAIN; iteration: 495; objective: 0.41498875617980957;
+INFO:root:fold: TRAIN; iteration: 496; objective: 0.17838981747627258;
+INFO:root:fold: TRAIN; iteration: 497; objective: 0.11111988872289658;
+INFO:root:fold: TRAIN; iteration: 498; objective: 0.0849243700504303;
+INFO:root:fold: TRAIN; iteration: 499; objective: 0.42236557602882385;
+INFO:root:fold: TRAIN; iteration: 500; objective: 0.09069573879241943;
+100%|████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████| 2795/2795 [00:02&lt;00:00, 1325.01it/s]
+INFO:root:fold: VALID; iteration: 500; my_valid/acc: 0.940608228980322; objective: 0.22133897875972344;
+INFO:root:fold: TRAIN; iteration: 501; objective: 0.2510383725166321;
+INFO:root:fold: TRAIN; iteration: 502; objective: 0.5580111145973206;
+INFO:root:fold: TRAIN; iteration: 503; objective: 1.2915607690811157;
+INFO:root:fold: TRAIN; iteration: 504; objective: 0.08912377059459686;
+INFO:root:fold: TRAIN; iteration: 505; objective: 0.09641645103693008;
+INFO:root:fold: TRAIN; iteration: 506; objective: 0.5624804496765137;
+INFO:root:fold: TRAIN; iteration: 507; objective: 0.303244948387146;
+INFO:root:fold: TRAIN; iteration: 508; objective: 0.062222469598054886;
+INFO:root:fold: TRAIN; iteration: 509; objective: 0.10659794509410858;
+INFO:root:fold: TRAIN; iteration: 510; objective: 0.12336637824773788;
+INFO:root:fold: TRAIN; iteration: 511; objective: 0.7690000534057617;
+INFO:root:fold: TRAIN; iteration: 512; objective: 0.14963755011558533;
+INFO:root:fold: TRAIN; iteration: 513; objective: 0.11048325151205063;
+INFO:root:fold: TRAIN; iteration: 514; objective: 0.17081038653850555;
+INFO:root:fold: TRAIN; iteration: 515; objective: 0.27182552218437195;
+INFO:root:fold: TRAIN; iteration: 516; objective: 0.19782260060310364;
+INFO:root:fold: TRAIN; iteration: 517; objective: 0.03583524376153946;
+INFO:root:fold: TRAIN; iteration: 518; objective: 0.41839513182640076;
+INFO:root:fold: TRAIN; iteration: 519; objective: 0.10907815396785736;
+INFO:root:fold: TRAIN; iteration: 520; objective: 0.18839989602565765;
+INFO:root:fold: TRAIN; iteration: 521; objective: 0.03551074117422104;
+INFO:root:fold: TRAIN; iteration: 522; objective: 0.20226463675498962;
+INFO:root:fold: TRAIN; iteration: 523; objective: 0.06246856600046158;
+INFO:root:fold: TRAIN; iteration: 524; objective: 0.26330894231796265;
+INFO:root:fold: TRAIN; iteration: 525; objective: 0.16118939220905304;
+INFO:root:fold: TRAIN; iteration: 526; objective: 0.02611338160932064;
+INFO:root:fold: TRAIN; iteration: 527; objective: 0.06120092421770096;
+INFO:root:fold: TRAIN; iteration: 528; objective: 0.48247724771499634;
+INFO:root:fold: TRAIN; iteration: 529; objective: 0.06546275317668915;
+INFO:root:fold: TRAIN; iteration: 530; objective: 0.4779227375984192;
+INFO:root:fold: TRAIN; iteration: 531; objective: 0.20222175121307373;
+INFO:root:fold: TRAIN; iteration: 532; objective: 0.09048151224851608;
+INFO:root:fold: TRAIN; iteration: 533; objective: 0.16796694695949554;
+INFO:root:fold: TRAIN; iteration: 534; objective: 0.09779788553714752;
+INFO:root:fold: TRAIN; iteration: 535; objective: 0.23896098136901855;
+INFO:root:fold: TRAIN; iteration: 536; objective: 0.06694997102022171;
+INFO:root:fold: TRAIN; iteration: 537; objective: 0.1735956221818924;
+INFO:root:fold: TRAIN; iteration: 538; objective: 0.12813688814640045;
+INFO:root:fold: TRAIN; iteration: 539; objective: 0.21967986226081848;
+INFO:root:fold: TRAIN; iteration: 540; objective: 0.622533917427063;
+INFO:root:fold: TRAIN; iteration: 541; objective: 0.2541833817958832;
+INFO:root:fold: TRAIN; iteration: 542; objective: 0.15190809965133667;
+INFO:root:fold: TRAIN; iteration: 543; objective: 0.09020809084177017;
+INFO:root:fold: TRAIN; iteration: 544; objective: 0.01963391713798046;
+INFO:root:fold: TRAIN; iteration: 545; objective: 0.14357076585292816;
+INFO:root:fold: TRAIN; iteration: 546; objective: 0.06545679271221161;
+INFO:root:fold: TRAIN; iteration: 547; objective: 0.7067574262619019;
+INFO:root:fold: TRAIN; iteration: 548; objective: 0.2025090456008911;
+INFO:root:fold: TRAIN; iteration: 549; objective: 0.2467021942138672;
+INFO:root:fold: TRAIN; iteration: 550; objective: 0.4859582483768463;
+100%|████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████| 2795/2795 [00:02&lt;00:00, 1377.21it/s]
+INFO:root:fold: VALID; iteration: 550; my_valid/acc: 0.9316636851520572; objective: 0.22275840003445935;
+INFO:root:fold: TRAIN; iteration: 551; objective: 0.5148403644561768;
+INFO:root:fold: TRAIN; iteration: 552; objective: 0.3289872705936432;
+INFO:root:fold: TRAIN; iteration: 553; objective: 0.15482975542545319;
+INFO:root:fold: TRAIN; iteration: 554; objective: 0.1719447821378708;
+INFO:root:fold: TRAIN; iteration: 555; objective: 0.02339501865208149;
+INFO:root:fold: TRAIN; iteration: 556; objective: 0.09575904905796051;
+INFO:root:fold: TRAIN; iteration: 557; objective: 0.09870681911706924;
+INFO:root:fold: TRAIN; iteration: 558; objective: 0.0702894926071167;
+INFO:root:fold: TRAIN; iteration: 559; objective: 0.1653589904308319;
+INFO:root:fold: TRAIN; iteration: 560; objective: 0.04631970822811127;
+INFO:root:fold: TRAIN; iteration: 561; objective: 0.11987410485744476;
+INFO:root:fold: TRAIN; iteration: 562; objective: 0.7137848138809204;
+INFO:root:fold: TRAIN; iteration: 563; objective: 0.9754937887191772;
+INFO:root:fold: TRAIN; iteration: 564; objective: 0.01514928974211216;
+INFO:root:fold: TRAIN; iteration: 565; objective: 0.47972720861434937;
+INFO:root:fold: TRAIN; iteration: 566; objective: 0.17985984683036804;
+INFO:root:fold: TRAIN; iteration: 567; objective: 0.09532195329666138;
+INFO:root:fold: TRAIN; iteration: 568; objective: 0.08165329694747925;
+INFO:root:fold: TRAIN; iteration: 569; objective: 0.4013403356075287;
+INFO:root:fold: TRAIN; iteration: 570; objective: 0.03915839642286301;
+INFO:root:fold: TRAIN; iteration: 571; objective: 0.4140118658542633;
+INFO:root:fold: TRAIN; iteration: 572; objective: 0.04203704744577408;
+INFO:root:fold: TRAIN; iteration: 573; objective: 0.4169704020023346;
+INFO:root:fold: TRAIN; iteration: 574; objective: 0.11544035375118256;
+INFO:root:fold: TRAIN; iteration: 575; objective: 0.059877704828977585;
+INFO:root:fold: TRAIN; iteration: 576; objective: 0.030714282765984535;
+INFO:root:fold: TRAIN; iteration: 577; objective: 0.08903651684522629;
+INFO:root:fold: TRAIN; iteration: 578; objective: 0.32981744408607483;
+INFO:root:fold: TRAIN; iteration: 579; objective: 0.22686025500297546;
+INFO:root:fold: TRAIN; iteration: 580; objective: 0.8220854997634888;
+INFO:root:fold: TRAIN; iteration: 581; objective: 0.007732601370662451;
+INFO:root:fold: TRAIN; iteration: 582; objective: 0.14299719035625458;
+INFO:root:fold: TRAIN; iteration: 583; objective: 0.8130518794059753;
+INFO:root:fold: TRAIN; iteration: 584; objective: 0.3853568136692047;
+INFO:root:fold: TRAIN; iteration: 585; objective: 0.02629697695374489;
+INFO:root:fold: TRAIN; iteration: 586; objective: 0.04221762344241142;
+INFO:root:fold: TRAIN; iteration: 587; objective: 0.12711332738399506;
+INFO:root:fold: TRAIN; iteration: 588; objective: 0.08120181411504745;
+INFO:root:fold: TRAIN; iteration: 589; objective: 0.48922261595726013;
+INFO:root:fold: TRAIN; iteration: 590; objective: 0.14605998992919922;
+INFO:root:fold: TRAIN; iteration: 591; objective: 0.08597848564386368;
+INFO:root:fold: TRAIN; iteration: 592; objective: 0.03154483065009117;
+INFO:root:fold: TRAIN; iteration: 593; objective: 0.12631866335868835;
+INFO:root:fold: TRAIN; iteration: 594; objective: 0.04016481712460518;
+INFO:root:fold: TRAIN; iteration: 595; objective: 0.1543993353843689;
+INFO:root:fold: TRAIN; iteration: 596; objective: 0.021150752902030945;
+INFO:root:fold: TRAIN; iteration: 597; objective: 0.04108719900250435;
+INFO:root:fold: TRAIN; iteration: 598; objective: 0.18313464522361755;
+INFO:root:fold: TRAIN; iteration: 599; objective: 0.1431037038564682;
+INFO:root:fold: TRAIN; iteration: 600; objective: 0.07831232249736786;
+100%|████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████| 2795/2795 [00:01&lt;00:00, 1481.28it/s]
+INFO:root:fold: VALID; iteration: 600; my_valid/acc: 0.9488372093023256; objective: 0.17367987617739808;
+INFO:root:fold: TRAIN; iteration: 601; objective: 0.18664415180683136;
+INFO:root:fold: TRAIN; iteration: 602; objective: 0.1620158851146698;
+INFO:root:fold: TRAIN; iteration: 603; objective: 0.023732643574476242;
+INFO:root:fold: TRAIN; iteration: 604; objective: 0.4155751168727875;
+INFO:root:fold: TRAIN; iteration: 605; objective: 0.4180167317390442;
+INFO:root:fold: TRAIN; iteration: 606; objective: 0.22454583644866943;
+INFO:root:fold: TRAIN; iteration: 607; objective: 0.2146606147289276;
+INFO:root:fold: TRAIN; iteration: 608; objective: 0.03565812483429909;
+INFO:root:fold: TRAIN; iteration: 609; objective: 0.015242327935993671;
+INFO:root:fold: TRAIN; iteration: 610; objective: 0.1511392891407013;
+INFO:root:fold: TRAIN; iteration: 611; objective: 0.02687767706811428;
+INFO:root:fold: TRAIN; iteration: 612; objective: 0.48508554697036743;
+INFO:root:fold: TRAIN; iteration: 613; objective: 0.07776076346635818;
+INFO:root:fold: TRAIN; iteration: 614; objective: 0.027020027860999107;
+INFO:root:fold: TRAIN; iteration: 615; objective: 0.03872944414615631;
+INFO:root:fold: TRAIN; iteration: 616; objective: 0.4678294062614441;
+INFO:root:fold: TRAIN; iteration: 617; objective: 0.27720481157302856;
+INFO:root:fold: TRAIN; iteration: 618; objective: 0.15615543723106384;
+INFO:root:fold: TRAIN; iteration: 619; objective: 0.035338886082172394;
+INFO:root:fold: TRAIN; iteration: 620; objective: 0.0317724347114563;
+INFO:root:fold: TRAIN; iteration: 621; objective: 0.016006100922822952;
+INFO:root:fold: TRAIN; iteration: 622; objective: 0.4224160313606262;
+INFO:root:fold: TRAIN; iteration: 623; objective: 0.06328075379133224;
+INFO:root:fold: TRAIN; iteration: 624; objective: 0.07301755249500275;
+INFO:root:fold: TRAIN; iteration: 625; objective: 0.41917675733566284;
+INFO:root:fold: TRAIN; iteration: 626; objective: 0.694870114326477;
+INFO:root:fold: TRAIN; iteration: 627; objective: 0.09859184920787811;
+INFO:root:fold: TRAIN; iteration: 628; objective: 0.17531241476535797;
+INFO:root:fold: TRAIN; iteration: 629; objective: 0.03997977823019028;
+INFO:root:fold: TRAIN; iteration: 630; objective: 0.4641653597354889;
+INFO:root:fold: TRAIN; iteration: 631; objective: 0.4214785099029541;
+INFO:root:fold: TRAIN; iteration: 632; objective: 0.25497883558273315;
+INFO:root:fold: TRAIN; iteration: 633; objective: 0.01532831508666277;
+INFO:root:fold: TRAIN; iteration: 634; objective: 0.02818683348596096;
+INFO:root:fold: TRAIN; iteration: 635; objective: 0.5041909217834473;
+INFO:root:fold: TRAIN; iteration: 636; objective: 0.05675707012414932;
+INFO:root:fold: TRAIN; iteration: 637; objective: 0.02369821071624756;
+INFO:root:fold: TRAIN; iteration: 638; objective: 0.38030770421028137;
+INFO:root:fold: TRAIN; iteration: 639; objective: 0.2274659126996994;
+INFO:root:fold: TRAIN; iteration: 640; objective: 0.2485295981168747;
+INFO:root:fold: TRAIN; iteration: 641; objective: 0.36927342414855957;
+INFO:root:fold: TRAIN; iteration: 642; objective: 0.05452706664800644;
+INFO:root:fold: TRAIN; iteration: 643; objective: 0.11278475821018219;
+INFO:root:fold: TRAIN; iteration: 644; objective: 0.06444386392831802;
+INFO:root:fold: TRAIN; iteration: 645; objective: 0.022806081920862198;
+INFO:root:fold: TRAIN; iteration: 646; objective: 0.09529061615467072;
+INFO:root:fold: TRAIN; iteration: 647; objective: 0.056803297251462936;
+INFO:root:fold: TRAIN; iteration: 648; objective: 0.04210064187645912;
+INFO:root:fold: TRAIN; iteration: 649; objective: 0.06312380731105804;
+INFO:root:fold: TRAIN; iteration: 650; objective: 0.01835494115948677;
+100%|████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████| 2795/2795 [00:01&lt;00:00, 1463.94it/s]
+INFO:root:fold: VALID; iteration: 650; my_valid/acc: 0.918783542039356; objective: 0.2571415180296408;
+INFO:root:fold: TRAIN; iteration: 651; objective: 0.298271119594574;
+INFO:root:fold: TRAIN; iteration: 652; objective: 0.3298070728778839;
+INFO:root:fold: TRAIN; iteration: 653; objective: 1.492424726486206;
+INFO:root:fold: TRAIN; iteration: 654; objective: 0.1623840630054474;
+INFO:root:fold: TRAIN; iteration: 655; objective: 0.016521301120519638;
+INFO:root:fold: TRAIN; iteration: 656; objective: 0.05039626359939575;
+INFO:root:fold: TRAIN; iteration: 657; objective: 0.4211316704750061;
+INFO:root:fold: TRAIN; iteration: 658; objective: 0.43521323800086975;
+INFO:root:fold: TRAIN; iteration: 659; objective: 0.269511878490448;
+INFO:root:fold: TRAIN; iteration: 660; objective: 0.0788930132985115;
+INFO:root:fold: TRAIN; iteration: 661; objective: 0.04074273258447647;
+INFO:root:fold: TRAIN; iteration: 662; objective: 0.3322673439979553;
+INFO:root:fold: TRAIN; iteration: 663; objective: 0.07370481640100479;
+INFO:root:fold: TRAIN; iteration: 664; objective: 0.02871539071202278;
+INFO:root:fold: TRAIN; iteration: 665; objective: 0.09133109450340271;
+INFO:root:fold: TRAIN; iteration: 666; objective: 0.023989306762814522;
+INFO:root:fold: TRAIN; iteration: 667; objective: 0.022518552839756012;
+INFO:root:fold: TRAIN; iteration: 668; objective: 0.05165836960077286;
+INFO:root:fold: TRAIN; iteration: 669; objective: 1.1101348400115967;
+INFO:root:fold: TRAIN; iteration: 670; objective: 0.24659864604473114;
+INFO:root:fold: TRAIN; iteration: 671; objective: 0.17661909759044647;
+INFO:root:fold: TRAIN; iteration: 672; objective: 0.04273120313882828;
+INFO:root:fold: TRAIN; iteration: 673; objective: 0.1898774802684784;
+INFO:root:fold: TRAIN; iteration: 674; objective: 0.21574488282203674;
+INFO:root:fold: TRAIN; iteration: 675; objective: 0.3249983787536621;
+INFO:root:fold: TRAIN; iteration: 676; objective: 0.07475325465202332;
+INFO:root:fold: TRAIN; iteration: 677; objective: 0.4575846195220947;
+INFO:root:fold: TRAIN; iteration: 678; objective: 0.37928280234336853;
+INFO:root:fold: TRAIN; iteration: 679; objective: 0.17836438119411469;
+INFO:root:fold: TRAIN; iteration: 680; objective: 0.009535224176943302;
+INFO:root:fold: TRAIN; iteration: 681; objective: 0.31358563899993896;
+INFO:root:fold: TRAIN; iteration: 682; objective: 0.10572906583547592;
+INFO:root:fold: TRAIN; iteration: 683; objective: 0.027993936091661453;
+INFO:root:fold: TRAIN; iteration: 684; objective: 0.04472499340772629;
+INFO:root:fold: TRAIN; iteration: 685; objective: 0.15643885731697083;
+INFO:root:fold: TRAIN; iteration: 686; objective: 0.08448068797588348;
+INFO:root:fold: TRAIN; iteration: 687; objective: 0.014810973778367043;
+INFO:root:fold: TRAIN; iteration: 688; objective: 0.017863746732473373;
+INFO:root:fold: TRAIN; iteration: 689; objective: 1.0901628732681274;
+INFO:root:fold: TRAIN; iteration: 690; objective: 0.35048341751098633;
+INFO:root:fold: TRAIN; iteration: 691; objective: 0.08144062757492065;
+INFO:root:fold: TRAIN; iteration: 692; objective: 0.08144913613796234;
+INFO:root:fold: TRAIN; iteration: 693; objective: 0.03262003883719444;
+INFO:root:fold: TRAIN; iteration: 694; objective: 0.205388143658638;
+INFO:root:fold: TRAIN; iteration: 695; objective: 0.014799004420638084;
+INFO:root:fold: TRAIN; iteration: 696; objective: 0.033594295382499695;
+INFO:root:fold: TRAIN; iteration: 697; objective: 0.36509308218955994;
+INFO:root:fold: TRAIN; iteration: 698; objective: 0.14594624936580658;
+INFO:root:fold: TRAIN; iteration: 699; objective: 0.030025025829672813;
+INFO:root:fold: TRAIN; iteration: 700; objective: 0.034038346260786057;
+100%|████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████| 2795/2795 [00:01&lt;00:00, 1489.34it/s]
+INFO:root:fold: VALID; iteration: 700; my_valid/acc: 0.956350626118068; objective: 0.14776334783528;
+INFO:root:fold: TRAIN; iteration: 701; objective: 0.01644114777445793;
+INFO:root:fold: TRAIN; iteration: 702; objective: 0.04334524646401405;
+INFO:root:fold: TRAIN; iteration: 703; objective: 0.31041014194488525;
+INFO:root:fold: TRAIN; iteration: 704; objective: 0.06156647205352783;
+INFO:root:fold: TRAIN; iteration: 705; objective: 0.6970192193984985;
+INFO:root:fold: TRAIN; iteration: 706; objective: 0.1694687008857727;
+INFO:root:fold: TRAIN; iteration: 707; objective: 0.35438278317451477;
+INFO:root:fold: TRAIN; iteration: 708; objective: 0.2473982870578766;
+INFO:root:fold: TRAIN; iteration: 709; objective: 0.08315625786781311;
+INFO:root:fold: TRAIN; iteration: 710; objective: 0.055888570845127106;
+INFO:root:fold: TRAIN; iteration: 711; objective: 0.2026434689760208;
+INFO:root:fold: TRAIN; iteration: 712; objective: 0.05751805379986763;
+INFO:root:fold: TRAIN; iteration: 713; objective: 0.09239201247692108;
+INFO:root:fold: TRAIN; iteration: 714; objective: 0.40992864966392517;
+INFO:root:fold: TRAIN; iteration: 715; objective: 0.21737511456012726;
+INFO:root:fold: TRAIN; iteration: 716; objective: 0.027469996362924576;
+INFO:root:fold: TRAIN; iteration: 717; objective: 0.2014295607805252;
+INFO:root:fold: TRAIN; iteration: 718; objective: 0.02595994435250759;
+INFO:root:fold: TRAIN; iteration: 719; objective: 0.43059104681015015;
+INFO:root:fold: TRAIN; iteration: 720; objective: 0.06566909700632095;
+INFO:root:fold: TRAIN; iteration: 721; objective: 0.030480768531560898;
+INFO:root:fold: TRAIN; iteration: 722; objective: 0.19832633435726166;
+INFO:root:fold: TRAIN; iteration: 723; objective: 0.017125826328992844;
+INFO:root:fold: TRAIN; iteration: 724; objective: 0.1644517481327057;
+INFO:root:fold: TRAIN; iteration: 725; objective: 0.5793511867523193;
+INFO:root:fold: TRAIN; iteration: 726; objective: 0.13423870503902435;
+INFO:root:fold: TRAIN; iteration: 727; objective: 0.4406367242336273;
+INFO:root:fold: TRAIN; iteration: 728; objective: 0.11269991099834442;
+INFO:root:fold: TRAIN; iteration: 729; objective: 0.056143004447221756;
+INFO:root:fold: TRAIN; iteration: 730; objective: 0.13692617416381836;
+INFO:root:fold: TRAIN; iteration: 731; objective: 0.025546059012413025;
+INFO:root:fold: TRAIN; iteration: 732; objective: 0.0563560351729393;
+INFO:root:fold: TRAIN; iteration: 733; objective: 0.021009381860494614;
+INFO:root:fold: TRAIN; iteration: 734; objective: 0.2643035650253296;
+INFO:root:fold: TRAIN; iteration: 735; objective: 0.18290111422538757;
+INFO:root:fold: TRAIN; iteration: 736; objective: 0.22953543066978455;
+INFO:root:fold: TRAIN; iteration: 737; objective: 0.28521156311035156;
+INFO:root:fold: TRAIN; iteration: 738; objective: 0.1806514412164688;
+INFO:root:fold: TRAIN; iteration: 739; objective: 0.14319175481796265;
+INFO:root:fold: TRAIN; iteration: 740; objective: 0.09451095759868622;
+INFO:root:fold: TRAIN; iteration: 741; objective: 0.01652221754193306;
+INFO:root:fold: TRAIN; iteration: 742; objective: 0.37994399666786194;
+INFO:root:fold: TRAIN; iteration: 743; objective: 0.028148185461759567;
+INFO:root:fold: TRAIN; iteration: 744; objective: 0.05684657022356987;
+INFO:root:fold: TRAIN; iteration: 745; objective: 0.006413010414689779;
+INFO:root:fold: TRAIN; iteration: 746; objective: 0.023571569472551346;
+INFO:root:fold: TRAIN; iteration: 747; objective: 0.05121017247438431;
+INFO:root:fold: TRAIN; iteration: 748; objective: 0.018302027136087418;
+INFO:root:fold: TRAIN; iteration: 749; objective: 0.15482068061828613;
+INFO:root:fold: TRAIN; iteration: 750; objective: 0.03970469534397125;
+100%|████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████| 2795/2795 [00:01&lt;00:00, 1434.56it/s]
+INFO:root:fold: VALID; iteration: 750; my_valid/acc: 0.9595706618962433; objective: 0.1475477209551481;
+INFO:root:fold: TRAIN; iteration: 751; objective: 0.07415413111448288;
+INFO:root:fold: TRAIN; iteration: 752; objective: 0.09183241426944733;
+INFO:root:fold: TRAIN; iteration: 753; objective: 0.013088593259453773;
+INFO:root:fold: TRAIN; iteration: 754; objective: 0.11631879955530167;
+INFO:root:fold: TRAIN; iteration: 755; objective: 0.09317352622747421;
+INFO:root:fold: TRAIN; iteration: 756; objective: 0.024496788159012794;
+INFO:root:fold: TRAIN; iteration: 757; objective: 0.16257037222385406;
+INFO:root:fold: TRAIN; iteration: 758; objective: 0.47403860092163086;
+INFO:root:fold: TRAIN; iteration: 759; objective: 0.022109894081950188;
+INFO:root:fold: TRAIN; iteration: 760; objective: 0.07017675042152405;
+INFO:root:fold: TRAIN; iteration: 761; objective: 0.4044361710548401;
+INFO:root:fold: TRAIN; iteration: 762; objective: 0.082637719810009;
+INFO:root:fold: TRAIN; iteration: 763; objective: 0.12877973914146423;
+INFO:root:fold: TRAIN; iteration: 764; objective: 0.05795120447874069;
+INFO:root:fold: TRAIN; iteration: 765; objective: 0.3249298930168152;
+INFO:root:fold: TRAIN; iteration: 766; objective: 0.058452773839235306;
+INFO:root:fold: TRAIN; iteration: 767; objective: 0.11897740513086319;
+INFO:root:fold: TRAIN; iteration: 768; objective: 0.5920098423957825;
+INFO:root:fold: TRAIN; iteration: 769; objective: 0.007560074329376221;
+INFO:root:fold: TRAIN; iteration: 770; objective: 0.18686015903949738;
+INFO:root:fold: TRAIN; iteration: 771; objective: 0.4250594675540924;
+INFO:root:fold: TRAIN; iteration: 772; objective: 0.06779482215642929;
+INFO:root:fold: TRAIN; iteration: 773; objective: 0.013731300830841064;
+INFO:root:fold: TRAIN; iteration: 774; objective: 0.06031373143196106;
+INFO:root:fold: TRAIN; iteration: 775; objective: 0.06477200984954834;
+INFO:root:fold: TRAIN; iteration: 776; objective: 0.2726505398750305;
+INFO:root:fold: TRAIN; iteration: 777; objective: 0.2566865384578705;
+INFO:root:fold: TRAIN; iteration: 778; objective: 0.06980694830417633;
+INFO:root:fold: TRAIN; iteration: 779; objective: 0.015055770054459572;
+INFO:root:fold: TRAIN; iteration: 780; objective: 0.12835386395454407;
+INFO:root:fold: TRAIN; iteration: 781; objective: 0.021332252770662308;
+INFO:root:fold: TRAIN; iteration: 782; objective: 0.010854474268853664;
+INFO:root:fold: TRAIN; iteration: 783; objective: 0.06968013197183609;
+INFO:root:fold: TRAIN; iteration: 784; objective: 0.007462517824023962;
+INFO:root:fold: TRAIN; iteration: 785; objective: 0.24598583579063416;
+INFO:root:fold: TRAIN; iteration: 786; objective: 0.14240384101867676;
+INFO:root:fold: TRAIN; iteration: 787; objective: 0.32954224944114685;
+INFO:root:fold: TRAIN; iteration: 788; objective: 0.01957504078745842;
+INFO:root:fold: TRAIN; iteration: 789; objective: 0.3472387194633484;
+INFO:root:fold: TRAIN; iteration: 790; objective: 0.01982269436120987;
+INFO:root:fold: TRAIN; iteration: 791; objective: 0.021401073783636093;
+INFO:root:fold: TRAIN; iteration: 792; objective: 0.028553228825330734;
+INFO:root:fold: TRAIN; iteration: 793; objective: 0.012670541182160378;
+INFO:root:fold: TRAIN; iteration: 794; objective: 0.01659783162176609;
+INFO:root:fold: TRAIN; iteration: 795; objective: 0.30042511224746704;
+INFO:root:fold: TRAIN; iteration: 796; objective: 0.613201916217804;
+INFO:root:fold: TRAIN; iteration: 797; objective: 0.4589660167694092;
+INFO:root:fold: TRAIN; iteration: 798; objective: 0.033740825951099396;
+INFO:root:fold: TRAIN; iteration: 799; objective: 0.2801918387413025;
+INFO:root:fold: TRAIN; iteration: 800; objective: 0.7663912773132324;
+100%|████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████| 2795/2795 [00:01&lt;00:00, 1478.62it/s]
+INFO:root:fold: VALID; iteration: 800; my_valid/acc: 0.9559928443649374; objective: 0.15134466165931248;
+INFO:root:fold: TRAIN; iteration: 801; objective: 0.04276927188038826;
+INFO:root:fold: TRAIN; iteration: 802; objective: 0.1875210702419281;
+INFO:root:fold: TRAIN; iteration: 803; objective: 0.1585206240415573;
+INFO:root:fold: TRAIN; iteration: 804; objective: 0.04294659569859505;
+INFO:root:fold: TRAIN; iteration: 805; objective: 0.33848947286605835;
+INFO:root:fold: TRAIN; iteration: 806; objective: 0.028886517509818077;
+INFO:root:fold: TRAIN; iteration: 807; objective: 0.41999468207359314;
+INFO:root:fold: TRAIN; iteration: 808; objective: 0.17545531690120697;
+INFO:root:fold: TRAIN; iteration: 809; objective: 0.00890365894883871;
+INFO:root:fold: TRAIN; iteration: 810; objective: 0.08975615352392197;
+INFO:root:fold: TRAIN; iteration: 811; objective: 0.039208315312862396;
+INFO:root:fold: TRAIN; iteration: 812; objective: 0.0098267812281847;
+INFO:root:fold: TRAIN; iteration: 813; objective: 0.04621327668428421;
+INFO:root:fold: TRAIN; iteration: 814; objective: 0.042151499539613724;
+INFO:root:fold: TRAIN; iteration: 815; objective: 0.003118036547675729;
+INFO:root:fold: TRAIN; iteration: 816; objective: 0.0075483620166778564;
+INFO:root:fold: TRAIN; iteration: 817; objective: 0.01608904078602791;
+INFO:root:fold: TRAIN; iteration: 818; objective: 0.03304017335176468;
+INFO:root:fold: TRAIN; iteration: 819; objective: 0.006847623735666275;
+INFO:root:fold: TRAIN; iteration: 820; objective: 0.29448023438453674;
+INFO:root:fold: TRAIN; iteration: 821; objective: 0.8343505859375;
+INFO:root:fold: TRAIN; iteration: 822; objective: 0.18238332867622375;
+INFO:root:fold: TRAIN; iteration: 823; objective: 0.022811245173215866;
+INFO:root:fold: TRAIN; iteration: 824; objective: 0.013192648068070412;
+INFO:root:fold: TRAIN; iteration: 825; objective: 0.018914181739091873;
+INFO:root:fold: TRAIN; iteration: 826; objective: 0.008638019673526287;
+INFO:root:fold: TRAIN; iteration: 827; objective: 0.027928438037633896;
+INFO:root:fold: TRAIN; iteration: 828; objective: 0.6922499537467957;
+INFO:root:fold: TRAIN; iteration: 829; objective: 0.3270098865032196;
+INFO:root:fold: TRAIN; iteration: 830; objective: 1.2258968353271484;
+INFO:root:fold: TRAIN; iteration: 831; objective: 0.0990413948893547;
+INFO:root:fold: TRAIN; iteration: 832; objective: 0.050276655703783035;
+INFO:root:fold: TRAIN; iteration: 833; objective: 0.07645463943481445;
+INFO:root:fold: TRAIN; iteration: 834; objective: 0.010823411867022514;
+INFO:root:fold: TRAIN; iteration: 835; objective: 0.1374417245388031;
+INFO:root:fold: TRAIN; iteration: 836; objective: 0.0057771652936935425;
+INFO:root:fold: TRAIN; iteration: 837; objective: 0.015513616614043713;
+INFO:root:fold: TRAIN; iteration: 838; objective: 0.034078650176525116;
+INFO:root:fold: TRAIN; iteration: 839; objective: 0.14778640866279602;
+INFO:root:fold: TRAIN; iteration: 840; objective: 0.03677041083574295;
+INFO:root:fold: TRAIN; iteration: 841; objective: 0.006758497096598148;
+INFO:root:fold: TRAIN; iteration: 842; objective: 0.3759251832962036;
+INFO:root:fold: TRAIN; iteration: 843; objective: 0.00563172297552228;
+INFO:root:fold: TRAIN; iteration: 844; objective: 0.02477182447910309;
+INFO:root:fold: TRAIN; iteration: 845; objective: 0.0829232707619667;
+INFO:root:fold: TRAIN; iteration: 846; objective: 0.0404154509305954;
+INFO:root:fold: TRAIN; iteration: 847; objective: 0.002711664652451873;
+INFO:root:fold: TRAIN; iteration: 848; objective: 0.32156282663345337;
+INFO:root:fold: TRAIN; iteration: 849; objective: 0.03793058544397354;
+INFO:root:fold: TRAIN; iteration: 850; objective: 0.03710242733359337;
+100%|████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████| 2795/2795 [00:01&lt;00:00, 1496.33it/s]
+INFO:root:fold: VALID; iteration: 850; my_valid/acc: 0.9459749552772808; objective: 0.1776751152925801;
+INFO:root:fold: TRAIN; iteration: 851; objective: 0.4392324388027191;
+INFO:root:fold: TRAIN; iteration: 852; objective: 0.2967776656150818;
+INFO:root:fold: TRAIN; iteration: 853; objective: 0.04231693595647812;
+INFO:root:fold: TRAIN; iteration: 854; objective: 0.007630915846675634;
+INFO:root:fold: TRAIN; iteration: 855; objective: 0.06068193167448044;
+INFO:root:fold: TRAIN; iteration: 856; objective: 0.2794676721096039;
+INFO:root:fold: TRAIN; iteration: 857; objective: 0.42638811469078064;
+INFO:root:fold: TRAIN; iteration: 858; objective: 0.24384066462516785;
+INFO:root:fold: TRAIN; iteration: 859; objective: 0.0143350288271904;
+INFO:root:fold: TRAIN; iteration: 860; objective: 0.005080793984234333;
+INFO:root:fold: TRAIN; iteration: 861; objective: 0.005831332411617041;
+INFO:root:fold: TRAIN; iteration: 862; objective: 0.5575199127197266;
+INFO:root:fold: TRAIN; iteration: 863; objective: 0.16047701239585876;
+INFO:root:fold: TRAIN; iteration: 864; objective: 0.006315571255981922;
+INFO:root:fold: TRAIN; iteration: 865; objective: 0.01685602031648159;
+INFO:root:fold: TRAIN; iteration: 866; objective: 0.02930285409092903;
+INFO:root:fold: TRAIN; iteration: 867; objective: 0.5572177767753601;
+INFO:root:fold: TRAIN; iteration: 868; objective: 0.20701546967029572;
+INFO:root:fold: TRAIN; iteration: 869; objective: 0.07085062563419342;
+INFO:root:fold: TRAIN; iteration: 870; objective: 0.1288301646709442;
+INFO:root:fold: TRAIN; iteration: 871; objective: 0.057387303560972214;
+INFO:root:fold: TRAIN; iteration: 872; objective: 0.10065899044275284;
+INFO:root:fold: TRAIN; iteration: 873; objective: 0.038329366594552994;
+INFO:root:fold: TRAIN; iteration: 874; objective: 0.1120031327009201;
+INFO:root:fold: TRAIN; iteration: 875; objective: 0.5833801031112671;
+INFO:root:fold: TRAIN; iteration: 876; objective: 0.018658924847841263;
+INFO:root:fold: TRAIN; iteration: 877; objective: 0.15050604939460754;
+INFO:root:fold: TRAIN; iteration: 878; objective: 0.1309257596731186;
+INFO:root:fold: TRAIN; iteration: 879; objective: 0.0402405709028244;
+INFO:root:fold: TRAIN; iteration: 880; objective: 0.008356742560863495;
+INFO:root:fold: TRAIN; iteration: 881; objective: 0.040921784937381744;
+INFO:root:fold: TRAIN; iteration: 882; objective: 0.019886035472154617;
+INFO:root:fold: TRAIN; iteration: 883; objective: 0.13828681409358978;
+INFO:root:fold: TRAIN; iteration: 884; objective: 0.24880746006965637;
+INFO:root:fold: TRAIN; iteration: 885; objective: 0.21123716235160828;
+INFO:root:fold: TRAIN; iteration: 886; objective: 0.4277002811431885;
+INFO:root:fold: TRAIN; iteration: 887; objective: 0.13902994990348816;
+INFO:root:fold: TRAIN; iteration: 888; objective: 0.09397931396961212;
+INFO:root:fold: TRAIN; iteration: 889; objective: 0.3318571150302887;
+INFO:root:fold: TRAIN; iteration: 890; objective: 0.1382848620414734;
+INFO:root:fold: TRAIN; iteration: 891; objective: 0.23040291666984558;
+INFO:root:fold: TRAIN; iteration: 892; objective: 0.17593388259410858;
+INFO:root:fold: TRAIN; iteration: 893; objective: 0.1647939383983612;
+INFO:root:fold: TRAIN; iteration: 894; objective: 0.00786967296153307;
+INFO:root:fold: TRAIN; iteration: 895; objective: 0.0890728086233139;
+INFO:root:fold: TRAIN; iteration: 896; objective: 0.049430541694164276;
+INFO:root:fold: TRAIN; iteration: 897; objective: 0.3729981482028961;
+INFO:root:fold: TRAIN; iteration: 898; objective: 0.01374218612909317;
+INFO:root:fold: TRAIN; iteration: 899; objective: 0.15170493721961975;
+INFO:root:fold: TRAIN; iteration: 900; objective: 0.00567432027310133;
+100%|████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████| 2795/2795 [00:01&lt;00:00, 1417.43it/s]
+INFO:root:fold: VALID; iteration: 900; my_valid/acc: 0.9670840787119857; objective: 0.11363337064142165;
+INFO:root:fold: TRAIN; iteration: 901; objective: 0.09673181921243668;
+INFO:root:fold: TRAIN; iteration: 902; objective: 0.030538449063897133;
+INFO:root:fold: TRAIN; iteration: 903; objective: 0.007019166834652424;
+INFO:root:fold: TRAIN; iteration: 904; objective: 0.0020029512234032154;
+INFO:root:fold: TRAIN; iteration: 905; objective: 0.017118876799941063;
+INFO:root:fold: TRAIN; iteration: 906; objective: 0.016062436625361443;
+INFO:root:fold: TRAIN; iteration: 907; objective: 0.004854534287005663;
+INFO:root:fold: TRAIN; iteration: 908; objective: 0.0809052437543869;
+INFO:root:fold: TRAIN; iteration: 909; objective: 0.04006444290280342;
+INFO:root:fold: TRAIN; iteration: 910; objective: 0.030961181968450546;
+INFO:root:fold: TRAIN; iteration: 911; objective: 0.1877940595149994;
+INFO:root:fold: TRAIN; iteration: 912; objective: 0.11171841621398926;
+INFO:root:fold: TRAIN; iteration: 913; objective: 0.00236741965636611;
+INFO:root:fold: TRAIN; iteration: 914; objective: 0.08258708566427231;
+INFO:root:fold: TRAIN; iteration: 915; objective: 0.0971403419971466;
+INFO:root:fold: TRAIN; iteration: 916; objective: 0.01895785704255104;
+INFO:root:fold: TRAIN; iteration: 917; objective: 0.20803184807300568;
+INFO:root:fold: TRAIN; iteration: 918; objective: 0.07480443269014359;
+INFO:root:fold: TRAIN; iteration: 919; objective: 0.041640765964984894;
+INFO:root:fold: TRAIN; iteration: 920; objective: 0.07429535686969757;
+INFO:root:fold: TRAIN; iteration: 921; objective: 0.17573055624961853;
+INFO:root:fold: TRAIN; iteration: 922; objective: 0.879198431968689;
+INFO:root:fold: TRAIN; iteration: 923; objective: 0.025586584582924843;
+INFO:root:fold: TRAIN; iteration: 924; objective: 0.06692324578762054;
+INFO:root:fold: TRAIN; iteration: 925; objective: 0.006249988917261362;
+INFO:root:fold: TRAIN; iteration: 926; objective: 0.054162681102752686;
+INFO:root:fold: TRAIN; iteration: 927; objective: 0.003946984186768532;
+INFO:root:fold: TRAIN; iteration: 928; objective: 0.7132088541984558;
+INFO:root:fold: TRAIN; iteration: 929; objective: 0.32315772771835327;
+INFO:root:fold: TRAIN; iteration: 930; objective: 0.06910651177167892;
+INFO:root:fold: TRAIN; iteration: 931; objective: 0.11381769180297852;
+INFO:root:fold: TRAIN; iteration: 932; objective: 0.01269172690808773;
+INFO:root:fold: TRAIN; iteration: 933; objective: 0.11348702013492584;
+INFO:root:fold: TRAIN; iteration: 934; objective: 0.011171804741024971;
+INFO:root:fold: TRAIN; iteration: 935; objective: 0.45628705620765686;
+INFO:root:fold: TRAIN; iteration: 936; objective: 0.035830359905958176;
+INFO:root:fold: TRAIN; iteration: 937; objective: 0.04360257834196091;
+INFO:root:fold: TRAIN; iteration: 938; objective: 0.045017607510089874;
+INFO:root:fold: TRAIN; iteration: 939; objective: 0.011295530013740063;
+INFO:root:fold: TRAIN; iteration: 940; objective: 0.04710518568754196;
+INFO:root:fold: TRAIN; iteration: 941; objective: 0.007775412406772375;
+INFO:root:fold: TRAIN; iteration: 942; objective: 0.04340289533138275;
+INFO:root:fold: TRAIN; iteration: 943; objective: 0.013993816450238228;
+INFO:root:fold: TRAIN; iteration: 944; objective: 0.00635541370138526;
+INFO:root:fold: TRAIN; iteration: 945; objective: 0.13180775940418243;
+INFO:root:fold: TRAIN; iteration: 946; objective: 0.15433844923973083;
+INFO:root:fold: TRAIN; iteration: 947; objective: 0.07478803396224976;
+INFO:root:fold: TRAIN; iteration: 948; objective: 0.005936924833804369;
+INFO:root:fold: TRAIN; iteration: 949; objective: 0.13912031054496765;
+INFO:root:fold: TRAIN; iteration: 950; objective: 0.2144688069820404;
+100%|████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████| 2795/2795 [00:01&lt;00:00, 1492.23it/s]
+INFO:root:fold: VALID; iteration: 950; my_valid/acc: 0.956350626118068; objective: 0.13877010655867614;
+INFO:root:fold: TRAIN; iteration: 951; objective: 0.019161544740200043;
+INFO:root:fold: TRAIN; iteration: 952; objective: 0.018769770860671997;
+INFO:root:fold: TRAIN; iteration: 953; objective: 0.0020293244160711765;
+INFO:root:fold: TRAIN; iteration: 954; objective: 0.03221020847558975;
+INFO:root:fold: TRAIN; iteration: 955; objective: 0.7191786766052246;
+INFO:root:fold: TRAIN; iteration: 956; objective: 0.06522323191165924;
+INFO:root:fold: TRAIN; iteration: 957; objective: 0.25203388929367065;
+INFO:root:fold: TRAIN; iteration: 958; objective: 0.08380148559808731;
+INFO:root:fold: TRAIN; iteration: 959; objective: 0.4869595170021057;
+INFO:root:fold: TRAIN; iteration: 960; objective: 0.12360526621341705;
+INFO:root:fold: TRAIN; iteration: 961; objective: 0.19407913088798523;
+INFO:root:fold: TRAIN; iteration: 962; objective: 0.019177261739969254;
+INFO:root:fold: TRAIN; iteration: 963; objective: 0.021404480561614037;
+INFO:root:fold: TRAIN; iteration: 964; objective: 0.02788964845240116;
+INFO:root:fold: TRAIN; iteration: 965; objective: 0.09227041900157928;
+INFO:root:fold: TRAIN; iteration: 966; objective: 0.29426059126853943;
+INFO:root:fold: TRAIN; iteration: 967; objective: 0.24021580815315247;
+INFO:root:fold: TRAIN; iteration: 968; objective: 0.04819006472826004;
+INFO:root:fold: TRAIN; iteration: 969; objective: 0.0169668011367321;
+INFO:root:fold: TRAIN; iteration: 970; objective: 0.06605064868927002;
+INFO:root:fold: TRAIN; iteration: 971; objective: 0.014934810809791088;
+INFO:root:fold: TRAIN; iteration: 972; objective: 0.06551801413297653;
+INFO:root:fold: TRAIN; iteration: 973; objective: 0.30167609453201294;
+INFO:root:fold: TRAIN; iteration: 974; objective: 0.04842744395136833;
+INFO:root:fold: TRAIN; iteration: 975; objective: 0.05017589405179024;
+INFO:root:fold: TRAIN; iteration: 976; objective: 0.681658923625946;
+INFO:root:fold: TRAIN; iteration: 977; objective: 0.36225417256355286;
+INFO:root:fold: TRAIN; iteration: 978; objective: 0.2160414457321167;
+INFO:root:fold: TRAIN; iteration: 979; objective: 0.12291929870843887;
+INFO:root:fold: TRAIN; iteration: 980; objective: 1.1307411193847656;
+INFO:root:fold: TRAIN; iteration: 981; objective: 0.016693677753210068;
+INFO:root:fold: TRAIN; iteration: 982; objective: 0.018673837184906006;
+INFO:root:fold: TRAIN; iteration: 983; objective: 0.03424312174320221;
+INFO:root:fold: TRAIN; iteration: 984; objective: 0.02646772563457489;
+INFO:root:fold: TRAIN; iteration: 985; objective: 0.23629549145698547;
+INFO:root:fold: TRAIN; iteration: 986; objective: 0.15628750622272491;
+INFO:root:fold: TRAIN; iteration: 987; objective: 0.6236597299575806;
+INFO:root:fold: TRAIN; iteration: 988; objective: 0.04512020945549011;
+INFO:root:fold: TRAIN; iteration: 989; objective: 0.0031213597394526005;
+INFO:root:fold: TRAIN; iteration: 990; objective: 0.331964373588562;
+INFO:root:fold: TRAIN; iteration: 991; objective: 0.03927726298570633;
+INFO:root:fold: TRAIN; iteration: 992; objective: 0.04739976301789284;
+INFO:root:fold: TRAIN; iteration: 993; objective: 0.4441142976284027;
+INFO:root:fold: TRAIN; iteration: 994; objective: 0.02695220708847046;
+INFO:root:fold: TRAIN; iteration: 995; objective: 0.14214204251766205;
+INFO:root:fold: TRAIN; iteration: 996; objective: 0.03979667276144028;
+INFO:root:fold: TRAIN; iteration: 997; objective: 0.038962043821811676;
+INFO:root:fold: TRAIN; iteration: 998; objective: 0.006788170430809259;
+INFO:root:fold: TRAIN; iteration: 999; objective: 0.10538318008184433;
+INFO:root:fold: TRAIN; iteration: 1000; objective: 0.23171451687812805;
+100%|████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████| 2795/2795 [00:01&lt;00:00, 1461.48it/s]
+INFO:root:fold: VALID; iteration: 1000; my_valid/acc: 0.9613595706618963; objective: 0.12319526693972135;
 </pre></div></div>
 </div>
 <div class="nbinput docutils container">
-<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[14]:
-</pre></div>
-</div>
-<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">db</span><span class="o">.</span><span class="n">metadata</span><span class="o">.</span><span class="n">show_jobs</span><span class="p">()</span>
-</pre></div>
-</div>
-</div>
-<div class="nboutput nblast docutils container">
-<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[14]:
-</pre></div>
-</div>
-<div class="output_area docutils container">
-<div class="highlight"><pre>
-[{&#39;identifier&#39;: &#39;c8b53e5e-7ce6-4694-88b9-5c2960341923&#39;,
-  &#39;time&#39;: datetime.datetime(2023, 7, 14, 12, 16, 36, 917000),
-  &#39;status&#39;: &#39;success&#39;}]
-</pre></div></div>
-</div>
-<div class="nbinput docutils container">
-<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[16]:
-</pre></div>
-</div>
-<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">model</span>
-</pre></div>
-</div>
-</div>
-<div class="nboutput nblast docutils container">
-<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[16]:
-</pre></div>
-</div>
-<div class="output_area docutils container">
-<div class="highlight"><pre>
-TorchModel(identifier=&#39;lenet5&#39;, object=&lt;Artifact artifact=LeNet5(
-  (layer1): Sequential(
-    (0): Conv2d(1, 6, kernel_size=(5, 5), stride=(1, 1))
-    (1): BatchNorm2d(6, eps=1e-05, momentum=0.1, affine=True, track_running_stats=True)
-    (2): ReLU()
-    (3): MaxPool2d(kernel_size=2, stride=2, padding=0, dilation=1, ceil_mode=False)
-  )
-  (layer2): Sequential(
-    (0): Conv2d(6, 16, kernel_size=(5, 5), stride=(1, 1))
-    (1): BatchNorm2d(16, eps=1e-05, momentum=0.1, affine=True, track_running_stats=True)
-    (2): ReLU()
-    (3): MaxPool2d(kernel_size=2, stride=2, padding=0, dilation=1, ceil_mode=False)
-  )
-  (fc): Linear(in_features=400, out_features=120, bias=True)
-  (relu): ReLU()
-  (fc1): Linear(in_features=120, out_features=84, bias=True)
-  (relu1): ReLU()
-  (fc2): Linear(in_features=84, out_features=10, bias=True)
-) serializer=torch&gt;, encoder=None, train_X=&#39;img&#39;, train_y=&#39;class&#39;, training_select=Find(collection=Collection(name=&#39;mnist&#39;), like_parent=None, args=[], kwargs={}, type_id=&#39;mongodb.Find&#39;), metrics=[Metric(identifier=&#39;acc&#39;, object=&lt;Artifact artifact=&lt;function &lt;lambda&gt; at 0x185df8430&gt; serializer=dill&gt;, version=None)], training_configuration=TorchTrainerConfiguration(identifier=&#39;my_configuration&#39;, kwargs=None, objective=&lt;Artifact artifact=&lt;function cross_entropy at 0x161652310&gt; serializer=dill&gt;, loader_kwargs={&#39;batch_size&#39;: 10}, max_iterations=100, no_improve_then_stop=5, splitter=None, download=False, validation_interval=10, watch=&#39;objective&#39;, optimizer_cls=&lt;Artifact artifact=&lt;class &#39;torch.optim.adam.Adam&#39;&gt; serializer=pickle&gt;, optimizer_kwargs={}, target_preprocessors=None, compute_metrics=&lt;Artifact artifact=&lt;function compute_classification_metrics at 0x17f69bca0&gt; serializer=dill&gt;), version=0, metric_values={&#39;my_valid/acc&#39;: [0.10558793280767913, 0.3225917038052794, 0.38189921151868356, 0.6208433321906068, 0.624614329790881, 0.655810764484059, 0.7871100445663353, 0.8097360301679808, 0.8663009941720946, 0.8549880013712718, 0.8615015426808365], &#39;objective&#39;: [2.3024406808696383, 2.1036537154896617, 1.8714400391056114, 1.5691545797537452, 1.3270199231497228, 1.0999873921479264, 0.8137197722106764, 0.6732703569306903, 0.5408257470045188, 0.5347362626599123, 0.523688334257227]}, future=None, collate_fn=None, is_batch=None, num_directions=2, preprocess=&lt;Artifact artifact=&lt;function preprocess at 0x186616040&gt; serializer=dill&gt;, postprocess=&lt;Artifact artifact=&lt;function postprocess at 0x1866160d0&gt; serializer=dill&gt;, optimizer_state=None)
-</pre></div></div>
-</div>
-<div class="nbinput docutils container">
-<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[15]:
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[10]:
 </pre></div>
 </div>
 <div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">matplotlib</span> <span class="kn">import</span> <span class="n">pyplot</span> <span class="k">as</span> <span class="n">plt</span>
@@ -685,22 +1570,16 @@ TorchModel(identifier=&#39;lenet5&#39;, object=&lt;Artifact artifact=LeNet5(
 <div class="prompt empty docutils container">
 </div>
 <div class="output_area docutils container">
-<img alt="../_images/examples_mnist_clean_13_0.png" src="../_images/examples_mnist_clean_13_0.png" />
+<img alt="../_images/examples_mnist_clean_18_0.png" src="../_images/examples_mnist_clean_18_0.png" />
 </div>
 </div>
+<p>Now that the model has been trained, we can use it to “watch” the data for incoming changes. This is set up with a simple predict “on” the database (without loading all the data client-side).</p>
+<p>The <code class="docutils literal notranslate"><span class="pre">watch</span></code> toggle “activates” the model:</p>
 <div class="nbinput docutils container">
-<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[17]:
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[11]:
 </pre></div>
 </div>
-<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">superduperdb.core.watcher</span> <span class="kn">import</span> <span class="n">Watcher</span>
-
-<span class="n">jobs</span> <span class="o">=</span> <span class="n">db</span><span class="o">.</span><span class="n">add</span><span class="p">(</span>
-    <span class="n">Watcher</span><span class="p">(</span>
-        <span class="n">model</span><span class="o">=</span><span class="n">model</span><span class="p">,</span>
-        <span class="n">key</span><span class="o">=</span><span class="s1">&#39;img&#39;</span><span class="p">,</span>
-        <span class="n">select</span><span class="o">=</span><span class="n">collection</span><span class="o">.</span><span class="n">find</span><span class="p">(),</span>
-    <span class="p">)</span>
-<span class="p">)</span>
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">model</span><span class="o">.</span><span class="n">predict</span><span class="p">(</span><span class="n">X</span><span class="o">=</span><span class="s1">&#39;img&#39;</span><span class="p">,</span> <span class="n">db</span><span class="o">=</span><span class="n">db</span><span class="p">,</span> <span class="n">select</span><span class="o">=</span><span class="n">collection</span><span class="o">.</span><span class="n">find</span><span class="p">(),</span> <span class="n">watch</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
 </pre></div>
 </div>
 </div>
@@ -709,43 +1588,80 @@ TorchModel(identifier=&#39;lenet5&#39;, object=&lt;Artifact artifact=LeNet5(
 </div>
 <div class="output_area stderr docutils container">
 <div class="highlight"><pre>
-INFO:root:Created watcher/lenet5/img/0
 WARNING:root:model/lenet5/0 already exists - doing nothing
 WARNING:root:model/lenet5/0 already exists - doing nothing
 WARNING:root:model/lenet5/0 already exists - doing nothing
-100%|████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████| 5000/5000 [00:03&lt;00:00, 1363.75it/s]
 WARNING:root:model/lenet5/0 already exists - doing nothing
-100%|████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████| 5000/5000 [00:03&lt;00:00, 1386.82it/s]
+100%|████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████| 5000/5000 [00:03&lt;00:00, 1373.28it/s]
 WARNING:root:model/lenet5/0 already exists - doing nothing
-100%|████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████| 5000/5000 [00:03&lt;00:00, 1392.90it/s]
+100%|████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████| 5000/5000 [00:03&lt;00:00, 1396.15it/s]
 WARNING:root:model/lenet5/0 already exists - doing nothing
-100%|████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████| 5000/5000 [00:03&lt;00:00, 1385.85it/s]
+100%|████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████| 5000/5000 [00:03&lt;00:00, 1395.69it/s]
 WARNING:root:model/lenet5/0 already exists - doing nothing
-100%|████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████| 5000/5000 [00:03&lt;00:00, 1391.88it/s]
+100%|████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████| 5000/5000 [00:03&lt;00:00, 1396.21it/s]
 WARNING:root:model/lenet5/0 already exists - doing nothing
-100%|████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████| 5000/5000 [00:03&lt;00:00, 1391.55it/s]
+100%|████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████| 5000/5000 [00:03&lt;00:00, 1401.62it/s]
 WARNING:root:model/lenet5/0 already exists - doing nothing
-100%|████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████| 5000/5000 [00:03&lt;00:00, 1393.28it/s]
+100%|████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████| 5000/5000 [00:03&lt;00:00, 1381.95it/s]
 WARNING:root:model/lenet5/0 already exists - doing nothing
-100%|████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████| 5000/5000 [00:03&lt;00:00, 1370.13it/s]
+100%|████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████| 5000/5000 [00:03&lt;00:00, 1394.02it/s]
 WARNING:root:model/lenet5/0 already exists - doing nothing
-100%|████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████| 5000/5000 [00:03&lt;00:00, 1382.76it/s]
+100%|████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████| 5000/5000 [00:03&lt;00:00, 1387.00it/s]
 WARNING:root:model/lenet5/0 already exists - doing nothing
-100%|████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████| 5000/5000 [00:03&lt;00:00, 1393.79it/s]
+100%|████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████| 5000/5000 [00:03&lt;00:00, 1399.18it/s]
 WARNING:root:model/lenet5/0 already exists - doing nothing
-100%|████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████| 5000/5000 [00:03&lt;00:00, 1388.31it/s]
+100%|████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████| 5000/5000 [00:03&lt;00:00, 1421.31it/s]
 WARNING:root:model/lenet5/0 already exists - doing nothing
-100%|████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████| 4000/4000 [00:02&lt;00:00, 1388.48it/s]
+100%|████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████| 5000/5000 [00:03&lt;00:00, 1376.95it/s]
+WARNING:root:model/lenet5/0 already exists - doing nothing
+100%|████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████| 4000/4000 [00:02&lt;00:00, 1392.18it/s]
 </pre></div></div>
 </div>
+<p>We can see that predictions are available in <code class="docutils literal notranslate"><span class="pre">_outputs.img.lenet5</span></code>:</p>
 <div class="nbinput docutils container">
-<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[18]:
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[19]:
+</pre></div>
+</div>
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">db</span><span class="o">.</span><span class="n">execute</span><span class="p">(</span><span class="n">collection</span><span class="o">.</span><span class="n">find_one</span><span class="p">({</span><span class="s1">&#39;update&#39;</span><span class="p">:</span> <span class="kc">True</span><span class="p">}))[</span><span class="s1">&#39;_outputs&#39;</span><span class="p">]</span>
+</pre></div>
+</div>
+</div>
+<div class="nboutput nblast docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[19]:
+</pre></div>
+</div>
+<div class="output_area docutils container">
+<div class="highlight"><pre>
+{&#39;img&#39;: {&#39;lenet5&#39;: 6}}
+</pre></div></div>
+</div>
+<p>The models “activated” can be seen here:</p>
+<div class="nbinput docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[16]:
+</pre></div>
+</div>
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">db</span><span class="o">.</span><span class="n">show</span><span class="p">(</span><span class="s1">&#39;watcher&#39;</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="nboutput nblast docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[16]:
+</pre></div>
+</div>
+<div class="output_area docutils container">
+<div class="highlight"><pre>
+[&#39;lenet5/img&#39;]
+</pre></div></div>
+</div>
+<p>We can verify that the model is activated, by inserting the rest of the data:</p>
+<div class="nbinput docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[17]:
 </pre></div>
 </div>
 <div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="k">for</span> <span class="n">r</span> <span class="ow">in</span> <span class="n">data</span><span class="p">[</span><span class="o">-</span><span class="mi">1000</span><span class="p">:]:</span>
     <span class="n">r</span><span class="p">[</span><span class="s1">&#39;update&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="kc">True</span>
 
-<span class="n">db</span><span class="o">.</span><span class="n">execute</span><span class="p">(</span><span class="n">Collection</span><span class="p">(</span><span class="s1">&#39;docs&#39;</span><span class="p">)</span><span class="o">.</span><span class="n">insert_many</span><span class="p">(</span><span class="n">data</span><span class="p">[</span><span class="o">-</span><span class="mi">1000</span><span class="p">:]))</span>
+<span class="n">db</span><span class="o">.</span><span class="n">execute</span><span class="p">(</span><span class="n">collection</span><span class="o">.</span><span class="n">insert_many</span><span class="p">(</span><span class="n">data</span><span class="p">[</span><span class="o">-</span><span class="mi">1000</span><span class="p">:]))</span>
 </pre></div>
 </div>
 </div>
@@ -756,26 +1672,36 @@ WARNING:root:model/lenet5/0 already exists - doing nothing
 <div class="highlight"><pre>
 INFO:root:found 0 uris
 WARNING:root:model/lenet5/0 already exists - doing nothing
-100%|████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████| 1000/1000 [00:00&lt;00:00, 1381.18it/s]
+100%|████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████| 1000/1000 [00:00&lt;00:00, 1386.58it/s]
 </pre></div></div>
 </div>
 <div class="nboutput nblast docutils container">
-<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[18]:
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[17]:
 </pre></div>
 </div>
 <div class="output_area docutils container">
 <div class="highlight"><pre>
-(&lt;pymongo.results.InsertManyResult at 0x184090a60&gt;,
- TaskWorkflow(database=&lt;superduperdb.datalayer.base.database.BaseDatabase object at 0x17db79700&gt;, G=&lt;networkx.classes.digraph.DiGraph object at 0x184090ee0&gt;))
+(&lt;pymongo.results.InsertManyResult at 0x19063b820&gt;,
+ TaskWorkflow(database=&lt;superduperdb.datalayer.base.datalayer.Datalayer object at 0x1812fee90&gt;, G=&lt;networkx.classes.digraph.DiGraph object at 0x190caf810&gt;))
 </pre></div></div>
 </div>
-<div class="nbinput nblast docutils container">
-<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[ ]:
+<p>You can see that the inserted data, are now also populated with predictions:</p>
+<div class="nbinput docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[20]:
 </pre></div>
 </div>
-<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">db</span><span class="o">.</span><span class="n">execute</span><span class="p">(</span><span class="n">Collection</span><span class="p">(</span><span class="s1">&#39;docs&#39;</span><span class="p">)</span><span class="o">.</span><span class="n">find_one</span><span class="p">({</span><span class="s1">&#39;update&#39;</span><span class="p">:</span> <span class="kc">True</span><span class="p">}))</span>
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">db</span><span class="o">.</span><span class="n">execute</span><span class="p">(</span><span class="n">collection</span><span class="o">.</span><span class="n">find_one</span><span class="p">({</span><span class="s1">&#39;update&#39;</span><span class="p">:</span> <span class="kc">True</span><span class="p">}))[</span><span class="s1">&#39;_outputs&#39;</span><span class="p">]</span>
 </pre></div>
 </div>
+</div>
+<div class="nboutput nblast docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[20]:
+</pre></div>
+</div>
+<div class="output_area docutils container">
+<div class="highlight"><pre>
+{&#39;img&#39;: {&#39;lenet5&#39;: 6}}
+</pre></div></div>
 </div>
 </section>
 
@@ -828,9 +1754,7 @@ WARNING:root:model/lenet5/0 already exists - doing nothing
       
     </aside>
   </div>
-</div><script src="../_static/jquery.js"></script>
-    <script src="../_static/_sphinx_javascript_frameworks_compat.js"></script>
-    <script data-url_root="../" id="documentation_options" src="../_static/documentation_options.js"></script>
+</div><script data-url_root="../" id="documentation_options" src="../_static/documentation_options.js"></script>
     <script src="../_static/doctools.js"></script>
     <script src="../_static/sphinx_highlight.js"></script>
     <script src="../_static/scripts/furo.js"></script>

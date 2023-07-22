@@ -161,11 +161,7 @@
 <li class="toctree-l2"><a class="reference internal" href="getting_started/features.html">Supported Features</a></li>
 </ul>
 </li>
-<li class="toctree-l1 has-children"><a class="reference internal" href="background/index.html">Background of SuperDuperDB</a><input class="toctree-checkbox" id="toctree-checkbox-2" name="toctree-checkbox-2" role="switch" type="checkbox"/><label for="toctree-checkbox-2"><div class="visually-hidden">Toggle navigation of Background of SuperDuperDB</div><i class="icon"><svg><use href="#svg-arrow-right"></use></svg></i></label><ul>
-<li class="toctree-l2"><a class="reference internal" href="background/common_issues.html">Common issues in AI-data development</a></li>
-</ul>
-</li>
-<li class="toctree-l1 has-children"><a class="reference internal" href="usage/index.html">SuperDuperDB Usage</a><input class="toctree-checkbox" id="toctree-checkbox-3" name="toctree-checkbox-3" role="switch" type="checkbox"/><label for="toctree-checkbox-3"><div class="visually-hidden">Toggle navigation of SuperDuperDB Usage</div><i class="icon"><svg><use href="#svg-arrow-right"></use></svg></i></label><ul>
+<li class="toctree-l1 has-children"><a class="reference internal" href="usage/index.html">SuperDuperDB Usage</a><input class="toctree-checkbox" id="toctree-checkbox-2" name="toctree-checkbox-2" role="switch" type="checkbox"/><label for="toctree-checkbox-2"><div class="visually-hidden">Toggle navigation of SuperDuperDB Usage</div><i class="icon"><svg><use href="#svg-arrow-right"></use></svg></i></label><ul>
 <li class="toctree-l2"><a class="reference internal" href="usage/datalayer.html">Datalayer</a></li>
 <li class="toctree-l2"><a class="reference internal" href="usage/queries.html">Queries</a></li>
 <li class="toctree-l2"><a class="reference internal" href="usage/encoders.html">Encoders</a></li>
@@ -173,11 +169,15 @@
 <li class="toctree-l2"><a class="reference internal" href="usage/vector_search.html">Vector Search</a></li>
 </ul>
 </li>
-<li class="toctree-l1 has-children"><a class="reference internal" href="infrastructure/index.html">Infrastructural support</a><input class="toctree-checkbox" id="toctree-checkbox-4" name="toctree-checkbox-4" role="switch" type="checkbox"/><label for="toctree-checkbox-4"><div class="visually-hidden">Toggle navigation of Infrastructural support</div><i class="icon"><svg><use href="#svg-arrow-right"></use></svg></i></label><ul>
+<li class="toctree-l1 has-children"><a class="reference internal" href="infrastructure/index.html">Infrastructural support</a><input class="toctree-checkbox" id="toctree-checkbox-3" name="toctree-checkbox-3" role="switch" type="checkbox"/><label for="toctree-checkbox-3"><div class="visually-hidden">Toggle navigation of Infrastructural support</div><i class="icon"><svg><use href="#svg-arrow-right"></use></svg></i></label><ul>
 <li class="toctree-l2"><a class="reference internal" href="infrastructure/single_host_cluster.html">SuperDuperDB single host cluster deployment</a></li>
 <li class="toctree-l2"><a class="reference internal" href="infrastructure/architecture.html">SuperDuperDB architecture</a></li>
 <li class="toctree-l2"><a class="reference internal" href="infrastructure/change_data_capture.html">Change data capture</a></li>
 <li class="toctree-l2"><a class="reference internal" href="infrastructure/client_server.html">Client-server implementation</a></li>
+</ul>
+</li>
+<li class="toctree-l1 has-children"><a class="reference internal" href="background/index.html">Background of SuperDuperDB</a><input class="toctree-checkbox" id="toctree-checkbox-4" name="toctree-checkbox-4" role="switch" type="checkbox"/><label for="toctree-checkbox-4"><div class="visually-hidden">Toggle navigation of Background of SuperDuperDB</div><i class="icon"><svg><use href="#svg-arrow-right"></use></svg></i></label><ul>
+<li class="toctree-l2"><a class="reference internal" href="background/common_issues.html">Common issues in AI-data development</a></li>
 </ul>
 </li>
 <li class="toctree-l1 has-children"><a class="reference internal" href="examples/index.html">Example notebooks</a><input class="toctree-checkbox" id="toctree-checkbox-5" name="toctree-checkbox-5" role="switch" type="checkbox"/><label for="toctree-checkbox-5"><div class="visually-hidden">Toggle navigation of Example notebooks</div><i class="icon"><svg><use href="#svg-arrow-right"></use></svg></i></label><ul>
@@ -385,6 +385,8 @@
 </li>
         <li><a href="source/superduperdb.misc.html#superduperdb.misc.config.Config.apis">apis (superduperdb.misc.config.Config attribute)</a>
 </li>
+        <li><a href="source/superduperdb.datalayer.mongodb.html#superduperdb.datalayer.mongodb.cdc.CachedTokens.append">append() (superduperdb.datalayer.mongodb.cdc.CachedTokens method)</a>
+</li>
         <li><a href="source/superduperdb.core.html#superduperdb.core.model.Model.append_metrics">append_metrics() (superduperdb.core.model.Model method)</a>
 
         <ul>
@@ -541,6 +543,8 @@
 </li>
         <li><a href="source/superduperdb.datalayer.html#superduperdb.datalayer.query_dataset.CachedQueryDataset">CachedQueryDataset (class in superduperdb.datalayer.query_dataset)</a>
 </li>
+        <li><a href="source/superduperdb.datalayer.mongodb.html#superduperdb.datalayer.mongodb.cdc.CachedTokens">CachedTokens (class in superduperdb.datalayer.mongodb.cdc)</a>
+</li>
         <li><a href="source/superduperdb.core.html#superduperdb.core.tasks.callable_job">callable_job() (in module superduperdb.core.tasks)</a>
 </li>
         <li><a href="source/superduperdb.misc.html#superduperdb.misc.run.CalledProcessError">CalledProcessError</a>
@@ -649,7 +653,7 @@
 </li>
         <li><a href="source/superduperdb.core.html#superduperdb.core.vector_index.VectorIndex.compatible_watcher">compatible_watcher (superduperdb.core.vector_index.VectorIndex attribute)</a>
 </li>
-        <li><a href="full_usage.html#superduperdb.core.component.Component">Component (class in superduperdb.core.component)</a>, <a href="source/superduperdb.core.html#superduperdb.core.component.Component">[1]</a>
+        <li><a href="source/superduperdb.core.html#superduperdb.core.component.Component">Component (class in superduperdb.core.component)</a>
 </li>
         <li><a href="source/superduperdb.core.html#superduperdb.core.job.ComponentJob.component">component (superduperdb.core.job.ComponentJob property)</a>
 </li>
@@ -665,7 +669,7 @@
 </li>
         <li><a href="source/superduperdb.core.html#superduperdb.core.exceptions.ComponentInUseWarning">ComponentInUseWarning</a>
 </li>
-        <li><a href="full_usage.html#superduperdb.core.job.ComponentJob">ComponentJob (class in superduperdb.core.job)</a>, <a href="source/superduperdb.core.html#superduperdb.core.job.ComponentJob">[1]</a>
+        <li><a href="source/superduperdb.core.html#superduperdb.core.job.ComponentJob">ComponentJob (class in superduperdb.core.job)</a>
 </li>
         <li><a href="source/superduperdb.metrics.html#superduperdb.metrics.classification.compute_classification_metrics">compute_classification_metrics() (in module superduperdb.metrics.classification)</a>
 </li>
@@ -748,7 +752,11 @@
         <li><a href="source/superduperdb.cluster.ray.html#superduperdb.cluster.ray.predict.create_server">create_server() (in module superduperdb.cluster.ray.predict)</a>
 </li>
         <li><a href="source/superduperdb.vector_search.html#superduperdb.vector_search.lancedb_client.LanceDBClient.create_table">create_table() (superduperdb.vector_search.lancedb_client.LanceDBClient method)</a>
+
+        <ul>
+          <li><a href="source/superduperdb.vector_search.html#superduperdb.vector_search.lancedb_client.LanceVectorIndex.create_table">(superduperdb.vector_search.lancedb_client.LanceVectorIndex method)</a>
 </li>
+        </ul></li>
         <li><a href="source/superduperdb.core.html#superduperdb.core.component.Component.create_validation_job">create_validation_job() (superduperdb.core.component.Component method)</a>
 </li>
         <li><a href="source/superduperdb.datalayer.mongodb.html#superduperdb.datalayer.mongodb.cdc.CDCHandler.create_vector_watcher_task">create_vector_watcher_task() (superduperdb.datalayer.mongodb.cdc.CDCHandler method)</a>
@@ -995,7 +1003,7 @@
 </li>
         <li><a href="source/superduperdb.encoders.numpy.html#superduperdb.encoders.numpy.array.EncodeArray">EncodeArray (class in superduperdb.encoders.numpy.array)</a>
 </li>
-        <li><a href="full_usage.html#superduperdb.core.encoder.Encoder">Encoder (class in superduperdb.core.encoder)</a>, <a href="source/superduperdb.core.html#superduperdb.core.encoder.Encoder">[1]</a>
+        <li><a href="source/superduperdb.core.html#superduperdb.core.encoder.Encoder">Encoder (class in superduperdb.core.encoder)</a>
 </li>
         <li><a href="source/superduperdb.core.html#superduperdb.core.encoder.Encodable.encoder">encoder (superduperdb.core.encoder.Encodable attribute)</a>
 
@@ -1209,7 +1217,7 @@
 </li>
         <li><a href="source/superduperdb.models.vanilla.html#superduperdb.models.vanilla.wrapper.Function">Function (class in superduperdb.models.vanilla.wrapper)</a>
 </li>
-        <li><a href="full_usage.html#superduperdb.core.job.FunctionJob">FunctionJob (class in superduperdb.core.job)</a>, <a href="source/superduperdb.core.html#superduperdb.core.job.FunctionJob">[1]</a>
+        <li><a href="source/superduperdb.core.html#superduperdb.core.job.FunctionJob">FunctionJob (class in superduperdb.core.job)</a>
 </li>
         <li><a href="source/superduperdb.core.html#superduperdb.core.model.Model.future">future (superduperdb.core.model.Model attribute)</a>
 </li>
@@ -1267,8 +1275,6 @@
         </ul></li>
     </ul></td>
     <td style="width: 33%; vertical-align: top;"><ul>
-        <li><a href="source/superduperdb.datalayer.mongodb.html#superduperdb.datalayer.mongodb.cdc.ResumeToken.get_latest">get_latest() (superduperdb.datalayer.mongodb.cdc.ResumeToken method)</a>
-</li>
         <li><a href="source/superduperdb.datalayer.base.html#superduperdb.datalayer.base.metadata.MetaDataStore.get_latest_version">get_latest_version() (superduperdb.datalayer.base.metadata.MetaDataStore method)</a>
 
         <ul>
@@ -1499,7 +1505,7 @@
   <h2>J</h2>
   <table style="width: 100%" class="indextable genindextable"><tr>
     <td style="width: 33%; vertical-align: top;"><ul>
-        <li><a href="full_usage.html#superduperdb.core.job.Job">Job (class in superduperdb.core.job)</a>, <a href="source/superduperdb.core.html#superduperdb.core.job.Job">[1]</a>
+        <li><a href="source/superduperdb.core.html#superduperdb.core.job.Job">Job (class in superduperdb.core.job)</a>
 </li>
         <li><a href="source/superduperdb.core.html#superduperdb.core.job.job">job() (in module superduperdb.core.job)</a>
 </li>
@@ -1589,6 +1595,8 @@
 </li>
         <li><a href="source/superduperdb.models.langchain.html#superduperdb.models.langchain.retriever.LangchainRetriever">LangchainRetriever (class in superduperdb.models.langchain.retriever)</a>
 </li>
+        <li><a href="source/superduperdb.datalayer.mongodb.html#superduperdb.datalayer.mongodb.cdc.MongoDatabaseWatcher.last_resume_token">last_resume_token() (superduperdb.datalayer.mongodb.cdc.MongoDatabaseWatcher method)</a>
+</li>
         <li><a href="source/superduperdb.datalayer.base.html#superduperdb.datalayer.base.query.Like">Like (class in superduperdb.datalayer.base.query)</a>
 </li>
         <li><a href="source/superduperdb.datalayer.base.html#superduperdb.datalayer.base.datalayer.Datalayer.like">like() (superduperdb.datalayer.base.datalayer.Datalayer method)</a>
@@ -1619,16 +1627,16 @@
         </ul></li>
         <li><a href="source/superduperdb.datalayer.mongodb.html#superduperdb.datalayer.mongodb.metadata.MongoMetaDataStore.list_components_in_scope">list_components_in_scope() (superduperdb.datalayer.mongodb.metadata.MongoMetaDataStore method)</a>
 </li>
+    </ul></td>
+    <td style="width: 33%; vertical-align: top;"><ul>
         <li><a href="source/superduperdb.datalayer.base.html#superduperdb.datalayer.base.datalayer.Datalayer.load">load() (superduperdb.datalayer.base.datalayer.Datalayer method)</a>
 
         <ul>
-          <li><a href="source/superduperdb.datalayer.mongodb.html#superduperdb.datalayer.mongodb.cdc.PickledTokens.load">(superduperdb.datalayer.mongodb.cdc.PickledTokens method)</a>
+          <li><a href="source/superduperdb.datalayer.mongodb.html#superduperdb.datalayer.mongodb.cdc.CachedTokens.load">(superduperdb.datalayer.mongodb.cdc.CachedTokens method)</a>
 </li>
           <li><a href="source/superduperdb.serve.html#superduperdb.serve.client.Client.load">(superduperdb.serve.client.Client method)</a>
 </li>
         </ul></li>
-    </ul></td>
-    <td style="width: 33%; vertical-align: top;"><ul>
         <li><a href="source/superduperdb.core.html#superduperdb.core.artifact.load_artifact">load_artifact() (in module superduperdb.core.artifact)</a>
 
         <ul>
@@ -1683,6 +1691,8 @@
 </li>
         <li><a href="source/superduperdb.core.html#superduperdb.core.component.Component.make_unique_id">make_unique_id() (superduperdb.core.component.Component class method)</a>
 </li>
+        <li><a href="source/superduperdb.datalayer.mongodb.html#superduperdb.datalayer.mongodb.cdc.MongoChangePipeline.matching_operations">matching_operations (superduperdb.datalayer.mongodb.cdc.MongoChangePipeline attribute)</a>
+</li>
         <li><a href="source/superduperdb.core.html#superduperdb.core.watcher.Watcher.max_chunk_size">max_chunk_size (superduperdb.core.watcher.Watcher attribute)</a>
 </li>
         <li><a href="source/superduperdb.datalayer.mongodb.html#superduperdb.datalayer.mongodb.query.PostLike.max_ids">max_ids (superduperdb.datalayer.mongodb.query.PostLike attribute)</a>
@@ -1707,7 +1717,7 @@
 </li>
         <li><a href="source/superduperdb.core.html#superduperdb.core.tasks.method_job">method_job() (in module superduperdb.core.tasks)</a>
 </li>
-        <li><a href="full_usage.html#superduperdb.core.metric.Metric">Metric (class in superduperdb.core.metric)</a>, <a href="source/superduperdb.core.html#superduperdb.core.metric.Metric">[1]</a>
+        <li><a href="source/superduperdb.core.html#superduperdb.core.metric.Metric">Metric (class in superduperdb.core.metric)</a>
 </li>
         <li><a href="source/superduperdb.core.html#superduperdb.core.model.Model.metric_values">metric_values (superduperdb.core.model.Model attribute)</a>
 
@@ -1723,7 +1733,7 @@
           <li><a href="source/superduperdb.models.torch.html#superduperdb.models.torch.wrapper.Base.metrics">(superduperdb.models.torch.wrapper.Base attribute)</a>
 </li>
         </ul></li>
-        <li><a href="full_usage.html#superduperdb.core.model.Model">Model (class in superduperdb.core.model)</a>, <a href="source/superduperdb.core.html#superduperdb.core.model.Model">[1]</a>
+        <li><a href="source/superduperdb.core.html#superduperdb.core.model.Model">Model (class in superduperdb.core.model)</a>
 </li>
         <li><a href="source/superduperdb.core.html#superduperdb.core.watcher.Watcher.model">model (superduperdb.core.watcher.Watcher attribute)</a>
 
@@ -2166,8 +2176,6 @@
         </ul></li>
         <li><a href="source/superduperdb.metrics.html#superduperdb.metrics.vector_search.PatK">PatK (class in superduperdb.metrics.vector_search)</a>
 </li>
-        <li><a href="source/superduperdb.datalayer.mongodb.html#superduperdb.datalayer.mongodb.cdc.PickledTokens">PickledTokens (class in superduperdb.datalayer.mongodb.cdc)</a>
-</li>
         <li><a href="source/superduperdb.misc.html#superduperdb.misc.serialization.PickleSerializer">PickleSerializer (class in superduperdb.misc.serialization)</a>
 </li>
         <li><a href="source/superduperdb.models.transformers.html#superduperdb.models.transformers.wrapper.Pipeline">Pipeline (class in superduperdb.models.transformers.wrapper)</a>
@@ -2338,6 +2346,10 @@
 </li>
         <li><a href="source/superduperdb.misc.html#superduperdb.misc.downloads.Downloader.results">results (superduperdb.misc.downloads.Downloader attribute)</a>
 </li>
+        <li><a href="source/superduperdb.datalayer.mongodb.html#superduperdb.datalayer.mongodb.cdc.MongoDatabaseWatcher.resume">resume() (superduperdb.datalayer.mongodb.cdc.MongoDatabaseWatcher method)</a>
+</li>
+        <li><a href="source/superduperdb.datalayer.mongodb.html#superduperdb.datalayer.mongodb.cdc.MongoDatabaseWatcher.resume_tokens">resume_tokens() (superduperdb.datalayer.mongodb.cdc.MongoDatabaseWatcher method)</a>
+</li>
         <li><a href="source/superduperdb.datalayer.mongodb.html#superduperdb.datalayer.mongodb.cdc.ResumeToken">ResumeToken (class in superduperdb.datalayer.mongodb.cdc)</a>
 </li>
         <li><a href="source/superduperdb.models.langchain.html#superduperdb.models.langchain.retriever.DBQAWithSourcesChain.retriever">retriever (superduperdb.models.langchain.retriever.DBQAWithSourcesChain property)</a>
@@ -2381,8 +2393,6 @@
         <li><a href="source/superduperdb.core.html#superduperdb.core.artifact.Artifact.save">save() (superduperdb.core.artifact.Artifact method)</a>
 
         <ul>
-          <li><a href="source/superduperdb.datalayer.mongodb.html#superduperdb.datalayer.mongodb.cdc.PickledTokens.save">(superduperdb.datalayer.mongodb.cdc.PickledTokens method)</a>
-</li>
           <li><a href="source/superduperdb.models.torch.html#superduperdb.models.torch.wrapper.TorchModel.save">(superduperdb.models.torch.wrapper.TorchModel method)</a>
 </li>
           <li><a href="source/superduperdb.models.torch.html#superduperdb.models.torch.wrapper.TorchModelEnsemble.save">(superduperdb.models.torch.wrapper.TorchModelEnsemble method)</a>
@@ -2518,6 +2528,8 @@
 </li>
         <li><a href="source/superduperdb.models.sentence_transformers.html#superduperdb.models.sentence_transformers.wrapper.SentenceTransformer">SentenceTransformer (class in superduperdb.models.sentence_transformers.wrapper)</a>
 </li>
+        <li><a href="source/superduperdb.datalayer.mongodb.html#superduperdb.datalayer.mongodb.cdc.CachedTokens.seperate">seperate (superduperdb.datalayer.mongodb.cdc.CachedTokens attribute)</a>
+</li>
         <li><a href="source/superduperdb.core.html#superduperdb.core.serializable.Serializable">Serializable (class in superduperdb.core.serializable)</a>
 </li>
         <li><a href="source/superduperdb.core.html#superduperdb.core.artifact.Artifact.serialize">serialize() (superduperdb.core.artifact.Artifact method)</a>
@@ -2552,6 +2564,8 @@
 </li>
         <li><a href="source/superduperdb.serve.html#superduperdb.serve.client.ServerSideException">ServerSideException</a>
 </li>
+        <li><a href="source/superduperdb.datalayer.mongodb.html#superduperdb.datalayer.mongodb.cdc.MongoDatabaseWatcher.set_change_pipeline">set_change_pipeline() (superduperdb.datalayer.mongodb.cdc.MongoDatabaseWatcher method)</a>
+</li>
         <li><a href="source/superduperdb.datalayer.base.html#superduperdb.datalayer.base.data_backend.BaseDataBackend.set_content_bytes">set_content_bytes() (superduperdb.datalayer.base.data_backend.BaseDataBackend method)</a>
 
         <ul>
@@ -2559,6 +2573,8 @@
 </li>
         </ul></li>
         <li><a href="source/superduperdb.models.torch.html#superduperdb.models.torch.utils.set_device">set_device() (in module superduperdb.models.torch.utils)</a>
+</li>
+        <li><a href="source/superduperdb.datalayer.mongodb.html#superduperdb.datalayer.mongodb.cdc.MongoDatabaseWatcher.set_resume_token">set_resume_token() (superduperdb.datalayer.mongodb.cdc.MongoDatabaseWatcher method)</a>
 </li>
         <li><a href="source/superduperdb.datalayer.mongodb.html#superduperdb.datalayer.mongodb.cdc.MongoDatabaseWatcher.setup_cdc">setup_cdc() (superduperdb.datalayer.mongodb.cdc.MongoDatabaseWatcher method)</a>
 </li>
@@ -2605,6 +2621,8 @@
         <li><a href="source/superduperdb.misc.html#superduperdb.misc.dicts.split_address">split_address() (in module superduperdb.misc.dicts)</a>
 </li>
         <li><a href="source/superduperdb.models.torch.html#superduperdb.models.torch.wrapper.TorchTrainerConfiguration.splitter">splitter (superduperdb.models.torch.wrapper.TorchTrainerConfiguration attribute)</a>
+</li>
+        <li><a href="source/superduperdb.datalayer.mongodb.html#superduperdb.datalayer.mongodb.cdc.MongoDatabaseWatcher.start_handler">start_handler() (superduperdb.datalayer.mongodb.cdc.MongoDatabaseWatcher method)</a>
 </li>
         <li><a href="source/superduperdb.models.torch.html#superduperdb.models.torch.wrapper.TorchModel.state_dict">state_dict() (superduperdb.models.torch.wrapper.TorchModel method)</a>
 </li>
@@ -2826,6 +2844,8 @@
           <li><a href="source/superduperdb.core.html#module-superduperdb.core.serializable">module</a>
 </li>
         </ul></li>
+    </ul></td>
+    <td style="width: 33%; vertical-align: top;"><ul>
         <li>
     superduperdb.core.task_workflow
 
@@ -2833,8 +2853,6 @@
           <li><a href="source/superduperdb.core.html#module-superduperdb.core.task_workflow">module</a>
 </li>
         </ul></li>
-    </ul></td>
-    <td style="width: 33%; vertical-align: top;"><ul>
         <li>
     superduperdb.core.tasks
 
@@ -3466,7 +3484,7 @@
           <li><a href="source/superduperdb.misc.html#superduperdb.misc.config.Notebook.token">(superduperdb.misc.config.Notebook attribute)</a>
 </li>
         </ul></li>
-        <li><a href="source/superduperdb.datalayer.mongodb.html#superduperdb.datalayer.mongodb.cdc.PickledTokens.token_path">token_path (superduperdb.datalayer.mongodb.cdc.PickledTokens attribute)</a>
+        <li><a href="source/superduperdb.datalayer.mongodb.html#superduperdb.datalayer.mongodb.cdc.CachedTokens.token_path">token_path (superduperdb.datalayer.mongodb.cdc.CachedTokens attribute)</a>
 </li>
         <li><a href="source/superduperdb.models.transformers.html#superduperdb.models.transformers.wrapper.Pipeline.tokenizer">tokenizer (superduperdb.models.transformers.wrapper.Pipeline attribute)</a>
 </li>
@@ -3742,7 +3760,7 @@
 </li>
         <li><a href="source/superduperdb.vector_search.html#superduperdb.vector_search.base.VectorDatabase">VectorDatabase (class in superduperdb.vector_search.base)</a>
 </li>
-        <li><a href="full_usage.html#superduperdb.core.vector_index.VectorIndex">VectorIndex (class in superduperdb.core.vector_index)</a>, <a href="source/superduperdb.core.html#superduperdb.core.vector_index.VectorIndex">[1]</a>
+        <li><a href="source/superduperdb.core.html#superduperdb.core.vector_index.VectorIndex">VectorIndex (class in superduperdb.core.vector_index)</a>
 </li>
         <li><a href="source/superduperdb.misc.html#superduperdb.misc.config.VectorSearch">VectorSearch (class in superduperdb.misc.config)</a>
 </li>
@@ -3812,7 +3830,7 @@
     <td style="width: 33%; vertical-align: top;"><ul>
         <li><a href="source/superduperdb.datalayer.base.html#superduperdb.datalayer.base.metadata.MetaDataStore.watch_job">watch_job() (superduperdb.datalayer.base.metadata.MetaDataStore method)</a>
 </li>
-        <li><a href="full_usage.html#superduperdb.core.watcher.Watcher">Watcher (class in superduperdb.core.watcher)</a>, <a href="source/superduperdb.core.html#superduperdb.core.watcher.Watcher">[1]</a>
+        <li><a href="source/superduperdb.core.html#superduperdb.core.watcher.Watcher">Watcher (class in superduperdb.core.watcher)</a>
 </li>
         <li><a href="source/superduperdb.datalayer.base.html#superduperdb.datalayer.base.cursor.SuperDuperCursor.wrap_document">wrap_document() (superduperdb.datalayer.base.cursor.SuperDuperCursor static method)</a>
 </li>
@@ -3880,9 +3898,7 @@
       
     </aside>
   </div>
-</div><script src="_static/jquery.js"></script>
-    <script src="_static/_sphinx_javascript_frameworks_compat.js"></script>
-    <script data-url_root="./" id="documentation_options" src="_static/documentation_options.js"></script>
+</div><script data-url_root="./" id="documentation_options" src="_static/documentation_options.js"></script>
     <script src="_static/doctools.js"></script>
     <script src="_static/sphinx_highlight.js"></script>
     <script src="_static/scripts/furo.js"></script>
