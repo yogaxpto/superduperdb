@@ -268,27 +268,62 @@
         <article role="main">
           <section id="Create-a-personal-assistant-for-understanding-your-meetings">
 <h1>Create a personal assistant for understanding your meetings<a class="headerlink" href="#Create-a-personal-assistant-for-understanding-your-meetings" title="Permalink to this heading">#</a></h1>
+<p>In this notebook, we demonstrate how diverse functionality using a range of functionality may be used to create highly non-trivial features, without needing to hand-craft apps, or deploy servers, etc..</p>
+<p>To demonstrate this, we create a deployment using SuperDuperDB which:</p>
+<ul class="simple">
+<li><p>Converts audio-files hosted either locally or on s3 to text</p></li>
+<li><p>Indexes this text using a vector-search index</p></li>
+<li><p>Enables us to interrogate the content of these meetings, in free form</p></li>
+</ul>
+<div class="nbinput nblast docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[ ]:
+</pre></div>
+</div>
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">glob</span>
+<span class="kn">import</span> <span class="nn">pymongo</span>
+<span class="kn">import</span> <span class="nn">io</span>
+
+<span class="kn">from</span> <span class="nn">IPython.display</span> <span class="kn">import</span> <span class="n">Audio</span>
+<span class="kn">import</span> <span class="nn">torch</span>
+<span class="kn">import</span> <span class="nn">torchaudio</span>
+
+<span class="kn">from</span> <span class="nn">superduperdb.misc.superduper</span> <span class="kn">import</span> <span class="n">superduper</span>
+<span class="kn">from</span> <span class="nn">superduperdb.datalayer.mongodb.query</span> <span class="kn">import</span> <span class="n">Collection</span>
+<span class="kn">from</span> <span class="nn">superduperdb.models.torch.wrapper</span> <span class="kn">import</span> <span class="n">TorchModel</span>
+<span class="kn">from</span> <span class="nn">superduperdb.core.encoder</span> <span class="kn">import</span> <span class="n">Encoder</span>
+<span class="kn">from</span> <span class="nn">superduperdb.core.watcher</span> <span class="kn">import</span> <span class="n">Watcher</span>
+
+<span class="n">db</span> <span class="o">=</span> <span class="n">pymongo</span><span class="o">.</span><span class="n">MongoClient</span><span class="p">()</span><span class="o">.</span><span class="n">documents</span>
+
+<span class="n">db</span> <span class="o">=</span> <span class="n">superduper</span><span class="p">(</span><span class="n">db</span><span class="p">)</span>
+
+<span class="n">collection</span> <span class="o">=</span> <span class="n">Collection</span><span class="p">(</span><span class="n">name</span><span class="o">=</span><span class="s1">&#39;voicememos&#39;</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="nbinput nblast docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[ ]:
+</pre></div>
+</div>
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">pymongo</span><span class="o">.</span><span class="n">MongoClient</span><span class="p">()</span><span class="o">.</span><span class="n">drop_database</span><span class="p">(</span><span class="s1">&#39;documents&#39;</span><span class="p">,</span> <span class="n">force</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+<span class="n">pymongo</span><span class="o">.</span><span class="n">MongoClient</span><span class="p">()</span><span class="o">.</span><span class="n">drop_database</span><span class="p">(</span><span class="s1">&#39;_filesystem:documents&#39;</span><span class="p">,</span> <span class="n">force</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
 <p>Import DB connection and insert data</p>
 <div class="nbinput docutils container">
 <div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[1]:
 </pre></div>
 </div>
-<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">superduperdb.datalayer.mongodb.client</span> <span class="kn">import</span> <span class="n">SuperDuperClient</span>
-<span class="kn">from</span> <span class="nn">superduperdb.datalayer.mongodb.query</span> <span class="kn">import</span> <span class="n">Insert</span>
-
-<span class="kn">import</span> <span class="nn">glob</span>
-
-<span class="n">c</span> <span class="o">=</span> <span class="n">SuperDuperClient</span><span class="p">()</span>
-<span class="n">c</span><span class="o">.</span><span class="n">drop_database</span><span class="p">(</span><span class="s1">&#39;voicememos&#39;</span><span class="p">,</span> <span class="n">force</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
-<span class="n">db</span> <span class="o">=</span> <span class="n">c</span><span class="o">.</span><span class="n">voicememos</span>
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">silero_encoder</span> <span class="o">=</span> <span class="n">Encoder</span><span class="p">(</span><span class="n">identifier</span><span class="o">=</span><span class="s1">&#39;silero&#39;</span><span class="p">,</span> <span class="n">decode</span><span class="o">=</span><span class="k">lambda</span> <span class="n">x</span><span class="p">:</span> <span class="n">read</span><span class="p">(</span><span class="n">io</span><span class="o">.</span><span class="n">BytesIO</span><span class="p">(</span><span class="n">x</span><span class="p">)))</span>
 
 <span class="n">memos</span> <span class="o">=</span> <span class="n">glob</span><span class="o">.</span><span class="n">glob</span><span class="p">(</span><span class="s1">&#39;data/voice_memos/*.wav&#39;</span><span class="p">)</span>
 <span class="n">data</span> <span class="o">=</span> <span class="p">[</span>
-    <span class="p">{</span><span class="s1">&#39;audio&#39;</span><span class="p">:</span> <span class="p">{</span><span class="s1">&#39;_content&#39;</span><span class="p">:</span> <span class="p">{</span><span class="s1">&#39;uri&#39;</span><span class="p">:</span> <span class="sa">f</span><span class="s1">&#39;file://</span><span class="si">{</span><span class="n">memo</span><span class="si">}</span><span class="s1">&#39;</span><span class="p">,</span> <span class="s1">&#39;type&#39;</span><span class="p">:</span> <span class="s1">&#39;silero&#39;</span><span class="p">}}}</span>
+    <span class="n">D</span><span class="p">({</span><span class="s1">&#39;audio&#39;</span><span class="p">:</span> <span class="p">{</span><span class="s1">&#39;_content&#39;</span><span class="p">:</span> <span class="p">{</span><span class="s1">&#39;uri&#39;</span><span class="p">:</span> <span class="sa">f</span><span class="s1">&#39;file://</span><span class="si">{</span><span class="n">memo</span><span class="si">}</span><span class="s1">&#39;</span><span class="p">,</span> <span class="s1">&#39;type&#39;</span><span class="p">:</span> <span class="s1">&#39;silero&#39;</span><span class="p">}}})</span>
     <span class="k">for</span> <span class="n">memo</span> <span class="ow">in</span> <span class="n">memos</span>
 <span class="p">]</span>
 
-<span class="n">db</span><span class="o">.</span><span class="n">insert</span><span class="p">(</span><span class="n">Insert</span><span class="p">(</span><span class="n">documents</span><span class="o">=</span><span class="n">data</span><span class="p">,</span> <span class="n">collection</span><span class="o">=</span><span class="s1">&#39;documents&#39;</span><span class="p">))</span>
+<span class="n">db</span><span class="o">.</span><span class="n">execute</span><span class="p">(</span><span class="n">collection</span><span class="o">.</span><span class="n">insert_many</span><span class="p">(</span><span class="n">data</span><span class="p">,</span> <span class="n">encoders</span><span class="o">=</span><span class="p">(</span><span class="n">silero_encoder</span><span class="p">,)))</span>
 </pre></div>
 </div>
 </div>
@@ -321,11 +356,7 @@ INFO:root:number of workers 0
 <div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[2]:
 </pre></div>
 </div>
-<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">io</span>
-<span class="kn">import</span> <span class="nn">torch</span>
-<span class="kn">import</span> <span class="nn">torchaudio</span>
-
-<span class="n">model</span><span class="p">,</span> <span class="n">postprocess</span><span class="p">,</span> <span class="p">(</span><span class="n">_</span><span class="p">,</span> <span class="n">_</span><span class="p">,</span> <span class="n">read</span><span class="p">,</span> <span class="n">collate_fn</span><span class="p">)</span> <span class="o">=</span> <span class="n">torch</span><span class="o">.</span><span class="n">hub</span><span class="o">.</span><span class="n">load</span><span class="p">(</span>
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">model</span><span class="p">,</span> <span class="n">postprocess</span><span class="p">,</span> <span class="p">(</span><span class="n">_</span><span class="p">,</span> <span class="n">_</span><span class="p">,</span> <span class="n">read</span><span class="p">,</span> <span class="n">collate_fn</span><span class="p">)</span> <span class="o">=</span> <span class="n">torch</span><span class="o">.</span><span class="n">hub</span><span class="o">.</span><span class="n">load</span><span class="p">(</span>
     <span class="n">repo_or_dir</span><span class="o">=</span><span class="s1">&#39;snakers4/silero-models&#39;</span><span class="p">,</span>
     <span class="n">model</span><span class="o">=</span><span class="s1">&#39;silero_stt&#39;</span><span class="p">,</span>
     <span class="n">language</span><span class="o">=</span><span class="s1">&#39;en&#39;</span><span class="p">,</span>
@@ -342,40 +373,11 @@ INFO:root:number of workers 0
 Using cache found in /Users/dodo/.cache/torch/hub/snakers4_silero-models_master
 </pre></div></div>
 </div>
-<p>Install data type necessary for this particular model</p>
-<div class="nbinput docutils container">
-<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[3]:
-</pre></div>
-</div>
-<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">superduperdb.core.type</span> <span class="kn">import</span> <span class="n">Type</span>
-
-
-<span class="k">class</span> <span class="nc">SileroAudio</span><span class="p">(</span><span class="n">Type</span><span class="p">):</span>
-    <span class="nd">@staticmethod</span>
-    <span class="k">def</span> <span class="nf">decode</span><span class="p">(</span><span class="n">x</span><span class="p">):</span>
-        <span class="k">return</span> <span class="n">read</span><span class="p">(</span><span class="n">io</span><span class="o">.</span><span class="n">BytesIO</span><span class="p">(</span><span class="n">x</span><span class="p">))</span>
-
-<span class="n">db</span><span class="o">.</span><span class="n">create_component</span><span class="p">(</span><span class="n">SileroAudio</span><span class="p">(</span><span class="s1">&#39;silero&#39;</span><span class="p">),</span> <span class="n">serializer</span><span class="o">=</span><span class="s1">&#39;dill&#39;</span><span class="p">)</span>
-</pre></div>
-</div>
-</div>
-<div class="nboutput nblast docutils container">
-<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[3]:
-</pre></div>
-</div>
-<div class="output_area docutils container">
-<div class="highlight"><pre>
-[]
-</pre></div></div>
-</div>
 <div class="nbinput docutils container">
 <div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[4]:
 </pre></div>
 </div>
-<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">superduperdb.datalayer.mongodb.query</span> <span class="kn">import</span> <span class="n">Select</span>
-<span class="kn">from</span> <span class="nn">IPython.display</span> <span class="kn">import</span> <span class="n">Audio</span>
-
-<span class="n">r</span> <span class="o">=</span> <span class="nb">list</span><span class="p">(</span><span class="n">db</span><span class="o">.</span><span class="n">select</span><span class="p">(</span><span class="n">Select</span><span class="p">(</span><span class="s1">&#39;documents&#39;</span><span class="p">)))</span>
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">r</span> <span class="o">=</span> <span class="n">db</span><span class="o">.</span><span class="n">execute</span><span class="p">(</span><span class="n">collection</span><span class="o">.</span><span class="n">find_one</span><span class="p">())</span>
 
 <span class="nb">print</span><span class="p">(</span><span class="n">r</span><span class="p">)</span>
 
@@ -412,45 +414,25 @@ Using cache found in /Users/dodo/.cache/torch/hub/snakers4_silero-models_master
 </audio></div>
 </div>
 <p>Add the model to the DB</p>
+<p>Set the model up to transcribe data in the DB</p>
 <div class="nbinput docutils container">
-<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[5]:
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[6]:
 </pre></div>
 </div>
-<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">io</span>
-<span class="kn">import</span> <span class="nn">torch</span>
-<span class="kn">import</span> <span class="nn">torchaudio</span>
-
-<span class="kn">from</span> <span class="nn">superduperdb.models.torch.wrapper</span> <span class="kn">import</span> <span class="n">SuperDuperModule</span>
-
-
-<span class="n">m</span> <span class="o">=</span> <span class="n">SuperDuperModule</span><span class="p">(</span>
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">model</span> <span class="o">=</span> <span class="n">TorchModel</span><span class="p">(</span>
     <span class="n">model</span><span class="p">,</span>
     <span class="n">identifier</span><span class="o">=</span><span class="s1">&#39;silero&#39;</span><span class="p">,</span>
     <span class="n">postprocess</span><span class="o">=</span><span class="n">postprocess</span><span class="p">,</span>
     <span class="n">collate_fn</span><span class="o">=</span><span class="n">collate_fn</span><span class="p">,</span>
 <span class="p">)</span>
 
-<span class="n">db</span><span class="o">.</span><span class="n">create_component</span><span class="p">(</span><span class="n">m</span><span class="p">)</span>
-</pre></div>
-</div>
-</div>
-<div class="nboutput nblast docutils container">
-<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[5]:
-</pre></div>
-</div>
-<div class="output_area docutils container">
-<div class="highlight"><pre>
-[]
-</pre></div></div>
-</div>
-<p>Set the model up to transcribe data in the DB</p>
-<div class="nbinput docutils container">
-<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[6]:
-</pre></div>
-</div>
-<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">superduperdb.core.watcher</span> <span class="kn">import</span> <span class="n">Watcher</span>
-
-<span class="n">db</span><span class="o">.</span><span class="n">create_component</span><span class="p">(</span><span class="n">Watcher</span><span class="p">(</span><span class="n">model</span><span class="o">=</span><span class="s1">&#39;silero&#39;</span><span class="p">,</span> <span class="n">key</span><span class="o">=</span><span class="s1">&#39;audio&#39;</span><span class="p">,</span> <span class="n">select</span><span class="o">=</span><span class="n">Select</span><span class="p">(</span><span class="s1">&#39;documents&#39;</span><span class="p">)))</span>
+<span class="n">db</span><span class="o">.</span><span class="n">add</span><span class="p">(</span>
+    <span class="n">Watcher</span><span class="p">(</span>
+        <span class="n">model</span><span class="o">=</span><span class="n">model</span><span class="p">,</span>
+        <span class="n">key</span><span class="o">=</span><span class="s1">&#39;audio&#39;</span><span class="p">,</span>
+        <span class="n">select</span><span class="o">=</span><span class="n">collection</span><span class="o">.</span><span class="n">find</span><span class="p">()</span>
+    <span class="p">)</span>
+<span class="p">)</span>
 </pre></div>
 </div>
 </div>
@@ -477,268 +459,44 @@ INFO:root:done.
 [None]
 </pre></div></div>
 </div>
-<p>Create vector type necessary for searching transcriptions</p>
-<div class="nbinput docutils container">
-<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[7]:
+<div class="nbinput nblast docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[ ]:
 </pre></div>
 </div>
-<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">superduperdb.types.numpy.array</span> <span class="kn">import</span> <span class="n">Array</span>
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">sentence_transformers</span> <span class="kn">import</span> <span class="n">SentenceTransformer</span> <span class="k">as</span> <span class="n">st</span>
+<span class="kn">from</span> <span class="nn">superduperdb.encoders.numpy.array</span> <span class="kn">import</span> <span class="n">array</span>
 
-<span class="n">db</span><span class="o">.</span><span class="n">create_component</span><span class="p">(</span><span class="n">Array</span><span class="p">(</span><span class="n">identifier</span><span class="o">=</span><span class="s1">&#39;float-array&#39;</span><span class="p">,</span> <span class="n">dtype</span><span class="o">=</span><span class="s1">&#39;float32&#39;</span><span class="p">))</span>
-</pre></div>
-</div>
-</div>
-<div class="nboutput nblast docutils container">
-<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[7]:
-</pre></div>
-</div>
-<div class="output_area docutils container">
-<div class="highlight"><pre>
-[]
-</pre></div></div>
-</div>
-<p>Upload sentence-transformer model for transcription</p>
-<div class="nbinput docutils container">
-<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[8]:
-</pre></div>
-</div>
-<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">superduperdb.models.sentence_transformers.wrapper</span> <span class="kn">import</span> <span class="n">SentenceTransformer</span>
-
-<span class="n">db</span><span class="o">.</span><span class="n">create_component</span><span class="p">(</span>
-    <span class="n">SentenceTransformer</span><span class="p">(</span><span class="s1">&#39;all-MiniLM-L6-v2&#39;</span><span class="p">,</span> <span class="nb">type</span><span class="o">=</span><span class="s1">&#39;float-array&#39;</span><span class="p">)</span>
+<span class="n">model</span> <span class="o">=</span> <span class="n">SentenceTransformer</span><span class="p">(</span>
+    <span class="n">identifier</span><span class="o">=</span><span class="s1">&#39;all-MiniLM-L6-v2&#39;</span><span class="p">,</span>
+    <span class="nb">object</span><span class="o">=</span><span class="n">st</span><span class="p">(</span><span class="s1">&#39;all-MiniLM-L6-v2&#39;</span><span class="p">),</span>
+    <span class="n">encoder</span><span class="o">=</span><span class="n">array</span><span class="p">(</span><span class="s1">&#39;float32&#39;</span><span class="p">,</span> <span class="n">shape</span><span class="o">=</span><span class="p">(</span><span class="mi">384</span><span class="p">,))</span>
 <span class="p">)</span>
-</pre></div>
-</div>
-</div>
-<div class="nboutput docutils container">
-<div class="prompt empty docutils container">
-</div>
-<div class="output_area stderr docutils container">
-<div class="highlight"><pre>
-INFO:sentence_transformers.SentenceTransformer:Load pretrained SentenceTransformer: all-MiniLM-L6-v2
-INFO:sentence_transformers.SentenceTransformer:Use pytorch device: cpu
-</pre></div></div>
-</div>
-<div class="nboutput nblast docutils container">
-<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[8]:
-</pre></div>
-</div>
-<div class="output_area docutils container">
-<div class="highlight"><pre>
-[]
-</pre></div></div>
-</div>
-<p>Configure transcription model to index the audio transcriptions</p>
-<div class="nbinput docutils container">
-<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[9]:
-</pre></div>
-</div>
-<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">db</span><span class="o">.</span><span class="n">create_component</span><span class="p">(</span>
-    <span class="n">Watcher</span><span class="p">(</span><span class="n">model</span><span class="o">=</span><span class="s1">&#39;all-MiniLM-L6-v2&#39;</span><span class="p">,</span> <span class="n">select</span><span class="o">=</span><span class="n">Select</span><span class="p">(</span><span class="s1">&#39;documents&#39;</span><span class="p">),</span> <span class="n">key</span><span class="o">=</span><span class="s1">&#39;audio&#39;</span><span class="p">,</span> <span class="n">features</span><span class="o">=</span><span class="p">{</span><span class="s1">&#39;audio&#39;</span><span class="p">:</span> <span class="s1">&#39;silero&#39;</span><span class="p">})</span>
-<span class="p">)</span>
-</pre></div>
-</div>
-</div>
-<div class="nboutput docutils container">
-<div class="prompt empty docutils container">
-</div>
-<div class="output_area stderr docutils container">
-<div class="highlight"><pre>
-INFO:root:computing chunk (1/1)
-INFO:root:finding documents under filter
-INFO:root:done.
-</pre></div></div>
-</div>
-<div class="nboutput docutils container">
-<div class="prompt empty docutils container">
-</div>
-<div class="output_area docutils container">
-<script type="application/vnd.jupyter.widget-view+json">{"model_id": "3faa590a2b0d497991874ddad40bee10", "version_major": 2, "version_minor": 0}</script></div>
-</div>
-<div class="nboutput docutils container">
-<div class="prompt empty docutils container">
-</div>
-<div class="output_area stderr docutils container">
-<div class="highlight"><pre>
-INFO:root:bulk writing...
-INFO:root:done.
-</pre></div></div>
-</div>
-<div class="nboutput nblast docutils container">
-<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[9]:
-</pre></div>
-</div>
-<div class="output_area docutils container">
-<div class="highlight"><pre>
-[None]
-</pre></div></div>
-</div>
-<p>Setup a vector-index over the indexed audio</p>
-<div class="nbinput docutils container">
-<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[10]:
-</pre></div>
-</div>
-<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">superduperdb.core.vector_index</span> <span class="kn">import</span> <span class="n">VectorIndex</span>
 
-<span class="n">db</span><span class="o">.</span><span class="n">create_component</span><span class="p">(</span>
+<span class="n">db</span><span class="o">.</span><span class="n">add</span><span class="p">(</span>
     <span class="n">VectorIndex</span><span class="p">(</span>
-        <span class="s1">&#39;my-index&#39;</span><span class="p">,</span>
-        <span class="n">models</span><span class="o">=</span><span class="p">[</span><span class="s1">&#39;all-MiniLM-L6-v2&#39;</span><span class="p">],</span>
-        <span class="n">keys</span><span class="o">=</span><span class="p">[</span><span class="s1">&#39;audio&#39;</span><span class="p">],</span>
-        <span class="n">watcher</span><span class="o">=</span><span class="s1">&#39;all-MiniLM-L6-v2/audio&#39;</span><span class="p">,</span>
+        <span class="n">identifier</span><span class="o">=</span><span class="s1">&#39;memo-searchable-index&#39;</span><span class="p">,</span>
+        <span class="n">indexing_watcher</span><span class="o">=</span><span class="n">Watcher</span><span class="p">(</span>
+            <span class="n">model</span><span class="o">=</span><span class="n">model</span><span class="p">,</span>
+            <span class="n">key</span><span class="o">=</span><span class="s1">&#39;abstract&#39;</span><span class="p">,</span>
+            <span class="n">select</span><span class="o">=</span><span class="n">collection</span><span class="o">.</span><span class="n">find</span><span class="p">(),</span>
+        <span class="p">),</span>
     <span class="p">)</span>
 <span class="p">)</span>
 </pre></div>
 </div>
 </div>
-<div class="nboutput nblast docutils container">
-<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[10]:
+<div class="nbinput nblast docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[ ]:
 </pre></div>
 </div>
-<div class="output_area docutils container">
-<div class="highlight"><pre>
-[]
-</pre></div></div>
-</div>
-<div class="nbinput docutils container">
-<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[11]:
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">r</span> <span class="o">=</span> <span class="n">db</span><span class="o">.</span><span class="n">execute</span><span class="p">(</span>
+    <span class="n">collection</span><span class="o">.</span><span class="n">like</span><span class="p">(</span>
+        <span class="n">outputs</span><span class="o">=</span><span class="n">D</span><span class="p">({</span><span class="s1">&#39;audio&#39;</span><span class="p">:</span> <span class="p">{</span><span class="s1">&#39;silero&#39;</span><span class="p">:</span> <span class="s1">&#39;employees&#39;</span><span class="p">}})</span>
+    <span class="p">)</span><span class="o">.</span><span class="n">find_one</span><span class="p">()</span>
+<span class="p">)</span>
+<span class="n">r</span>
 </pre></div>
 </div>
-<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="nb">next</span><span class="p">(</span><span class="n">db</span><span class="o">.</span><span class="n">select</span><span class="p">(</span>
-    <span class="n">Select</span><span class="p">(</span><span class="s1">&#39;documents&#39;</span><span class="p">),</span>
-    <span class="n">like</span><span class="o">=</span><span class="p">{},</span>
-    <span class="n">vector_index</span><span class="o">=</span><span class="s1">&#39;my-index&#39;</span><span class="p">,</span>
-    <span class="n">outputs</span><span class="o">=</span><span class="p">{</span><span class="s1">&#39;audio&#39;</span><span class="p">:</span> <span class="p">{</span><span class="s1">&#39;silero&#39;</span><span class="p">:</span> <span class="s1">&#39;employees&#39;</span><span class="p">}},</span>
-    <span class="n">n</span><span class="o">=</span><span class="mi">1</span><span class="p">,</span>
-<span class="p">))</span>
-</pre></div>
-</div>
-</div>
-<div class="nboutput docutils container">
-<div class="prompt empty docutils container">
-</div>
-<div class="output_area stderr docutils container">
-<div class="highlight"><pre>
-0it [00:00, ?it/s]INFO:root:loading hashes: &#34;my-index
-/Users/dodo/SuperDuperDB/superduperdb/.venv/lib/python3.8/site-packages/torchaudio/backend/sox_io_backend.py:235: UserWarning: File-like object support in sox_io backend is deprecated, and will be removed in v2.1. See https://github.com/pytorch/audio/issues/2950 for the detail.Please migrate to the new dispatcher, or use soundfile backend.
-  warnings.warn(_deprecation_message)
-2it [00:00, 157.01it/s]
-</pre></div></div>
-</div>
-<div class="nboutput docutils container">
-<div class="prompt empty docutils container">
-</div>
-<div class="output_area docutils container">
-<script type="application/vnd.jupyter.widget-view+json">{"model_id": "beb64957c20545879fc137a8c9068e2d", "version_major": 2, "version_minor": 0}</script></div>
-</div>
-<div class="nboutput nblast docutils container">
-<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[11]:
-</pre></div>
-</div>
-<div class="output_area docutils container">
-<div class="highlight"><pre>
-{&#39;_id&#39;: ObjectId(&#39;6480d06e3dc0dfe8109ebc76&#39;),
- &#39;audio&#39;: tensor([ 0.0010,  0.0017,  0.0016,  ..., -0.0107, -0.0126, -0.0046]),
- &#39;_fold&#39;: &#39;train&#39;,
- &#39;_outputs&#39;: {&#39;audio&#39;: {&#39;silero&#39;: &#39;tom ben and sam are the new employees of the company&#39;,
-   &#39;all-MiniLM-L6-v2&#39;: array([-1.53145790e-01, -1.97115168e-02, -1.94567954e-03, -7.84796402e-02,
-          -3.56594920e-02,  1.97123103e-02,  5.06122746e-02, -1.06050491e-01,
-           1.55908819e-02, -2.34227516e-02,  1.85852479e-02,  8.17912966e-02,
-           4.53739129e-02, -2.74484046e-02,  1.69477426e-02,  1.38741452e-02,
-          -1.10213691e-03,  4.62136641e-02,  9.06199776e-03, -6.29165070e-03,
-          -5.74542657e-02, -2.19130553e-02, -7.93609694e-02, -8.01744778e-03,
-           2.33196039e-02,  7.56661594e-02,  1.08349375e-01, -3.61529328e-02,
-          -1.41021805e-02, -8.92483816e-03,  2.02325545e-02, -1.37184630e-04,
-           3.91204879e-02, -6.01450307e-03, -6.79014111e-03, -1.49377231e-02,
-           8.10883045e-02,  5.77411801e-02, -1.51486285e-02,  1.78635996e-02,
-          -1.75062716e-02,  1.41079994e-02, -1.22875883e-03, -1.93790048e-02,
-          -4.69011404e-02, -1.39167402e-02,  1.86648760e-02, -9.62327272e-02,
-           3.14053521e-02,  5.03308624e-02,  2.51461435e-02, -9.32940319e-02,
-           5.32693788e-02,  1.18768532e-02,  1.78275034e-02,  2.09721271e-02,
-          -3.98863293e-02, -8.15025866e-02, -5.78122847e-02,  2.07287259e-02,
-           9.73887183e-03, -3.85353714e-02, -1.01808803e-02,  2.26158574e-02,
-           8.77068490e-02,  1.38733434e-02, -1.55606762e-01, -3.80088463e-02,
-          -7.57668614e-02, -1.31190956e-01, -1.34168817e-02, -2.60332748e-02,
-          -9.99393128e-03, -1.33770313e-02, -4.82723638e-02, -3.41308229e-02,
-           1.41684161e-02,  8.13570246e-02,  5.02010435e-02, -7.50621855e-02,
-           5.63153706e-04, -1.19572803e-01, -3.62112261e-02,  9.62079093e-02,
-          -2.45691333e-02,  8.57806131e-02, -1.03518348e-02, -5.09920251e-03,
-          -6.63946290e-03,  8.87846127e-02, -3.25930789e-02,  5.51852211e-02,
-          -2.23403275e-02, -5.61888404e-02,  1.10984349e-03, -5.55398762e-02,
-          -8.50461572e-02,  5.54264635e-02, -6.32498190e-02,  6.10526837e-02,
-          -2.27521416e-02,  1.02685593e-01,  4.12526578e-02, -6.52069896e-02,
-          -6.81932084e-03, -4.33783233e-02, -2.87612304e-02,  1.36629809e-02,
-           4.68264483e-02,  3.60432826e-02,  1.68028176e-02,  7.99639151e-02,
-          -7.59193301e-02, -3.03069092e-02, -5.01848646e-02,  3.97378113e-03,
-          -5.72245121e-02,  4.62896526e-02, -4.80416650e-03, -6.16283938e-02,
-           3.04300804e-02,  1.68136179e-01, -2.84832101e-02,  1.03764993e-03,
-          -5.87515384e-02, -1.54836429e-02, -7.25515559e-02, -4.06280492e-33,
-           1.55161666e-02,  9.23977792e-02,  4.97000515e-02,  4.74880375e-02,
-          -2.29443684e-02,  3.11707538e-02, -9.39267427e-02, -3.59236896e-02,
-           5.01155816e-02, -9.06490982e-02, -1.40843272e-01, -1.22289797e-02,
-           2.65054945e-02, -1.11007974e-01,  1.45952944e-02,  3.63976229e-03,
-          -5.28702773e-02, -1.97567269e-02,  2.82030262e-04, -3.75180840e-02,
-          -4.42758054e-02,  2.26757862e-02, -8.88406187e-02,  1.10512875e-01,
-          -3.52163687e-02,  3.87715804e-03,  2.86158752e-02,  3.43114766e-03,
-           1.20582897e-02,  3.44983377e-02, -7.13178795e-03,  7.38940760e-02,
-           6.63017994e-03,  8.42020586e-02, -4.30046096e-02,  2.77156662e-03,
-          -2.54731067e-02, -2.97056623e-02,  2.94200536e-02,  1.21667022e-02,
-           1.56634338e-02,  1.22943204e-02,  7.28090331e-02,  2.35765409e-02,
-          -1.04882851e-01, -3.60326432e-02,  6.15370460e-02,  2.65225694e-02,
-           1.36367619e-01,  5.20996638e-02, -2.01107934e-04,  1.50233507e-02,
-          -2.68154852e-02,  2.10590139e-02, -2.98628733e-02, -6.38123602e-02,
-           2.02946551e-02,  2.52199080e-02,  9.23918094e-03, -9.44771338e-03,
-           3.50379832e-02,  6.32800162e-02, -5.17431274e-03,  7.72349387e-02,
-          -8.43965933e-02,  2.54651308e-02,  3.67061608e-02, -1.08300894e-02,
-          -7.50104245e-03,  1.56760570e-02,  4.27968800e-02, -1.21726301e-02,
-           9.35662240e-02, -3.08115985e-02, -1.07050315e-01,  3.45188342e-02,
-           1.49121694e-02,  4.63208519e-02, -4.03362326e-02,  5.04814312e-02,
-           6.63827211e-02, -3.69423628e-02,  6.66008294e-02, -1.51678044e-02,
-           4.79972130e-03, -2.87239961e-02,  1.09095603e-01, -3.01073287e-02,
-           3.17182802e-02,  1.07672200e-01,  1.75036117e-02, -2.06484944e-02,
-          -1.15229879e-02,  5.72140738e-02,  2.58966889e-02,  1.20772393e-33,
-          -7.29364902e-02, -2.62930598e-02, -6.53367070e-03, -8.68163854e-02,
-          -1.99291408e-02, -6.34823367e-02,  2.29715966e-02,  2.02438375e-03,
-          -2.11684834e-02, -1.05761467e-02, -2.50155814e-02,  6.68722298e-03,
-          -9.71976575e-03,  1.03002163e-02,  4.21190402e-03,  2.10352093e-02,
-           4.20947559e-02, -2.60468498e-02,  1.62520669e-02, -4.22604978e-02,
-           1.06069587e-01,  8.36620480e-02, -6.75086156e-02,  5.40175010e-03,
-           6.17676675e-02, -5.47653530e-03,  2.94864252e-02,  6.74048066e-02,
-          -1.31259430e-02, -9.68652032e-03, -2.21900698e-02, -3.26719731e-02,
-          -6.39271289e-02,  7.30941743e-02, -3.55984941e-02,  4.10432369e-02,
-          -1.60886422e-02, -1.81315243e-02,  2.42661219e-02, -5.40708005e-02,
-           4.44239154e-02, -1.05427980e-01, -2.64179595e-02,  1.04281954e-01,
-           2.90665217e-02, -4.32629846e-02,  1.94691718e-02, -1.13518491e-01,
-          -7.24500120e-02,  5.01835626e-03,  2.70380778e-03, -3.09816981e-03,
-          -3.66545245e-02, -3.88739556e-02, -7.90662467e-02,  7.70811271e-03,
-          -2.58216970e-02, -1.68847404e-02,  3.13373357e-02, -3.06692962e-02,
-          -1.21530909e-02,  2.75214668e-02,  3.45269740e-02,  7.05345571e-02,
-          -6.30686507e-02, -4.31414647e-03,  5.73822707e-02,  6.84049055e-02,
-          -1.54209528e-02,  2.26801522e-02, -4.41618599e-02, -2.72164010e-02,
-           2.19032746e-02, -3.41784842e-02, -3.69143076e-02,  1.01398863e-02,
-          -3.09345946e-02, -5.87425902e-02, -1.10277817e-01, -4.41988409e-02,
-          -5.43509237e-02, -1.46469586e-02,  5.87083772e-02,  1.18062600e-01,
-          -1.59041602e-02,  8.83842185e-02,  2.36396417e-02,  4.05924693e-02,
-          -1.71184614e-02,  1.10596735e-02, -4.85151336e-02,  3.69105628e-03,
-          -4.07526940e-02,  8.18981379e-02, -1.03678904e-01, -1.73195378e-08,
-          -2.68008895e-02, -5.04012741e-02, -4.85175177e-02, -1.15289725e-02,
-           7.18249083e-02, -4.63300571e-02, -4.08349186e-02,  5.84764890e-02,
-           2.89686080e-02,  5.02979979e-02, -5.92142604e-02, -1.40129225e-02,
-          -4.76826765e-02,  2.93330066e-02,  6.11682348e-02,  3.52493860e-02,
-          -3.97875160e-02, -1.07408240e-02,  2.75122095e-03, -2.97484789e-02,
-          -3.64246219e-02,  8.76321122e-02,  8.05384070e-02,  3.21111530e-02,
-          -1.87665727e-02,  6.14661910e-02,  1.88120101e-02,  3.47502530e-02,
-           4.98639084e-02,  4.42335755e-02, -5.19303314e-04,  6.15674071e-02,
-          -4.54972349e-02, -6.30725473e-02,  8.58769845e-03, -4.48493212e-02,
-           1.80855859e-02,  6.84716180e-02,  4.51025739e-02,  3.14783640e-02,
-           1.06022796e-02, -6.26302382e-04, -5.91689311e-02,  1.11963458e-01,
-           1.95086636e-02,  9.53789242e-03, -7.18345270e-02, -4.98377206e-03,
-           3.51869799e-02, -1.15297295e-01,  8.08417983e-03,  2.06926595e-02,
-           3.17228325e-02,  2.29842886e-02, -2.20978428e-02,  1.21800955e-02,
-          -3.62556763e-02, -3.77782844e-02,  5.66322953e-02, -1.22176427e-02,
-          -1.49730779e-02, -1.08686658e-02,  3.69369835e-02,  1.75932068e-02],
-         dtype=float32)}}}
-</pre></div></div>
 </div>
 <p>Add a QA chain from <code class="docutils literal notranslate"><span class="pre">langchain</span></code> to “talk” to the DB of audio</p>
 <div class="nbinput docutils container">
@@ -748,7 +506,7 @@ INFO:root:done.
 <div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">langchain</span> <span class="kn">import</span> <span class="n">OpenAI</span>
 <span class="kn">from</span> <span class="nn">superduperdb.models.langchain.retriever</span> <span class="kn">import</span> <span class="n">DBQAWithSourcesChain</span>
 
-<span class="n">db</span><span class="o">.</span><span class="n">create_component</span><span class="p">(</span>
+<span class="n">db</span><span class="o">.</span><span class="n">add</span><span class="p">(</span>
     <span class="n">DBQAWithSourcesChain</span><span class="p">(</span>
         <span class="s1">&#39;retrieval_chain&#39;</span><span class="p">,</span>
         <span class="n">llm</span><span class="o">=</span><span class="n">OpenAI</span><span class="p">(</span><span class="n">model_name</span><span class="o">=</span><span class="s2">&quot;text-davinci-003&quot;</span><span class="p">),</span>
@@ -777,7 +535,6 @@ INFO:numexpr.utils:NumExpr defaulting to 8 threads.
 []
 </pre></div></div>
 </div>
-<p>Send a request to the server which is now serving the QA chain</p>
 <div class="nbinput docutils container">
 <div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[13]:
 </pre></div>
