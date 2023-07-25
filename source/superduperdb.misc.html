@@ -187,7 +187,6 @@
 <li class="toctree-l2"><a class="reference internal" href="../examples/openai.html">OpenAI vector search</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../examples/compare_vector_search_solutions.html">Compare vector search</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../examples/sentiment_analysis_use_case.html">Sentiment analysis with transformers</a></li>
-<li class="toctree-l2"><a class="reference internal" href="../examples/voice_memos.html">Create a personal assistant for understanding your meetings</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../examples/mongo_cdc.html">Change data capture with MongoDB</a></li>
 </ul>
 </li>
@@ -217,12 +216,9 @@
 <li class="toctree-l3 has-children"><a class="reference internal" href="superduperdb.models.html">superduperdb.models package</a><input class="toctree-checkbox" id="toctree-checkbox-11" name="toctree-checkbox-11" role="switch" type="checkbox"/><label for="toctree-checkbox-11"><div class="visually-hidden">Toggle navigation of superduperdb.models package</div><i class="icon"><svg><use href="#svg-arrow-right"></use></svg></i></label><ul>
 <li class="toctree-l4"><a class="reference internal" href="superduperdb.models.langchain.html">superduperdb.models.langchain package</a></li>
 <li class="toctree-l4"><a class="reference internal" href="superduperdb.models.openai.html">superduperdb.models.openai package</a></li>
-<li class="toctree-l4"><a class="reference internal" href="superduperdb.models.pytorch_lightning.html">superduperdb.models.pytorch_lightning package</a></li>
-<li class="toctree-l4"><a class="reference internal" href="superduperdb.models.sentence_transformers.html">superduperdb.models.sentence_transformers package</a></li>
 <li class="toctree-l4"><a class="reference internal" href="superduperdb.models.sklearn.html">superduperdb.models.sklearn package</a></li>
 <li class="toctree-l4"><a class="reference internal" href="superduperdb.models.torch.html">superduperdb.models.torch package</a></li>
 <li class="toctree-l4"><a class="reference internal" href="superduperdb.models.transformers.html">superduperdb.models.transformers package</a></li>
-<li class="toctree-l4"><a class="reference internal" href="superduperdb.models.vanilla.html">superduperdb.models.vanilla package</a></li>
 </ul>
 </li>
 <li class="toctree-l3"><a class="reference internal" href="superduperdb.serve.html">superduperdb.serve package</a></li>
@@ -1081,7 +1077,7 @@ Uses a <code class="xref py py-class docutils literal notranslate"><span class="
 
 <dl class="py function">
 <dt class="sig sig-object py" id="superduperdb.misc.downloads.gather_uris">
-<span class="sig-prename descclassname"><span class="pre">superduperdb.misc.downloads.</span></span><span class="sig-name descname"><span class="pre">gather_uris</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">documents</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">List</span><span class="p"><span class="pre">[</span></span><span class="pre">Dict</span><span class="p"><span class="pre">]</span></span></span></em>, <em class="sig-param"><span class="n"><span class="pre">gather_ids</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">True</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">Tuple</span><span class="p"><span class="pre">[</span></span><span class="pre">List</span><span class="p"><span class="pre">[</span></span><span class="pre">str</span><span class="p"><span class="pre">]</span></span><span class="p"><span class="pre">,</span></span><span class="w"> </span><span class="pre">List</span><span class="p"><span class="pre">[</span></span><span class="pre">str</span><span class="p"><span class="pre">]</span></span><span class="p"><span class="pre">,</span></span><span class="w"> </span><span class="pre">List</span><span class="p"><span class="pre">[</span></span><span class="pre">int</span><span class="p"><span class="pre">]</span></span><span class="p"><span class="pre">]</span></span></span></span><a class="reference internal" href="../_modules/superduperdb/misc/downloads.html#gather_uris"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#superduperdb.misc.downloads.gather_uris" title="Permalink to this definition">#</a></dt>
+<span class="sig-prename descclassname"><span class="pre">superduperdb.misc.downloads.</span></span><span class="sig-name descname"><span class="pre">gather_uris</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">documents</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">Sequence</span><span class="p"><span class="pre">[</span></span><span class="pre">Dict</span><span class="p"><span class="pre">]</span></span></span></em>, <em class="sig-param"><span class="n"><span class="pre">gather_ids</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">True</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">Tuple</span><span class="p"><span class="pre">[</span></span><span class="pre">List</span><span class="p"><span class="pre">[</span></span><span class="pre">str</span><span class="p"><span class="pre">]</span></span><span class="p"><span class="pre">,</span></span><span class="w"> </span><span class="pre">List</span><span class="p"><span class="pre">[</span></span><span class="pre">str</span><span class="p"><span class="pre">]</span></span><span class="p"><span class="pre">,</span></span><span class="w"> </span><span class="pre">List</span><span class="p"><span class="pre">[</span></span><span class="pre">int</span><span class="p"><span class="pre">]</span></span><span class="p"><span class="pre">]</span></span></span></span><a class="reference internal" href="../_modules/superduperdb/misc/downloads.html#gather_uris"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#superduperdb.misc.downloads.gather_uris" title="Permalink to this definition">#</a></dt>
 <dd><p>Get the URLS out of all documents as denoted by <code class="docutils literal notranslate"><span class="pre">{&quot;_content&quot;:</span> <span class="pre">...}</span></code></p>
 <dl class="field-list simple">
 <dt class="field-odd">Parameters<span class="colon">:</span></dt>
@@ -1116,7 +1112,7 @@ members of dataclasses and Pydantic models.</p>
 <span id="superduperdb-misc-git-module"></span><h2>superduperdb.misc.git module<a class="headerlink" href="#module-superduperdb.misc.git" title="Permalink to this heading">#</a></h2>
 <dl class="py class">
 <dt class="sig sig-object py" id="superduperdb.misc.git.Git">
-<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">superduperdb.misc.git.</span></span><span class="sig-name descname"><span class="pre">Git</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">out:</span> <span class="pre">Callable</span> <span class="pre">=</span> <span class="pre">&lt;function</span> <span class="pre">out</span> <span class="pre">at</span> <span class="pre">0x17a7bd260&gt;</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/superduperdb/misc/git.html#Git"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#superduperdb.misc.git.Git" title="Permalink to this definition">#</a></dt>
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">superduperdb.misc.git.</span></span><span class="sig-name descname"><span class="pre">Git</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">out:</span> <span class="pre">Callable</span> <span class="pre">=</span> <span class="pre">&lt;function</span> <span class="pre">out</span> <span class="pre">at</span> <span class="pre">0x1123eeac0&gt;</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/superduperdb/misc/git.html#Git"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#superduperdb.misc.git.Git" title="Permalink to this definition">#</a></dt>
 <dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">object</span></code></p>
 <dl class="py method">
 <dt class="sig sig-object py" id="superduperdb.misc.git.Git.asdict">
@@ -1281,7 +1277,7 @@ converted to and from JSON</p>
 
 <dl class="py attribute">
 <dt class="sig sig-object py" id="superduperdb.misc.jsonable.JSONable.SUBCLASSES">
-<span class="sig-name descname"><span class="pre">SUBCLASSES</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">ClassVar</span><span class="p"><span class="pre">[</span></span><span class="pre">Set</span><span class="p"><span class="pre">[</span></span><span class="pre">Type</span><span class="p"><span class="pre">]</span></span><span class="p"><span class="pre">]</span></span></em><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">{&lt;class</span> <span class="pre">'superduperdb.misc.config.Ray'&gt;,</span> <span class="pre">&lt;class</span> <span class="pre">'superduperdb.misc.config.Dask'&gt;,</span> <span class="pre">&lt;class</span> <span class="pre">'superduperdb.misc.config.Apis'&gt;,</span> <span class="pre">&lt;class</span> <span class="pre">'superduperdb.misc.config.InMemory'&gt;,</span> <span class="pre">&lt;class</span> <span class="pre">'superduperdb.misc.config.LanceDB'&gt;,</span> <span class="pre">&lt;class</span> <span class="pre">'superduperdb.misc.config.VectorSearch'&gt;,</span> <span class="pre">&lt;class</span> <span class="pre">'superduperdb.misc.config.IpPort'&gt;,</span> <span class="pre">&lt;class</span> <span class="pre">'superduperdb.misc.config.Retry'&gt;,</span> <span class="pre">&lt;class</span> <span class="pre">'superduperdb.misc.config.MongoDB'&gt;,</span> <span class="pre">&lt;class</span> <span class="pre">'superduperdb.misc.config.Notebook'&gt;,</span> <span class="pre">&lt;class</span> <span class="pre">'superduperdb.misc.config.HostPort'&gt;,</span> <span class="pre">&lt;class</span> <span class="pre">'superduperdb.misc.config.DataLayers'&gt;,</span> <span class="pre">&lt;class</span> <span class="pre">'superduperdb.misc.config.Api'&gt;,</span> <span class="pre">&lt;class</span> <span class="pre">'superduperdb.misc.config.ModelServer'&gt;,</span> <span class="pre">&lt;class</span> <span class="pre">'superduperdb.misc.config.DataLayer'&gt;,</span> <span class="pre">&lt;class</span> <span class="pre">'superduperdb.misc.config.Config'&gt;,</span> <span class="pre">&lt;class</span> <span class="pre">'superduperdb.misc.config.HasPort'&gt;,</span> <span class="pre">&lt;class</span> <span class="pre">'superduperdb.misc.config.Logging'&gt;,</span> <span class="pre">&lt;class</span> <span class="pre">'superduperdb.misc.config.Server'&gt;,</span> <span class="pre">&lt;class</span> <span class="pre">'superduperdb.misc.config.Deployment'&gt;}</span></em><a class="headerlink" href="#superduperdb.misc.jsonable.JSONable.SUBCLASSES" title="Permalink to this definition">#</a></dt>
+<span class="sig-name descname"><span class="pre">SUBCLASSES</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">ClassVar</span><span class="p"><span class="pre">[</span></span><span class="pre">Set</span><span class="p"><span class="pre">[</span></span><span class="pre">Type</span><span class="p"><span class="pre">]</span></span><span class="p"><span class="pre">]</span></span></em><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">{&lt;class</span> <span class="pre">'superduperdb.misc.config.Ray'&gt;,</span> <span class="pre">&lt;class</span> <span class="pre">'superduperdb.misc.config.Logging'&gt;,</span> <span class="pre">&lt;class</span> <span class="pre">'superduperdb.misc.config.Deployment'&gt;,</span> <span class="pre">&lt;class</span> <span class="pre">'superduperdb.misc.config.Retry'&gt;,</span> <span class="pre">&lt;class</span> <span class="pre">'superduperdb.misc.config.LanceDB'&gt;,</span> <span class="pre">&lt;class</span> <span class="pre">'superduperdb.misc.config.InMemory'&gt;,</span> <span class="pre">&lt;class</span> <span class="pre">'superduperdb.misc.config.HostPort'&gt;,</span> <span class="pre">&lt;class</span> <span class="pre">'superduperdb.misc.config.VectorSearch'&gt;,</span> <span class="pre">&lt;class</span> <span class="pre">'superduperdb.misc.config.Dask'&gt;,</span> <span class="pre">&lt;class</span> <span class="pre">'superduperdb.misc.config.Apis'&gt;,</span> <span class="pre">&lt;class</span> <span class="pre">'superduperdb.misc.config.MongoDB'&gt;,</span> <span class="pre">&lt;class</span> <span class="pre">'superduperdb.misc.config.Notebook'&gt;,</span> <span class="pre">&lt;class</span> <span class="pre">'superduperdb.misc.config.DataLayers'&gt;,</span> <span class="pre">&lt;class</span> <span class="pre">'superduperdb.misc.config.Api'&gt;,</span> <span class="pre">&lt;class</span> <span class="pre">'superduperdb.misc.config.ModelServer'&gt;,</span> <span class="pre">&lt;class</span> <span class="pre">'superduperdb.misc.config.DataLayer'&gt;,</span> <span class="pre">&lt;class</span> <span class="pre">'superduperdb.misc.config.HasPort'&gt;,</span> <span class="pre">&lt;class</span> <span class="pre">'superduperdb.misc.config.Config'&gt;,</span> <span class="pre">&lt;class</span> <span class="pre">'superduperdb.misc.config.IpPort'&gt;,</span> <span class="pre">&lt;class</span> <span class="pre">'superduperdb.misc.config.Server'&gt;}</span></em><a class="headerlink" href="#superduperdb.misc.jsonable.JSONable.SUBCLASSES" title="Permalink to this definition">#</a></dt>
 <dd></dd></dl>
 
 <dl class="py attribute">
@@ -1517,28 +1513,8 @@ KeyError: ‘d’</p>
 <section id="module-superduperdb.misc.superduper">
 <span id="superduperdb-misc-superduper-module"></span><h2>superduperdb.misc.superduper module<a class="headerlink" href="#module-superduperdb.misc.superduper" title="Permalink to this heading">#</a></h2>
 <dl class="py function">
-<dt class="sig sig-object py" id="superduperdb.misc.superduper.auto_identify">
-<span class="sig-prename descclassname"><span class="pre">superduperdb.misc.superduper.</span></span><span class="sig-name descname"><span class="pre">auto_identify</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">instance</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/superduperdb/misc/superduper.html#auto_identify"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#superduperdb.misc.superduper.auto_identify" title="Permalink to this definition">#</a></dt>
-<dd></dd></dl>
-
-<dl class="py function">
-<dt class="sig sig-object py" id="superduperdb.misc.superduper.duck_type_mongodb">
-<span class="sig-prename descclassname"><span class="pre">superduperdb.misc.superduper.</span></span><span class="sig-name descname"><span class="pre">duck_type_mongodb</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">item</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/superduperdb/misc/superduper.html#duck_type_mongodb"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#superduperdb.misc.superduper.duck_type_mongodb" title="Permalink to this definition">#</a></dt>
-<dd></dd></dl>
-
-<dl class="py function">
-<dt class="sig sig-object py" id="superduperdb.misc.superduper.duck_type_sklearn">
-<span class="sig-prename descclassname"><span class="pre">superduperdb.misc.superduper.</span></span><span class="sig-name descname"><span class="pre">duck_type_sklearn</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">item</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/superduperdb/misc/superduper.html#duck_type_sklearn"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#superduperdb.misc.superduper.duck_type_sklearn" title="Permalink to this definition">#</a></dt>
-<dd></dd></dl>
-
-<dl class="py function">
-<dt class="sig sig-object py" id="superduperdb.misc.superduper.duck_type_torch">
-<span class="sig-prename descclassname"><span class="pre">superduperdb.misc.superduper.</span></span><span class="sig-name descname"><span class="pre">duck_type_torch</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">item</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/superduperdb/misc/superduper.html#duck_type_torch"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#superduperdb.misc.superduper.duck_type_torch" title="Permalink to this definition">#</a></dt>
-<dd></dd></dl>
-
-<dl class="py function">
 <dt class="sig sig-object py" id="superduperdb.misc.superduper.superduper">
-<span class="sig-prename descclassname"><span class="pre">superduperdb.misc.superduper.</span></span><span class="sig-name descname"><span class="pre">superduper</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">item</span></span></em>, <em class="sig-param"><span class="o"><span class="pre">**</span></span><span class="n"><span class="pre">kwargs</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/superduperdb/misc/superduper.html#superduper"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#superduperdb.misc.superduper.superduper" title="Permalink to this definition">#</a></dt>
+<span class="sig-prename descclassname"><span class="pre">superduperdb.misc.superduper.</span></span><span class="sig-name descname"><span class="pre">superduper</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">item</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">Any</span></span></em>, <em class="sig-param"><span class="o"><span class="pre">**</span></span><span class="n"><span class="pre">kwargs</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#superduperdb.misc.superduper.superduper" title="Permalink to this definition">#</a></dt>
 <dd></dd></dl>
 
 </section>
@@ -1557,8 +1533,26 @@ KeyError: ‘d’</p>
 <dl class="field-list simple">
 <dt class="field-odd">Parameters<span class="colon">:</span></dt>
 <dd class="field-odd"><ul class="simple">
-<li><p><strong>accept</strong> – A function which returns True for values to keep</p></li>
 <li><p><strong>tree</strong> – A tree made of dicts and lists</p></li>
+<li><p><strong>accept</strong> – A function which returns True for values to yield</p></li>
+</ul>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="superduperdb.misc.tree.tree_rewrite">
+<span class="sig-prename descclassname"><span class="pre">superduperdb.misc.tree.</span></span><span class="sig-name descname"><span class="pre">tree_rewrite</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">tree</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">Any</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">accept</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">Callable</span><span class="p"><span class="pre">[</span></span><span class="p"><span class="pre">[</span></span><span class="pre">Any</span><span class="p"><span class="pre">]</span></span><span class="p"><span class="pre">,</span></span><span class="w"> </span><span class="pre">bool</span><span class="p"><span class="pre">]</span></span></span></em>, <em class="sig-param"><span class="n"><span class="pre">rewrite</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">Callable</span><span class="p"><span class="pre">[</span></span><span class="p"><span class="pre">[</span></span><span class="pre">Any</span><span class="p"><span class="pre">]</span></span><span class="p"><span class="pre">,</span></span><span class="w"> </span><span class="pre">Any</span><span class="p"><span class="pre">]</span></span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">Any</span></span></span><a class="reference internal" href="../_modules/superduperdb/misc/tree.html#tree_rewrite"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#superduperdb.misc.tree.tree_rewrite" title="Permalink to this definition">#</a></dt>
+<dd><dl class="simple">
+<dt>Iterates recursively through lists and dicts, rewriting all leaves <cite>x</cite></dt><dd><p>where <cite>accept(x)</cite> is True with <cite>rewrite(x)</cite></p>
+</dd>
+</dl>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>tree</strong> – A tree made of dicts and lists</p></li>
+<li><p><strong>accept</strong> – A function which returns True for values to rewrite</p></li>
+<li><p><strong>rewrite</strong> – A function which rewrites accepted values</p></li>
 </ul>
 </dd>
 </dl>
@@ -2183,16 +2177,13 @@ type Field.</p>
 </ul>
 </li>
 <li><a class="reference internal" href="#module-superduperdb.misc.superduper">superduperdb.misc.superduper module</a><ul>
-<li><a class="reference internal" href="#superduperdb.misc.superduper.auto_identify"><code class="docutils literal notranslate"><span class="pre">auto_identify()</span></code></a></li>
-<li><a class="reference internal" href="#superduperdb.misc.superduper.duck_type_mongodb"><code class="docutils literal notranslate"><span class="pre">duck_type_mongodb()</span></code></a></li>
-<li><a class="reference internal" href="#superduperdb.misc.superduper.duck_type_sklearn"><code class="docutils literal notranslate"><span class="pre">duck_type_sklearn()</span></code></a></li>
-<li><a class="reference internal" href="#superduperdb.misc.superduper.duck_type_torch"><code class="docutils literal notranslate"><span class="pre">duck_type_torch()</span></code></a></li>
 <li><a class="reference internal" href="#superduperdb.misc.superduper.superduper"><code class="docutils literal notranslate"><span class="pre">superduper()</span></code></a></li>
 </ul>
 </li>
 <li><a class="reference internal" href="#module-superduperdb.misc.task_queue">superduperdb.misc.task_queue module</a></li>
 <li><a class="reference internal" href="#module-superduperdb.misc.tree">superduperdb.misc.tree module</a><ul>
 <li><a class="reference internal" href="#superduperdb.misc.tree.tree_find"><code class="docutils literal notranslate"><span class="pre">tree_find()</span></code></a></li>
+<li><a class="reference internal" href="#superduperdb.misc.tree.tree_rewrite"><code class="docutils literal notranslate"><span class="pre">tree_rewrite()</span></code></a></li>
 </ul>
 </li>
 <li><a class="reference internal" href="#module-superduperdb.misc.typed_cache">superduperdb.misc.typed_cache module</a><ul>
