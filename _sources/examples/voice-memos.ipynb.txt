@@ -2,7 +2,7 @@
  "cells": [
   {
    "cell_type": "markdown",
-   "id": "ae374483",
+   "id": "234dc197",
    "metadata": {},
    "source": [
     "# Cataloguing voice-memos for a self managed personal assistant"
@@ -10,7 +10,7 @@
   },
   {
    "cell_type": "markdown",
-   "id": "73b99fc0",
+   "id": "163ddb49",
    "metadata": {},
    "source": [
     "In this example we show-case SuperDuperDB's ability to combine model's across data modalities, \n",
@@ -43,7 +43,7 @@
   },
   {
    "cell_type": "markdown",
-   "id": "3cb5a8f4",
+   "id": "d42af512",
    "metadata": {},
    "source": [
     "This functionality could be accomplised using any audio, in particular audio \n",
@@ -57,7 +57,7 @@
   {
    "cell_type": "code",
    "execution_count": 1,
-   "id": "10ab7114",
+   "id": "702729c0",
    "metadata": {},
    "outputs": [
     {
@@ -78,7 +78,7 @@
   },
   {
    "cell_type": "markdown",
-   "id": "689f71b5",
+   "id": "25b2e00b",
    "metadata": {},
    "source": [
     "As usual we wrap our MongoDB connector, to connect to the `Datalayer`:"
@@ -87,7 +87,7 @@
   {
    "cell_type": "code",
    "execution_count": 3,
-   "id": "2e1d8149",
+   "id": "732de512",
    "metadata": {},
    "outputs": [],
    "source": [
@@ -102,7 +102,7 @@
   {
    "cell_type": "code",
    "execution_count": 4,
-   "id": "10241f19",
+   "id": "06f1af36",
    "metadata": {},
    "outputs": [],
    "source": [
@@ -112,7 +112,7 @@
   },
   {
    "cell_type": "markdown",
-   "id": "262a8bee",
+   "id": "fde9f2c0",
    "metadata": {},
    "source": [
     "Using an `Encoder`, we may add the audio data directly to a MongoDB collection:"
@@ -121,7 +121,7 @@
   {
    "cell_type": "code",
    "execution_count": 5,
-   "id": "5b288d96",
+   "id": "bdb69d23",
    "metadata": {},
    "outputs": [
     {
@@ -159,7 +159,7 @@
   {
    "cell_type": "code",
    "execution_count": 6,
-   "id": "221f2b0c",
+   "id": "e8464715",
    "metadata": {},
    "outputs": [
     {
@@ -180,7 +180,7 @@
   },
   {
    "cell_type": "markdown",
-   "id": "2a3ddd8f",
+   "id": "2674abfc",
    "metadata": {},
    "source": [
     "Now that we've done that, let's apply a pretrained `transformers` model to this data:"
@@ -213,7 +213,7 @@
   },
   {
    "cell_type": "markdown",
-   "id": "b4d5252c",
+   "id": "7feb9850",
    "metadata": {},
    "source": [
     "We wrap this model using the SuperDuperDB wrapper for `transformers`:"
@@ -222,7 +222,7 @@
   {
    "cell_type": "code",
    "execution_count": 8,
-   "id": "84b2e38b",
+   "id": "5873320a",
    "metadata": {},
    "outputs": [],
    "source": [
@@ -241,7 +241,7 @@
   },
   {
    "cell_type": "markdown",
-   "id": "2a14b185",
+   "id": "7d7e0e65",
    "metadata": {},
    "source": [
     "Let's verify this `Pipeline` works on a sample datapoint"
@@ -250,7 +250,7 @@
   {
    "cell_type": "code",
    "execution_count": 2,
-   "id": "073ddff8",
+   "id": "608e4e9a",
    "metadata": {},
    "outputs": [
     {
@@ -281,7 +281,7 @@
   {
    "cell_type": "code",
    "execution_count": 9,
-   "id": "b453f913",
+   "id": "9a3d4508",
    "metadata": {
     "scrolled": false
    },
@@ -313,7 +313,7 @@
   },
   {
    "cell_type": "markdown",
-   "id": "41842efb",
+   "id": "17038072",
    "metadata": {},
    "source": [
     "Now let's apply the `Pipeline` to all of the audio recordings:"
@@ -322,7 +322,7 @@
   {
    "cell_type": "code",
    "execution_count": 10,
-   "id": "573dccc4",
+   "id": "f8e25f5b",
    "metadata": {},
    "outputs": [
     {
@@ -445,7 +445,7 @@
   },
   {
    "cell_type": "markdown",
-   "id": "67a02b93",
+   "id": "421979e4",
    "metadata": {},
    "source": [
     "We may now verify that all of the recordings have been transcribed in the database"
@@ -454,7 +454,7 @@
   {
    "cell_type": "code",
    "execution_count": 11,
-   "id": "a054796f",
+   "id": "e984c665",
    "metadata": {
     "scrolled": false
    },
@@ -550,7 +550,7 @@
   },
   {
    "cell_type": "markdown",
-   "id": "453b9220",
+   "id": "c887490f",
    "metadata": {},
    "source": [
     "As in previous examples, we can use OpenAI's text-embedding models to vectorize and search the \n",
@@ -560,7 +560,7 @@
   {
    "cell_type": "code",
    "execution_count": 12,
-   "id": "30b27c7a",
+   "id": "ed165986",
    "metadata": {},
    "outputs": [],
    "source": [
@@ -571,7 +571,7 @@
   {
    "cell_type": "code",
    "execution_count": 13,
-   "id": "3aedc03c",
+   "id": "9e1ec142",
    "metadata": {},
    "outputs": [
     {
@@ -629,7 +629,7 @@
   },
   {
    "cell_type": "markdown",
-   "id": "2f92b56f",
+   "id": "6545653f",
    "metadata": {},
    "source": [
     "Let's confirm this has worked, by searching for the \"royal cavern\""
@@ -638,7 +638,7 @@
   {
    "cell_type": "code",
    "execution_count": 14,
-   "id": "7d2e3e56",
+   "id": "59c95121",
    "metadata": {},
    "outputs": [
     {
@@ -672,7 +672,7 @@
   },
   {
    "cell_type": "markdown",
-   "id": "c72f505a",
+   "id": "540ebbb3",
    "metadata": {},
    "source": [
     "Now we can connect the previous steps with the `gpt-3.5.turbo`, which is a chat-completion \n",
@@ -684,7 +684,7 @@
   {
    "cell_type": "code",
    "execution_count": 15,
-   "id": "99e206af",
+   "id": "a4dbfe0a",
    "metadata": {},
    "outputs": [
     {
@@ -714,7 +714,7 @@
   },
   {
    "cell_type": "markdown",
-   "id": "9cb623c4",
+   "id": "2aecce50",
    "metadata": {},
    "source": [
     "Let's test the full model! We can ask a question which asks about a specific fact \n",
@@ -725,7 +725,7 @@
   {
    "cell_type": "code",
    "execution_count": 17,
-   "id": "757e9da6",
+   "id": "eafabed6",
    "metadata": {},
    "outputs": [
     {
