@@ -86,10 +86,19 @@
   },
   {
    "cell_type": "code",
-   "execution_count": 3,
+   "execution_count": 2,
    "id": "2e1d8149",
    "metadata": {},
-   "outputs": [],
+   "outputs": [
+    {
+     "name": "stderr",
+     "output_type": "stream",
+     "text": [
+      "INFO:faiss.loader:Loading faiss.\n",
+      "INFO:faiss.loader:Successfully loaded faiss.\n"
+     ]
+    }
+   ],
    "source": [
     "import pymongo\n",
     "from superduperdb import superduper\n",
@@ -109,7 +118,7 @@
   },
   {
    "cell_type": "code",
-   "execution_count": 5,
+   "execution_count": 4,
    "id": "5b288d96",
    "metadata": {},
    "outputs": [
@@ -123,19 +132,19 @@
     {
      "data": {
       "text/plain": [
-       "(<pymongo.results.InsertManyResult at 0x1a8437670>,\n",
-       " TaskWorkflow(database=<superduperdb.datalayer.base.datalayer.Datalayer object at 0x1a844ba90>, G=<networkx.classes.digraph.DiGraph object at 0x19fdc6150>))"
+       "(<pymongo.results.InsertManyResult at 0x1a6583b20>,\n",
+       " TaskWorkflow(database=<superduperdb.db.base.db.DB object at 0x1918b2410>, G=<networkx.classes.digraph.DiGraph object at 0x1a690d090>))"
       ]
      },
-     "execution_count": 5,
+     "execution_count": 4,
      "metadata": {},
      "output_type": "execute_result"
     }
    ],
    "source": [
-    "from superduperdb.datalayer.mongodb.query import Collection\n",
-    "from superduperdb.encoders.numpy.array import array\n",
-    "from superduperdb.core.document import Document as D\n",
+    "from superduperdb.db.mongodb.query import Collection\n",
+    "from superduperdb.ext.numpy.array import array\n",
+    "from superduperdb.container.document import Document as D\n",
     "\n",
     "collection = Collection('voice-memos')\n",
     "enc = array('float64', shape=(None,))\n",
@@ -147,24 +156,26 @@
   },
   {
    "cell_type": "code",
-   "execution_count": 6,
+   "execution_count": 5,
    "id": "221f2b0c",
    "metadata": {},
    "outputs": [
     {
      "data": {
       "text/plain": [
-       "Document({'_id': ObjectId('64c424c2046a680497c38192'), 'audio': Encodable(x=array([0.00238037, 0.0020752 , 0.00198364, ..., 0.00042725, 0.00057983,\n",
-       "       0.0010376 ]), encoder=Encoder(identifier='numpy.float64[None]', decoder=<Artifact artifact=<superduperdb.encoders.numpy.array.DecodeArray object at 0x19eaf14d0> serializer=dill>, encoder=<Artifact artifact=<superduperdb.encoders.numpy.array.EncodeArray object at 0x1a84683d0> serializer=dill>, shape=[None], version=0)), '_fold': 'train'})"
+       "{'_id': ObjectId('64c97944d7d66bc92d3570c5'),\n",
+       " 'audio': array([0.00238037, 0.0020752 , 0.00198364, ..., 0.00042725, 0.00057983,\n",
+       "        0.0010376 ]),\n",
+       " '_fold': 'train'}"
       ]
      },
-     "execution_count": 6,
+     "execution_count": 5,
      "metadata": {},
      "output_type": "execute_result"
     }
    ],
    "source": [
-    "db.execute(collection.find_one())"
+    "db.execute(collection.find_one()).unpack()"
    ]
   },
   {
@@ -177,7 +188,7 @@
   },
   {
    "cell_type": "code",
-   "execution_count": 7,
+   "execution_count": 6,
    "id": "222284f7",
    "metadata": {
     "scrolled": false
@@ -187,8 +198,8 @@
      "name": "stderr",
      "output_type": "stream",
      "text": [
-      "INFO:torch.distributed.nn.jit.instantiator:Created a temporary directory at /var/folders/y9/b74b9yj906s_wtj0rrh2lf7c0000gn/T/tmptvd91lz4\n",
-      "INFO:torch.distributed.nn.jit.instantiator:Writing /var/folders/y9/b74b9yj906s_wtj0rrh2lf7c0000gn/T/tmptvd91lz4/_remote_module_non_scriptable.py\n"
+      "INFO:torch.distributed.nn.jit.instantiator:Created a temporary directory at /var/folders/y9/b74b9yj906s_wtj0rrh2lf7c0000gn/T/tmp6_awz61o\n",
+      "INFO:torch.distributed.nn.jit.instantiator:Writing /var/folders/y9/b74b9yj906s_wtj0rrh2lf7c0000gn/T/tmp6_awz61o/_remote_module_non_scriptable.py\n"
      ]
     }
    ],
@@ -210,12 +221,12 @@
   },
   {
    "cell_type": "code",
-   "execution_count": 8,
+   "execution_count": 7,
    "id": "84b2e38b",
    "metadata": {},
    "outputs": [],
    "source": [
-    "from superduperdb.models.transformers.wrapper import Pipeline\n",
+    "from superduperdb.ext.transformers.model import Pipeline\n",
     "\n",
     "transcriber = Pipeline(\n",
     "    identifier='transcription',\n",
@@ -238,7 +249,7 @@
   },
   {
    "cell_type": "code",
-   "execution_count": 2,
+   "execution_count": 8,
    "id": "073ddff8",
    "metadata": {},
    "outputs": [
@@ -256,7 +267,7 @@
        "<IPython.lib.display.Audio object>"
       ]
      },
-     "execution_count": 2,
+     "execution_count": 8,
      "metadata": {},
      "output_type": "execute_result"
     }
@@ -279,7 +290,7 @@
      "name": "stderr",
      "output_type": "stream",
      "text": [
-      "/Users/dodo/SuperDuperDB/superduperdb/superduperdb/models/transformers/wrapper.py:78: UserWarning: Only tokenizer is supported for now in pipeline mode\n",
+      "/Users/dodo/SuperDuperDB/superduperdb/superduperdb/ext/transformers/model.py:75: UserWarning: Only tokenizer is supported for now in pipeline mode\n",
       "  warnings.warn('Only tokenizer is supported for now in pipeline mode')\n",
       "/Users/dodo/SuperDuperDB/superduperdb/.venv/lib/python3.11/site-packages/transformers/generation/utils.py:1353: UserWarning: Using `max_length`'s default (200) to control the generation length. This behaviour is deprecated and will be removed from the config in v5 of Transformers -- we recommend using `max_new_tokens` to control the maximum length of the generation.\n",
       "  warnings.warn(\n"
@@ -451,79 +462,79 @@
     {
      "data": {
       "text/plain": [
-       "[Document({'_id': ObjectId('64c424c2046a680497c38192'), '_outputs': {'audio': {'transcription': 'mister quilter is the apostle of the middle classes and we are glad to welcome his gospel'}}}),\n",
-       " Document({'_id': ObjectId('64c424c2046a680497c38193'), '_outputs': {'audio': {'transcription': \"nor is mister cultar's manner less interesting than his matter\"}}}),\n",
-       " Document({'_id': ObjectId('64c424c2046a680497c38194'), '_outputs': {'audio': {'transcription': 'he tells us that at this festive season of the year with christmas and roast beef looming before us similes drawn from eating and its results occur most readily to the mind'}}}),\n",
-       " Document({'_id': ObjectId('64c424c2046a680497c38195'), '_outputs': {'audio': {'transcription': \"he has grave doubts whether sir frederick leyton's work is really greek after all and can discover in it but little of rocky ithaca\"}}}),\n",
-       " Document({'_id': ObjectId('64c424c2046a680497c38196'), '_outputs': {'audio': {'transcription': \"lynnell's pictures are a sort of up guards and adam paintings and mason's exquisite itals are as national as a jingo poem mister brooket foster's landscapes smile at one much in the same way that mister parker used to flash his teeth and mister john calllier gives his sitter a cheerful slap and a slap before he says like a shay's\"}}}),\n",
-       " Document({'_id': ObjectId('64c424c2046a680497c38197'), '_outputs': {'audio': {'transcription': 'it is obviously unnecessary for us to point out how luminous these criticisms are how delicate in expression'}}}),\n",
-       " Document({'_id': ObjectId('64c424c2046a680497c38198'), '_outputs': {'audio': {'transcription': 'on the general principles of art mister cruelty writes with equal lucidity'}}}),\n",
-       " Document({'_id': ObjectId('64c424c2046a680497c38199'), '_outputs': {'audio': {'transcription': 'painting he tells us is of a different quality to mathematics and finish in art is adding more effect'}}}),\n",
-       " Document({'_id': ObjectId('64c424c2046a680497c3819a'), '_outputs': {'audio': {'transcription': 'as for etchings they are of two kinds british and foreign'}}}),\n",
-       " Document({'_id': ObjectId('64c424c2046a680497c3819b'), '_outputs': {'audio': {'transcription': 'he laments most bitterly the divorce that has been made between decorative art and what we usually call pictures makes a customary appeal to the last judgment and reminds us that in the great days of art michael angelo was the furnishing upholsterer'}}}),\n",
-       " Document({'_id': ObjectId('64c424c2046a680497c3819c'), '_outputs': {'audio': {'transcription': 'near the fire and the ornaments fred brought home from india on the mental board'}}}),\n",
-       " Document({'_id': ObjectId('64c424c2046a680497c3819d'), '_outputs': {'audio': {'transcription': \"in fact he is quite severe on mister ruskin for not recognizing that a picture should denote the frailty of man and remarks with pleasing courtesy in felicity's grace that many phases of feeling\"}}}),\n",
-       " Document({'_id': ObjectId('64c424c2046a680497c3819e'), '_outputs': {'audio': {'transcription': 'only unfortunately his own work never does get good'}}}),\n",
-       " Document({'_id': ObjectId('64c424c2046a680497c3819f'), '_outputs': {'audio': {'transcription': 'mister kilder has missed his chance for he has failed even to make himself the topper of painting'}}}),\n",
-       " Document({'_id': ObjectId('64c424c2046a680497c381a0'), '_outputs': {'audio': {'transcription': 'by harry quilter m a'}}}),\n",
-       " Document({'_id': ObjectId('64c424c2046a680497c381a1'), '_outputs': {'audio': {'transcription': 'because you are sleeping instead of conquering the lovely rose princess has become a fiddle without a bow or poor shaggy sits there a cooing dove'}}}),\n",
-       " Document({'_id': ObjectId('64c424c2046a680497c381a2'), '_outputs': {'audio': {'transcription': 'he has gone and gone for good answered polychrome who had managed to squeeze into the room beside the dragon and had witnessed the occurrences with much interest'}}}),\n",
-       " Document({'_id': ObjectId('64c424c2046a680497c381a3'), '_outputs': {'audio': {'transcription': 'i have remained the prisoner only because i wished to be one and with this he stepped forward and burst the stout chains as easily as if they had been threads'}}}),\n",
-       " Document({'_id': ObjectId('64c424c2046a680497c381a4'), '_outputs': {'audio': {'transcription': 'the little girl had been asleep but she heard the raps and opened the door'}}}),\n",
-       " Document({'_id': ObjectId('64c424c2046a680497c381a5'), '_outputs': {'audio': {'transcription': 'the king has flooded disgrace and your friends are asking for you'}}}),\n",
-       " Document({'_id': ObjectId('64c424c2046a680497c381a6'), '_outputs': {'audio': {'transcription': 'i begged ruggedo a long ago to send him away but he would not do so'}}}),\n",
-       " Document({'_id': ObjectId('64c424c2046a680497c381a7'), '_outputs': {'audio': {'transcription': 'i also offered to help your brother to escape but he would not go'}}}),\n",
-       " Document({'_id': ObjectId('64c424c2046a680497c381a8'), '_outputs': {'audio': {'transcription': 'he eats and sleeps very steadily replied the new king'}}}),\n",
-       " Document({'_id': ObjectId('64c424c2046a680497c381a9'), '_outputs': {'audio': {'transcription': \"a hope he doesn't work too hard said shaggy\"}}}),\n",
-       " Document({'_id': ObjectId('64c424c2046a680497c381aa'), '_outputs': {'audio': {'transcription': \"he doesn't work at all\"}}}),\n",
-       " Document({'_id': ObjectId('64c424c2046a680497c381ab'), '_outputs': {'audio': {'transcription': 'in fact there is nothing he can do in these dominions as well as our nomes whose numbers are so great that it worries us to keep them all busy'}}}),\n",
-       " Document({'_id': ObjectId('64c424c2046a680497c381ac'), '_outputs': {'audio': {'transcription': 'not exactly returned kaliko'}}}),\n",
-       " Document({'_id': ObjectId('64c424c2046a680497c381ad'), '_outputs': {'audio': {'transcription': 'where is my brother now'}}}),\n",
-       " Document({'_id': ObjectId('64c424c2046a680497c381ae'), '_outputs': {'audio': {'transcription': 'inquired shaggy in the metal forest'}}}),\n",
-       " Document({'_id': ObjectId('64c424c2046a680497c381af'), '_outputs': {'audio': {'transcription': 'where is that'}}}),\n",
-       " Document({'_id': ObjectId('64c424c2046a680497c381b0'), '_outputs': {'audio': {'transcription': 'the middle forest is in the great domed cavern the largest in all our dominions replied kaliko'}}}),\n",
-       " Document({'_id': ObjectId('64c424c2046a680497c381b1'), '_outputs': {'audio': {'transcription': 'kaliko hesitated'}}}),\n",
-       " Document({'_id': ObjectId('64c424c2046a680497c381b2'), '_outputs': {'audio': {'transcription': 'however if we look sharp we may be able to discover one of these secret ways'}}}),\n",
-       " Document({'_id': ObjectId('64c424c2046a680497c381b3'), '_outputs': {'audio': {'transcription': \"oh no i'm quite sure he didn't\"}}}),\n",
-       " Document({'_id': ObjectId('64c424c2046a680497c381b4'), '_outputs': {'audio': {'transcription': \"that's funny remarked betsy thoughtfully\"}}}),\n",
-       " Document({'_id': ObjectId('64c424c2046a680497c381b5'), '_outputs': {'audio': {'transcription': \"i don't believe anne knew any magic or she'd have worked it before\"}}}),\n",
-       " Document({'_id': ObjectId('64c424c2046a680497c381b6'), '_outputs': {'audio': {'transcription': 'i do not know confessed shaggy'}}}),\n",
-       " Document({'_id': ObjectId('64c424c2046a680497c381b7'), '_outputs': {'audio': {'transcription': 'true agreed calico'}}}),\n",
-       " Document({'_id': ObjectId('64c424c2046a680497c381b8'), '_outputs': {'audio': {'transcription': 'kaliko went to the big gong and pounded on it just as ruggedo used to do but no one answered the summons'}}}),\n",
-       " Document({'_id': ObjectId('64c424c2046a680497c381b9'), '_outputs': {'audio': {'transcription': \"having returned to the royal cavern calico first pounded the gong and then sat in the throne wearing ruggedo's discarded ruby crown and holding in his hand the sceptre which ruggedo had so often thrown at his head\"}}}),\n",
-       " Document({'_id': ObjectId('64c424c2046a680497c381ba'), '_outputs': {'audio': {'transcription': 'a man said to the universe sir i exist'}}}),\n",
-       " Document({'_id': ObjectId('64c424c2046a680497c381bb'), '_outputs': {'audio': {'transcription': \"sweat covered brion's body trickling into the titleing cloth that was the only garment he wore\"}}}),\n",
-       " Document({'_id': ObjectId('64c424c2046a680497c381bc'), '_outputs': {'audio': {'transcription': 'the cut on his chest still dripping blood the ache of his overstrained eyes even the soaring arena around him with the thousands of spectators were trivialities not worth thinking about'}}}),\n",
-       " Document({'_id': ObjectId('64c424c2046a680497c381bd'), '_outputs': {'audio': {'transcription': 'his instant of panic was followed by a small sharp blow high on his chest'}}}),\n",
-       " Document({'_id': ObjectId('64c424c2046a680497c381be'), '_outputs': {'audio': {'transcription': 'one minute a voice said and a time buzzer sounded'}}}),\n",
-       " Document({'_id': ObjectId('64c424c2046a680497c381bf'), '_outputs': {'audio': {'transcription': 'a minute is not a very large measure of time and his body needed every fraction of it'}}}),\n",
-       " Document({'_id': ObjectId('64c424c2046a680497c381c0'), '_outputs': {'audio': {'transcription': 'the buzzers were triggered his muscles in complete relaxation'}}}),\n",
-       " Document({'_id': ObjectId('64c424c2046a680497c381c1'), '_outputs': {'audio': {'transcription': 'while he his heart and lungs worked on at a strong measured rate'}}}),\n",
-       " Document({'_id': ObjectId('64c424c2046a680497c381c2'), '_outputs': {'audio': {'transcription': 'he was in reverie sliding along the borders of consciousness'}}}),\n",
-       " Document({'_id': ObjectId('64c424c2046a680497c381c3'), '_outputs': {'audio': {'transcription': 'the contestants in the twenties needed undisturbed rest therefore knights in the dormitories were as quiet as death'}}}),\n",
-       " Document({'_id': ObjectId('64c424c2046a680497c381c4'), '_outputs': {'audio': {'transcription': 'particularly so on this last night when only two of the little cubicles were occupied the thousands of others standing with dark empty doors'}}}),\n",
-       " Document({'_id': ObjectId('64c424c2046a680497c381c5'), '_outputs': {'audio': {'transcription': 'the other voice snapped with a harsh urgency clearly used to command'}}}),\n",
-       " Document({'_id': ObjectId('64c424c2046a680497c381c6'), '_outputs': {'audio': {'transcription': 'i am here because the matter is of utmost importance and brand is the one i must see now stand aside'}}}),\n",
-       " Document({'_id': ObjectId('64c424c2046a680497c381c7'), '_outputs': {'audio': {'transcription': 'the twentys'}}}),\n",
-       " Document({'_id': ObjectId('64c424c2046a680497c381c8'), '_outputs': {'audio': {'transcription': \"he must have drawn his gun because the intruder said quickly but that away you're being a fool out\"}}}),\n",
-       " Document({'_id': ObjectId('64c424c2046a680497c381c9'), '_outputs': {'audio': {'transcription': 'there was silence then and still wondering brion was once more asleep'}}}),\n",
-       " Document({'_id': ObjectId('64c424c2046a680497c381ca'), '_outputs': {'audio': {'transcription': 'ten seconds'}}}),\n",
-       " Document({'_id': ObjectId('64c424c2046a680497c381cb'), '_outputs': {'audio': {'transcription': 'he asked the handler who was kneading his aching muscles'}}}),\n",
-       " Document({'_id': ObjectId('64c424c2046a680497c381cc'), '_outputs': {'audio': {'transcription': 'a red haired mountain of a man with an apparently inexhaustible store of energy'}}}),\n",
-       " Document({'_id': ObjectId('64c424c2046a680497c381cd'), '_outputs': {'audio': {'transcription': 'there could be little art in this last and final round defenceing'}}}),\n",
-       " Document({'_id': ObjectId('64c424c2046a680497c381ce'), '_outputs': {'audio': {'transcription': 'just thrust and parry and victory to the stronger'}}}),\n",
-       " Document({'_id': ObjectId('64c424c2046a680497c381cf'), '_outputs': {'audio': {'transcription': 'every man who entered the twenties had his own training tricks'}}}),\n",
-       " Document({'_id': ObjectId('64c424c2046a680497c381d0'), '_outputs': {'audio': {'transcription': 'there appeared to be an immediate association with the death drama as if the two were inextricably linked into one'}}}),\n",
-       " Document({'_id': ObjectId('64c424c2046a680497c381d1'), '_outputs': {'audio': {'transcription': 'the strength of the navals someone in a trance to hold his body stiff and unsupported except at two points the head and heels'}}}),\n",
-       " Document({'_id': ObjectId('64c424c2046a680497c381d2'), '_outputs': {'audio': {'transcription': 'this is physically impossible when conscious'}}}),\n",
-       " Document({'_id': ObjectId('64c424c2046a680497c381d3'), '_outputs': {'audio': {'transcription': 'others had died before during the twentys and death during the last round was in some ways easier than defeat'}}}),\n",
-       " Document({'_id': ObjectId('64c424c2046a680497c381d4'), '_outputs': {'audio': {'transcription': 'breathing deeply brion softly spoke the auto hypnotic phrases that triggered to process'}}}),\n",
-       " Document({'_id': ObjectId('64c424c2046a680497c381d5'), '_outputs': {'audio': {'transcription': 'when the buzzer sounded he pulled his foil from his second startled grasp and ran forward'}}}),\n",
-       " Document({'_id': ObjectId('64c424c2046a680497c381d6'), '_outputs': {'audio': {'transcription': 'our road looked amazed at the sudden fury of the attack then smiled'}}}),\n",
-       " Document({'_id': ObjectId('64c424c2046a680497c381d7'), '_outputs': {'audio': {'transcription': 'he said it was the last burst of energy he knew how close they both were to exhaustion'}}}),\n",
-       " Document({'_id': ObjectId('64c424c2046a680497c381d8'), '_outputs': {'audio': {'transcription': \"brion saw something close panic on his opponent's face when the man finally recognized his error\"}}}),\n",
-       " Document({'_id': ObjectId('64c424c2046a680497c381d9'), '_outputs': {'audio': {'transcription': 'a wave of despair rolled out from our rogue brion sensed it and knew that a fifth point was his'}}}),\n",
-       " Document({'_id': ObjectId('64c424c2046a680497c381da'), '_outputs': {'audio': {'transcription': 'then the powerful twist that thrust it aside in and under the guard'}}})]"
+       "[Document({'_id': ObjectId('64c97944d7d66bc92d3570c5'), '_outputs': {'audio': {'transcription': 'mister quilter is the apostle of the middle classes and we are glad to welcome his gospel'}}}),\n",
+       " Document({'_id': ObjectId('64c97944d7d66bc92d3570c6'), '_outputs': {'audio': {'transcription': \"nor is mister cultar's manner less interesting than his matter\"}}}),\n",
+       " Document({'_id': ObjectId('64c97944d7d66bc92d3570c7'), '_outputs': {'audio': {'transcription': 'he tells us that at this festive season of the year with christmas and roast beef looming before us similes drawn from eating and its results occur most readily to the mind'}}}),\n",
+       " Document({'_id': ObjectId('64c97944d7d66bc92d3570c8'), '_outputs': {'audio': {'transcription': \"he has grave doubts whether sir frederick leyton's work is really greek after all and can discover in it but little of rocky ithaca\"}}}),\n",
+       " Document({'_id': ObjectId('64c97944d7d66bc92d3570c9'), '_outputs': {'audio': {'transcription': \"lynnell's pictures are a sort of up guards and adam paintings and mason's exquisite itals are as national as a jingo poem mister brooket foster's landscapes smile at one much in the same way that mister parker used to flash his teeth and mister john calllier gives his sitter a cheerful slap and a slap before he says like a shay's\"}}}),\n",
+       " Document({'_id': ObjectId('64c97944d7d66bc92d3570ca'), '_outputs': {'audio': {'transcription': 'it is obviously unnecessary for us to point out how luminous these criticisms are how delicate in expression'}}}),\n",
+       " Document({'_id': ObjectId('64c97944d7d66bc92d3570cb'), '_outputs': {'audio': {'transcription': 'on the general principles of art mister cruelty writes with equal lucidity'}}}),\n",
+       " Document({'_id': ObjectId('64c97944d7d66bc92d3570cc'), '_outputs': {'audio': {'transcription': 'painting he tells us is of a different quality to mathematics and finish in art is adding more effect'}}}),\n",
+       " Document({'_id': ObjectId('64c97944d7d66bc92d3570cd'), '_outputs': {'audio': {'transcription': 'as for etchings they are of two kinds british and foreign'}}}),\n",
+       " Document({'_id': ObjectId('64c97944d7d66bc92d3570ce'), '_outputs': {'audio': {'transcription': 'he laments most bitterly the divorce that has been made between decorative art and what we usually call pictures makes a customary appeal to the last judgment and reminds us that in the great days of art michael angelo was the furnishing upholsterer'}}}),\n",
+       " Document({'_id': ObjectId('64c97944d7d66bc92d3570cf'), '_outputs': {'audio': {'transcription': 'near the fire and the ornaments fred brought home from india on the mental board'}}}),\n",
+       " Document({'_id': ObjectId('64c97944d7d66bc92d3570d0'), '_outputs': {'audio': {'transcription': \"in fact he is quite severe on mister ruskin for not recognizing that a picture should denote the frailty of man and remarks with pleasing courtesy in felicity's grace that many phases of feeling\"}}}),\n",
+       " Document({'_id': ObjectId('64c97944d7d66bc92d3570d1'), '_outputs': {'audio': {'transcription': 'only unfortunately his own work never does get good'}}}),\n",
+       " Document({'_id': ObjectId('64c97944d7d66bc92d3570d2'), '_outputs': {'audio': {'transcription': 'mister kilder has missed his chance for he has failed even to make himself the topper of painting'}}}),\n",
+       " Document({'_id': ObjectId('64c97944d7d66bc92d3570d3'), '_outputs': {'audio': {'transcription': 'by harry quilter m a'}}}),\n",
+       " Document({'_id': ObjectId('64c97944d7d66bc92d3570d4'), '_outputs': {'audio': {'transcription': 'because you are sleeping instead of conquering the lovely rose princess has become a fiddle without a bow or poor shaggy sits there a cooing dove'}}}),\n",
+       " Document({'_id': ObjectId('64c97944d7d66bc92d3570d5'), '_outputs': {'audio': {'transcription': 'he has gone and gone for good answered polychrome who had managed to squeeze into the room beside the dragon and had witnessed the occurrences with much interest'}}}),\n",
+       " Document({'_id': ObjectId('64c97944d7d66bc92d3570d6'), '_outputs': {'audio': {'transcription': 'i have remained the prisoner only because i wished to be one and with this he stepped forward and burst the stout chains as easily as if they had been threads'}}}),\n",
+       " Document({'_id': ObjectId('64c97944d7d66bc92d3570d7'), '_outputs': {'audio': {'transcription': 'the little girl had been asleep but she heard the raps and opened the door'}}}),\n",
+       " Document({'_id': ObjectId('64c97944d7d66bc92d3570d8'), '_outputs': {'audio': {'transcription': 'the king has flooded disgrace and your friends are asking for you'}}}),\n",
+       " Document({'_id': ObjectId('64c97944d7d66bc92d3570d9'), '_outputs': {'audio': {'transcription': 'i begged ruggedo a long ago to send him away but he would not do so'}}}),\n",
+       " Document({'_id': ObjectId('64c97944d7d66bc92d3570da'), '_outputs': {'audio': {'transcription': 'i also offered to help your brother to escape but he would not go'}}}),\n",
+       " Document({'_id': ObjectId('64c97944d7d66bc92d3570db'), '_outputs': {'audio': {'transcription': 'he eats and sleeps very steadily replied the new king'}}}),\n",
+       " Document({'_id': ObjectId('64c97944d7d66bc92d3570dc'), '_outputs': {'audio': {'transcription': \"a hope he doesn't work too hard said shaggy\"}}}),\n",
+       " Document({'_id': ObjectId('64c97944d7d66bc92d3570dd'), '_outputs': {'audio': {'transcription': \"he doesn't work at all\"}}}),\n",
+       " Document({'_id': ObjectId('64c97944d7d66bc92d3570de'), '_outputs': {'audio': {'transcription': 'in fact there is nothing he can do in these dominions as well as our nomes whose numbers are so great that it worries us to keep them all busy'}}}),\n",
+       " Document({'_id': ObjectId('64c97944d7d66bc92d3570df'), '_outputs': {'audio': {'transcription': 'not exactly returned kaliko'}}}),\n",
+       " Document({'_id': ObjectId('64c97944d7d66bc92d3570e0'), '_outputs': {'audio': {'transcription': 'where is my brother now'}}}),\n",
+       " Document({'_id': ObjectId('64c97944d7d66bc92d3570e1'), '_outputs': {'audio': {'transcription': 'inquired shaggy in the metal forest'}}}),\n",
+       " Document({'_id': ObjectId('64c97944d7d66bc92d3570e2'), '_outputs': {'audio': {'transcription': 'where is that'}}}),\n",
+       " Document({'_id': ObjectId('64c97944d7d66bc92d3570e3'), '_outputs': {'audio': {'transcription': 'the middle forest is in the great domed cavern the largest in all our dominions replied kaliko'}}}),\n",
+       " Document({'_id': ObjectId('64c97944d7d66bc92d3570e4'), '_outputs': {'audio': {'transcription': 'kaliko hesitated'}}}),\n",
+       " Document({'_id': ObjectId('64c97944d7d66bc92d3570e5'), '_outputs': {'audio': {'transcription': 'however if we look sharp we may be able to discover one of these secret ways'}}}),\n",
+       " Document({'_id': ObjectId('64c97944d7d66bc92d3570e6'), '_outputs': {'audio': {'transcription': \"oh no i'm quite sure he didn't\"}}}),\n",
+       " Document({'_id': ObjectId('64c97944d7d66bc92d3570e7'), '_outputs': {'audio': {'transcription': \"that's funny remarked betsy thoughtfully\"}}}),\n",
+       " Document({'_id': ObjectId('64c97944d7d66bc92d3570e8'), '_outputs': {'audio': {'transcription': \"i don't believe anne knew any magic or she'd have worked it before\"}}}),\n",
+       " Document({'_id': ObjectId('64c97944d7d66bc92d3570e9'), '_outputs': {'audio': {'transcription': 'i do not know confessed shaggy'}}}),\n",
+       " Document({'_id': ObjectId('64c97944d7d66bc92d3570ea'), '_outputs': {'audio': {'transcription': 'true agreed calico'}}}),\n",
+       " Document({'_id': ObjectId('64c97944d7d66bc92d3570eb'), '_outputs': {'audio': {'transcription': 'kaliko went to the big gong and pounded on it just as ruggedo used to do but no one answered the summons'}}}),\n",
+       " Document({'_id': ObjectId('64c97944d7d66bc92d3570ec'), '_outputs': {'audio': {'transcription': \"having returned to the royal cavern calico first pounded the gong and then sat in the throne wearing ruggedo's discarded ruby crown and holding in his hand the sceptre which ruggedo had so often thrown at his head\"}}}),\n",
+       " Document({'_id': ObjectId('64c97944d7d66bc92d3570ed'), '_outputs': {'audio': {'transcription': 'a man said to the universe sir i exist'}}}),\n",
+       " Document({'_id': ObjectId('64c97944d7d66bc92d3570ee'), '_outputs': {'audio': {'transcription': \"sweat covered brion's body trickling into the titleing cloth that was the only garment he wore\"}}}),\n",
+       " Document({'_id': ObjectId('64c97944d7d66bc92d3570ef'), '_outputs': {'audio': {'transcription': 'the cut on his chest still dripping blood the ache of his overstrained eyes even the soaring arena around him with the thousands of spectators were trivialities not worth thinking about'}}}),\n",
+       " Document({'_id': ObjectId('64c97944d7d66bc92d3570f0'), '_outputs': {'audio': {'transcription': 'his instant of panic was followed by a small sharp blow high on his chest'}}}),\n",
+       " Document({'_id': ObjectId('64c97944d7d66bc92d3570f1'), '_outputs': {'audio': {'transcription': 'one minute a voice said and a time buzzer sounded'}}}),\n",
+       " Document({'_id': ObjectId('64c97944d7d66bc92d3570f2'), '_outputs': {'audio': {'transcription': 'a minute is not a very large measure of time and his body needed every fraction of it'}}}),\n",
+       " Document({'_id': ObjectId('64c97944d7d66bc92d3570f3'), '_outputs': {'audio': {'transcription': 'the buzzers were triggered his muscles in complete relaxation'}}}),\n",
+       " Document({'_id': ObjectId('64c97944d7d66bc92d3570f4'), '_outputs': {'audio': {'transcription': 'while he his heart and lungs worked on at a strong measured rate'}}}),\n",
+       " Document({'_id': ObjectId('64c97944d7d66bc92d3570f5'), '_outputs': {'audio': {'transcription': 'he was in reverie sliding along the borders of consciousness'}}}),\n",
+       " Document({'_id': ObjectId('64c97944d7d66bc92d3570f6'), '_outputs': {'audio': {'transcription': 'the contestants in the twenties needed undisturbed rest therefore knights in the dormitories were as quiet as death'}}}),\n",
+       " Document({'_id': ObjectId('64c97944d7d66bc92d3570f7'), '_outputs': {'audio': {'transcription': 'particularly so on this last night when only two of the little cubicles were occupied the thousands of others standing with dark empty doors'}}}),\n",
+       " Document({'_id': ObjectId('64c97944d7d66bc92d3570f8'), '_outputs': {'audio': {'transcription': 'the other voice snapped with a harsh urgency clearly used to command'}}}),\n",
+       " Document({'_id': ObjectId('64c97944d7d66bc92d3570f9'), '_outputs': {'audio': {'transcription': 'i am here because the matter is of utmost importance and brand is the one i must see now stand aside'}}}),\n",
+       " Document({'_id': ObjectId('64c97944d7d66bc92d3570fa'), '_outputs': {'audio': {'transcription': 'the twentys'}}}),\n",
+       " Document({'_id': ObjectId('64c97944d7d66bc92d3570fb'), '_outputs': {'audio': {'transcription': \"he must have drawn his gun because the intruder said quickly but that away you're being a fool out\"}}}),\n",
+       " Document({'_id': ObjectId('64c97944d7d66bc92d3570fc'), '_outputs': {'audio': {'transcription': 'there was silence then and still wondering brion was once more asleep'}}}),\n",
+       " Document({'_id': ObjectId('64c97944d7d66bc92d3570fd'), '_outputs': {'audio': {'transcription': 'ten seconds'}}}),\n",
+       " Document({'_id': ObjectId('64c97944d7d66bc92d3570fe'), '_outputs': {'audio': {'transcription': 'he asked the handler who was kneading his aching muscles'}}}),\n",
+       " Document({'_id': ObjectId('64c97944d7d66bc92d3570ff'), '_outputs': {'audio': {'transcription': 'a red haired mountain of a man with an apparently inexhaustible store of energy'}}}),\n",
+       " Document({'_id': ObjectId('64c97944d7d66bc92d357100'), '_outputs': {'audio': {'transcription': 'there could be little art in this last and final round defenceing'}}}),\n",
+       " Document({'_id': ObjectId('64c97944d7d66bc92d357101'), '_outputs': {'audio': {'transcription': 'just thrust and parry and victory to the stronger'}}}),\n",
+       " Document({'_id': ObjectId('64c97944d7d66bc92d357102'), '_outputs': {'audio': {'transcription': 'every man who entered the twenties had his own training tricks'}}}),\n",
+       " Document({'_id': ObjectId('64c97944d7d66bc92d357103'), '_outputs': {'audio': {'transcription': 'there appeared to be an immediate association with the death drama as if the two were inextricably linked into one'}}}),\n",
+       " Document({'_id': ObjectId('64c97944d7d66bc92d357104'), '_outputs': {'audio': {'transcription': 'the strength of the navals someone in a trance to hold his body stiff and unsupported except at two points the head and heels'}}}),\n",
+       " Document({'_id': ObjectId('64c97944d7d66bc92d357105'), '_outputs': {'audio': {'transcription': 'this is physically impossible when conscious'}}}),\n",
+       " Document({'_id': ObjectId('64c97944d7d66bc92d357106'), '_outputs': {'audio': {'transcription': 'others had died before during the twentys and death during the last round was in some ways easier than defeat'}}}),\n",
+       " Document({'_id': ObjectId('64c97944d7d66bc92d357107'), '_outputs': {'audio': {'transcription': 'breathing deeply brion softly spoke the auto hypnotic phrases that triggered to process'}}}),\n",
+       " Document({'_id': ObjectId('64c97944d7d66bc92d357108'), '_outputs': {'audio': {'transcription': 'when the buzzer sounded he pulled his foil from his second startled grasp and ran forward'}}}),\n",
+       " Document({'_id': ObjectId('64c97944d7d66bc92d357109'), '_outputs': {'audio': {'transcription': 'our road looked amazed at the sudden fury of the attack then smiled'}}}),\n",
+       " Document({'_id': ObjectId('64c97944d7d66bc92d35710a'), '_outputs': {'audio': {'transcription': 'he said it was the last burst of energy he knew how close they both were to exhaustion'}}}),\n",
+       " Document({'_id': ObjectId('64c97944d7d66bc92d35710b'), '_outputs': {'audio': {'transcription': \"brion saw something close panic on his opponent's face when the man finally recognized his error\"}}}),\n",
+       " Document({'_id': ObjectId('64c97944d7d66bc92d35710c'), '_outputs': {'audio': {'transcription': 'a wave of despair rolled out from our rogue brion sensed it and knew that a fifth point was his'}}}),\n",
+       " Document({'_id': ObjectId('64c97944d7d66bc92d35710d'), '_outputs': {'audio': {'transcription': 'then the powerful twist that thrust it aside in and under the guard'}}})]"
       ]
      },
      "execution_count": 11,
@@ -554,7 +565,7 @@
    "outputs": [],
    "source": [
     "import os\n",
-    "os.environ['OPENAI_API_KEY'] = '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'"
+    "os.environ['OPENAI_API_KEY'] = '<YOUR-API-KEY>'"
    ]
   },
   {
@@ -569,21 +580,7 @@
      "text": [
       "WARNING:root:model/text-embedding-ada-002/0 already exists - doing nothing\n",
       "WARNING:root:model/text-embedding-ada-002/0 already exists - doing nothing\n",
-      "WARNING:root:model/text-embedding-ada-002/0 already exists - doing nothing\n"
-     ]
-    },
-    {
-     "name": "stdout",
-     "output_type": "stream",
-     "text": [
-      "Computing chunk 0/0\n"
-     ]
-    },
-    {
-     "name": "stderr",
-     "output_type": "stream",
-     "text": [
-      "100%|████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████| 1/1 [00:00<00:00,  1.14it/s]\n",
+      "100%|███████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████| 1/1 [00:01<00:00,  1.96s/it]\n",
       "INFO:root:loading hashes: 'my-index'\n"
      ]
     },
@@ -599,15 +596,15 @@
     }
    ],
    "source": [
-    "from superduperdb.core.vector_index import VectorIndex\n",
-    "from superduperdb.core.watcher import Watcher\n",
-    "from superduperdb.models.openai.wrapper import OpenAIEmbedding\n",
-    "from superduperdb.datalayer.mongodb.query import Collection\n",
+    "from superduperdb.container.vector_index import VectorIndex\n",
+    "from superduperdb.container.listener import Listener\n",
+    "from superduperdb.ext.openai.model import OpenAIEmbedding\n",
+    "from superduperdb.db.mongodb.query import Collection\n",
     "\n",
     "db.add(\n",
     "    VectorIndex(\n",
     "        identifier='my-index',\n",
-    "        indexing_watcher=Watcher(\n",
+    "        indexing_listener=Listener(\n",
     "            model=OpenAIEmbedding(model='text-embedding-ada-002'),\n",
     "            key='_outputs.audio.transcription',\n",
     "            select=Collection(name='voice-memos').find(),\n",
@@ -640,8 +637,8 @@
     {
      "data": {
       "text/plain": [
-       "[Document({'_id': ObjectId('64c424c2046a680497c381b0'), '_outputs': {'audio': {'transcription': 'the middle forest is in the great domed cavern the largest in all our dominions replied kaliko'}}}),\n",
-       " Document({'_id': ObjectId('64c424c2046a680497c381b9'), '_outputs': {'audio': {'transcription': \"having returned to the royal cavern calico first pounded the gong and then sat in the throne wearing ruggedo's discarded ruby crown and holding in his hand the sceptre which ruggedo had so often thrown at his head\"}}})]"
+       "[Document({'_id': ObjectId('64c97944d7d66bc92d3570e3'), '_outputs': {'audio': {'transcription': 'the middle forest is in the great domed cavern the largest in all our dominions replied kaliko'}}}),\n",
+       " Document({'_id': ObjectId('64c97944d7d66bc92d3570ec'), '_outputs': {'audio': {'transcription': \"having returned to the royal cavern calico first pounded the gong and then sat in the throne wearing ruggedo's discarded ruby crown and holding in his hand the sceptre which ruggedo had so often thrown at his head\"}}})]"
       ]
      },
      "execution_count": 14,
@@ -685,7 +682,7 @@
     }
    ],
    "source": [
-    "from superduperdb.models.openai.wrapper import OpenAIChatCompletion\n",
+    "from superduperdb.ext.openai.model import OpenAIChatCompletion\n",
     "\n",
     "chat = OpenAIChatCompletion(\n",
     "    model='gpt-3.5-turbo',\n",
@@ -721,12 +718,12 @@
      "name": "stdout",
      "output_type": "stream",
      "text": [
-      "Based on the provided facts, there is a mention of doubts about Sir Frederick Leyton's work being really Greek. Therefore, it can be inferred that the question is suggesting skepticism about the authenticity of something being labeled as Greek.\n"
+      "Based on the facts provided, there is doubt expressed about whether Sir Frederick Leyton's work is truly Greek, indicating that there may be some skepticism about the authenticity of Greek influences or characteristics in certain works. However, it is not explicitly stated whether anything is truly Greek or not.\n"
      ]
     }
    ],
    "source": [
-    "from superduperdb.core.document import Document\n",
+    "from superduperdb.container.document import Document\n",
     "\n",
     "q = 'Is anything really Greek?'\n",
     "\n",
