@@ -2,15 +2,15 @@
 <html class="no-js" lang="en">
   <head><meta charset="utf-8"/>
     <meta name="viewport" content="width=device-width,initial-scale=1"/>
-    <meta name="color-scheme" content="light dark"><meta name="generator" content="Docutils 0.18.1: http://docutils.sourceforge.net/" />
+    <meta name="color-scheme" content="light dark"><meta name="viewport" content="width=device-width, initial-scale=1" />
 <link rel="index" title="Index" href="../genindex.html" /><link rel="search" title="Search" href="../search.html" /><link rel="next" title="superduperdb.data package" href="superduperdb.data.html" /><link rel="prev" title="superduperdb.cli package" href="superduperdb.cli.html" />
 
-    <!-- Generated with Sphinx 6.2.1 and Furo 2023.05.20 -->
-        <title>superduperdb.container package - SuperDuperDB documentation</title>
-      <link rel="stylesheet" type="text/css" href="../_static/pygments.css" />
-    <link rel="stylesheet" type="text/css" href="../_static/styles/furo.css?digest=e6660623a769aa55fea372102b9bf3151b292993" />
-    <link rel="stylesheet" type="text/css" href="../_static/copybutton.css" />
-    <link rel="stylesheet" type="text/css" href="../_static/styles/furo-extensions.css?digest=30d1aed668e5c3a91c3e3bf6a60b675221979f0e" />
+    <!-- Generated with Sphinx 7.1.2 and Furo 2023.07.26 -->
+        <title>superduperdb.container package - Python documentation</title>
+      <link rel="stylesheet" type="text/css" href="../_static/pygments.css?v=fa44fd50" />
+    <link rel="stylesheet" type="text/css" href="../_static/styles/furo.css?v=135e06be" />
+    <link rel="stylesheet" type="text/css" href="../_static/copybutton.css?v=76b2166b" />
+    <link rel="stylesheet" type="text/css" href="../_static/styles/furo-extensions.css?v=36a5483c" />
     
     
 
@@ -124,7 +124,7 @@
       </label>
     </div>
     <div class="header-center">
-      <a href="../index.html"><div class="brand">SuperDuperDB  documentation</div></a>
+      <a href="../index.html"><div class="brand">Python  documentation</div></a>
     </div>
     <div class="header-right">
       <div class="theme-toggle-container theme-toggle-header">
@@ -146,8 +146,11 @@
       
       <div class="sidebar-sticky"><a class="sidebar-brand" href="../index.html">
   
+  <div class="sidebar-logo-container">
+    <img class="sidebar-logo" src="../_static/SuperDuperDB_logo.png" alt="Logo"/>
+  </div>
   
-  <span class="sidebar-brand-text">SuperDuperDB  documentation</span>
+  <span class="sidebar-brand-text">Python  documentation</span>
   
 </a><form class="sidebar-search-container" method="get" action="../search.html" role="search">
   <input class="sidebar-search" placeholder="Search" name="q" aria-label="Search">
@@ -189,7 +192,7 @@
 </ul>
 </li>
 <li class="toctree-l1 has-children"><a class="reference internal" href="../how_to/index.html">How to …</a><input class="toctree-checkbox" id="toctree-checkbox-5" name="toctree-checkbox-5" role="switch" type="checkbox"/><label for="toctree-checkbox-5"><div class="visually-hidden">Toggle navigation of How to …</div><i class="icon"><svg><use href="#svg-arrow-right"></use></svg></i></label><ul>
-<li class="toctree-l2"><a class="reference internal" href="../how_to/playground.html">Download, install and setup SuperDuperDB</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../how_to/playground.html">Welcome to the SuperDuperDB Playground!</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../how_to/add_images_or_audio.html">Add images, audio or video from URIs</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../how_to/create_replicaset.html">How to create a replica set in MongoDB</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../how_to/mongo_cdc.html">Perform change data capture (CDC)</a></li>
@@ -200,7 +203,7 @@
 <li class="toctree-l2"><a class="reference internal" href="../examples/mnist_torch.html">Training and maintaining MNIST predictions</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../examples/mnist_sklearn.html">MNIST using scikit-learn and SuperDuperDB</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../examples/openai.html">OpenAI vector search</a></li>
-<li class="toctree-l2"><a class="reference internal" href="../examples/compare_vector_search_solutions.html">Compare vector search</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../examples/compare_vector_search_solutions.html">Turn your classical-database into a vector-database with SuperDuperDB</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../examples/multimodal_image_search_clip.html">Multimodal search with CLIP</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../examples/sentiment_analysis_use_case.html">Sentiment analysis with transformers</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../examples/voice_memos.html">Cataloguing voice-memos for a self managed personal assistant</a></li>
@@ -290,7 +293,7 @@
 <span id="superduperdb-container-artifact-module"></span><h2>superduperdb.container.artifact module<a class="headerlink" href="#module-superduperdb.container.artifact" title="Permalink to this heading">#</a></h2>
 <dl class="py class">
 <dt class="sig sig-object py" id="superduperdb.container.artifact.Artifact">
-<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">superduperdb.container.artifact.</span></span><span class="sig-name descname"><span class="pre">Artifact</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">artifact</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">Any</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">file_id</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">Any</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">info</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">Dict</span><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><span class="pre">None</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">object_id</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">int</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">0</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">serializer</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">'dill'</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">sha1</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">''</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">hash</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">int</span><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><span class="pre">None</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/superduperdb/container/artifact.html#Artifact"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#superduperdb.container.artifact.Artifact" title="Permalink to this definition">#</a></dt>
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">superduperdb.container.artifact.</span></span><span class="sig-name descname"><span class="pre">Artifact</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">artifact</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">Any</span><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><span class="pre">None</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">file_id</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">Any</span><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><span class="pre">None</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">info</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">Dict</span><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><span class="pre">None</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">object_id</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">int</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">0</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">serializer</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">'dill'</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">sha1</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">''</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">hash</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">int</span><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><span class="pre">None</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/superduperdb/container/artifact.html#Artifact"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#superduperdb.container.artifact.Artifact" title="Permalink to this definition">#</a></dt>
 <dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">object</span></code></p>
 <p>An artifact from a computation that can be serialized or deserialized</p>
 <dl class="py attribute">
@@ -674,6 +677,20 @@ that resource to a mix of JSONable and <cite>bytes</cite></p>
 </dd></dl>
 
 <dl class="py method">
+<dt class="sig sig-object py" id="superduperdb.container.document.Document.outputs">
+<span class="sig-name descname"><span class="pre">outputs</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">key</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">model</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">Any</span></span></span><a class="reference internal" href="../_modules/superduperdb/container/document.html#Document.outputs"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#superduperdb.container.document.Document.outputs" title="Permalink to this definition">#</a></dt>
+<dd><p>Get document ouputs on <code class="docutils literal notranslate"><span class="pre">key</span></code> from <code class="docutils literal notranslate"><span class="pre">model</span></code></p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>key</strong> – Document key to get outputs from.</p></li>
+<li><p><strong>model</strong> – Model name to get outputs from.</p></li>
+</ul>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
 <dt class="sig sig-object py" id="superduperdb.container.document.Document.unpack">
 <span class="sig-name descname"><span class="pre">unpack</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">Any</span></span></span><a class="reference internal" href="../_modules/superduperdb/container/document.html#Document.unpack"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#superduperdb.container.document.Document.unpack" title="Permalink to this definition">#</a></dt>
 <dd><p>Returns the content, but with any encodables replacecs by their contents</p>
@@ -738,68 +755,6 @@ to <code class="docutils literal notranslate"><span class="pre">Encoder</span></
 </dd>
 </dl>
 <dl class="py method">
-<dt class="sig sig-object py" id="superduperdb.container.encoder.Encodable.asdict">
-<span class="sig-name descname"><span class="pre">asdict</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">*</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">dict_factory=&lt;class</span> <span class="pre">'dict'&gt;</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#superduperdb.container.encoder.Encodable.asdict" title="Permalink to this definition">#</a></dt>
-<dd><p>Return the fields of a dataclass instance as a new dictionary mapping
-field names to field values.</p>
-<p>Example usage:</p>
-<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="nd">@dataclass</span>
-<span class="k">class</span> <span class="nc">C</span><span class="p">:</span>
-    <span class="n">x</span><span class="p">:</span> <span class="nb">int</span>
-    <span class="n">y</span><span class="p">:</span> <span class="nb">int</span>
-
-<span class="n">c</span> <span class="o">=</span> <span class="n">C</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">)</span>
-<span class="k">assert</span> <span class="n">asdict</span><span class="p">(</span><span class="n">c</span><span class="p">)</span> <span class="o">==</span> <span class="p">{</span><span class="s1">&#39;x&#39;</span><span class="p">:</span> <span class="mi">1</span><span class="p">,</span> <span class="s1">&#39;y&#39;</span><span class="p">:</span> <span class="mi">2</span><span class="p">}</span>
-</pre></div>
-</div>
-<p>If given, ‘dict_factory’ will be used instead of built-in dict.
-The function applies recursively to field values that are
-dataclass instances. This will also look into built-in containers:
-tuples, lists, and dicts.</p>
-</dd></dl>
-
-<dl class="py method">
-<dt class="sig sig-object py" id="superduperdb.container.encoder.Encodable.astuple">
-<span class="sig-name descname"><span class="pre">astuple</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">*</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">tuple_factory=&lt;class</span> <span class="pre">'tuple'&gt;</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#superduperdb.container.encoder.Encodable.astuple" title="Permalink to this definition">#</a></dt>
-<dd><p>Return the fields of a dataclass instance as a new tuple of field values.</p>
-<p>Example usage:</p>
-<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="nd">@dataclass</span>
-<span class="k">class</span> <span class="nc">C</span><span class="p">:</span>
-    <span class="n">x</span><span class="p">:</span> <span class="nb">int</span>
-    <span class="n">y</span><span class="p">:</span> <span class="nb">int</span>
-
-<span class="n">c</span> <span class="o">=</span> <span class="n">C</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">)</span>
-<span class="k">assert</span> <span class="n">astuple</span><span class="p">(</span><span class="n">c</span><span class="p">)</span> <span class="o">==</span> <span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">)</span>
-</pre></div>
-</div>
-<p>If given, ‘tuple_factory’ will be used instead of built-in tuple.
-The function applies recursively to field values that are
-dataclass instances. This will also look into built-in containers:
-tuples, lists, and dicts.</p>
-</dd></dl>
-
-<dl class="py method">
-<dt class="sig sig-object py" id="superduperdb.container.encoder.Encodable.dict">
-<span class="sig-name descname"><span class="pre">dict</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">*</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">dict_factory=&lt;class</span> <span class="pre">'dict'&gt;</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#superduperdb.container.encoder.Encodable.dict" title="Permalink to this definition">#</a></dt>
-<dd><p>Return the fields of a dataclass instance as a new dictionary mapping
-field names to field values.</p>
-<p>Example usage:</p>
-<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="nd">@dataclass</span>
-<span class="k">class</span> <span class="nc">C</span><span class="p">:</span>
-    <span class="n">x</span><span class="p">:</span> <span class="nb">int</span>
-    <span class="n">y</span><span class="p">:</span> <span class="nb">int</span>
-
-<span class="n">c</span> <span class="o">=</span> <span class="n">C</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">)</span>
-<span class="k">assert</span> <span class="n">asdict</span><span class="p">(</span><span class="n">c</span><span class="p">)</span> <span class="o">==</span> <span class="p">{</span><span class="s1">&#39;x&#39;</span><span class="p">:</span> <span class="mi">1</span><span class="p">,</span> <span class="s1">&#39;y&#39;</span><span class="p">:</span> <span class="mi">2</span><span class="p">}</span>
-</pre></div>
-</div>
-<p>If given, ‘dict_factory’ will be used instead of built-in dict.
-The function applies recursively to field values that are
-dataclass instances. This will also look into built-in containers:
-tuples, lists, and dicts.</p>
-</dd></dl>
-
-<dl class="py method">
 <dt class="sig sig-object py" id="superduperdb.container.encoder.Encodable.encode">
 <span class="sig-name descname"><span class="pre">encode</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">Dict</span><span class="p"><span class="pre">[</span></span><span class="pre">str</span><span class="p"><span class="pre">,</span></span><span class="w"> </span><span class="pre">Any</span><span class="p"><span class="pre">]</span></span></span></span><a class="reference internal" href="../_modules/superduperdb/container/encoder.html#Encodable.encode"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#superduperdb.container.encoder.Encodable.encode" title="Permalink to this definition">#</a></dt>
 <dd></dd></dl>
@@ -808,31 +763,6 @@ tuples, lists, and dicts.</p>
 <dt class="sig sig-object py" id="superduperdb.container.encoder.Encodable.encoder">
 <span class="sig-name descname"><span class="pre">encoder</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">Callable</span></em><a class="headerlink" href="#superduperdb.container.encoder.Encodable.encoder" title="Permalink to this definition">#</a></dt>
 <dd></dd></dl>
-
-<dl class="py method">
-<dt class="sig sig-object py" id="superduperdb.container.encoder.Encodable.fields">
-<em class="property"><span class="pre">classmethod</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">fields</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#superduperdb.container.encoder.Encodable.fields" title="Permalink to this definition">#</a></dt>
-<dd><p>Return a tuple describing the fields of this dataclass.</p>
-<p>Accepts a dataclass or an instance of one. Tuple elements are of
-type Field.</p>
-</dd></dl>
-
-<dl class="py method">
-<dt class="sig sig-object py" id="superduperdb.container.encoder.Encodable.replace">
-<span class="sig-name descname"><span class="pre">replace</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="o"><span class="pre">**</span></span><span class="n"><span class="pre">changes</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#superduperdb.container.encoder.Encodable.replace" title="Permalink to this definition">#</a></dt>
-<dd><p>Return a new object replacing specified fields with new values.</p>
-<p>This is especially useful for frozen classes.  Example usage:</p>
-<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="nd">@dataclass</span><span class="p">(</span><span class="n">frozen</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
-<span class="k">class</span> <span class="nc">C</span><span class="p">:</span>
-    <span class="n">x</span><span class="p">:</span> <span class="nb">int</span>
-    <span class="n">y</span><span class="p">:</span> <span class="nb">int</span>
-
-<span class="n">c</span> <span class="o">=</span> <span class="n">C</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">)</span>
-<span class="n">c1</span> <span class="o">=</span> <span class="n">replace</span><span class="p">(</span><span class="n">c</span><span class="p">,</span> <span class="n">x</span><span class="o">=</span><span class="mi">3</span><span class="p">)</span>
-<span class="k">assert</span> <span class="n">c1</span><span class="o">.</span><span class="n">x</span> <span class="o">==</span> <span class="mi">3</span> <span class="ow">and</span> <span class="n">c1</span><span class="o">.</span><span class="n">y</span> <span class="o">==</span> <span class="mi">2</span>
-</pre></div>
-</div>
-</dd></dl>
 
 <dl class="py attribute">
 <dt class="sig sig-object py" id="superduperdb.container.encoder.Encodable.uri">
@@ -1000,7 +930,6 @@ and store the outputs.</p>
 <li><p><strong>active</strong> – Toggle to <code class="docutils literal notranslate"><span class="pre">False</span></code> to deactivate change data triggering</p></li>
 <li><p><strong>features</strong> – Dictionary of mappings from keys to model</p></li>
 <li><p><strong>identifier</strong> – A string used to identify the model.</p></li>
-<li><p><strong>max_chunk_size</strong> – int = 5000</p></li>
 <li><p><strong>predict_kwargs</strong> – Keyword arguments to self.model.predict</p></li>
 <li><p><strong>select</strong> – Object for selecting which data is processed</p></li>
 <li><p><strong>version</strong> – Version number of the model(?)</p></li>
@@ -1151,7 +1080,7 @@ These objects are <code class="docutils literal notranslate"><span class="pre">c
 <span id="superduperdb-container-model-module"></span><h2>superduperdb.container.model module<a class="headerlink" href="#module-superduperdb.container.model" title="Permalink to this heading">#</a></h2>
 <dl class="py class">
 <dt class="sig sig-object py" id="superduperdb.container.model.Model">
-<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">superduperdb.container.model.</span></span><span class="sig-name descname"><span class="pre">Model</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">identifier:</span> <span class="pre">str</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">object:</span> <span class="pre">~superduperdb.container.artifact.Artifact</span> <span class="pre">|</span> <span class="pre">~typing.Any</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">encoder:</span> <span class="pre">~superduperdb.container.encoder.Encoder</span> <span class="pre">|</span> <span class="pre">str</span> <span class="pre">|</span> <span class="pre">None</span> <span class="pre">=</span> <span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">preprocess:</span> <span class="pre">~typing.Callable</span> <span class="pre">|</span> <span class="pre">~superduperdb.container.artifact.Artifact</span> <span class="pre">|</span> <span class="pre">None</span> <span class="pre">=</span> <span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">postprocess:</span> <span class="pre">~typing.Callable</span> <span class="pre">|</span> <span class="pre">~superduperdb.container.artifact.Artifact</span> <span class="pre">|</span> <span class="pre">None</span> <span class="pre">=</span> <span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">collate_fn:</span> <span class="pre">~typing.Callable</span> <span class="pre">|</span> <span class="pre">~superduperdb.container.artifact.Artifact</span> <span class="pre">|</span> <span class="pre">None</span> <span class="pre">=</span> <span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">metrics:</span> <span class="pre">~typing.Sequence[str</span> <span class="pre">|</span> <span class="pre">~superduperdb.container.metric.Metric</span> <span class="pre">|</span> <span class="pre">None]</span> <span class="pre">=</span> <span class="pre">()</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">predict_method:</span> <span class="pre">str</span> <span class="pre">|</span> <span class="pre">None</span> <span class="pre">=</span> <span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">batch_predict:</span> <span class="pre">bool</span> <span class="pre">=</span> <span class="pre">False</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">takes_context:</span> <span class="pre">bool</span> <span class="pre">=</span> <span class="pre">False</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">train_X:</span> <span class="pre">str</span> <span class="pre">|</span> <span class="pre">~typing.Sequence[str]</span> <span class="pre">|</span> <span class="pre">None</span> <span class="pre">=</span> <span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">train_y:</span> <span class="pre">str</span> <span class="pre">|</span> <span class="pre">~typing.Sequence[str]</span> <span class="pre">|</span> <span class="pre">None</span> <span class="pre">=</span> <span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">training_select:</span> <span class="pre">~superduperdb.db.base.query.Select</span> <span class="pre">|</span> <span class="pre">None</span> <span class="pre">=</span> <span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">metric_values:</span> <span class="pre">~typing.Dict</span> <span class="pre">|</span> <span class="pre">None</span> <span class="pre">=</span> <span class="pre">&lt;factory&gt;</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">training_configuration:</span> <span class="pre">str</span> <span class="pre">|</span> <span class="pre">~superduperdb.container.model._TrainingConfiguration</span> <span class="pre">|</span> <span class="pre">None</span> <span class="pre">=</span> <span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">version:</span> <span class="pre">int</span> <span class="pre">|</span> <span class="pre">None</span> <span class="pre">=</span> <span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">future:</span> <span class="pre">~distributed.client.Future</span> <span class="pre">|</span> <span class="pre">None</span> <span class="pre">=</span> <span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">device:</span> <span class="pre">str</span> <span class="pre">=</span> <span class="pre">'cpu'</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/superduperdb/container/model.html#Model"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#superduperdb.container.model.Model" title="Permalink to this definition">#</a></dt>
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">superduperdb.container.model.</span></span><span class="sig-name descname"><span class="pre">Model</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">identifier:</span> <span class="pre">str</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">object:</span> <span class="pre">~superduperdb.container.artifact.Artifact</span> <span class="pre">|</span> <span class="pre">~typing.Any</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">encoder:</span> <span class="pre">~superduperdb.container.encoder.Encoder</span> <span class="pre">|</span> <span class="pre">str</span> <span class="pre">|</span> <span class="pre">None</span> <span class="pre">=</span> <span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">preprocess:</span> <span class="pre">~superduperdb.container.artifact.Artifact</span> <span class="pre">|</span> <span class="pre">~typing.Callable</span> <span class="pre">|</span> <span class="pre">None</span> <span class="pre">=</span> <span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">postprocess:</span> <span class="pre">~superduperdb.container.artifact.Artifact</span> <span class="pre">|</span> <span class="pre">~typing.Callable</span> <span class="pre">|</span> <span class="pre">None</span> <span class="pre">=</span> <span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">collate_fn:</span> <span class="pre">~superduperdb.container.artifact.Artifact</span> <span class="pre">|</span> <span class="pre">~typing.Callable</span> <span class="pre">|</span> <span class="pre">None</span> <span class="pre">=</span> <span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">metrics:</span> <span class="pre">~typing.Sequence[str</span> <span class="pre">|</span> <span class="pre">~superduperdb.container.metric.Metric</span> <span class="pre">|</span> <span class="pre">None]</span> <span class="pre">=</span> <span class="pre">()</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">predict_method:</span> <span class="pre">str</span> <span class="pre">|</span> <span class="pre">None</span> <span class="pre">=</span> <span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">batch_predict:</span> <span class="pre">bool</span> <span class="pre">=</span> <span class="pre">False</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">takes_context:</span> <span class="pre">bool</span> <span class="pre">=</span> <span class="pre">False</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">train_X:</span> <span class="pre">str</span> <span class="pre">|</span> <span class="pre">~typing.Sequence[str]</span> <span class="pre">|</span> <span class="pre">None</span> <span class="pre">=</span> <span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">train_y:</span> <span class="pre">str</span> <span class="pre">|</span> <span class="pre">~typing.Sequence[str]</span> <span class="pre">|</span> <span class="pre">None</span> <span class="pre">=</span> <span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">training_select:</span> <span class="pre">~superduperdb.db.base.query.Select</span> <span class="pre">|</span> <span class="pre">None</span> <span class="pre">=</span> <span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">metric_values:</span> <span class="pre">~typing.Dict</span> <span class="pre">|</span> <span class="pre">None</span> <span class="pre">=</span> <span class="pre">&lt;factory&gt;</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">training_configuration:</span> <span class="pre">str</span> <span class="pre">|</span> <span class="pre">~superduperdb.container.model._TrainingConfiguration</span> <span class="pre">|</span> <span class="pre">None</span> <span class="pre">=</span> <span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">version:</span> <span class="pre">int</span> <span class="pre">|</span> <span class="pre">None</span> <span class="pre">=</span> <span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">future:</span> <span class="pre">~distributed.client.Future</span> <span class="pre">|</span> <span class="pre">None</span> <span class="pre">=</span> <span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">device:</span> <span class="pre">str</span> <span class="pre">=</span> <span class="pre">'cpu'</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/superduperdb/container/model.html#Model"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#superduperdb.container.model.Model" title="Permalink to this definition">#</a></dt>
 <dd><p>Bases: <a class="reference internal" href="#superduperdb.container.component.Component" title="superduperdb.container.component.Component"><code class="xref py py-class docutils literal notranslate"><span class="pre">Component</span></code></a>, <a class="reference internal" href="#superduperdb.container.model.PredictMixin" title="superduperdb.container.model.PredictMixin"><code class="xref py py-class docutils literal notranslate"><span class="pre">PredictMixin</span></code></a></p>
 <p>Model component which wraps a model to become serializable</p>
 <dl class="field-list simple">
@@ -1308,7 +1237,7 @@ These objects are <code class="docutils literal notranslate"><span class="pre">c
 
 <dl class="py attribute">
 <dt class="sig sig-object py" id="superduperdb.container.model.PredictMixin.collate_fn">
-<span class="sig-name descname"><span class="pre">collate_fn</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">Callable</span><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><a class="reference internal" href="#superduperdb.container.artifact.Artifact" title="superduperdb.container.artifact.Artifact"><span class="pre">Artifact</span></a><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><span class="pre">None</span></em><a class="headerlink" href="#superduperdb.container.model.PredictMixin.collate_fn" title="Permalink to this definition">#</a></dt>
+<span class="sig-name descname"><span class="pre">collate_fn</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">Callable</span><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><a class="reference internal" href="#superduperdb.container.artifact.Artifact" title="superduperdb.container.artifact.Artifact"><span class="pre">Artifact</span></a><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><span class="pre">None</span></em><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">None</span></em><a class="headerlink" href="#superduperdb.container.model.PredictMixin.collate_fn" title="Permalink to this definition">#</a></dt>
 <dd></dd></dl>
 
 <dl class="py method">
@@ -1328,7 +1257,7 @@ These objects are <code class="docutils literal notranslate"><span class="pre">c
 
 <dl class="py attribute">
 <dt class="sig sig-object py" id="superduperdb.container.model.PredictMixin.postprocess">
-<span class="sig-name descname"><span class="pre">postprocess</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">Callable</span><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><a class="reference internal" href="#superduperdb.container.artifact.Artifact" title="superduperdb.container.artifact.Artifact"><span class="pre">Artifact</span></a><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><span class="pre">None</span></em><a class="headerlink" href="#superduperdb.container.model.PredictMixin.postprocess" title="Permalink to this definition">#</a></dt>
+<span class="sig-name descname"><span class="pre">postprocess</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">Callable</span><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><a class="reference internal" href="#superduperdb.container.artifact.Artifact" title="superduperdb.container.artifact.Artifact"><span class="pre">Artifact</span></a><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><span class="pre">None</span></em><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">None</span></em><a class="headerlink" href="#superduperdb.container.model.PredictMixin.postprocess" title="Permalink to this definition">#</a></dt>
 <dd></dd></dl>
 
 <dl class="py method">
@@ -1338,7 +1267,7 @@ These objects are <code class="docutils literal notranslate"><span class="pre">c
 
 <dl class="py attribute">
 <dt class="sig sig-object py" id="superduperdb.container.model.PredictMixin.preprocess">
-<span class="sig-name descname"><span class="pre">preprocess</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">Callable</span><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><a class="reference internal" href="#superduperdb.container.artifact.Artifact" title="superduperdb.container.artifact.Artifact"><span class="pre">Artifact</span></a><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><span class="pre">None</span></em><a class="headerlink" href="#superduperdb.container.model.PredictMixin.preprocess" title="Permalink to this definition">#</a></dt>
+<span class="sig-name descname"><span class="pre">preprocess</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">Callable</span><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><a class="reference internal" href="#superduperdb.container.artifact.Artifact" title="superduperdb.container.artifact.Artifact"><span class="pre">Artifact</span></a><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><span class="pre">None</span></em><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">None</span></em><a class="headerlink" href="#superduperdb.container.model.PredictMixin.preprocess" title="Permalink to this definition">#</a></dt>
 <dd></dd></dl>
 
 <dl class="py attribute">
@@ -1612,7 +1541,7 @@ doesn’t change on mutables.</p>
 
 <dl class="py method">
 <dt class="sig sig-object py" id="superduperdb.container.vector_index.VectorIndex.get_nearest">
-<span class="sig-name descname"><span class="pre">get_nearest</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">like</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference internal" href="#superduperdb.container.document.Document" title="superduperdb.container.document.Document"><span class="pre">Document</span></a></span></em>, <em class="sig-param"><span class="n"><span class="pre">db</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">Any</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">outputs</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">Dict</span><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><span class="pre">None</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">featurize</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">bool</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">True</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">ids</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">Sequence</span><span class="p"><span class="pre">[</span></span><span class="pre">str</span><span class="p"><span class="pre">]</span></span><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><span class="pre">None</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">n</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">int</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">100</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">Tuple</span><span class="p"><span class="pre">[</span></span><span class="pre">List</span><span class="p"><span class="pre">[</span></span><span class="pre">str</span><span class="p"><span class="pre">]</span></span><span class="p"><span class="pre">,</span></span><span class="w"> </span><span class="pre">List</span><span class="p"><span class="pre">[</span></span><span class="pre">float</span><span class="p"><span class="pre">]</span></span><span class="p"><span class="pre">]</span></span></span></span><a class="reference internal" href="../_modules/superduperdb/container/vector_index.html#VectorIndex.get_nearest"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#superduperdb.container.vector_index.VectorIndex.get_nearest" title="Permalink to this definition">#</a></dt>
+<span class="sig-name descname"><span class="pre">get_nearest</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">like</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference internal" href="#superduperdb.container.document.Document" title="superduperdb.container.document.Document"><span class="pre">Document</span></a></span></em>, <em class="sig-param"><span class="n"><span class="pre">db</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">Any</span><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><span class="pre">None</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">outputs</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">Dict</span><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><span class="pre">None</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">featurize</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">bool</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">True</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">ids</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">Sequence</span><span class="p"><span class="pre">[</span></span><span class="pre">str</span><span class="p"><span class="pre">]</span></span><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><span class="pre">None</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">n</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">int</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">100</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">Tuple</span><span class="p"><span class="pre">[</span></span><span class="pre">List</span><span class="p"><span class="pre">[</span></span><span class="pre">str</span><span class="p"><span class="pre">]</span></span><span class="p"><span class="pre">,</span></span><span class="w"> </span><span class="pre">List</span><span class="p"><span class="pre">[</span></span><span class="pre">float</span><span class="p"><span class="pre">]</span></span><span class="p"><span class="pre">]</span></span></span></span><a class="reference internal" href="../_modules/superduperdb/container/vector_index.html#VectorIndex.get_nearest"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#superduperdb.container.vector_index.VectorIndex.get_nearest" title="Permalink to this definition">#</a></dt>
 <dd><p>Given a document, find the nearest results in this vector index, returned as
 two parallel lists of result IDs and scores</p>
 <dl class="field-list simple">
@@ -1846,6 +1775,7 @@ defining AI functionality.</p>
 <li><a class="reference internal" href="#superduperdb.container.document.Document.decode"><code class="docutils literal notranslate"><span class="pre">Document.decode()</span></code></a></li>
 <li><a class="reference internal" href="#superduperdb.container.document.Document.dump_bson"><code class="docutils literal notranslate"><span class="pre">Document.dump_bson()</span></code></a></li>
 <li><a class="reference internal" href="#superduperdb.container.document.Document.encode"><code class="docutils literal notranslate"><span class="pre">Document.encode()</span></code></a></li>
+<li><a class="reference internal" href="#superduperdb.container.document.Document.outputs"><code class="docutils literal notranslate"><span class="pre">Document.outputs()</span></code></a></li>
 <li><a class="reference internal" href="#superduperdb.container.document.Document.unpack"><code class="docutils literal notranslate"><span class="pre">Document.unpack()</span></code></a></li>
 </ul>
 </li>
@@ -1856,13 +1786,8 @@ defining AI functionality.</p>
 </li>
 <li><a class="reference internal" href="#module-superduperdb.container.encoder">superduperdb.container.encoder module</a><ul>
 <li><a class="reference internal" href="#superduperdb.container.encoder.Encodable"><code class="docutils literal notranslate"><span class="pre">Encodable</span></code></a><ul>
-<li><a class="reference internal" href="#superduperdb.container.encoder.Encodable.asdict"><code class="docutils literal notranslate"><span class="pre">Encodable.asdict()</span></code></a></li>
-<li><a class="reference internal" href="#superduperdb.container.encoder.Encodable.astuple"><code class="docutils literal notranslate"><span class="pre">Encodable.astuple()</span></code></a></li>
-<li><a class="reference internal" href="#superduperdb.container.encoder.Encodable.dict"><code class="docutils literal notranslate"><span class="pre">Encodable.dict()</span></code></a></li>
 <li><a class="reference internal" href="#superduperdb.container.encoder.Encodable.encode"><code class="docutils literal notranslate"><span class="pre">Encodable.encode()</span></code></a></li>
 <li><a class="reference internal" href="#superduperdb.container.encoder.Encodable.encoder"><code class="docutils literal notranslate"><span class="pre">Encodable.encoder</span></code></a></li>
-<li><a class="reference internal" href="#superduperdb.container.encoder.Encodable.fields"><code class="docutils literal notranslate"><span class="pre">Encodable.fields()</span></code></a></li>
-<li><a class="reference internal" href="#superduperdb.container.encoder.Encodable.replace"><code class="docutils literal notranslate"><span class="pre">Encodable.replace()</span></code></a></li>
 <li><a class="reference internal" href="#superduperdb.container.encoder.Encodable.uri"><code class="docutils literal notranslate"><span class="pre">Encodable.uri</span></code></a></li>
 <li><a class="reference internal" href="#superduperdb.container.encoder.Encodable.x"><code class="docutils literal notranslate"><span class="pre">Encodable.x</span></code></a></li>
 </ul>
@@ -2052,13 +1977,12 @@ defining AI functionality.</p>
       
     </aside>
   </div>
-</div><script data-url_root="../" id="documentation_options" src="../_static/documentation_options.js"></script>
-    <script src="../_static/doctools.js"></script>
-    <script src="../_static/sphinx_highlight.js"></script>
-    <script src="../_static/scripts/furo.js"></script>
-    <script src="../_static/clipboard.min.js"></script>
-    <script src="../_static/copybutton.js"></script>
+</div><script data-url_root="../" id="documentation_options" src="../_static/documentation_options.js?v=b3ba4146"></script>
+    <script src="../_static/doctools.js?v=888ff710"></script>
+    <script src="../_static/sphinx_highlight.js?v=4825356b"></script>
+    <script src="../_static/scripts/furo.js?v=32e29ea5"></script>
+    <script src="../_static/clipboard.min.js?v=a7894cd8"></script>
+    <script src="../_static/copybutton.js?v=f281be69"></script>
     <script crossorigin="anonymous" integrity="sha256-Ae2Vz/4ePdIu6ZyI/5ZGsYnb+m0JlOmKPjt6XZ9JJkA=" src="https://cdnjs.cloudflare.com/ajax/libs/require.js/2.3.4/require.min.js"></script>
-    <script src="https://cdn.jsdelivr.net/npm/@jupyter-widgets/html-manager@^1.0.1/dist/embed-amd.js"></script>
     </body>
 </html>

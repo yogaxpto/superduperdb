@@ -4,12 +4,12 @@
     <meta name="viewport" content="width=device-width,initial-scale=1"/>
     <meta name="color-scheme" content="light dark"><link rel="index" title="Index" href="../genindex.html" /><link rel="search" title="Search" href="../search.html" />
 
-    <!-- Generated with Sphinx 6.2.1 and Furo 2023.05.20 -->
+    <!-- Generated with Sphinx 7.1.2 and Furo 2023.07.26 -->
         <title>subprocess - SuperDuperDB documentation</title>
-      <link rel="stylesheet" type="text/css" href="../_static/pygments.css" />
-    <link rel="stylesheet" type="text/css" href="../_static/styles/furo.css?digest=e6660623a769aa55fea372102b9bf3151b292993" />
-    <link rel="stylesheet" type="text/css" href="../_static/copybutton.css" />
-    <link rel="stylesheet" type="text/css" href="../_static/styles/furo-extensions.css?digest=30d1aed668e5c3a91c3e3bf6a60b675221979f0e" />
+      <link rel="stylesheet" type="text/css" href="../_static/pygments.css?v=fa44fd50" />
+    <link rel="stylesheet" type="text/css" href="../_static/styles/furo.css?v=135e06be" />
+    <link rel="stylesheet" type="text/css" href="../_static/copybutton.css?v=76b2166b" />
+    <link rel="stylesheet" type="text/css" href="../_static/styles/furo-extensions.css?v=36a5483c" />
     
     
 
@@ -188,7 +188,7 @@
 </ul>
 </li>
 <li class="toctree-l1 has-children"><a class="reference internal" href="../how_to/index.html">How to …</a><input class="toctree-checkbox" id="toctree-checkbox-5" name="toctree-checkbox-5" role="switch" type="checkbox"/><label for="toctree-checkbox-5"><div class="visually-hidden">Toggle navigation of How to …</div><i class="icon"><svg><use href="#svg-arrow-right"></use></svg></i></label><ul>
-<li class="toctree-l2"><a class="reference internal" href="../how_to/playground.html">Download, install and setup SuperDuperDB</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../how_to/playground.html"><strong>Welcome to the SuperDuperDB Playground!</strong></a></li>
 <li class="toctree-l2"><a class="reference internal" href="../how_to/add_images_or_audio.html">Add images, audio or video from URIs</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../how_to/create_replicaset.html">How to create a replica set in MongoDB</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../how_to/mongo_cdc.html">Perform change data capture (CDC)</a></li>
@@ -199,7 +199,7 @@
 <li class="toctree-l2"><a class="reference internal" href="../examples/mnist_torch.html">Training and maintaining MNIST predictions</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../examples/mnist_sklearn.html">MNIST using scikit-learn and SuperDuperDB</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../examples/openai.html">OpenAI vector search</a></li>
-<li class="toctree-l2"><a class="reference internal" href="../examples/compare_vector_search_solutions.html">Compare vector search</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../examples/compare_vector_search_solutions.html">Turn your classical-database into a vector-database with SuperDuperDB</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../examples/multimodal_image_search_clip.html">Multimodal search with CLIP</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../examples/sentiment_analysis_use_case.html">Sentiment analysis with transformers</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../examples/voice_memos.html">Cataloguing voice-memos for a self managed personal assistant</a></li>
@@ -287,6 +287,7 @@
 <span class="c1"># Copyright (c) 2003-2005 by Peter Astrand &lt;astrand@lysator.liu.se&gt;</span>
 <span class="c1">#</span>
 <span class="c1"># Licensed to PSF under a Contributor Agreement.</span>
+<span class="c1"># See http://www.python.org/2.4/license for licensing details.</span>
 
 <span class="sa">r</span><span class="sd">&quot;&quot;&quot;Subprocesses with accessible I/O streams</span>
 
@@ -325,7 +326,6 @@
 <span class="kn">import</span> <span class="nn">builtins</span>
 <span class="kn">import</span> <span class="nn">errno</span>
 <span class="kn">import</span> <span class="nn">io</span>
-<span class="kn">import</span> <span class="nn">locale</span>
 <span class="kn">import</span> <span class="nn">os</span>
 <span class="kn">import</span> <span class="nn">time</span>
 <span class="kn">import</span> <span class="nn">signal</span>
@@ -334,12 +334,6 @@
 <span class="kn">import</span> <span class="nn">warnings</span>
 <span class="kn">import</span> <span class="nn">contextlib</span>
 <span class="kn">from</span> <span class="nn">time</span> <span class="kn">import</span> <span class="n">monotonic</span> <span class="k">as</span> <span class="n">_time</span>
-<span class="kn">import</span> <span class="nn">types</span>
-
-<span class="k">try</span><span class="p">:</span>
-    <span class="kn">import</span> <span class="nn">fcntl</span>
-<span class="k">except</span> <span class="ne">ImportError</span><span class="p">:</span>
-    <span class="n">fcntl</span> <span class="o">=</span> <span class="kc">None</span>
 
 
 <span class="n">__all__</span> <span class="o">=</span> <span class="p">[</span><span class="s2">&quot;Popen&quot;</span><span class="p">,</span> <span class="s2">&quot;PIPE&quot;</span><span class="p">,</span> <span class="s2">&quot;STDOUT&quot;</span><span class="p">,</span> <span class="s2">&quot;call&quot;</span><span class="p">,</span> <span class="s2">&quot;check_call&quot;</span><span class="p">,</span> <span class="s2">&quot;getstatusoutput&quot;</span><span class="p">,</span>
@@ -348,19 +342,16 @@
            <span class="c1"># NOTE: We intentionally exclude list2cmdline as it is</span>
            <span class="c1"># considered an internal implementation detail.  issue10838.</span>
 
-<span class="c1"># use presence of msvcrt to detect Windows-like platforms (see bpo-8110)</span>
 <span class="k">try</span><span class="p">:</span>
     <span class="kn">import</span> <span class="nn">msvcrt</span>
+    <span class="kn">import</span> <span class="nn">_winapi</span>
+    <span class="n">_mswindows</span> <span class="o">=</span> <span class="kc">True</span>
 <span class="k">except</span> <span class="ne">ModuleNotFoundError</span><span class="p">:</span>
     <span class="n">_mswindows</span> <span class="o">=</span> <span class="kc">False</span>
+    <span class="kn">import</span> <span class="nn">_posixsubprocess</span>
+    <span class="kn">import</span> <span class="nn">select</span>
+    <span class="kn">import</span> <span class="nn">selectors</span>
 <span class="k">else</span><span class="p">:</span>
-    <span class="n">_mswindows</span> <span class="o">=</span> <span class="kc">True</span>
-
-<span class="c1"># wasm32-emscripten and wasm32-wasi do not support processes</span>
-<span class="n">_can_fork_exec</span> <span class="o">=</span> <span class="n">sys</span><span class="o">.</span><span class="n">platform</span> <span class="ow">not</span> <span class="ow">in</span> <span class="p">{</span><span class="s2">&quot;emscripten&quot;</span><span class="p">,</span> <span class="s2">&quot;wasi&quot;</span><span class="p">}</span>
-
-<span class="k">if</span> <span class="n">_mswindows</span><span class="p">:</span>
-    <span class="kn">import</span> <span class="nn">_winapi</span>
     <span class="kn">from</span> <span class="nn">_winapi</span> <span class="kn">import</span> <span class="p">(</span><span class="n">CREATE_NEW_CONSOLE</span><span class="p">,</span> <span class="n">CREATE_NEW_PROCESS_GROUP</span><span class="p">,</span>
                          <span class="n">STD_INPUT_HANDLE</span><span class="p">,</span> <span class="n">STD_OUTPUT_HANDLE</span><span class="p">,</span>
                          <span class="n">STD_ERROR_HANDLE</span><span class="p">,</span> <span class="n">SW_HIDE</span><span class="p">,</span>
@@ -381,24 +372,6 @@
                     <span class="s2">&quot;NORMAL_PRIORITY_CLASS&quot;</span><span class="p">,</span> <span class="s2">&quot;REALTIME_PRIORITY_CLASS&quot;</span><span class="p">,</span>
                     <span class="s2">&quot;CREATE_NO_WINDOW&quot;</span><span class="p">,</span> <span class="s2">&quot;DETACHED_PROCESS&quot;</span><span class="p">,</span>
                     <span class="s2">&quot;CREATE_DEFAULT_ERROR_MODE&quot;</span><span class="p">,</span> <span class="s2">&quot;CREATE_BREAKAWAY_FROM_JOB&quot;</span><span class="p">])</span>
-<span class="k">else</span><span class="p">:</span>
-    <span class="k">if</span> <span class="n">_can_fork_exec</span><span class="p">:</span>
-        <span class="kn">from</span> <span class="nn">_posixsubprocess</span> <span class="kn">import</span> <span class="n">fork_exec</span> <span class="k">as</span> <span class="n">_fork_exec</span>
-        <span class="c1"># used in methods that are called by __del__</span>
-        <span class="n">_waitpid</span> <span class="o">=</span> <span class="n">os</span><span class="o">.</span><span class="n">waitpid</span>
-        <span class="n">_waitstatus_to_exitcode</span> <span class="o">=</span> <span class="n">os</span><span class="o">.</span><span class="n">waitstatus_to_exitcode</span>
-        <span class="n">_WIFSTOPPED</span> <span class="o">=</span> <span class="n">os</span><span class="o">.</span><span class="n">WIFSTOPPED</span>
-        <span class="n">_WSTOPSIG</span> <span class="o">=</span> <span class="n">os</span><span class="o">.</span><span class="n">WSTOPSIG</span>
-        <span class="n">_WNOHANG</span> <span class="o">=</span> <span class="n">os</span><span class="o">.</span><span class="n">WNOHANG</span>
-    <span class="k">else</span><span class="p">:</span>
-        <span class="n">_fork_exec</span> <span class="o">=</span> <span class="kc">None</span>
-        <span class="n">_waitpid</span> <span class="o">=</span> <span class="kc">None</span>
-        <span class="n">_waitstatus_to_exitcode</span> <span class="o">=</span> <span class="kc">None</span>
-        <span class="n">_WIFSTOPPED</span> <span class="o">=</span> <span class="kc">None</span>
-        <span class="n">_WSTOPSIG</span> <span class="o">=</span> <span class="kc">None</span>
-        <span class="n">_WNOHANG</span> <span class="o">=</span> <span class="kc">None</span>
-    <span class="kn">import</span> <span class="nn">select</span>
-    <span class="kn">import</span> <span class="nn">selectors</span>
 
 
 <span class="c1"># Exception classes used by this module.</span>
@@ -606,14 +579,12 @@
             <span class="n">args</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="s1">&#39;-E&#39;</span><span class="p">)</span>
         <span class="k">if</span> <span class="n">sys</span><span class="o">.</span><span class="n">flags</span><span class="o">.</span><span class="n">no_user_site</span><span class="p">:</span>
             <span class="n">args</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="s1">&#39;-s&#39;</span><span class="p">)</span>
-        <span class="k">if</span> <span class="n">sys</span><span class="o">.</span><span class="n">flags</span><span class="o">.</span><span class="n">safe_path</span><span class="p">:</span>
-            <span class="n">args</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="s1">&#39;-P&#39;</span><span class="p">)</span>
 
     <span class="c1"># -W options</span>
     <span class="n">warnopts</span> <span class="o">=</span> <span class="n">sys</span><span class="o">.</span><span class="n">warnoptions</span><span class="p">[:]</span>
-    <span class="n">xoptions</span> <span class="o">=</span> <span class="nb">getattr</span><span class="p">(</span><span class="n">sys</span><span class="p">,</span> <span class="s1">&#39;_xoptions&#39;</span><span class="p">,</span> <span class="p">{})</span>
     <span class="n">bytes_warning</span> <span class="o">=</span> <span class="n">sys</span><span class="o">.</span><span class="n">flags</span><span class="o">.</span><span class="n">bytes_warning</span>
-    <span class="n">dev_mode</span> <span class="o">=</span> <span class="n">sys</span><span class="o">.</span><span class="n">flags</span><span class="o">.</span><span class="n">dev_mode</span>
+    <span class="n">xoptions</span> <span class="o">=</span> <span class="nb">getattr</span><span class="p">(</span><span class="n">sys</span><span class="p">,</span> <span class="s1">&#39;_xoptions&#39;</span><span class="p">,</span> <span class="p">{})</span>
+    <span class="n">dev_mode</span> <span class="o">=</span> <span class="p">(</span><span class="s1">&#39;dev&#39;</span> <span class="ow">in</span> <span class="n">xoptions</span><span class="p">)</span>
 
     <span class="k">if</span> <span class="n">bytes_warning</span> <span class="o">&gt;</span> <span class="mi">1</span><span class="p">:</span>
         <span class="n">warnopts</span><span class="o">.</span><span class="n">remove</span><span class="p">(</span><span class="s2">&quot;error::BytesWarning&quot;</span><span class="p">)</span>
@@ -628,7 +599,7 @@
     <span class="k">if</span> <span class="n">dev_mode</span><span class="p">:</span>
         <span class="n">args</span><span class="o">.</span><span class="n">extend</span><span class="p">((</span><span class="s1">&#39;-X&#39;</span><span class="p">,</span> <span class="s1">&#39;dev&#39;</span><span class="p">))</span>
     <span class="k">for</span> <span class="n">opt</span> <span class="ow">in</span> <span class="p">(</span><span class="s1">&#39;faulthandler&#39;</span><span class="p">,</span> <span class="s1">&#39;tracemalloc&#39;</span><span class="p">,</span> <span class="s1">&#39;importtime&#39;</span><span class="p">,</span>
-                <span class="s1">&#39;showrefcount&#39;</span><span class="p">,</span> <span class="s1">&#39;utf8&#39;</span><span class="p">):</span>
+                <span class="s1">&#39;showalloccount&#39;</span><span class="p">,</span> <span class="s1">&#39;showrefcount&#39;</span><span class="p">,</span> <span class="s1">&#39;utf8&#39;</span><span class="p">):</span>
         <span class="k">if</span> <span class="n">opt</span> <span class="ow">in</span> <span class="n">xoptions</span><span class="p">:</span>
             <span class="n">value</span> <span class="o">=</span> <span class="n">xoptions</span><span class="p">[</span><span class="n">opt</span><span class="p">]</span>
             <span class="k">if</span> <span class="n">value</span> <span class="ow">is</span> <span class="kc">True</span><span class="p">:</span>
@@ -638,26 +609,6 @@
             <span class="n">args</span><span class="o">.</span><span class="n">extend</span><span class="p">((</span><span class="s1">&#39;-X&#39;</span><span class="p">,</span> <span class="n">arg</span><span class="p">))</span>
 
     <span class="k">return</span> <span class="n">args</span>
-
-
-<span class="k">def</span> <span class="nf">_text_encoding</span><span class="p">():</span>
-    <span class="c1"># Return default text encoding and emit EncodingWarning if</span>
-    <span class="c1"># sys.flags.warn_default_encoding is true.</span>
-    <span class="k">if</span> <span class="n">sys</span><span class="o">.</span><span class="n">flags</span><span class="o">.</span><span class="n">warn_default_encoding</span><span class="p">:</span>
-        <span class="n">f</span> <span class="o">=</span> <span class="n">sys</span><span class="o">.</span><span class="n">_getframe</span><span class="p">()</span>
-        <span class="n">filename</span> <span class="o">=</span> <span class="n">f</span><span class="o">.</span><span class="n">f_code</span><span class="o">.</span><span class="n">co_filename</span>
-        <span class="n">stacklevel</span> <span class="o">=</span> <span class="mi">2</span>
-        <span class="k">while</span> <span class="n">f</span> <span class="o">:=</span> <span class="n">f</span><span class="o">.</span><span class="n">f_back</span><span class="p">:</span>
-            <span class="k">if</span> <span class="n">f</span><span class="o">.</span><span class="n">f_code</span><span class="o">.</span><span class="n">co_filename</span> <span class="o">!=</span> <span class="n">filename</span><span class="p">:</span>
-                <span class="k">break</span>
-            <span class="n">stacklevel</span> <span class="o">+=</span> <span class="mi">1</span>
-        <span class="n">warnings</span><span class="o">.</span><span class="n">warn</span><span class="p">(</span><span class="s2">&quot;&#39;encoding&#39; argument not specified.&quot;</span><span class="p">,</span>
-                      <span class="ne">EncodingWarning</span><span class="p">,</span> <span class="n">stacklevel</span><span class="p">)</span>
-
-    <span class="k">if</span> <span class="n">sys</span><span class="o">.</span><span class="n">flags</span><span class="o">.</span><span class="n">utf8_mode</span><span class="p">:</span>
-        <span class="k">return</span> <span class="s2">&quot;utf-8&quot;</span>
-    <span class="k">else</span><span class="p">:</span>
-        <span class="k">return</span> <span class="n">locale</span><span class="o">.</span><span class="n">getencoding</span><span class="p">()</span>
 
 
 <span class="k">def</span> <span class="nf">call</span><span class="p">(</span><span class="o">*</span><span class="n">popenargs</span><span class="p">,</span> <span class="n">timeout</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">):</span>
@@ -731,15 +682,13 @@
 <span class="sd">    decoded according to locale encoding, or by &quot;encoding&quot; if set. Text mode</span>
 <span class="sd">    is triggered by setting any of text, encoding, errors or universal_newlines.</span>
 <span class="sd">    &quot;&quot;&quot;</span>
-    <span class="k">for</span> <span class="n">kw</span> <span class="ow">in</span> <span class="p">(</span><span class="s1">&#39;stdout&#39;</span><span class="p">,</span> <span class="s1">&#39;check&#39;</span><span class="p">):</span>
-        <span class="k">if</span> <span class="n">kw</span> <span class="ow">in</span> <span class="n">kwargs</span><span class="p">:</span>
-            <span class="k">raise</span> <span class="ne">ValueError</span><span class="p">(</span><span class="sa">f</span><span class="s1">&#39;</span><span class="si">{</span><span class="n">kw</span><span class="si">}</span><span class="s1"> argument not allowed, it will be overridden.&#39;</span><span class="p">)</span>
+    <span class="k">if</span> <span class="s1">&#39;stdout&#39;</span> <span class="ow">in</span> <span class="n">kwargs</span><span class="p">:</span>
+        <span class="k">raise</span> <span class="ne">ValueError</span><span class="p">(</span><span class="s1">&#39;stdout argument not allowed, it will be overridden.&#39;</span><span class="p">)</span>
 
     <span class="k">if</span> <span class="s1">&#39;input&#39;</span> <span class="ow">in</span> <span class="n">kwargs</span> <span class="ow">and</span> <span class="n">kwargs</span><span class="p">[</span><span class="s1">&#39;input&#39;</span><span class="p">]</span> <span class="ow">is</span> <span class="kc">None</span><span class="p">:</span>
         <span class="c1"># Explicitly passing input=None was previously equivalent to passing an</span>
         <span class="c1"># empty string. That is maintained here for backwards compatibility.</span>
-        <span class="k">if</span> <span class="n">kwargs</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s1">&#39;universal_newlines&#39;</span><span class="p">)</span> <span class="ow">or</span> <span class="n">kwargs</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s1">&#39;text&#39;</span><span class="p">)</span> <span class="ow">or</span> <span class="n">kwargs</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s1">&#39;encoding&#39;</span><span class="p">)</span> \
-                <span class="ow">or</span> <span class="n">kwargs</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s1">&#39;errors&#39;</span><span class="p">):</span>
+        <span class="k">if</span> <span class="n">kwargs</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s1">&#39;universal_newlines&#39;</span><span class="p">)</span> <span class="ow">or</span> <span class="n">kwargs</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s1">&#39;text&#39;</span><span class="p">):</span>
             <span class="n">empty</span> <span class="o">=</span> <span class="s1">&#39;&#39;</span>
         <span class="k">else</span><span class="p">:</span>
             <span class="n">empty</span> <span class="o">=</span> <span class="sa">b</span><span class="s1">&#39;&#39;</span>
@@ -775,9 +724,6 @@
             <span class="n">args</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="s1">&#39;stderr=</span><span class="si">{!r}</span><span class="s1">&#39;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">stderr</span><span class="p">))</span>
         <span class="k">return</span> <span class="s2">&quot;</span><span class="si">{}</span><span class="s2">(</span><span class="si">{}</span><span class="s2">)&quot;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="nb">type</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span><span class="o">.</span><span class="vm">__name__</span><span class="p">,</span> <span class="s1">&#39;, &#39;</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="n">args</span><span class="p">))</span>
 
-    <span class="n">__class_getitem__</span> <span class="o">=</span> <span class="nb">classmethod</span><span class="p">(</span><span class="n">types</span><span class="o">.</span><span class="n">GenericAlias</span><span class="p">)</span>
-
-
     <span class="k">def</span> <span class="nf">check_returncode</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
 <span class="w">        </span><span class="sd">&quot;&quot;&quot;Raise CalledProcessError if the exit code is non-zero.&quot;&quot;&quot;</span>
         <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">returncode</span><span class="p">:</span>
@@ -791,8 +737,7 @@
 
 <span class="sd">    The returned instance will have attributes args, returncode, stdout and</span>
 <span class="sd">    stderr. By default, stdout and stderr are not captured, and those attributes</span>
-<span class="sd">    will be None. Pass stdout=PIPE and/or stderr=PIPE in order to capture them,</span>
-<span class="sd">    or pass capture_output=True to capture both.</span>
+<span class="sd">    will be None. Pass stdout=PIPE and/or stderr=PIPE in order to capture them.</span>
 
 <span class="sd">    If check is True and the exit code was non-zero, it raises a</span>
 <span class="sd">    CalledProcessError. The CalledProcessError object will have the return code</span>
@@ -928,7 +873,7 @@
 <span class="c1"># Various tools for executing commands and looking at their output and status.</span>
 <span class="c1">#</span>
 
-<span class="k">def</span> <span class="nf">getstatusoutput</span><span class="p">(</span><span class="n">cmd</span><span class="p">,</span> <span class="o">*</span><span class="p">,</span> <span class="n">encoding</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">errors</span><span class="o">=</span><span class="kc">None</span><span class="p">):</span>
+<span class="k">def</span> <span class="nf">getstatusoutput</span><span class="p">(</span><span class="n">cmd</span><span class="p">):</span>
 <span class="w">    </span><span class="sd">&quot;&quot;&quot;Return (exitcode, output) of executing cmd in a shell.</span>
 
 <span class="sd">    Execute the string &#39;cmd&#39; in a shell with &#39;check_output&#39; and</span>
@@ -950,8 +895,7 @@
 <span class="sd">    (-15, &#39;&#39;)</span>
 <span class="sd">    &quot;&quot;&quot;</span>
     <span class="k">try</span><span class="p">:</span>
-        <span class="n">data</span> <span class="o">=</span> <span class="n">check_output</span><span class="p">(</span><span class="n">cmd</span><span class="p">,</span> <span class="n">shell</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span> <span class="n">text</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span> <span class="n">stderr</span><span class="o">=</span><span class="n">STDOUT</span><span class="p">,</span>
-                            <span class="n">encoding</span><span class="o">=</span><span class="n">encoding</span><span class="p">,</span> <span class="n">errors</span><span class="o">=</span><span class="n">errors</span><span class="p">)</span>
+        <span class="n">data</span> <span class="o">=</span> <span class="n">check_output</span><span class="p">(</span><span class="n">cmd</span><span class="p">,</span> <span class="n">shell</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span> <span class="n">text</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span> <span class="n">stderr</span><span class="o">=</span><span class="n">STDOUT</span><span class="p">)</span>
         <span class="n">exitcode</span> <span class="o">=</span> <span class="mi">0</span>
     <span class="k">except</span> <span class="n">CalledProcessError</span> <span class="k">as</span> <span class="n">ex</span><span class="p">:</span>
         <span class="n">data</span> <span class="o">=</span> <span class="n">ex</span><span class="o">.</span><span class="n">output</span>
@@ -960,7 +904,7 @@
         <span class="n">data</span> <span class="o">=</span> <span class="n">data</span><span class="p">[:</span><span class="o">-</span><span class="mi">1</span><span class="p">]</span>
     <span class="k">return</span> <span class="n">exitcode</span><span class="p">,</span> <span class="n">data</span>
 
-<span class="k">def</span> <span class="nf">getoutput</span><span class="p">(</span><span class="n">cmd</span><span class="p">,</span> <span class="o">*</span><span class="p">,</span> <span class="n">encoding</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">errors</span><span class="o">=</span><span class="kc">None</span><span class="p">):</span>
+<span class="k">def</span> <span class="nf">getoutput</span><span class="p">(</span><span class="n">cmd</span><span class="p">):</span>
 <span class="w">    </span><span class="sd">&quot;&quot;&quot;Return output (stdout or stderr) of executing cmd in a shell.</span>
 
 <span class="sd">    Like getstatusoutput(), except the exit status is ignored and the return</span>
@@ -970,8 +914,7 @@
 <span class="sd">    &gt;&gt;&gt; subprocess.getoutput(&#39;ls /bin/ls&#39;)</span>
 <span class="sd">    &#39;/bin/ls&#39;</span>
 <span class="sd">    &quot;&quot;&quot;</span>
-    <span class="k">return</span> <span class="n">getstatusoutput</span><span class="p">(</span><span class="n">cmd</span><span class="p">,</span> <span class="n">encoding</span><span class="o">=</span><span class="n">encoding</span><span class="p">,</span> <span class="n">errors</span><span class="o">=</span><span class="n">errors</span><span class="p">)[</span><span class="mi">1</span><span class="p">]</span>
-
+    <span class="k">return</span> <span class="n">getstatusoutput</span><span class="p">(</span><span class="n">cmd</span><span class="p">)[</span><span class="mi">1</span><span class="p">]</span>
 
 
 <span class="k">def</span> <span class="nf">_use_posix_spawn</span><span class="p">():</span>
@@ -991,9 +934,8 @@
         <span class="c1"># os.posix_spawn() is not available</span>
         <span class="k">return</span> <span class="kc">False</span>
 
-    <span class="k">if</span> <span class="n">sys</span><span class="o">.</span><span class="n">platform</span> <span class="ow">in</span> <span class="p">(</span><span class="s1">&#39;darwin&#39;</span><span class="p">,</span> <span class="s1">&#39;sunos5&#39;</span><span class="p">):</span>
-        <span class="c1"># posix_spawn() is a syscall on both macOS and Solaris,</span>
-        <span class="c1"># and properly reports errors</span>
+    <span class="k">if</span> <span class="n">sys</span><span class="o">.</span><span class="n">platform</span> <span class="o">==</span> <span class="s1">&#39;darwin&#39;</span><span class="p">:</span>
+        <span class="c1"># posix_spawn() is a syscall on macOS and properly reports errors</span>
         <span class="k">return</span> <span class="kc">True</span>
 
     <span class="c1"># Check libc name and runtime libc version</span>
@@ -1022,13 +964,10 @@
     <span class="k">return</span> <span class="kc">False</span>
 
 
-<span class="c1"># These are primarily fail-safe knobs for negatives. A True value does not</span>
-<span class="c1"># guarantee the given libc/syscall API will be used.</span>
 <span class="n">_USE_POSIX_SPAWN</span> <span class="o">=</span> <span class="n">_use_posix_spawn</span><span class="p">()</span>
-<span class="n">_USE_VFORK</span> <span class="o">=</span> <span class="kc">True</span>
 
 
-<span class="k">class</span> <span class="nc">Popen</span><span class="p">:</span>
+<span class="k">class</span> <span class="nc">Popen</span><span class="p">(</span><span class="nb">object</span><span class="p">):</span>
 <span class="w">    </span><span class="sd">&quot;&quot;&quot; Execute a child program in a new process.</span>
 
 <span class="sd">    For a complete description of the arguments see the Python documentation.</span>
@@ -1066,16 +1005,6 @@
 
 <span class="sd">      start_new_session (POSIX only)</span>
 
-<span class="sd">      process_group (POSIX only)</span>
-
-<span class="sd">      group (POSIX only)</span>
-
-<span class="sd">      extra_groups (POSIX only)</span>
-
-<span class="sd">      user (POSIX only)</span>
-
-<span class="sd">      umask (POSIX only)</span>
-
 <span class="sd">      pass_fds (POSIX only)</span>
 
 <span class="sd">      encoding and errors: Text mode encoding and error handling to use for</span>
@@ -1092,15 +1021,8 @@
                  <span class="n">shell</span><span class="o">=</span><span class="kc">False</span><span class="p">,</span> <span class="n">cwd</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">env</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">universal_newlines</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span>
                  <span class="n">startupinfo</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">creationflags</span><span class="o">=</span><span class="mi">0</span><span class="p">,</span>
                  <span class="n">restore_signals</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span> <span class="n">start_new_session</span><span class="o">=</span><span class="kc">False</span><span class="p">,</span>
-                 <span class="n">pass_fds</span><span class="o">=</span><span class="p">(),</span> <span class="o">*</span><span class="p">,</span> <span class="n">user</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">group</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">extra_groups</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span>
-                 <span class="n">encoding</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">errors</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">text</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">umask</span><span class="o">=-</span><span class="mi">1</span><span class="p">,</span> <span class="n">pipesize</span><span class="o">=-</span><span class="mi">1</span><span class="p">,</span>
-                 <span class="n">process_group</span><span class="o">=</span><span class="kc">None</span><span class="p">):</span>
+                 <span class="n">pass_fds</span><span class="o">=</span><span class="p">(),</span> <span class="o">*</span><span class="p">,</span> <span class="n">encoding</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">errors</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">text</span><span class="o">=</span><span class="kc">None</span><span class="p">):</span>
 <span class="w">        </span><span class="sd">&quot;&quot;&quot;Create new Popen instance.&quot;&quot;&quot;</span>
-        <span class="k">if</span> <span class="ow">not</span> <span class="n">_can_fork_exec</span><span class="p">:</span>
-            <span class="k">raise</span> <span class="ne">OSError</span><span class="p">(</span>
-                <span class="n">errno</span><span class="o">.</span><span class="n">ENOTSUP</span><span class="p">,</span> <span class="sa">f</span><span class="s2">&quot;</span><span class="si">{</span><span class="n">sys</span><span class="o">.</span><span class="n">platform</span><span class="si">}</span><span class="s2"> does not support processes.&quot;</span>
-            <span class="p">)</span>
-
         <span class="n">_cleanup</span><span class="p">()</span>
         <span class="c1"># Held while anything is calling waitpid before returncode has been</span>
         <span class="c1"># updated to prevent clobbering returncode if wait() or poll() are</span>
@@ -1115,11 +1037,6 @@
             <span class="n">bufsize</span> <span class="o">=</span> <span class="o">-</span><span class="mi">1</span>  <span class="c1"># Restore default</span>
         <span class="k">if</span> <span class="ow">not</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">bufsize</span><span class="p">,</span> <span class="nb">int</span><span class="p">):</span>
             <span class="k">raise</span> <span class="ne">TypeError</span><span class="p">(</span><span class="s2">&quot;bufsize must be an integer&quot;</span><span class="p">)</span>
-
-        <span class="k">if</span> <span class="n">pipesize</span> <span class="ow">is</span> <span class="kc">None</span><span class="p">:</span>
-            <span class="n">pipesize</span> <span class="o">=</span> <span class="o">-</span><span class="mi">1</span>  <span class="c1"># Restore default</span>
-        <span class="k">if</span> <span class="ow">not</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">pipesize</span><span class="p">,</span> <span class="nb">int</span><span class="p">):</span>
-            <span class="k">raise</span> <span class="ne">TypeError</span><span class="p">(</span><span class="s2">&quot;pipesize must be an integer&quot;</span><span class="p">)</span>
 
         <span class="k">if</span> <span class="n">_mswindows</span><span class="p">:</span>
             <span class="k">if</span> <span class="n">preexec_fn</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span><span class="p">:</span>
@@ -1145,7 +1062,6 @@
         <span class="bp">self</span><span class="o">.</span><span class="n">returncode</span> <span class="o">=</span> <span class="kc">None</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">encoding</span> <span class="o">=</span> <span class="n">encoding</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">errors</span> <span class="o">=</span> <span class="n">errors</span>
-        <span class="bp">self</span><span class="o">.</span><span class="n">pipesize</span> <span class="o">=</span> <span class="n">pipesize</span>
 
         <span class="c1"># Validate the combinations of text and universal_newlines</span>
         <span class="k">if</span> <span class="p">(</span><span class="n">text</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span> <span class="ow">and</span> <span class="n">universal_newlines</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span>
@@ -1186,8 +1102,6 @@
                 <span class="n">errread</span> <span class="o">=</span> <span class="n">msvcrt</span><span class="o">.</span><span class="n">open_osfhandle</span><span class="p">(</span><span class="n">errread</span><span class="o">.</span><span class="n">Detach</span><span class="p">(),</span> <span class="mi">0</span><span class="p">)</span>
 
         <span class="bp">self</span><span class="o">.</span><span class="n">text_mode</span> <span class="o">=</span> <span class="n">encoding</span> <span class="ow">or</span> <span class="n">errors</span> <span class="ow">or</span> <span class="n">text</span> <span class="ow">or</span> <span class="n">universal_newlines</span>
-        <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">text_mode</span> <span class="ow">and</span> <span class="n">encoding</span> <span class="ow">is</span> <span class="kc">None</span><span class="p">:</span>
-            <span class="bp">self</span><span class="o">.</span><span class="n">encoding</span> <span class="o">=</span> <span class="n">encoding</span> <span class="o">=</span> <span class="n">_text_encoding</span><span class="p">()</span>
 
         <span class="c1"># How long to resume waiting on a child after the first ^C.</span>
         <span class="c1"># There is no right value for this.  The purpose is to be polite</span>
@@ -1204,86 +1118,6 @@
                 <span class="n">bufsize</span> <span class="o">=</span> <span class="o">-</span><span class="mi">1</span>
             <span class="k">else</span><span class="p">:</span>
                 <span class="n">line_buffering</span> <span class="o">=</span> <span class="kc">False</span>
-
-        <span class="k">if</span> <span class="n">process_group</span> <span class="ow">is</span> <span class="kc">None</span><span class="p">:</span>
-            <span class="n">process_group</span> <span class="o">=</span> <span class="o">-</span><span class="mi">1</span>  <span class="c1"># The internal APIs are int-only</span>
-
-        <span class="n">gid</span> <span class="o">=</span> <span class="kc">None</span>
-        <span class="k">if</span> <span class="n">group</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span><span class="p">:</span>
-            <span class="k">if</span> <span class="ow">not</span> <span class="nb">hasattr</span><span class="p">(</span><span class="n">os</span><span class="p">,</span> <span class="s1">&#39;setregid&#39;</span><span class="p">):</span>
-                <span class="k">raise</span> <span class="ne">ValueError</span><span class="p">(</span><span class="s2">&quot;The &#39;group&#39; parameter is not supported on the &quot;</span>
-                                 <span class="s2">&quot;current platform&quot;</span><span class="p">)</span>
-
-            <span class="k">elif</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">group</span><span class="p">,</span> <span class="nb">str</span><span class="p">):</span>
-                <span class="k">try</span><span class="p">:</span>
-                    <span class="kn">import</span> <span class="nn">grp</span>
-                <span class="k">except</span> <span class="ne">ImportError</span><span class="p">:</span>
-                    <span class="k">raise</span> <span class="ne">ValueError</span><span class="p">(</span><span class="s2">&quot;The group parameter cannot be a string &quot;</span>
-                                     <span class="s2">&quot;on systems without the grp module&quot;</span><span class="p">)</span>
-
-                <span class="n">gid</span> <span class="o">=</span> <span class="n">grp</span><span class="o">.</span><span class="n">getgrnam</span><span class="p">(</span><span class="n">group</span><span class="p">)</span><span class="o">.</span><span class="n">gr_gid</span>
-            <span class="k">elif</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">group</span><span class="p">,</span> <span class="nb">int</span><span class="p">):</span>
-                <span class="n">gid</span> <span class="o">=</span> <span class="n">group</span>
-            <span class="k">else</span><span class="p">:</span>
-                <span class="k">raise</span> <span class="ne">TypeError</span><span class="p">(</span><span class="s2">&quot;Group must be a string or an integer, not </span><span class="si">{}</span><span class="s2">&quot;</span>
-                                <span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="nb">type</span><span class="p">(</span><span class="n">group</span><span class="p">)))</span>
-
-            <span class="k">if</span> <span class="n">gid</span> <span class="o">&lt;</span> <span class="mi">0</span><span class="p">:</span>
-                <span class="k">raise</span> <span class="ne">ValueError</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Group ID cannot be negative, got </span><span class="si">{</span><span class="n">gid</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
-
-        <span class="n">gids</span> <span class="o">=</span> <span class="kc">None</span>
-        <span class="k">if</span> <span class="n">extra_groups</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span><span class="p">:</span>
-            <span class="k">if</span> <span class="ow">not</span> <span class="nb">hasattr</span><span class="p">(</span><span class="n">os</span><span class="p">,</span> <span class="s1">&#39;setgroups&#39;</span><span class="p">):</span>
-                <span class="k">raise</span> <span class="ne">ValueError</span><span class="p">(</span><span class="s2">&quot;The &#39;extra_groups&#39; parameter is not &quot;</span>
-                                 <span class="s2">&quot;supported on the current platform&quot;</span><span class="p">)</span>
-
-            <span class="k">elif</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">extra_groups</span><span class="p">,</span> <span class="nb">str</span><span class="p">):</span>
-                <span class="k">raise</span> <span class="ne">ValueError</span><span class="p">(</span><span class="s2">&quot;Groups must be a list, not a string&quot;</span><span class="p">)</span>
-
-            <span class="n">gids</span> <span class="o">=</span> <span class="p">[]</span>
-            <span class="k">for</span> <span class="n">extra_group</span> <span class="ow">in</span> <span class="n">extra_groups</span><span class="p">:</span>
-                <span class="k">if</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">extra_group</span><span class="p">,</span> <span class="nb">str</span><span class="p">):</span>
-                    <span class="k">try</span><span class="p">:</span>
-                        <span class="kn">import</span> <span class="nn">grp</span>
-                    <span class="k">except</span> <span class="ne">ImportError</span><span class="p">:</span>
-                        <span class="k">raise</span> <span class="ne">ValueError</span><span class="p">(</span><span class="s2">&quot;Items in extra_groups cannot be &quot;</span>
-                                         <span class="s2">&quot;strings on systems without the &quot;</span>
-                                         <span class="s2">&quot;grp module&quot;</span><span class="p">)</span>
-
-                    <span class="n">gids</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">grp</span><span class="o">.</span><span class="n">getgrnam</span><span class="p">(</span><span class="n">extra_group</span><span class="p">)</span><span class="o">.</span><span class="n">gr_gid</span><span class="p">)</span>
-                <span class="k">elif</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">extra_group</span><span class="p">,</span> <span class="nb">int</span><span class="p">):</span>
-                    <span class="n">gids</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">extra_group</span><span class="p">)</span>
-                <span class="k">else</span><span class="p">:</span>
-                    <span class="k">raise</span> <span class="ne">TypeError</span><span class="p">(</span><span class="s2">&quot;Items in extra_groups must be a string &quot;</span>
-                                    <span class="s2">&quot;or integer, not </span><span class="si">{}</span><span class="s2">&quot;</span>
-                                    <span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="nb">type</span><span class="p">(</span><span class="n">extra_group</span><span class="p">)))</span>
-
-            <span class="c1"># make sure that the gids are all positive here so we can do less</span>
-            <span class="c1"># checking in the C code</span>
-            <span class="k">for</span> <span class="n">gid_check</span> <span class="ow">in</span> <span class="n">gids</span><span class="p">:</span>
-                <span class="k">if</span> <span class="n">gid_check</span> <span class="o">&lt;</span> <span class="mi">0</span><span class="p">:</span>
-                    <span class="k">raise</span> <span class="ne">ValueError</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Group ID cannot be negative, got </span><span class="si">{</span><span class="n">gid_check</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
-
-        <span class="n">uid</span> <span class="o">=</span> <span class="kc">None</span>
-        <span class="k">if</span> <span class="n">user</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span><span class="p">:</span>
-            <span class="k">if</span> <span class="ow">not</span> <span class="nb">hasattr</span><span class="p">(</span><span class="n">os</span><span class="p">,</span> <span class="s1">&#39;setreuid&#39;</span><span class="p">):</span>
-                <span class="k">raise</span> <span class="ne">ValueError</span><span class="p">(</span><span class="s2">&quot;The &#39;user&#39; parameter is not supported on &quot;</span>
-                                 <span class="s2">&quot;the current platform&quot;</span><span class="p">)</span>
-
-            <span class="k">elif</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">user</span><span class="p">,</span> <span class="nb">str</span><span class="p">):</span>
-                <span class="k">try</span><span class="p">:</span>
-                    <span class="kn">import</span> <span class="nn">pwd</span>
-                <span class="k">except</span> <span class="ne">ImportError</span><span class="p">:</span>
-                    <span class="k">raise</span> <span class="ne">ValueError</span><span class="p">(</span><span class="s2">&quot;The user parameter cannot be a string &quot;</span>
-                                     <span class="s2">&quot;on systems without the pwd module&quot;</span><span class="p">)</span>
-                <span class="n">uid</span> <span class="o">=</span> <span class="n">pwd</span><span class="o">.</span><span class="n">getpwnam</span><span class="p">(</span><span class="n">user</span><span class="p">)</span><span class="o">.</span><span class="n">pw_uid</span>
-            <span class="k">elif</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">user</span><span class="p">,</span> <span class="nb">int</span><span class="p">):</span>
-                <span class="n">uid</span> <span class="o">=</span> <span class="n">user</span>
-            <span class="k">else</span><span class="p">:</span>
-                <span class="k">raise</span> <span class="ne">TypeError</span><span class="p">(</span><span class="s2">&quot;User must be a string or an integer&quot;</span><span class="p">)</span>
-
-            <span class="k">if</span> <span class="n">uid</span> <span class="o">&lt;</span> <span class="mi">0</span><span class="p">:</span>
-                <span class="k">raise</span> <span class="ne">ValueError</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;User ID cannot be negative, got </span><span class="si">{</span><span class="n">uid</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
 
         <span class="k">try</span><span class="p">:</span>
             <span class="k">if</span> <span class="n">p2cwrite</span> <span class="o">!=</span> <span class="o">-</span><span class="mi">1</span><span class="p">:</span>
@@ -1309,9 +1143,7 @@
                                 <span class="n">p2cread</span><span class="p">,</span> <span class="n">p2cwrite</span><span class="p">,</span>
                                 <span class="n">c2pread</span><span class="p">,</span> <span class="n">c2pwrite</span><span class="p">,</span>
                                 <span class="n">errread</span><span class="p">,</span> <span class="n">errwrite</span><span class="p">,</span>
-                                <span class="n">restore_signals</span><span class="p">,</span>
-                                <span class="n">gid</span><span class="p">,</span> <span class="n">gids</span><span class="p">,</span> <span class="n">uid</span><span class="p">,</span> <span class="n">umask</span><span class="p">,</span>
-                                <span class="n">start_new_session</span><span class="p">,</span> <span class="n">process_group</span><span class="p">)</span>
+                                <span class="n">restore_signals</span><span class="p">,</span> <span class="n">start_new_session</span><span class="p">)</span>
         <span class="k">except</span><span class="p">:</span>
             <span class="c1"># Cleanup if the child failed starting.</span>
             <span class="k">for</span> <span class="n">f</span> <span class="ow">in</span> <span class="nb">filter</span><span class="p">(</span><span class="kc">None</span><span class="p">,</span> <span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">stdin</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">stdout</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">stderr</span><span class="p">)):</span>
@@ -1340,17 +1172,6 @@
                         <span class="k">pass</span>
 
             <span class="k">raise</span>
-
-    <span class="k">def</span> <span class="fm">__repr__</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
-        <span class="n">obj_repr</span> <span class="o">=</span> <span class="p">(</span>
-            <span class="sa">f</span><span class="s2">&quot;&lt;</span><span class="si">{</span><span class="bp">self</span><span class="o">.</span><span class="vm">__class__</span><span class="o">.</span><span class="vm">__name__</span><span class="si">}</span><span class="s2">: &quot;</span>
-            <span class="sa">f</span><span class="s2">&quot;returncode: </span><span class="si">{</span><span class="bp">self</span><span class="o">.</span><span class="n">returncode</span><span class="si">}</span><span class="s2"> args: </span><span class="si">{</span><span class="bp">self</span><span class="o">.</span><span class="n">args</span><span class="si">!r}</span><span class="s2">&gt;&quot;</span>
-        <span class="p">)</span>
-        <span class="k">if</span> <span class="nb">len</span><span class="p">(</span><span class="n">obj_repr</span><span class="p">)</span> <span class="o">&gt;</span> <span class="mi">80</span><span class="p">:</span>
-            <span class="n">obj_repr</span> <span class="o">=</span> <span class="n">obj_repr</span><span class="p">[:</span><span class="mi">76</span><span class="p">]</span> <span class="o">+</span> <span class="s2">&quot;...&gt;&quot;</span>
-        <span class="k">return</span> <span class="n">obj_repr</span>
-
-    <span class="n">__class_getitem__</span> <span class="o">=</span> <span class="nb">classmethod</span><span class="p">(</span><span class="n">types</span><span class="o">.</span><span class="n">GenericAlias</span><span class="p">)</span>
 
     <span class="nd">@property</span>
     <span class="k">def</span> <span class="nf">universal_newlines</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
@@ -1692,10 +1513,7 @@
                            <span class="n">p2cread</span><span class="p">,</span> <span class="n">p2cwrite</span><span class="p">,</span>
                            <span class="n">c2pread</span><span class="p">,</span> <span class="n">c2pwrite</span><span class="p">,</span>
                            <span class="n">errread</span><span class="p">,</span> <span class="n">errwrite</span><span class="p">,</span>
-                           <span class="n">unused_restore_signals</span><span class="p">,</span>
-                           <span class="n">unused_gid</span><span class="p">,</span> <span class="n">unused_gids</span><span class="p">,</span> <span class="n">unused_uid</span><span class="p">,</span>
-                           <span class="n">unused_umask</span><span class="p">,</span>
-                           <span class="n">unused_start_new_session</span><span class="p">,</span> <span class="n">unused_process_group</span><span class="p">):</span>
+                           <span class="n">unused_restore_signals</span><span class="p">,</span> <span class="n">unused_start_new_session</span><span class="p">):</span>
 <span class="w">            </span><span class="sd">&quot;&quot;&quot;Execute program (MS Windows version)&quot;&quot;&quot;</span>
 
             <span class="k">assert</span> <span class="ow">not</span> <span class="n">pass_fds</span><span class="p">,</span> <span class="s2">&quot;pass_fds not supported on Windows.&quot;</span>
@@ -1948,8 +1766,6 @@
                 <span class="k">pass</span>
             <span class="k">elif</span> <span class="n">stdin</span> <span class="o">==</span> <span class="n">PIPE</span><span class="p">:</span>
                 <span class="n">p2cread</span><span class="p">,</span> <span class="n">p2cwrite</span> <span class="o">=</span> <span class="n">os</span><span class="o">.</span><span class="n">pipe</span><span class="p">()</span>
-                <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">pipesize</span> <span class="o">&gt;</span> <span class="mi">0</span> <span class="ow">and</span> <span class="nb">hasattr</span><span class="p">(</span><span class="n">fcntl</span><span class="p">,</span> <span class="s2">&quot;F_SETPIPE_SZ&quot;</span><span class="p">):</span>
-                    <span class="n">fcntl</span><span class="o">.</span><span class="n">fcntl</span><span class="p">(</span><span class="n">p2cwrite</span><span class="p">,</span> <span class="n">fcntl</span><span class="o">.</span><span class="n">F_SETPIPE_SZ</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">pipesize</span><span class="p">)</span>
             <span class="k">elif</span> <span class="n">stdin</span> <span class="o">==</span> <span class="n">DEVNULL</span><span class="p">:</span>
                 <span class="n">p2cread</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">_get_devnull</span><span class="p">()</span>
             <span class="k">elif</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">stdin</span><span class="p">,</span> <span class="nb">int</span><span class="p">):</span>
@@ -1962,8 +1778,6 @@
                 <span class="k">pass</span>
             <span class="k">elif</span> <span class="n">stdout</span> <span class="o">==</span> <span class="n">PIPE</span><span class="p">:</span>
                 <span class="n">c2pread</span><span class="p">,</span> <span class="n">c2pwrite</span> <span class="o">=</span> <span class="n">os</span><span class="o">.</span><span class="n">pipe</span><span class="p">()</span>
-                <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">pipesize</span> <span class="o">&gt;</span> <span class="mi">0</span> <span class="ow">and</span> <span class="nb">hasattr</span><span class="p">(</span><span class="n">fcntl</span><span class="p">,</span> <span class="s2">&quot;F_SETPIPE_SZ&quot;</span><span class="p">):</span>
-                    <span class="n">fcntl</span><span class="o">.</span><span class="n">fcntl</span><span class="p">(</span><span class="n">c2pwrite</span><span class="p">,</span> <span class="n">fcntl</span><span class="o">.</span><span class="n">F_SETPIPE_SZ</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">pipesize</span><span class="p">)</span>
             <span class="k">elif</span> <span class="n">stdout</span> <span class="o">==</span> <span class="n">DEVNULL</span><span class="p">:</span>
                 <span class="n">c2pwrite</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">_get_devnull</span><span class="p">()</span>
             <span class="k">elif</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">stdout</span><span class="p">,</span> <span class="nb">int</span><span class="p">):</span>
@@ -1976,8 +1790,6 @@
                 <span class="k">pass</span>
             <span class="k">elif</span> <span class="n">stderr</span> <span class="o">==</span> <span class="n">PIPE</span><span class="p">:</span>
                 <span class="n">errread</span><span class="p">,</span> <span class="n">errwrite</span> <span class="o">=</span> <span class="n">os</span><span class="o">.</span><span class="n">pipe</span><span class="p">()</span>
-                <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">pipesize</span> <span class="o">&gt;</span> <span class="mi">0</span> <span class="ow">and</span> <span class="nb">hasattr</span><span class="p">(</span><span class="n">fcntl</span><span class="p">,</span> <span class="s2">&quot;F_SETPIPE_SZ&quot;</span><span class="p">):</span>
-                    <span class="n">fcntl</span><span class="o">.</span><span class="n">fcntl</span><span class="p">(</span><span class="n">errwrite</span><span class="p">,</span> <span class="n">fcntl</span><span class="o">.</span><span class="n">F_SETPIPE_SZ</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">pipesize</span><span class="p">)</span>
             <span class="k">elif</span> <span class="n">stderr</span> <span class="o">==</span> <span class="n">STDOUT</span><span class="p">:</span>
                 <span class="k">if</span> <span class="n">c2pwrite</span> <span class="o">!=</span> <span class="o">-</span><span class="mi">1</span><span class="p">:</span>
                     <span class="n">errwrite</span> <span class="o">=</span> <span class="n">c2pwrite</span>
@@ -2041,9 +1853,7 @@
                            <span class="n">p2cread</span><span class="p">,</span> <span class="n">p2cwrite</span><span class="p">,</span>
                            <span class="n">c2pread</span><span class="p">,</span> <span class="n">c2pwrite</span><span class="p">,</span>
                            <span class="n">errread</span><span class="p">,</span> <span class="n">errwrite</span><span class="p">,</span>
-                           <span class="n">restore_signals</span><span class="p">,</span>
-                           <span class="n">gid</span><span class="p">,</span> <span class="n">gids</span><span class="p">,</span> <span class="n">uid</span><span class="p">,</span> <span class="n">umask</span><span class="p">,</span>
-                           <span class="n">start_new_session</span><span class="p">,</span> <span class="n">process_group</span><span class="p">):</span>
+                           <span class="n">restore_signals</span><span class="p">,</span> <span class="n">start_new_session</span><span class="p">):</span>
 <span class="w">            </span><span class="sd">&quot;&quot;&quot;Execute program (POSIX version)&quot;&quot;&quot;</span>
 
             <span class="k">if</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">args</span><span class="p">,</span> <span class="p">(</span><span class="nb">str</span><span class="p">,</span> <span class="nb">bytes</span><span class="p">)):</span>
@@ -2078,12 +1888,7 @@
                     <span class="ow">and</span> <span class="p">(</span><span class="n">p2cread</span> <span class="o">==</span> <span class="o">-</span><span class="mi">1</span> <span class="ow">or</span> <span class="n">p2cread</span> <span class="o">&gt;</span> <span class="mi">2</span><span class="p">)</span>
                     <span class="ow">and</span> <span class="p">(</span><span class="n">c2pwrite</span> <span class="o">==</span> <span class="o">-</span><span class="mi">1</span> <span class="ow">or</span> <span class="n">c2pwrite</span> <span class="o">&gt;</span> <span class="mi">2</span><span class="p">)</span>
                     <span class="ow">and</span> <span class="p">(</span><span class="n">errwrite</span> <span class="o">==</span> <span class="o">-</span><span class="mi">1</span> <span class="ow">or</span> <span class="n">errwrite</span> <span class="o">&gt;</span> <span class="mi">2</span><span class="p">)</span>
-                    <span class="ow">and</span> <span class="ow">not</span> <span class="n">start_new_session</span>
-                    <span class="ow">and</span> <span class="n">process_group</span> <span class="o">==</span> <span class="o">-</span><span class="mi">1</span>
-                    <span class="ow">and</span> <span class="n">gid</span> <span class="ow">is</span> <span class="kc">None</span>
-                    <span class="ow">and</span> <span class="n">gids</span> <span class="ow">is</span> <span class="kc">None</span>
-                    <span class="ow">and</span> <span class="n">uid</span> <span class="ow">is</span> <span class="kc">None</span>
-                    <span class="ow">and</span> <span class="n">umask</span> <span class="o">&lt;</span> <span class="mi">0</span><span class="p">):</span>
+                    <span class="ow">and</span> <span class="ow">not</span> <span class="n">start_new_session</span><span class="p">):</span>
                 <span class="bp">self</span><span class="o">.</span><span class="n">_posix_spawn</span><span class="p">(</span><span class="n">args</span><span class="p">,</span> <span class="n">executable</span><span class="p">,</span> <span class="n">env</span><span class="p">,</span> <span class="n">restore_signals</span><span class="p">,</span>
                                   <span class="n">p2cread</span><span class="p">,</span> <span class="n">p2cwrite</span><span class="p">,</span>
                                   <span class="n">c2pread</span><span class="p">,</span> <span class="n">c2pwrite</span><span class="p">,</span>
@@ -2129,16 +1934,14 @@
                             <span class="k">for</span> <span class="nb">dir</span> <span class="ow">in</span> <span class="n">os</span><span class="o">.</span><span class="n">get_exec_path</span><span class="p">(</span><span class="n">env</span><span class="p">))</span>
                     <span class="n">fds_to_keep</span> <span class="o">=</span> <span class="nb">set</span><span class="p">(</span><span class="n">pass_fds</span><span class="p">)</span>
                     <span class="n">fds_to_keep</span><span class="o">.</span><span class="n">add</span><span class="p">(</span><span class="n">errpipe_write</span><span class="p">)</span>
-                    <span class="bp">self</span><span class="o">.</span><span class="n">pid</span> <span class="o">=</span> <span class="n">_fork_exec</span><span class="p">(</span>
+                    <span class="bp">self</span><span class="o">.</span><span class="n">pid</span> <span class="o">=</span> <span class="n">_posixsubprocess</span><span class="o">.</span><span class="n">fork_exec</span><span class="p">(</span>
                             <span class="n">args</span><span class="p">,</span> <span class="n">executable_list</span><span class="p">,</span>
                             <span class="n">close_fds</span><span class="p">,</span> <span class="nb">tuple</span><span class="p">(</span><span class="nb">sorted</span><span class="p">(</span><span class="nb">map</span><span class="p">(</span><span class="nb">int</span><span class="p">,</span> <span class="n">fds_to_keep</span><span class="p">))),</span>
                             <span class="n">cwd</span><span class="p">,</span> <span class="n">env_list</span><span class="p">,</span>
                             <span class="n">p2cread</span><span class="p">,</span> <span class="n">p2cwrite</span><span class="p">,</span> <span class="n">c2pread</span><span class="p">,</span> <span class="n">c2pwrite</span><span class="p">,</span>
                             <span class="n">errread</span><span class="p">,</span> <span class="n">errwrite</span><span class="p">,</span>
                             <span class="n">errpipe_read</span><span class="p">,</span> <span class="n">errpipe_write</span><span class="p">,</span>
-                            <span class="n">restore_signals</span><span class="p">,</span> <span class="n">start_new_session</span><span class="p">,</span>
-                            <span class="n">process_group</span><span class="p">,</span> <span class="n">gid</span><span class="p">,</span> <span class="n">gids</span><span class="p">,</span> <span class="n">uid</span><span class="p">,</span> <span class="n">umask</span><span class="p">,</span>
-                            <span class="n">preexec_fn</span><span class="p">,</span> <span class="n">_USE_VFORK</span><span class="p">)</span>
+                            <span class="n">restore_signals</span><span class="p">,</span> <span class="n">start_new_session</span><span class="p">,</span> <span class="n">preexec_fn</span><span class="p">)</span>
                     <span class="bp">self</span><span class="o">.</span><span class="n">_child_created</span> <span class="o">=</span> <span class="kc">True</span>
                 <span class="k">finally</span><span class="p">:</span>
                     <span class="c1"># be sure the FD is closed no matter what</span>
@@ -2200,20 +2003,26 @@
                 <span class="k">raise</span> <span class="n">child_exception_type</span><span class="p">(</span><span class="n">err_msg</span><span class="p">)</span>
 
 
-        <span class="k">def</span> <span class="nf">_handle_exitstatus</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">sts</span><span class="p">,</span>
-                               <span class="n">_waitstatus_to_exitcode</span><span class="o">=</span><span class="n">_waitstatus_to_exitcode</span><span class="p">,</span>
-                               <span class="n">_WIFSTOPPED</span><span class="o">=</span><span class="n">_WIFSTOPPED</span><span class="p">,</span>
-                               <span class="n">_WSTOPSIG</span><span class="o">=</span><span class="n">_WSTOPSIG</span><span class="p">):</span>
+        <span class="k">def</span> <span class="nf">_handle_exitstatus</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">sts</span><span class="p">,</span> <span class="n">_WIFSIGNALED</span><span class="o">=</span><span class="n">os</span><span class="o">.</span><span class="n">WIFSIGNALED</span><span class="p">,</span>
+                <span class="n">_WTERMSIG</span><span class="o">=</span><span class="n">os</span><span class="o">.</span><span class="n">WTERMSIG</span><span class="p">,</span> <span class="n">_WIFEXITED</span><span class="o">=</span><span class="n">os</span><span class="o">.</span><span class="n">WIFEXITED</span><span class="p">,</span>
+                <span class="n">_WEXITSTATUS</span><span class="o">=</span><span class="n">os</span><span class="o">.</span><span class="n">WEXITSTATUS</span><span class="p">,</span> <span class="n">_WIFSTOPPED</span><span class="o">=</span><span class="n">os</span><span class="o">.</span><span class="n">WIFSTOPPED</span><span class="p">,</span>
+                <span class="n">_WSTOPSIG</span><span class="o">=</span><span class="n">os</span><span class="o">.</span><span class="n">WSTOPSIG</span><span class="p">):</span>
 <span class="w">            </span><span class="sd">&quot;&quot;&quot;All callers to this function MUST hold self._waitpid_lock.&quot;&quot;&quot;</span>
             <span class="c1"># This method is called (indirectly) by __del__, so it cannot</span>
             <span class="c1"># refer to anything outside of its local scope.</span>
-            <span class="k">if</span> <span class="n">_WIFSTOPPED</span><span class="p">(</span><span class="n">sts</span><span class="p">):</span>
+            <span class="k">if</span> <span class="n">_WIFSIGNALED</span><span class="p">(</span><span class="n">sts</span><span class="p">):</span>
+                <span class="bp">self</span><span class="o">.</span><span class="n">returncode</span> <span class="o">=</span> <span class="o">-</span><span class="n">_WTERMSIG</span><span class="p">(</span><span class="n">sts</span><span class="p">)</span>
+            <span class="k">elif</span> <span class="n">_WIFEXITED</span><span class="p">(</span><span class="n">sts</span><span class="p">):</span>
+                <span class="bp">self</span><span class="o">.</span><span class="n">returncode</span> <span class="o">=</span> <span class="n">_WEXITSTATUS</span><span class="p">(</span><span class="n">sts</span><span class="p">)</span>
+            <span class="k">elif</span> <span class="n">_WIFSTOPPED</span><span class="p">(</span><span class="n">sts</span><span class="p">):</span>
                 <span class="bp">self</span><span class="o">.</span><span class="n">returncode</span> <span class="o">=</span> <span class="o">-</span><span class="n">_WSTOPSIG</span><span class="p">(</span><span class="n">sts</span><span class="p">)</span>
             <span class="k">else</span><span class="p">:</span>
-                <span class="bp">self</span><span class="o">.</span><span class="n">returncode</span> <span class="o">=</span> <span class="n">_waitstatus_to_exitcode</span><span class="p">(</span><span class="n">sts</span><span class="p">)</span>
+                <span class="c1"># Should never happen</span>
+                <span class="k">raise</span> <span class="n">SubprocessError</span><span class="p">(</span><span class="s2">&quot;Unknown child exit status!&quot;</span><span class="p">)</span>
 
-        <span class="k">def</span> <span class="nf">_internal_poll</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">_deadstate</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">_waitpid</span><span class="o">=</span><span class="n">_waitpid</span><span class="p">,</span>
-                <span class="n">_WNOHANG</span><span class="o">=</span><span class="n">_WNOHANG</span><span class="p">,</span> <span class="n">_ECHILD</span><span class="o">=</span><span class="n">errno</span><span class="o">.</span><span class="n">ECHILD</span><span class="p">):</span>
+
+        <span class="k">def</span> <span class="nf">_internal_poll</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">_deadstate</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">_waitpid</span><span class="o">=</span><span class="n">os</span><span class="o">.</span><span class="n">waitpid</span><span class="p">,</span>
+                <span class="n">_WNOHANG</span><span class="o">=</span><span class="n">os</span><span class="o">.</span><span class="n">WNOHANG</span><span class="p">,</span> <span class="n">_ECHILD</span><span class="o">=</span><span class="n">errno</span><span class="o">.</span><span class="n">ECHILD</span><span class="p">):</span>
 <span class="w">            </span><span class="sd">&quot;&quot;&quot;Check if child process has terminated.  Returns returncode</span>
 <span class="sd">            attribute.</span>
 
@@ -2417,35 +2226,9 @@
 
         <span class="k">def</span> <span class="nf">send_signal</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">sig</span><span class="p">):</span>
 <span class="w">            </span><span class="sd">&quot;&quot;&quot;Send a signal to the process.&quot;&quot;&quot;</span>
-            <span class="c1"># bpo-38630: Polling reduces the risk of sending a signal to the</span>
-            <span class="c1"># wrong process if the process completed, the Popen.returncode</span>
-            <span class="c1"># attribute is still None, and the pid has been reassigned</span>
-            <span class="c1"># (recycled) to a new different process. This race condition can</span>
-            <span class="c1"># happens in two cases.</span>
-            <span class="c1">#</span>
-            <span class="c1"># Case 1. Thread A calls Popen.poll(), thread B calls</span>
-            <span class="c1"># Popen.send_signal(). In thread A, waitpid() succeed and returns</span>
-            <span class="c1"># the exit status. Thread B calls kill() because poll() in thread A</span>
-            <span class="c1"># did not set returncode yet. Calling poll() in thread B prevents</span>
-            <span class="c1"># the race condition thanks to Popen._waitpid_lock.</span>
-            <span class="c1">#</span>
-            <span class="c1"># Case 2. waitpid(pid, 0) has been called directly, without</span>
-            <span class="c1"># using Popen methods: returncode is still None is this case.</span>
-            <span class="c1"># Calling Popen.poll() will set returncode to a default value,</span>
-            <span class="c1"># since waitpid() fails with ProcessLookupError.</span>
-            <span class="bp">self</span><span class="o">.</span><span class="n">poll</span><span class="p">()</span>
-            <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">returncode</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span><span class="p">:</span>
-                <span class="c1"># Skip signalling a process that we know has already died.</span>
-                <span class="k">return</span>
-
-            <span class="c1"># The race condition can still happen if the race condition</span>
-            <span class="c1"># described above happens between the returncode test</span>
-            <span class="c1"># and the kill() call.</span>
-            <span class="k">try</span><span class="p">:</span>
+            <span class="c1"># Skip signalling a process that we know has already died.</span>
+            <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">returncode</span> <span class="ow">is</span> <span class="kc">None</span><span class="p">:</span>
                 <span class="n">os</span><span class="o">.</span><span class="n">kill</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">pid</span><span class="p">,</span> <span class="n">sig</span><span class="p">)</span>
-            <span class="k">except</span> <span class="ne">ProcessLookupError</span><span class="p">:</span>
-                <span class="c1"># Suppress the race condition error; bpo-40550.</span>
-                <span class="k">pass</span>
 
         <span class="k">def</span> <span class="nf">terminate</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
 <span class="w">            </span><span class="sd">&quot;&quot;&quot;Terminate the process with SIGTERM</span>
@@ -2488,12 +2271,12 @@
       
     </aside>
   </div>
-</div><script data-url_root="../" id="documentation_options" src="../_static/documentation_options.js"></script>
-    <script src="../_static/doctools.js"></script>
-    <script src="../_static/sphinx_highlight.js"></script>
-    <script src="../_static/scripts/furo.js"></script>
-    <script src="../_static/clipboard.min.js"></script>
-    <script src="../_static/copybutton.js"></script>
+</div><script data-url_root="../" id="documentation_options" src="../_static/documentation_options.js?v=b3ba4146"></script>
+    <script src="../_static/doctools.js?v=888ff710"></script>
+    <script src="../_static/sphinx_highlight.js?v=4825356b"></script>
+    <script src="../_static/scripts/furo.js?v=32e29ea5"></script>
+    <script src="../_static/clipboard.min.js?v=a7894cd8"></script>
+    <script src="../_static/copybutton.js?v=f281be69"></script>
     <script crossorigin="anonymous" integrity="sha256-Ae2Vz/4ePdIu6ZyI/5ZGsYnb+m0JlOmKPjt6XZ9JJkA=" src="https://cdnjs.cloudflare.com/ajax/libs/require.js/2.3.4/require.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/@jupyter-widgets/html-manager@^1.0.1/dist/embed-amd.js"></script>
     <script src="https://unpkg.com/mermaid@10.2.0/dist/mermaid.min.js"></script>

@@ -2,15 +2,15 @@
 <html class="no-js" lang="en">
   <head><meta charset="utf-8"/>
     <meta name="viewport" content="width=device-width,initial-scale=1"/>
-    <meta name="color-scheme" content="light dark"><meta name="generator" content="Docutils 0.18.1: http://docutils.sourceforge.net/" />
+    <meta name="color-scheme" content="light dark"><meta name="viewport" content="width=device-width, initial-scale=1" />
 <link rel="index" title="Index" href="../genindex.html" /><link rel="search" title="Search" href="../search.html" /><link rel="next" title="superduperdb.db.mongodb package" href="superduperdb.db.mongodb.html" /><link rel="prev" title="superduperdb.db package" href="superduperdb.db.html" />
 
-    <!-- Generated with Sphinx 6.2.1 and Furo 2023.05.20 -->
-        <title>superduperdb.db.base package - SuperDuperDB documentation</title>
-      <link rel="stylesheet" type="text/css" href="../_static/pygments.css" />
-    <link rel="stylesheet" type="text/css" href="../_static/styles/furo.css?digest=e6660623a769aa55fea372102b9bf3151b292993" />
-    <link rel="stylesheet" type="text/css" href="../_static/copybutton.css" />
-    <link rel="stylesheet" type="text/css" href="../_static/styles/furo-extensions.css?digest=30d1aed668e5c3a91c3e3bf6a60b675221979f0e" />
+    <!-- Generated with Sphinx 7.1.2 and Furo 2023.07.26 -->
+        <title>superduperdb.db.base package - Python documentation</title>
+      <link rel="stylesheet" type="text/css" href="../_static/pygments.css?v=fa44fd50" />
+    <link rel="stylesheet" type="text/css" href="../_static/styles/furo.css?v=135e06be" />
+    <link rel="stylesheet" type="text/css" href="../_static/copybutton.css?v=76b2166b" />
+    <link rel="stylesheet" type="text/css" href="../_static/styles/furo-extensions.css?v=36a5483c" />
     
     
 
@@ -124,7 +124,7 @@
       </label>
     </div>
     <div class="header-center">
-      <a href="../index.html"><div class="brand">SuperDuperDB  documentation</div></a>
+      <a href="../index.html"><div class="brand">Python  documentation</div></a>
     </div>
     <div class="header-right">
       <div class="theme-toggle-container theme-toggle-header">
@@ -146,8 +146,11 @@
       
       <div class="sidebar-sticky"><a class="sidebar-brand" href="../index.html">
   
+  <div class="sidebar-logo-container">
+    <img class="sidebar-logo" src="../_static/SuperDuperDB_logo.png" alt="Logo"/>
+  </div>
   
-  <span class="sidebar-brand-text">SuperDuperDB  documentation</span>
+  <span class="sidebar-brand-text">Python  documentation</span>
   
 </a><form class="sidebar-search-container" method="get" action="../search.html" role="search">
   <input class="sidebar-search" placeholder="Search" name="q" aria-label="Search">
@@ -189,7 +192,7 @@
 </ul>
 </li>
 <li class="toctree-l1 has-children"><a class="reference internal" href="../how_to/index.html">How to …</a><input class="toctree-checkbox" id="toctree-checkbox-5" name="toctree-checkbox-5" role="switch" type="checkbox"/><label for="toctree-checkbox-5"><div class="visually-hidden">Toggle navigation of How to …</div><i class="icon"><svg><use href="#svg-arrow-right"></use></svg></i></label><ul>
-<li class="toctree-l2"><a class="reference internal" href="../how_to/playground.html">Download, install and setup SuperDuperDB</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../how_to/playground.html">Welcome to the SuperDuperDB Playground!</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../how_to/add_images_or_audio.html">Add images, audio or video from URIs</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../how_to/create_replicaset.html">How to create a replica set in MongoDB</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../how_to/mongo_cdc.html">Perform change data capture (CDC)</a></li>
@@ -200,7 +203,7 @@
 <li class="toctree-l2"><a class="reference internal" href="../examples/mnist_torch.html">Training and maintaining MNIST predictions</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../examples/mnist_sklearn.html">MNIST using scikit-learn and SuperDuperDB</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../examples/openai.html">OpenAI vector search</a></li>
-<li class="toctree-l2"><a class="reference internal" href="../examples/compare_vector_search_solutions.html">Compare vector search</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../examples/compare_vector_search_solutions.html">Turn your classical-database into a vector-database with SuperDuperDB</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../examples/multimodal_image_search_clip.html">Multimodal search with CLIP</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../examples/sentiment_analysis_use_case.html">Sentiment analysis with transformers</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../examples/voice_memos.html">Cataloguing voice-memos for a self managed personal assistant</a></li>
@@ -323,6 +326,12 @@
 </dd></dl>
 
 <dl class="py method">
+<dt class="sig sig-object py" id="superduperdb.db.base.artifact.ArtifactStore.drop">
+<em class="property"><span class="pre">abstract</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">drop</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">force</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">bool</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">False</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/superduperdb/db/base/artifact.html#ArtifactStore.drop"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#superduperdb.db.base.artifact.ArtifactStore.drop" title="Permalink to this definition">#</a></dt>
+<dd><p>Drop the artifact store.</p>
+</dd></dl>
+
+<dl class="py method">
 <dt class="sig sig-object py" id="superduperdb.db.base.artifact.ArtifactStore.load_artifact">
 <span class="sig-name descname"><span class="pre">load_artifact</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">file_id</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">serializer</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">info</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">Dict</span><span class="p"><span class="pre">[</span></span><span class="pre">str</span><span class="p"><span class="pre">,</span></span><span class="w"> </span><span class="pre">Any</span><span class="p"><span class="pre">]</span></span><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><span class="pre">None</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">Any</span></span></span><a class="reference internal" href="../_modules/superduperdb/db/base/artifact.html#ArtifactStore.load_artifact"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#superduperdb.db.base.artifact.ArtifactStore.load_artifact" title="Permalink to this definition">#</a></dt>
 <dd><p>Load artifact from artifact store, and deserialize.</p>
@@ -350,7 +359,10 @@
 <dd><p>Build db as per <code class="docutils literal notranslate"><span class="pre">db</span> <span class="pre">=</span> <span class="pre">superduper(db)</span></code> from configuration.</p>
 <dl class="field-list simple">
 <dt class="field-odd">Parameters<span class="colon">:</span></dt>
-<dd class="field-odd"><p><strong>connections</strong> – cache of connections to reuse in the build process.</p>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>cfg</strong> – configuration to use. If None, use <code class="docutils literal notranslate"><span class="pre">superduperdb.CFG</span></code>.</p></li>
+<li><p><strong>connections</strong> – cache of connections to reuse in the build process.</p></li>
+</ul>
 </dd>
 </dl>
 </dd></dl>
@@ -358,7 +370,14 @@
 <dl class="py function">
 <dt class="sig sig-object py" id="superduperdb.db.base.build.build_vector_database">
 <span class="sig-prename descclassname"><span class="pre">superduperdb.db.base.build.</span></span><span class="sig-name descname"><span class="pre">build_vector_database</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">cfg</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/superduperdb/db/base/build.html#build_vector_database"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#superduperdb.db.base.build.build_vector_database" title="Permalink to this definition">#</a></dt>
-<dd></dd></dl>
+<dd><p>Build vector database as per <code class="docutils literal notranslate"><span class="pre">vector_database</span> <span class="pre">=</span> <span class="pre">DB.vector_database</span></code>
+from configuration.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><p><strong>cfg</strong> – configuration to use. (See <code class="docutils literal notranslate"><span class="pre">superduperdb.CFG.vector_search</span></code>)</p>
+</dd>
+</dl>
+</dd></dl>
 
 </section>
 <section id="module-superduperdb.db.base.cdc">
@@ -422,17 +441,40 @@ listener.listen()</p>
 <span id="superduperdb-db-base-cursor-module"></span><h2>superduperdb.db.base.cursor module<a class="headerlink" href="#module-superduperdb.db.base.cursor" title="Permalink to this heading">#</a></h2>
 <dl class="py class">
 <dt class="sig sig-object py" id="superduperdb.db.base.cursor.SuperDuperCursor">
-<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">superduperdb.db.base.cursor.</span></span><span class="sig-name descname"><span class="pre">SuperDuperCursor</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">raw_cursor:</span> <span class="pre">pymongo.cursor.Cursor</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">id_field:</span> <span class="pre">str</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">encoders:</span> <span class="pre">Dict[str</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">superduperdb.container.encoder.Encoder]</span> <span class="pre">=</span> <span class="pre">&lt;factory&gt;</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">features:</span> <span class="pre">Optional[Dict[str</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">str]]</span> <span class="pre">=</span> <span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">scores:</span> <span class="pre">Optional[Dict[str</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">float]]</span> <span class="pre">=</span> <span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">_it:</span> <span class="pre">int</span> <span class="pre">=</span> <span class="pre">0</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/superduperdb/db/base/cursor.html#SuperDuperCursor"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#superduperdb.db.base.cursor.SuperDuperCursor" title="Permalink to this definition">#</a></dt>
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">superduperdb.db.base.cursor.</span></span><span class="sig-name descname"><span class="pre">SuperDuperCursor</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">raw_cursor:</span> <span class="pre">~pymongo.cursor.Cursor</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">id_field:</span> <span class="pre">str</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">encoders:</span> <span class="pre">~typing.Dict[str</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">~superduperdb.container.encoder.Encoder]</span> <span class="pre">=</span> <span class="pre">&lt;factory&gt;</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">features:</span> <span class="pre">~typing.Dict[str</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">str]</span> <span class="pre">|</span> <span class="pre">None</span> <span class="pre">=</span> <span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">scores:</span> <span class="pre">~typing.Dict[str</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">float]</span> <span class="pre">|</span> <span class="pre">None</span> <span class="pre">=</span> <span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">_it:</span> <span class="pre">int</span> <span class="pre">=</span> <span class="pre">0</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/superduperdb/db/base/cursor.html#SuperDuperCursor"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#superduperdb.db.base.cursor.SuperDuperCursor" title="Permalink to this definition">#</a></dt>
 <dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">object</span></code></p>
+<p>A cursor that wraps a cursor and returns <code class="docutils literal notranslate"><span class="pre">Document</span></code> wrapping
+a dict including <code class="docutils literal notranslate"><span class="pre">Encodable</span></code> objects.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>raw_cursor</strong> – the cursor to wrap</p></li>
+<li><p><strong>id_field</strong> – the field to use as the document id</p></li>
+<li><p><strong>encoders</strong> – a dict of encoders to use to decode the documents</p></li>
+<li><p><strong>features</strong> – a dict of features to add to the documents</p></li>
+<li><p><strong>scores</strong> – a dict of scores to add to the documents</p></li>
+</ul>
+</dd>
+</dl>
 <dl class="py method">
 <dt class="sig sig-object py" id="superduperdb.db.base.cursor.SuperDuperCursor.add_features">
 <em class="property"><span class="pre">static</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">add_features</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">r</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">features</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/superduperdb/db/base/cursor.html#SuperDuperCursor.add_features"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#superduperdb.db.base.cursor.SuperDuperCursor.add_features" title="Permalink to this definition">#</a></dt>
-<dd></dd></dl>
+<dd><p>Add features to a document.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>r</strong> – the document</p></li>
+<li><p><strong>features</strong> – the features to add</p></li>
+</ul>
+</dd>
+</dl>
+</dd></dl>
 
 <dl class="py method">
 <dt class="sig sig-object py" id="superduperdb.db.base.cursor.SuperDuperCursor.count">
 <span class="sig-name descname"><span class="pre">count</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="../_modules/superduperdb/db/base/cursor.html#SuperDuperCursor.count"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#superduperdb.db.base.cursor.SuperDuperCursor.count" title="Permalink to this definition">#</a></dt>
-<dd></dd></dl>
+<dd><p>Count the number of documents in the cursor.</p>
+</dd></dl>
 
 <dl class="py attribute">
 <dt class="sig sig-object py" id="superduperdb.db.base.cursor.SuperDuperCursor.encoders">
@@ -452,7 +494,8 @@ listener.listen()</p>
 <dl class="py method">
 <dt class="sig sig-object py" id="superduperdb.db.base.cursor.SuperDuperCursor.limit">
 <span class="sig-name descname"><span class="pre">limit</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="o"><span class="pre">*</span></span><span class="n"><span class="pre">args</span></span></em>, <em class="sig-param"><span class="o"><span class="pre">**</span></span><span class="n"><span class="pre">kwargs</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/superduperdb/db/base/cursor.html#SuperDuperCursor.limit"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#superduperdb.db.base.cursor.SuperDuperCursor.limit" title="Permalink to this definition">#</a></dt>
-<dd></dd></dl>
+<dd><p>Limit the number of documents in the cursor.</p>
+</dd></dl>
 
 <dl class="py method">
 <dt class="sig sig-object py" id="superduperdb.db.base.cursor.SuperDuperCursor.next">
@@ -472,7 +515,8 @@ listener.listen()</p>
 <dl class="py method">
 <dt class="sig sig-object py" id="superduperdb.db.base.cursor.SuperDuperCursor.wrap_document">
 <em class="property"><span class="pre">static</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">wrap_document</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">r</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">encoders</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/superduperdb/db/base/cursor.html#SuperDuperCursor.wrap_document"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#superduperdb.db.base.cursor.SuperDuperCursor.wrap_document" title="Permalink to this definition">#</a></dt>
-<dd></dd></dl>
+<dd><p>Wrap a document in a <code class="docutils literal notranslate"><span class="pre">Document</span></code>.</p>
+</dd></dl>
 
 </dd></dl>
 
@@ -487,6 +531,12 @@ listener.listen()</p>
 <dt class="sig sig-object py" id="superduperdb.db.base.data_backend.BaseDataBackend.db">
 <em class="property"><span class="pre">property</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">db</span></span><a class="headerlink" href="#superduperdb.db.base.data_backend.BaseDataBackend.db" title="Permalink to this definition">#</a></dt>
 <dd></dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="superduperdb.db.base.data_backend.BaseDataBackend.drop">
+<em class="property"><span class="pre">abstract</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">drop</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">force</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">bool</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">False</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/superduperdb/db/base/data_backend.html#BaseDataBackend.drop"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#superduperdb.db.base.data_backend.BaseDataBackend.drop" title="Permalink to this definition">#</a></dt>
+<dd><p>Drop the databackend.</p>
+</dd></dl>
 
 <dl class="py method">
 <dt class="sig sig-object py" id="superduperdb.db.base.data_backend.BaseDataBackend.get_output_from_document">
@@ -566,11 +616,11 @@ the metadata.</p>
 <dt class="field-odd">Parameters<span class="colon">:</span></dt>
 <dd class="field-odd"><ul class="simple">
 <li><p><strong>object</strong> – Object to be stored</p></li>
-<li><p><strong>dependencies</strong> – list of jobs which should execute before component</p></li>
+<li><p><strong>dependencies</strong> – list of jobs which should execute before component
+init begins</p></li>
 </ul>
 </dd>
 </dl>
-<p>init begins</p>
 </dd></dl>
 
 <dl class="py property">
@@ -595,8 +645,14 @@ the metadata.</p>
 <dd></dd></dl>
 
 <dl class="py method">
+<dt class="sig sig-object py" id="superduperdb.db.base.db.DB.drop">
+<span class="sig-name descname"><span class="pre">drop</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">force</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">bool</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">False</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/superduperdb/db/base/db.html#DB.drop"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#superduperdb.db.base.db.DB.drop" title="Permalink to this definition">#</a></dt>
+<dd><p>Drop all data, artifacts and metadata</p>
+</dd></dl>
+
+<dl class="py method">
 <dt class="sig sig-object py" id="superduperdb.db.base.db.DB.execute">
-<span class="sig-name descname"><span class="pre">execute</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">query</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference internal" href="#superduperdb.db.base.query.Select" title="superduperdb.db.base.query.Select"><span class="pre">Select</span></a><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><a class="reference internal" href="#superduperdb.db.base.query.Delete" title="superduperdb.db.base.query.Delete"><span class="pre">Delete</span></a><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><a class="reference internal" href="#superduperdb.db.base.query.Update" title="superduperdb.db.base.query.Update"><span class="pre">Update</span></a><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><a class="reference internal" href="#superduperdb.db.base.query.Insert" title="superduperdb.db.base.query.Insert"><span class="pre">Insert</span></a></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">List</span><span class="p"><span class="pre">[</span></span><a class="reference internal" href="superduperdb.container.html#superduperdb.container.document.Document" title="superduperdb.container.document.Document"><span class="pre">Document</span></a><span class="p"><span class="pre">]</span></span><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><span class="pre">Any</span><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><span class="pre">Tuple</span><span class="p"><span class="pre">[</span></span><span class="pre">Any</span><span class="p"><span class="pre">,</span></span><span class="w"> </span><span class="pre">Any</span><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><span class="pre">None</span><span class="p"><span class="pre">]</span></span></span></span><a class="reference internal" href="../_modules/superduperdb/db/base/db.html#DB.execute"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#superduperdb.db.base.db.DB.execute" title="Permalink to this definition">#</a></dt>
+<span class="sig-name descname"><span class="pre">execute</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">query</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference internal" href="#superduperdb.db.base.query.Select" title="superduperdb.db.base.query.Select"><span class="pre">Select</span></a><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><a class="reference internal" href="#superduperdb.db.base.query.SelectOne" title="superduperdb.db.base.query.SelectOne"><span class="pre">SelectOne</span></a><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><a class="reference internal" href="#superduperdb.db.base.query.Delete" title="superduperdb.db.base.query.Delete"><span class="pre">Delete</span></a><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><a class="reference internal" href="#superduperdb.db.base.query.Update" title="superduperdb.db.base.query.Update"><span class="pre">Update</span></a><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><a class="reference internal" href="#superduperdb.db.base.query.Insert" title="superduperdb.db.base.query.Insert"><span class="pre">Insert</span></a></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">List</span><span class="p"><span class="pre">[</span></span><a class="reference internal" href="superduperdb.container.html#superduperdb.container.document.Document" title="superduperdb.container.document.Document"><span class="pre">Document</span></a><span class="p"><span class="pre">]</span></span><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><span class="pre">Any</span><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><span class="pre">Tuple</span><span class="p"><span class="pre">[</span></span><span class="pre">Any</span><span class="p"><span class="pre">,</span></span><span class="w"> </span><span class="pre">Any</span><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><span class="pre">None</span><span class="p"><span class="pre">]</span></span></span></span><a class="reference internal" href="../_modules/superduperdb/db/base/db.html#DB.execute"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#superduperdb.db.base.db.DB.execute" title="Permalink to this definition">#</a></dt>
 <dd><p>Execute a query on the db.</p>
 <dl class="field-list simple">
 <dt class="field-odd">Parameters<span class="colon">:</span></dt>
@@ -638,10 +694,9 @@ the metadata.</p>
 ‘training_configuration’, ‘learning_task’, ‘vector_index’]</p></li>
 <li><p><strong>identifier</strong> – identifier of component (see <cite>container.base.Component</cite>)</p></li>
 <li><p><strong>version</strong> – [optional] numerical version</p></li>
-<li><p><strong>repopulate</strong> – toggle to <code class="docutils literal notranslate"><span class="pre">False</span></code> to only load references to other
-components</p></li>
 <li><p><strong>allow_hidden</strong> – toggle to <code class="docutils literal notranslate"><span class="pre">True</span></code> to allow loading of deprecated
 components</p></li>
+<li><p><strong>info_only</strong> – toggle to <code class="docutils literal notranslate"><span class="pre">True</span></code> to return metadata only</p></li>
 </ul>
 </dd>
 </dl>
@@ -697,7 +752,7 @@ Must be possible to encode with registered encoders</p></li>
 <dt class="field-odd">Parameters<span class="colon">:</span></dt>
 <dd class="field-odd"><ul class="simple">
 <li><p><strong>type_id</strong> – type_id of component to remove [‘encoder’, ‘model’, ‘listener’,
-‘training_configuration’, ‘learning_task’, ‘vector_index’]</p></li>
+‘training_configuration’, ‘vector_index’]</p></li>
 <li><p><strong>identifier</strong> – identifier of component (see <cite>container.base.Component</cite>)</p></li>
 <li><p><strong>version</strong> – [optional] numerical version to remove</p></li>
 <li><p><strong>force</strong> – force skip confirmation (use with caution)</p></li>
@@ -710,7 +765,6 @@ Must be possible to encode with registered encoders</p></li>
 <dt class="sig sig-object py" id="superduperdb.db.base.db.DB.replace">
 <span class="sig-name descname"><span class="pre">replace</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">object</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">Any</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">upsert</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">bool</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">False</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/superduperdb/db/base/db.html#DB.replace"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#superduperdb.db.base.db.DB.replace" title="Permalink to this definition">#</a></dt>
 <dd><p>(Use-with caution!!) Replace a model in artifact store with updated object.
-:param identifier: model-identifier
 :param object: object to replace
 :param upsert: toggle to <code class="docutils literal notranslate"><span class="pre">True</span></code> to enable even if object doesn’t exist yet</p>
 </dd></dl>
@@ -861,10 +915,10 @@ Uses a <code class="xref py py-class docutils literal notranslate"><span class="
 <li><p><strong>ids</strong> – list of ids of rows/ documents to update</p></li>
 <li><p><strong>keys</strong> – list of keys in rows/ documents to insert to</p></li>
 <li><p><strong>n_workers</strong> – number of multiprocessing workers</p></li>
-<li><p><strong>raises</strong> – raises error <code class="docutils literal notranslate"><span class="pre">True</span></code>/<code class="docutils literal notranslate"><span class="pre">False</span></code></p></li>
 <li><p><strong>headers</strong> – dictionary of request headers passed to``requests`` package</p></li>
 <li><p><strong>skip_existing</strong> – if <code class="docutils literal notranslate"><span class="pre">True</span></code> then don’t bother getting already present data</p></li>
 <li><p><strong>timeout</strong> – set seconds until request times out</p></li>
+<li><p><strong>raises</strong> – raises error <code class="docutils literal notranslate"><span class="pre">True</span></code>/<code class="docutils literal notranslate"><span class="pre">False</span></code></p></li>
 </ul>
 </dd>
 </dl>
@@ -882,9 +936,9 @@ Uses a <code class="xref py py-class docutils literal notranslate"><span class="
 </dd></dl>
 
 <dl class="py class">
-<dt class="sig sig-object py" id="superduperdb.db.base.download.InMemoryDownloader">
-<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">superduperdb.db.base.download.</span></span><span class="sig-name descname"><span class="pre">InMemoryDownloader</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="o"><span class="pre">*</span></span><span class="n"><span class="pre">args</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">headers</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">n_workers</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">0</span></span></em>, <em class="sig-param"><span class="o"><span class="pre">**</span></span><span class="n"><span class="pre">kwargs</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/superduperdb/db/base/download.html#InMemoryDownloader"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#superduperdb.db.base.download.InMemoryDownloader" title="Permalink to this definition">#</a></dt>
-<dd><p>Bases: <a class="reference internal" href="#superduperdb.db.base.download.BaseDownloader" title="superduperdb.db.base.download.BaseDownloader"><code class="xref py py-class docutils literal notranslate"><span class="pre">BaseDownloader</span></code></a></p>
+<dt class="sig sig-object py" id="superduperdb.db.base.download.SaveFile">
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">superduperdb.db.base.download.</span></span><span class="sig-name descname"><span class="pre">SaveFile</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">root</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/superduperdb/db/base/download.html#SaveFile"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#superduperdb.db.base.download.SaveFile" title="Permalink to this definition">#</a></dt>
+<dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">object</span></code></p>
 </dd></dl>
 
 <dl class="py exception">
@@ -911,7 +965,7 @@ Uses a <code class="xref py py-class docutils literal notranslate"><span class="
 <dl class="py function">
 <dt class="sig sig-object py" id="superduperdb.db.base.download.gather_uris">
 <span class="sig-prename descclassname"><span class="pre">superduperdb.db.base.download.</span></span><span class="sig-name descname"><span class="pre">gather_uris</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">documents</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">Sequence</span><span class="p"><span class="pre">[</span></span><span class="pre">Dict</span><span class="p"><span class="pre">]</span></span></span></em>, <em class="sig-param"><span class="n"><span class="pre">gather_ids</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">bool</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">True</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">Tuple</span><span class="p"><span class="pre">[</span></span><span class="pre">List</span><span class="p"><span class="pre">[</span></span><span class="pre">str</span><span class="p"><span class="pre">]</span></span><span class="p"><span class="pre">,</span></span><span class="w"> </span><span class="pre">List</span><span class="p"><span class="pre">[</span></span><span class="pre">str</span><span class="p"><span class="pre">]</span></span><span class="p"><span class="pre">,</span></span><span class="w"> </span><span class="pre">List</span><span class="p"><span class="pre">[</span></span><span class="pre">int</span><span class="p"><span class="pre">]</span></span><span class="p"><span class="pre">]</span></span></span></span><a class="reference internal" href="../_modules/superduperdb/db/base/download.html#gather_uris"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#superduperdb.db.base.download.gather_uris" title="Permalink to this definition">#</a></dt>
-<dd><p>Get the URLS out of all documents as denoted by <code class="docutils literal notranslate"><span class="pre">{&quot;_content&quot;:</span> <span class="pre">...}</span></code></p>
+<dd><p>Get the uris out of all documents as denoted by <code class="docutils literal notranslate"><span class="pre">{&quot;_content&quot;:</span> <span class="pre">...}</span></code></p>
 <dl class="field-list simple">
 <dt class="field-odd">Parameters<span class="colon">:</span></dt>
 <dd class="field-odd"><p><strong>documents</strong> – list of dictionaries</p>
@@ -1003,6 +1057,12 @@ to the database, unless a <code class="docutils literal notranslate"><span class
 <dt class="sig sig-object py" id="superduperdb.db.base.metadata.MetaDataStore.delete_component_version">
 <em class="property"><span class="pre">abstract</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">delete_component_version</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">type_id</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">identifier</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">version</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">int</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/superduperdb/db/base/metadata.html#MetaDataStore.delete_component_version"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#superduperdb.db.base.metadata.MetaDataStore.delete_component_version" title="Permalink to this definition">#</a></dt>
 <dd></dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="superduperdb.db.base.metadata.MetaDataStore.drop">
+<em class="property"><span class="pre">abstract</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">drop</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">force</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">bool</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">False</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/superduperdb/db/base/metadata.html#MetaDataStore.drop"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#superduperdb.db.base.metadata.MetaDataStore.drop" title="Permalink to this definition">#</a></dt>
+<dd><p>Drop the metadata store.</p>
+</dd></dl>
 
 <dl class="py method">
 <dt class="sig sig-object py" id="superduperdb.db.base.metadata.MetaDataStore.get_component">
@@ -1353,6 +1413,7 @@ was inserted</p>
 <li><a class="reference internal" href="#superduperdb.db.base.artifact.ArtifactStore"><code class="docutils literal notranslate"><span class="pre">ArtifactStore</span></code></a><ul>
 <li><a class="reference internal" href="#superduperdb.db.base.artifact.ArtifactStore.create_artifact"><code class="docutils literal notranslate"><span class="pre">ArtifactStore.create_artifact()</span></code></a></li>
 <li><a class="reference internal" href="#superduperdb.db.base.artifact.ArtifactStore.delete_artifact"><code class="docutils literal notranslate"><span class="pre">ArtifactStore.delete_artifact()</span></code></a></li>
+<li><a class="reference internal" href="#superduperdb.db.base.artifact.ArtifactStore.drop"><code class="docutils literal notranslate"><span class="pre">ArtifactStore.drop()</span></code></a></li>
 <li><a class="reference internal" href="#superduperdb.db.base.artifact.ArtifactStore.load_artifact"><code class="docutils literal notranslate"><span class="pre">ArtifactStore.load_artifact()</span></code></a></li>
 </ul>
 </li>
@@ -1392,6 +1453,7 @@ was inserted</p>
 <li><a class="reference internal" href="#module-superduperdb.db.base.data_backend">superduperdb.db.base.data_backend module</a><ul>
 <li><a class="reference internal" href="#superduperdb.db.base.data_backend.BaseDataBackend"><code class="docutils literal notranslate"><span class="pre">BaseDataBackend</span></code></a><ul>
 <li><a class="reference internal" href="#superduperdb.db.base.data_backend.BaseDataBackend.db"><code class="docutils literal notranslate"><span class="pre">BaseDataBackend.db</span></code></a></li>
+<li><a class="reference internal" href="#superduperdb.db.base.data_backend.BaseDataBackend.drop"><code class="docutils literal notranslate"><span class="pre">BaseDataBackend.drop()</span></code></a></li>
 <li><a class="reference internal" href="#superduperdb.db.base.data_backend.BaseDataBackend.get_output_from_document"><code class="docutils literal notranslate"><span class="pre">BaseDataBackend.get_output_from_document()</span></code></a></li>
 <li><a class="reference internal" href="#superduperdb.db.base.data_backend.BaseDataBackend.id_field"><code class="docutils literal notranslate"><span class="pre">BaseDataBackend.id_field</span></code></a></li>
 <li><a class="reference internal" href="#superduperdb.db.base.data_backend.BaseDataBackend.models"><code class="docutils literal notranslate"><span class="pre">BaseDataBackend.models</span></code></a></li>
@@ -1409,6 +1471,7 @@ was inserted</p>
 <li><a class="reference internal" href="#superduperdb.db.base.db.DB.db"><code class="docutils literal notranslate"><span class="pre">DB.db</span></code></a></li>
 <li><a class="reference internal" href="#superduperdb.db.base.db.DB.delete"><code class="docutils literal notranslate"><span class="pre">DB.delete()</span></code></a></li>
 <li><a class="reference internal" href="#superduperdb.db.base.db.DB.distributed_client"><code class="docutils literal notranslate"><span class="pre">DB.distributed_client</span></code></a></li>
+<li><a class="reference internal" href="#superduperdb.db.base.db.DB.drop"><code class="docutils literal notranslate"><span class="pre">DB.drop()</span></code></a></li>
 <li><a class="reference internal" href="#superduperdb.db.base.db.DB.execute"><code class="docutils literal notranslate"><span class="pre">DB.execute()</span></code></a></li>
 <li><a class="reference internal" href="#superduperdb.db.base.db.DB.insert"><code class="docutils literal notranslate"><span class="pre">DB.insert()</span></code></a></li>
 <li><a class="reference internal" href="#superduperdb.db.base.db.DB.like"><code class="docutils literal notranslate"><span class="pre">DB.like()</span></code></a></li>
@@ -1446,7 +1509,7 @@ was inserted</p>
 </ul>
 </li>
 <li><a class="reference internal" href="#superduperdb.db.base.download.Fetcher"><code class="docutils literal notranslate"><span class="pre">Fetcher</span></code></a></li>
-<li><a class="reference internal" href="#superduperdb.db.base.download.InMemoryDownloader"><code class="docutils literal notranslate"><span class="pre">InMemoryDownloader</span></code></a></li>
+<li><a class="reference internal" href="#superduperdb.db.base.download.SaveFile"><code class="docutils literal notranslate"><span class="pre">SaveFile</span></code></a></li>
 <li><a class="reference internal" href="#superduperdb.db.base.download.TimeoutException"><code class="docutils literal notranslate"><span class="pre">TimeoutException</span></code></a></li>
 <li><a class="reference internal" href="#superduperdb.db.base.download._gather_uris_for_document"><code class="docutils literal notranslate"><span class="pre">_gather_uris_for_document()</span></code></a></li>
 <li><a class="reference internal" href="#superduperdb.db.base.download.gather_uris"><code class="docutils literal notranslate"><span class="pre">gather_uris()</span></code></a></li>
@@ -1470,6 +1533,7 @@ was inserted</p>
 <li><a class="reference internal" href="#superduperdb.db.base.metadata.MetaDataStore.create_job"><code class="docutils literal notranslate"><span class="pre">MetaDataStore.create_job()</span></code></a></li>
 <li><a class="reference internal" href="#superduperdb.db.base.metadata.MetaDataStore.create_parent_child"><code class="docutils literal notranslate"><span class="pre">MetaDataStore.create_parent_child()</span></code></a></li>
 <li><a class="reference internal" href="#superduperdb.db.base.metadata.MetaDataStore.delete_component_version"><code class="docutils literal notranslate"><span class="pre">MetaDataStore.delete_component_version()</span></code></a></li>
+<li><a class="reference internal" href="#superduperdb.db.base.metadata.MetaDataStore.drop"><code class="docutils literal notranslate"><span class="pre">MetaDataStore.drop()</span></code></a></li>
 <li><a class="reference internal" href="#superduperdb.db.base.metadata.MetaDataStore.get_component"><code class="docutils literal notranslate"><span class="pre">MetaDataStore.get_component()</span></code></a></li>
 <li><a class="reference internal" href="#superduperdb.db.base.metadata.MetaDataStore.get_component_version_parents"><code class="docutils literal notranslate"><span class="pre">MetaDataStore.get_component_version_parents()</span></code></a></li>
 <li><a class="reference internal" href="#superduperdb.db.base.metadata.MetaDataStore.get_job"><code class="docutils literal notranslate"><span class="pre">MetaDataStore.get_job()</span></code></a></li>
@@ -1533,13 +1597,12 @@ was inserted</p>
       
     </aside>
   </div>
-</div><script data-url_root="../" id="documentation_options" src="../_static/documentation_options.js"></script>
-    <script src="../_static/doctools.js"></script>
-    <script src="../_static/sphinx_highlight.js"></script>
-    <script src="../_static/scripts/furo.js"></script>
-    <script src="../_static/clipboard.min.js"></script>
-    <script src="../_static/copybutton.js"></script>
+</div><script data-url_root="../" id="documentation_options" src="../_static/documentation_options.js?v=b3ba4146"></script>
+    <script src="../_static/doctools.js?v=888ff710"></script>
+    <script src="../_static/sphinx_highlight.js?v=4825356b"></script>
+    <script src="../_static/scripts/furo.js?v=32e29ea5"></script>
+    <script src="../_static/clipboard.min.js?v=a7894cd8"></script>
+    <script src="../_static/copybutton.js?v=f281be69"></script>
     <script crossorigin="anonymous" integrity="sha256-Ae2Vz/4ePdIu6ZyI/5ZGsYnb+m0JlOmKPjt6XZ9JJkA=" src="https://cdnjs.cloudflare.com/ajax/libs/require.js/2.3.4/require.min.js"></script>
-    <script src="https://cdn.jsdelivr.net/npm/@jupyter-widgets/html-manager@^1.0.1/dist/embed-amd.js"></script>
     </body>
 </html>

@@ -2,15 +2,15 @@
 <html class="no-js" lang="en">
   <head><meta charset="utf-8"/>
     <meta name="viewport" content="width=device-width,initial-scale=1"/>
-    <meta name="color-scheme" content="light dark"><meta name="generator" content="Docutils 0.18.1: http://docutils.sourceforge.net/" />
+    <meta name="color-scheme" content="light dark"><meta name="viewport" content="width=device-width, initial-scale=1" />
 <link rel="index" title="Index" href="../genindex.html" /><link rel="search" title="Search" href="../search.html" /><link rel="next" title="superduperdb.ext package" href="superduperdb.ext.html" /><link rel="prev" title="superduperdb.db.base package" href="superduperdb.db.base.html" />
 
-    <!-- Generated with Sphinx 6.2.1 and Furo 2023.05.20 -->
-        <title>superduperdb.db.mongodb package - SuperDuperDB documentation</title>
-      <link rel="stylesheet" type="text/css" href="../_static/pygments.css" />
-    <link rel="stylesheet" type="text/css" href="../_static/styles/furo.css?digest=e6660623a769aa55fea372102b9bf3151b292993" />
-    <link rel="stylesheet" type="text/css" href="../_static/copybutton.css" />
-    <link rel="stylesheet" type="text/css" href="../_static/styles/furo-extensions.css?digest=30d1aed668e5c3a91c3e3bf6a60b675221979f0e" />
+    <!-- Generated with Sphinx 7.1.2 and Furo 2023.07.26 -->
+        <title>superduperdb.db.mongodb package - Python documentation</title>
+      <link rel="stylesheet" type="text/css" href="../_static/pygments.css?v=fa44fd50" />
+    <link rel="stylesheet" type="text/css" href="../_static/styles/furo.css?v=135e06be" />
+    <link rel="stylesheet" type="text/css" href="../_static/copybutton.css?v=76b2166b" />
+    <link rel="stylesheet" type="text/css" href="../_static/styles/furo-extensions.css?v=36a5483c" />
     
     
 
@@ -124,7 +124,7 @@
       </label>
     </div>
     <div class="header-center">
-      <a href="../index.html"><div class="brand">SuperDuperDB  documentation</div></a>
+      <a href="../index.html"><div class="brand">Python  documentation</div></a>
     </div>
     <div class="header-right">
       <div class="theme-toggle-container theme-toggle-header">
@@ -146,8 +146,11 @@
       
       <div class="sidebar-sticky"><a class="sidebar-brand" href="../index.html">
   
+  <div class="sidebar-logo-container">
+    <img class="sidebar-logo" src="../_static/SuperDuperDB_logo.png" alt="Logo"/>
+  </div>
   
-  <span class="sidebar-brand-text">SuperDuperDB  documentation</span>
+  <span class="sidebar-brand-text">Python  documentation</span>
   
 </a><form class="sidebar-search-container" method="get" action="../search.html" role="search">
   <input class="sidebar-search" placeholder="Search" name="q" aria-label="Search">
@@ -189,7 +192,7 @@
 </ul>
 </li>
 <li class="toctree-l1 has-children"><a class="reference internal" href="../how_to/index.html">How to …</a><input class="toctree-checkbox" id="toctree-checkbox-5" name="toctree-checkbox-5" role="switch" type="checkbox"/><label for="toctree-checkbox-5"><div class="visually-hidden">Toggle navigation of How to …</div><i class="icon"><svg><use href="#svg-arrow-right"></use></svg></i></label><ul>
-<li class="toctree-l2"><a class="reference internal" href="../how_to/playground.html">Download, install and setup SuperDuperDB</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../how_to/playground.html">Welcome to the SuperDuperDB Playground!</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../how_to/add_images_or_audio.html">Add images, audio or video from URIs</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../how_to/create_replicaset.html">How to create a replica set in MongoDB</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../how_to/mongo_cdc.html">Perform change data capture (CDC)</a></li>
@@ -200,7 +203,7 @@
 <li class="toctree-l2"><a class="reference internal" href="../examples/mnist_torch.html">Training and maintaining MNIST predictions</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../examples/mnist_sklearn.html">MNIST using scikit-learn and SuperDuperDB</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../examples/openai.html">OpenAI vector search</a></li>
-<li class="toctree-l2"><a class="reference internal" href="../examples/compare_vector_search_solutions.html">Compare vector search</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../examples/compare_vector_search_solutions.html">Turn your classical-database into a vector-database with SuperDuperDB</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../examples/multimodal_image_search_clip.html">Multimodal search with CLIP</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../examples/sentiment_analysis_use_case.html">Sentiment analysis with transformers</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../examples/voice_memos.html">Cataloguing voice-memos for a self managed personal assistant</a></li>
@@ -320,6 +323,12 @@
 :param file_id: File id uses to identify artifact in store</p>
 </dd></dl>
 
+<dl class="py method">
+<dt class="sig sig-object py" id="superduperdb.db.mongodb.artifacts.MongoArtifactStore.drop">
+<span class="sig-name descname"><span class="pre">drop</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">force</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">bool</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">False</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/superduperdb/db/mongodb/artifacts.html#MongoArtifactStore.drop"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#superduperdb.db.mongodb.artifacts.MongoArtifactStore.drop" title="Permalink to this definition">#</a></dt>
+<dd><p>Drop the artifact store.</p>
+</dd></dl>
+
 </dd></dl>
 
 </section>
@@ -381,10 +390,10 @@ does post model executiong jobs, i.e <cite>copy_vectors</cite>.</p>
 
 <dl class="py method">
 <dt class="sig sig-object py" id="superduperdb.db.mongodb.cdc.CDCHandler.create_vector_listener_task">
-<span class="sig-name descname"><span class="pre">create_vector_listener_task</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">task_workflow</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference internal" href="superduperdb.container.html#superduperdb.container.task_workflow.TaskWorkflow" title="superduperdb.container.task_workflow.TaskWorkflow"><span class="pre">TaskWorkflow</span></a></span></em>, <em class="sig-param"><span class="n"><span class="pre">cdc_query</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference internal" href="superduperdb.container.html#superduperdb.container.serializable.Serializable" title="superduperdb.container.serializable.Serializable"><span class="pre">Serializable</span></a></span></em>, <em class="sig-param"><span class="n"><span class="pre">ids</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">Sequence</span><span class="p"><span class="pre">[</span></span><span class="pre">str</span><span class="p"><span class="pre">]</span></span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><a class="reference internal" href="superduperdb.container.html#superduperdb.container.task_workflow.TaskWorkflow" title="superduperdb.container.task_workflow.TaskWorkflow"><span class="pre">TaskWorkflow</span></a></span></span><a class="reference internal" href="../_modules/superduperdb/db/mongodb/cdc.html#CDCHandler.create_vector_listener_task"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#superduperdb.db.mongodb.cdc.CDCHandler.create_vector_listener_task" title="Permalink to this definition">#</a></dt>
+<span class="sig-name descname"><span class="pre">create_vector_listener_task</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">task_workflow</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference internal" href="superduperdb.container.html#superduperdb.container.task_workflow.TaskWorkflow" title="superduperdb.container.task_workflow.TaskWorkflow"><span class="pre">TaskWorkflow</span></a></span></em>, <em class="sig-param"><span class="n"><span class="pre">cdc_query</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference internal" href="superduperdb.container.html#superduperdb.container.serializable.Serializable" title="superduperdb.container.serializable.Serializable"><span class="pre">Serializable</span></a><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">ids</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">Sequence</span><span class="p"><span class="pre">[</span></span><span class="pre">str</span><span class="p"><span class="pre">]</span></span></span></em>, <em class="sig-param"><span class="n"><span class="pre">task</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">'copy'</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><a class="reference internal" href="superduperdb.container.html#superduperdb.container.task_workflow.TaskWorkflow" title="superduperdb.container.task_workflow.TaskWorkflow"><span class="pre">TaskWorkflow</span></a></span></span><a class="reference internal" href="../_modules/superduperdb/db/mongodb/cdc.html#CDCHandler.create_vector_listener_task"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#superduperdb.db.mongodb.cdc.CDCHandler.create_vector_listener_task" title="Permalink to this definition">#</a></dt>
 <dd><p>create_vector_listener_task.
 A helper function to define a node in taskflow graph which is responsible for
-copying vectors to a vector db.</p>
+executing the defined <code class="docutils literal notranslate"><span class="pre">task</span></code> on a vector db.</p>
 <dl class="field-list simple">
 <dt class="field-odd">Parameters<span class="colon">:</span></dt>
 <dd class="field-odd"><ul class="simple">
@@ -392,6 +401,7 @@ copying vectors to a vector db.</p>
 <li><p><strong>db</strong> – A superduperdb instance.</p></li>
 <li><p><strong>cdc_query</strong> – A basic find query to get cursor on collection.</p></li>
 <li><p><strong>ids</strong> – A list of ids observed during the change</p></li>
+<li><p><strong>task</strong> – A task name to be executed on vector db.</p></li>
 </ul>
 </dd>
 </dl>
@@ -406,6 +416,11 @@ copying vectors to a vector db.</p>
 <dl class="py method">
 <dt class="sig sig-object py" id="superduperdb.db.mongodb.cdc.CDCHandler.on_create">
 <span class="sig-name descname"><span class="pre">on_create</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">packet</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference internal" href="#superduperdb.db.mongodb.cdc.Packet" title="superduperdb.db.mongodb.cdc.Packet"><span class="pre">Packet</span></a></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">None</span></span></span><a class="reference internal" href="../_modules/superduperdb/db/mongodb/cdc.html#CDCHandler.on_create"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#superduperdb.db.mongodb.cdc.CDCHandler.on_create" title="Permalink to this definition">#</a></dt>
+<dd></dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="superduperdb.db.mongodb.cdc.CDCHandler.on_delete">
+<span class="sig-name descname"><span class="pre">on_delete</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">packet</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference internal" href="#superduperdb.db.mongodb.cdc.Packet" title="superduperdb.db.mongodb.cdc.Packet"><span class="pre">Packet</span></a></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">None</span></span></span><a class="reference internal" href="../_modules/superduperdb/db/mongodb/cdc.html#CDCHandler.on_delete"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#superduperdb.db.mongodb.cdc.CDCHandler.on_delete" title="Permalink to this definition">#</a></dt>
 <dd></dd></dl>
 
 <dl class="py method">
@@ -425,7 +440,7 @@ from the args and kwargs arguments, respectively.</p>
 
 <dl class="py method">
 <dt class="sig sig-object py" id="superduperdb.db.mongodb.cdc.CDCHandler.submit_task_workflow">
-<span class="sig-name descname"><span class="pre">submit_task_workflow</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">cdc_query</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference internal" href="superduperdb.container.html#superduperdb.container.serializable.Serializable" title="superduperdb.container.serializable.Serializable"><span class="pre">Serializable</span></a></span></em>, <em class="sig-param"><span class="n"><span class="pre">ids</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">Sequence</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">None</span></span></span><a class="reference internal" href="../_modules/superduperdb/db/mongodb/cdc.html#CDCHandler.submit_task_workflow"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#superduperdb.db.mongodb.cdc.CDCHandler.submit_task_workflow" title="Permalink to this definition">#</a></dt>
+<span class="sig-name descname"><span class="pre">submit_task_workflow</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">cdc_query</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference internal" href="superduperdb.container.html#superduperdb.container.serializable.Serializable" title="superduperdb.container.serializable.Serializable"><span class="pre">Serializable</span></a><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">ids</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">Sequence</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">task</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">'copy'</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">None</span></span></span><a class="reference internal" href="../_modules/superduperdb/db/mongodb/cdc.html#CDCHandler.submit_task_workflow"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#superduperdb.db.mongodb.cdc.CDCHandler.submit_task_workflow" title="Permalink to this definition">#</a></dt>
 <dd><p>submit_task_workflow.
 A fxn to build a taskflow and execute it with changed ids.
 This also extends the task workflow graph with a node.
@@ -437,16 +452,22 @@ and copying the vectors into a vector search database.</p>
 </dd>
 </dl>
 <p>to extract the desired data.
-:param ids: List of ids which were observed as changed document.</p>
+:param ids: List of ids which were observed as changed document.
+:param task: A task name to be executed on vector db.</p>
 </dd></dl>
 
 </dd></dl>
 
 <dl class="py class">
 <dt class="sig sig-object py" id="superduperdb.db.mongodb.cdc.CDCKeys">
-<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">superduperdb.db.mongodb.cdc.</span></span><span class="sig-name descname"><span class="pre">CDCKeys</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">value</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">names</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="o"><span class="pre">*</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">module</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">qualname</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">type</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">start</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">1</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">boundary</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/superduperdb/db/mongodb/cdc.html#CDCKeys"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#superduperdb.db.mongodb.cdc.CDCKeys" title="Permalink to this definition">#</a></dt>
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">superduperdb.db.mongodb.cdc.</span></span><span class="sig-name descname"><span class="pre">CDCKeys</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">value</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/superduperdb/db/mongodb/cdc.html#CDCKeys"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#superduperdb.db.mongodb.cdc.CDCKeys" title="Permalink to this definition">#</a></dt>
 <dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">Enum</span></code></p>
 <p>A enum to represent mongo change document keys.</p>
+<dl class="py attribute">
+<dt class="sig sig-object py" id="superduperdb.db.mongodb.cdc.CDCKeys.deleted_document_data_key">
+<span class="sig-name descname"><span class="pre">deleted_document_data_key</span></span><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">'documentKey'</span></em><a class="headerlink" href="#superduperdb.db.mongodb.cdc.CDCKeys.deleted_document_data_key" title="Permalink to this definition">#</a></dt>
+<dd></dd></dl>
+
 <dl class="py attribute">
 <dt class="sig sig-object py" id="superduperdb.db.mongodb.cdc.CDCKeys.document_data_key">
 <span class="sig-name descname"><span class="pre">document_data_key</span></span><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">'fullDocument'</span></em><a class="headerlink" href="#superduperdb.db.mongodb.cdc.CDCKeys.document_data_key" title="Permalink to this definition">#</a></dt>
@@ -502,7 +523,7 @@ and copying the vectors into a vector search database.</p>
 
 <dl class="py class">
 <dt class="sig sig-object py" id="superduperdb.db.mongodb.cdc.DBEvent">
-<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">superduperdb.db.mongodb.cdc.</span></span><span class="sig-name descname"><span class="pre">DBEvent</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">value</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">names</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="o"><span class="pre">*</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">module</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">qualname</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">type</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">start</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">1</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">boundary</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/superduperdb/db/mongodb/cdc.html#DBEvent"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#superduperdb.db.mongodb.cdc.DBEvent" title="Permalink to this definition">#</a></dt>
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">superduperdb.db.mongodb.cdc.</span></span><span class="sig-name descname"><span class="pre">DBEvent</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">value</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/superduperdb/db/mongodb/cdc.html#DBEvent"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#superduperdb.db.mongodb.cdc.DBEvent" title="Permalink to this definition">#</a></dt>
 <dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">Enum</span></code></p>
 <p><cite>DBEvent</cite> simple enum to hold mongo basic events.</p>
 <dl class="py attribute">
@@ -802,14 +823,38 @@ execute.</p>
 </dd></dl>
 
 <dl class="py method">
-<dt class="sig sig-object py" id="superduperdb.db.mongodb.cdc.MongoEventMixin.on_update">
-<span class="sig-name descname"><span class="pre">on_update</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">change</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">Dict</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">db</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference internal" href="superduperdb.db.base.html#superduperdb.db.base.db.DB" title="superduperdb.db.base.db.DB"><span class="pre">DB</span></a></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/superduperdb/db/mongodb/cdc.html#MongoEventMixin.on_update"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#superduperdb.db.mongodb.cdc.MongoEventMixin.on_update" title="Permalink to this definition">#</a></dt>
-<dd><p>on_update.</p>
+<dt class="sig sig-object py" id="superduperdb.db.mongodb.cdc.MongoEventMixin.on_delete">
+<span class="sig-name descname"><span class="pre">on_delete</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">change</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">Dict</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">db</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference internal" href="superduperdb.db.base.html#superduperdb.db.base.db.DB" title="superduperdb.db.base.db.DB"><span class="pre">DB</span></a></span></em>, <em class="sig-param"><span class="n"><span class="pre">collection</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference internal" href="#superduperdb.db.mongodb.query.Collection" title="superduperdb.db.mongodb.query.Collection"><span class="pre">Collection</span></a></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">None</span></span></span><a class="reference internal" href="../_modules/superduperdb/db/mongodb/cdc.html#MongoEventMixin.on_delete"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#superduperdb.db.mongodb.cdc.MongoEventMixin.on_delete" title="Permalink to this definition">#</a></dt>
+<dd><p>on_delete.</p>
+<p>A helper on delete event handler which handles deleted document in the
+change stream.
+It basically extracts the change document and build the taskflow graph to
+execute.</p>
 <dl class="field-list simple">
 <dt class="field-odd">Parameters<span class="colon">:</span></dt>
 <dd class="field-odd"><ul class="simple">
-<li><p><strong>change</strong> – </p></li>
-<li><p><strong>db</strong> – </p></li>
+<li><p><strong>change</strong> – The changed document.</p></li>
+<li><p><strong>db</strong> – a superduperdb instance.</p></li>
+<li><p><strong>collection</strong> – The collection on which change was observed.</p></li>
+</ul>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="superduperdb.db.mongodb.cdc.MongoEventMixin.on_update">
+<span class="sig-name descname"><span class="pre">on_update</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">change</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">Dict</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">db</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference internal" href="superduperdb.db.base.html#superduperdb.db.base.db.DB" title="superduperdb.db.base.db.DB"><span class="pre">DB</span></a></span></em>, <em class="sig-param"><span class="n"><span class="pre">collection</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference internal" href="#superduperdb.db.mongodb.query.Collection" title="superduperdb.db.mongodb.query.Collection"><span class="pre">Collection</span></a></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">None</span></span></span><a class="reference internal" href="../_modules/superduperdb/db/mongodb/cdc.html#MongoEventMixin.on_update"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#superduperdb.db.mongodb.cdc.MongoEventMixin.on_update" title="Permalink to this definition">#</a></dt>
+<dd><p>on_update.</p>
+<p>A helper on update event handler which handles updated document in the
+change stream.
+It basically extracts the change document and build the taskflow graph to
+execute.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>change</strong> – The changed document.</p></li>
+<li><p><strong>db</strong> – a superduperdb instance.</p></li>
+<li><p><strong>collection</strong> – The collection on which change was observed.</p></li>
 </ul>
 </dd>
 </dl>
@@ -870,25 +915,12 @@ specification version 0.2</a>.</p>
 
 <dl class="py class">
 <dt class="sig sig-object py" id="superduperdb.db.mongodb.cdc.Packet">
-<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">superduperdb.db.mongodb.cdc.</span></span><span class="sig-name descname"><span class="pre">Packet</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="o"><span class="pre">*</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">event_type</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">'insert'</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">ids</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">List</span><span class="p"><span class="pre">[</span></span><a class="reference internal" href="#superduperdb.db.mongodb.cdc.ObjectId" title="superduperdb.db.mongodb.cdc.ObjectId"><span class="pre">ObjectId</span></a><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><span class="pre">str</span><span class="p"><span class="pre">]</span></span></span></em>, <em class="sig-param"><span class="n"><span class="pre">query</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference internal" href="superduperdb.container.html#superduperdb.container.serializable.Serializable" title="superduperdb.container.serializable.Serializable"><span class="pre">Serializable</span></a></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/superduperdb/db/mongodb/cdc.html#Packet"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#superduperdb.db.mongodb.cdc.Packet" title="Permalink to this definition">#</a></dt>
-<dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">BaseModel</span></code></p>
-<p>A base packet to represent message in task queue.</p>
-<p>Create a new model by parsing and validating input data from keyword arguments.</p>
-<p>Raises ValidationError if the input data cannot be parsed to form a valid model.</p>
-<dl class="py class">
-<dt class="sig sig-object py" id="superduperdb.db.mongodb.cdc.Packet.Config">
-<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">Config</span></span><a class="reference internal" href="../_modules/superduperdb/db/mongodb/cdc.html#Packet.Config"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#superduperdb.db.mongodb.cdc.Packet.Config" title="Permalink to this definition">#</a></dt>
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">superduperdb.db.mongodb.cdc.</span></span><span class="sig-name descname"><span class="pre">Packet</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">ids</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">List</span><span class="p"><span class="pre">[</span></span><a class="reference internal" href="#superduperdb.db.mongodb.cdc.ObjectId" title="superduperdb.db.mongodb.cdc.ObjectId"><span class="pre">ObjectId</span></a><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><span class="pre">str</span><span class="p"><span class="pre">]</span></span></span></em>, <em class="sig-param"><span class="n"><span class="pre">query</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference internal" href="superduperdb.container.html#superduperdb.container.serializable.Serializable" title="superduperdb.container.serializable.Serializable"><span class="pre">Serializable</span></a><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">event_type</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">'insert'</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/superduperdb/db/mongodb/cdc.html#Packet"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#superduperdb.db.mongodb.cdc.Packet" title="Permalink to this definition">#</a></dt>
 <dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">object</span></code></p>
-<dl class="py attribute">
-<dt class="sig sig-object py" id="superduperdb.db.mongodb.cdc.Packet.Config.arbitrary_types_allowed">
-<span class="sig-name descname"><span class="pre">arbitrary_types_allowed</span></span><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">True</span></em><a class="headerlink" href="#superduperdb.db.mongodb.cdc.Packet.Config.arbitrary_types_allowed" title="Permalink to this definition">#</a></dt>
-<dd></dd></dl>
-
-</dd></dl>
-
+<p>A base packet to represent message in task queue.</p>
 <dl class="py attribute">
 <dt class="sig sig-object py" id="superduperdb.db.mongodb.cdc.Packet.event_type">
-<span class="sig-name descname"><span class="pre">event_type</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">str</span></em><a class="headerlink" href="#superduperdb.db.mongodb.cdc.Packet.event_type" title="Permalink to this definition">#</a></dt>
+<span class="sig-name descname"><span class="pre">event_type</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">str</span></em><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">'insert'</span></em><a class="headerlink" href="#superduperdb.db.mongodb.cdc.Packet.event_type" title="Permalink to this definition">#</a></dt>
 <dd></dd></dl>
 
 <dl class="py attribute">
@@ -898,7 +930,7 @@ specification version 0.2</a>.</p>
 
 <dl class="py attribute">
 <dt class="sig sig-object py" id="superduperdb.db.mongodb.cdc.Packet.query">
-<span class="sig-name descname"><span class="pre">query</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><a class="reference internal" href="superduperdb.container.html#superduperdb.container.serializable.Serializable" title="superduperdb.container.serializable.Serializable"><span class="pre">Serializable</span></a></em><a class="headerlink" href="#superduperdb.db.mongodb.cdc.Packet.query" title="Permalink to this definition">#</a></dt>
+<span class="sig-name descname"><span class="pre">query</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><a class="reference internal" href="superduperdb.container.html#superduperdb.container.serializable.Serializable" title="superduperdb.container.serializable.Serializable"><span class="pre">Serializable</span></a><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><span class="pre">None</span></em><a class="headerlink" href="#superduperdb.db.mongodb.cdc.Packet.query" title="Permalink to this definition">#</a></dt>
 <dd></dd></dl>
 
 </dd></dl>
@@ -911,6 +943,20 @@ a <cite>vector_index</cite> listener.</p>
 <p>This function will be added as node to the taskworkflow after every
 <cite>indexing_listener</cite> in the defined listeners in db.</p>
 </dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="superduperdb.db.mongodb.cdc.delete_vectors">
+<span class="sig-prename descclassname"><span class="pre">superduperdb.db.mongodb.cdc.</span></span><span class="sig-name descname"><span class="pre">delete_vectors</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">indexing_listener_identifier</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">cdc_query</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference internal" href="superduperdb.container.html#superduperdb.container.serializable.Serializable" title="superduperdb.container.serializable.Serializable"><span class="pre">Serializable</span></a><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">ids</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">Sequence</span><span class="p"><span class="pre">[</span></span><span class="pre">str</span><span class="p"><span class="pre">]</span></span></span></em>, <em class="sig-param"><span class="n"><span class="pre">db</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/superduperdb/db/mongodb/cdc.html#delete_vectors"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#superduperdb.db.mongodb.cdc.delete_vectors" title="Permalink to this definition">#</a></dt>
+<dd><p>A helper fxn to copy vectors of a <cite>indexing_listener</cite> component/model of
+a <cite>vector_index</cite> listener.</p>
+<p>This function will be added as node to the taskworkflow after every
+<cite>indexing_listener</cite> in the defined listeners in db.</p>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="superduperdb.db.mongodb.cdc.vector_task_factory">
+<span class="sig-prename descclassname"><span class="pre">superduperdb.db.mongodb.cdc.</span></span><span class="sig-name descname"><span class="pre">vector_task_factory</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">task</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">'copy'</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">Tuple</span><span class="p"><span class="pre">[</span></span><span class="pre">Callable</span><span class="p"><span class="pre">,</span></span><span class="w"> </span><span class="pre">str</span><span class="p"><span class="pre">]</span></span></span></span><a class="reference internal" href="../_modules/superduperdb/db/mongodb/cdc.html#vector_task_factory"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#superduperdb.db.mongodb.cdc.vector_task_factory" title="Permalink to this definition">#</a></dt>
+<dd></dd></dl>
 
 </section>
 <section id="module-superduperdb.db.mongodb.data_backend">
@@ -925,6 +971,12 @@ a <cite>vector_index</cite> listener.</p>
 <dd></dd></dl>
 
 <dl class="py method">
+<dt class="sig sig-object py" id="superduperdb.db.mongodb.data_backend.MongoDataBackend.drop">
+<span class="sig-name descname"><span class="pre">drop</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">force</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">bool</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">False</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/superduperdb/db/mongodb/data_backend.html#MongoDataBackend.drop"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#superduperdb.db.mongodb.data_backend.MongoDataBackend.drop" title="Permalink to this definition">#</a></dt>
+<dd><p>Drop the databackend.</p>
+</dd></dl>
+
+<dl class="py method">
 <dt class="sig sig-object py" id="superduperdb.db.mongodb.data_backend.MongoDataBackend.get_output_from_document">
 <span class="sig-name descname"><span class="pre">get_output_from_document</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">r</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference internal" href="superduperdb.container.html#superduperdb.container.document.Document" title="superduperdb.container.document.Document"><span class="pre">Document</span></a></span></em>, <em class="sig-param"><span class="n"><span class="pre">key</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">model</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><a class="reference internal" href="superduperdb.misc.html#superduperdb.misc.special_dicts.MongoStyleDict" title="superduperdb.misc.special_dicts.MongoStyleDict"><span class="pre">MongoStyleDict</span></a></span></span><a class="reference internal" href="../_modules/superduperdb/db/mongodb/data_backend.html#MongoDataBackend.get_output_from_document"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#superduperdb.db.mongodb.data_backend.MongoDataBackend.get_output_from_document" title="Permalink to this definition">#</a></dt>
 <dd></dd></dl>
@@ -932,6 +984,11 @@ a <cite>vector_index</cite> listener.</p>
 <dl class="py attribute">
 <dt class="sig sig-object py" id="superduperdb.db.mongodb.data_backend.MongoDataBackend.id_field">
 <span class="sig-name descname"><span class="pre">id_field</span></span><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">'_id'</span></em><a class="headerlink" href="#superduperdb.db.mongodb.data_backend.MongoDataBackend.id_field" title="Permalink to this definition">#</a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="superduperdb.db.mongodb.data_backend.MongoDataBackend.models">
+<span class="sig-name descname"><span class="pre">models</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">Dict</span><span class="p"><span class="pre">[</span></span><span class="pre">str</span><span class="p"><span class="pre">,</span></span><span class="w"> </span><a class="reference internal" href="superduperdb.container.html#superduperdb.container.model.Model" title="superduperdb.container.model.Model"><span class="pre">Model</span></a><span class="p"><span class="pre">]</span></span></em><a class="headerlink" href="#superduperdb.db.mongodb.data_backend.MongoDataBackend.models" title="Permalink to this definition">#</a></dt>
 <dd></dd></dl>
 
 <dl class="py method">
@@ -942,31 +999,6 @@ a <cite>vector_index</cite> listener.</p>
 <dl class="py method">
 <dt class="sig sig-object py" id="superduperdb.db.mongodb.data_backend.MongoDataBackend.unset_outputs">
 <span class="sig-name descname"><span class="pre">unset_outputs</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">info</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">Dict</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/superduperdb/db/mongodb/data_backend.html#MongoDataBackend.unset_outputs"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#superduperdb.db.mongodb.data_backend.MongoDataBackend.unset_outputs" title="Permalink to this definition">#</a></dt>
-<dd></dd></dl>
-
-</dd></dl>
-
-</section>
-<section id="module-superduperdb.db.mongodb.loading">
-<span id="superduperdb-db-mongodb-loading-module"></span><h2>superduperdb.db.mongodb.loading module<a class="headerlink" href="#module-superduperdb.db.mongodb.loading" title="Permalink to this heading">#</a></h2>
-<dl class="py class">
-<dt class="sig sig-object py" id="superduperdb.db.mongodb.loading.MongoIterable">
-<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">superduperdb.db.mongodb.loading.</span></span><span class="sig-name descname"><span class="pre">MongoIterable</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">client</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">database</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">collection</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">transform</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">filter</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/superduperdb/db/mongodb/loading.html#MongoIterable"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#superduperdb.db.mongodb.loading.MongoIterable" title="Permalink to this definition">#</a></dt>
-<dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">IterableDataset</span></code></p>
-<p>Dataset iterating over a query without needing to download the whole thing first.</p>
-<dl class="py property">
-<dt class="sig sig-object py" id="superduperdb.db.mongodb.loading.MongoIterable.client">
-<em class="property"><span class="pre">property</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">client</span></span><a class="headerlink" href="#superduperdb.db.mongodb.loading.MongoIterable.client" title="Permalink to this definition">#</a></dt>
-<dd></dd></dl>
-
-<dl class="py property">
-<dt class="sig sig-object py" id="superduperdb.db.mongodb.loading.MongoIterable.collection">
-<em class="property"><span class="pre">property</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">collection</span></span><a class="headerlink" href="#superduperdb.db.mongodb.loading.MongoIterable.collection" title="Permalink to this definition">#</a></dt>
-<dd></dd></dl>
-
-<dl class="py property">
-<dt class="sig sig-object py" id="superduperdb.db.mongodb.loading.MongoIterable.database">
-<em class="property"><span class="pre">property</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">database</span></span><a class="headerlink" href="#superduperdb.db.mongodb.loading.MongoIterable.database" title="Permalink to this definition">#</a></dt>
 <dd></dd></dl>
 
 </dd></dl>
@@ -1007,6 +1039,12 @@ a <cite>vector_index</cite> listener.</p>
 <dt class="sig sig-object py" id="superduperdb.db.mongodb.metadata.MongoMetaDataStore.delete_component_version">
 <span class="sig-name descname"><span class="pre">delete_component_version</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">type_id</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">identifier</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">version</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">int</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">DeleteResult</span></span></span><a class="reference internal" href="../_modules/superduperdb/db/mongodb/metadata.html#MongoMetaDataStore.delete_component_version"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#superduperdb.db.mongodb.metadata.MongoMetaDataStore.delete_component_version" title="Permalink to this definition">#</a></dt>
 <dd></dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="superduperdb.db.mongodb.metadata.MongoMetaDataStore.drop">
+<span class="sig-name descname"><span class="pre">drop</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">force</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">bool</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">False</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/superduperdb/db/mongodb/metadata.html#MongoMetaDataStore.drop"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#superduperdb.db.mongodb.metadata.MongoMetaDataStore.drop" title="Permalink to this definition">#</a></dt>
+<dd><p>Drop the metadata store.</p>
+</dd></dl>
 
 <dl class="py method">
 <dt class="sig sig-object py" id="superduperdb.db.mongodb.metadata.MongoMetaDataStore.get_component_version_children">
@@ -1160,7 +1198,7 @@ a <cite>vector_index</cite> listener.</p>
 <dl class="py method">
 <dt class="sig sig-object py" id="superduperdb.db.mongodb.query.Collection.change_stream">
 <span class="sig-name descname"><span class="pre">change_stream</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="o"><span class="pre">*</span></span><span class="n"><span class="pre">args</span></span></em>, <em class="sig-param"><span class="o"><span class="pre">**</span></span><span class="n"><span class="pre">kwargs</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><a class="reference internal" href="#superduperdb.db.mongodb.query.ChangeStream" title="superduperdb.db.mongodb.query.ChangeStream"><span class="pre">ChangeStream</span></a></span></span><a class="reference internal" href="../_modules/superduperdb/db/mongodb/query.html#Collection.change_stream"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#superduperdb.db.mongodb.query.Collection.change_stream" title="Permalink to this definition">#</a></dt>
-<dd><p>Listen to a stream of change from a db</p>
+<dd><p>Listen to a stream of changes from a collection</p>
 </dd></dl>
 
 <dl class="py method">
@@ -1195,22 +1233,28 @@ a <cite>vector_index</cite> listener.</p>
 
 <dl class="py method">
 <dt class="sig sig-object py" id="superduperdb.db.mongodb.query.Collection.insert_many">
-<span class="sig-name descname"><span class="pre">insert_many</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="o"><span class="pre">*</span></span><span class="n"><span class="pre">args</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">refresh</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">bool</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">True</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">encoders</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">()</span></span></em>, <em class="sig-param"><span class="o"><span class="pre">**</span></span><span class="n"><span class="pre">kwargs</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><a class="reference internal" href="#superduperdb.db.mongodb.query.InsertMany" title="superduperdb.db.mongodb.query.InsertMany"><span class="pre">InsertMany</span></a></span></span><a class="reference internal" href="../_modules/superduperdb/db/mongodb/query.html#Collection.insert_many"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#superduperdb.db.mongodb.query.Collection.insert_many" title="Permalink to this definition">#</a></dt>
+<span class="sig-name descname"><span class="pre">insert_many</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="o"><span class="pre">*</span></span><span class="n"><span class="pre">args</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">refresh</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">bool</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">True</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">encoders</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">Sequence</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">()</span></span></em>, <em class="sig-param"><span class="o"><span class="pre">**</span></span><span class="n"><span class="pre">kwargs</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><a class="reference internal" href="#superduperdb.db.mongodb.query.InsertMany" title="superduperdb.db.mongodb.query.InsertMany"><span class="pre">InsertMany</span></a></span></span><a class="reference internal" href="../_modules/superduperdb/db/mongodb/query.html#Collection.insert_many"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#superduperdb.db.mongodb.query.Collection.insert_many" title="Permalink to this definition">#</a></dt>
 <dd><p>Insert many documents</p>
 <dl class="field-list simple">
 <dt class="field-odd">Parameters<span class="colon">:</span></dt>
-<dd class="field-odd"><p><strong>refresh</strong> – If true, refresh the underlying collection</p>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>refresh</strong> – If true, refresh the underlying collection</p></li>
+<li><p><strong>encoders</strong> – A dictionary/ lookup of encoders to use for encoding</p></li>
+</ul>
 </dd>
 </dl>
 </dd></dl>
 
 <dl class="py method">
 <dt class="sig sig-object py" id="superduperdb.db.mongodb.query.Collection.insert_one">
-<span class="sig-name descname"><span class="pre">insert_one</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="o"><span class="pre">*</span></span><span class="n"><span class="pre">args</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">refresh</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">bool</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">True</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">encoders</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">()</span></span></em>, <em class="sig-param"><span class="o"><span class="pre">**</span></span><span class="n"><span class="pre">kwargs</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><a class="reference internal" href="#superduperdb.db.mongodb.query.InsertMany" title="superduperdb.db.mongodb.query.InsertMany"><span class="pre">InsertMany</span></a></span></span><a class="reference internal" href="../_modules/superduperdb/db/mongodb/query.html#Collection.insert_one"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#superduperdb.db.mongodb.query.Collection.insert_one" title="Permalink to this definition">#</a></dt>
+<span class="sig-name descname"><span class="pre">insert_one</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="o"><span class="pre">*</span></span><span class="n"><span class="pre">args</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">refresh</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">bool</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">True</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">encoders</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">Sequence</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">()</span></span></em>, <em class="sig-param"><span class="o"><span class="pre">**</span></span><span class="n"><span class="pre">kwargs</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><a class="reference internal" href="#superduperdb.db.mongodb.query.InsertMany" title="superduperdb.db.mongodb.query.InsertMany"><span class="pre">InsertMany</span></a></span></span><a class="reference internal" href="../_modules/superduperdb/db/mongodb/query.html#Collection.insert_one"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#superduperdb.db.mongodb.query.Collection.insert_one" title="Permalink to this definition">#</a></dt>
 <dd><p>Insert a single document</p>
 <dl class="field-list simple">
 <dt class="field-odd">Parameters<span class="colon">:</span></dt>
-<dd class="field-odd"><p><strong>refresh</strong> – If true, refresh the underlying collection</p>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>refresh</strong> – If true, refresh the underlying collection</p></li>
+<li><p><strong>encoders</strong> – A tuple of encoders to use for encoding</p></li>
+</ul>
 </dd>
 </dl>
 </dd></dl>
@@ -1516,7 +1560,7 @@ of each column/ document.</p>
 
 <dl class="py class">
 <dt class="sig sig-object py" id="superduperdb.db.mongodb.query.FeaturizeOne">
-<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">superduperdb.db.mongodb.query.</span></span><span class="sig-name descname"><span class="pre">FeaturizeOne</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">features</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">Dict</span><span class="p"><span class="pre">[</span></span><span class="pre">str</span><span class="p"><span class="pre">,</span></span><span class="w"> </span><span class="pre">str</span><span class="p"><span class="pre">]</span></span></span></em>, <em class="sig-param"><span class="n"><span class="pre">parent_find_one</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">Any</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">type_id</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">Literal</span><span class="p"><span class="pre">[</span></span><span class="s"><span class="pre">'mongodb.FeaturizeOne'</span></span><span class="p"><span class="pre">]</span></span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">'mongodb.FeaturizeOne'</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/superduperdb/db/mongodb/query.html#FeaturizeOne"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#superduperdb.db.mongodb.query.FeaturizeOne" title="Permalink to this definition">#</a></dt>
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">superduperdb.db.mongodb.query.</span></span><span class="sig-name descname"><span class="pre">FeaturizeOne</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">features</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">Dict</span><span class="p"><span class="pre">[</span></span><span class="pre">str</span><span class="p"><span class="pre">,</span></span><span class="w"> </span><span class="pre">str</span><span class="p"><span class="pre">]</span></span></span></em>, <em class="sig-param"><span class="n"><span class="pre">parent_find_one</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">Any</span><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><span class="pre">None</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">type_id</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">Literal</span><span class="p"><span class="pre">[</span></span><span class="s"><span class="pre">'mongodb.FeaturizeOne'</span></span><span class="p"><span class="pre">]</span></span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">'mongodb.FeaturizeOne'</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/superduperdb/db/mongodb/query.html#FeaturizeOne"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#superduperdb.db.mongodb.query.FeaturizeOne" title="Permalink to this definition">#</a></dt>
 <dd><p>Bases: <a class="reference internal" href="superduperdb.db.base.html#superduperdb.db.base.query.SelectOne" title="superduperdb.db.base.query.SelectOne"><code class="xref py py-class docutils literal notranslate"><span class="pre">SelectOne</span></code></a></p>
 <p>A query to feature just one document</p>
 <dl class="py method">
@@ -1548,6 +1592,16 @@ of each column/ document.</p>
 <em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">superduperdb.db.mongodb.query.</span></span><span class="sig-name descname"><span class="pre">Find</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">collection:</span> <span class="pre">~superduperdb.db.mongodb.query.Collection</span> <span class="pre">|</span> <span class="pre">None</span> <span class="pre">=</span> <span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">like_parent:</span> <span class="pre">~superduperdb.db.mongodb.query.PreLike</span> <span class="pre">|</span> <span class="pre">None</span> <span class="pre">=</span> <span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">args:</span> <span class="pre">~typing.Sequence</span> <span class="pre">=</span> <span class="pre">&lt;factory&gt;</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">kwargs:</span> <span class="pre">~typing.Dict</span> <span class="pre">=</span> <span class="pre">&lt;factory&gt;</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">type_id:</span> <span class="pre">~typing.Literal['mongodb.Find']</span> <span class="pre">=</span> <span class="pre">'mongodb.Find'</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/superduperdb/db/mongodb/query.html#Find"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#superduperdb.db.mongodb.query.Find" title="Permalink to this definition">#</a></dt>
 <dd><p>Bases: <a class="reference internal" href="superduperdb.db.base.html#superduperdb.db.base.query.Select" title="superduperdb.db.base.query.Select"><code class="xref py py-class docutils literal notranslate"><span class="pre">Select</span></code></a></p>
 <p>A query to find couments</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>collection</strong> – The collection to perform the query on</p></li>
+<li><p><strong>like_parent</strong> – The parent query to use for the like query (if applicable)</p></li>
+<li><p><strong>args</strong> – Positional query arguments to <code class="docutils literal notranslate"><span class="pre">pymongo.Collection.find</span></code></p></li>
+<li><p><strong>kwargs</strong> – Named query arguments to <code class="docutils literal notranslate"><span class="pre">pymongo.Collection.find</span></code></p></li>
+</ul>
+</dd>
+</dl>
 <dl class="py method">
 <dt class="sig sig-object py" id="superduperdb.db.mongodb.query.Find.__call__">
 <span class="sig-name descname"><span class="pre">__call__</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">db</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference internal" href="superduperdb.db.base.html#superduperdb.db.base.db.DB" title="superduperdb.db.base.db.DB"><span class="pre">DB</span></a></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><a class="reference internal" href="superduperdb.db.base.html#superduperdb.db.base.cursor.SuperDuperCursor" title="superduperdb.db.base.cursor.SuperDuperCursor"><span class="pre">SuperDuperCursor</span></a></span></span><a class="reference internal" href="../_modules/superduperdb/db/mongodb/query.html#Find.__call__"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#superduperdb.db.mongodb.query.Find.__call__" title="Permalink to this definition">#</a></dt>
@@ -1582,12 +1636,21 @@ the fold specified</p>
 <dt class="sig sig-object py" id="superduperdb.db.mongodb.query.Find.count">
 <span class="sig-name descname"><span class="pre">count</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="o"><span class="pre">*</span></span><span class="n"><span class="pre">args</span></span></em>, <em class="sig-param"><span class="o"><span class="pre">**</span></span><span class="n"><span class="pre">kwargs</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><a class="reference internal" href="#superduperdb.db.mongodb.query.Count" title="superduperdb.db.mongodb.query.Count"><span class="pre">Count</span></a></span></span><a class="reference internal" href="../_modules/superduperdb/db/mongodb/query.html#Find.count"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#superduperdb.db.mongodb.query.Find.count" title="Permalink to this definition">#</a></dt>
 <dd><p>Return a new Count query from this Find</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>args</strong> – Positional query arguments to
+<code class="docutils literal notranslate"><span class="pre">pymongo.Collection.count_documents</span></code></p></li>
+<li><p><strong>kwargs</strong> – Named query arguments to <code class="docutils literal notranslate"><span class="pre">pymongo.Collection.count_documents</span></code></p></li>
+</ul>
+</dd>
+</dl>
 </dd></dl>
 
 <dl class="py method">
 <dt class="sig sig-object py" id="superduperdb.db.mongodb.query.Find.download_update">
 <span class="sig-name descname"><span class="pre">download_update</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">db</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference internal" href="superduperdb.db.base.html#superduperdb.db.base.db.DB" title="superduperdb.db.base.db.DB"><span class="pre">DB</span></a></span></em>, <em class="sig-param"><span class="n"><span class="pre">id</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">key</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">bytes</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">None</span></span></span><a class="reference internal" href="../_modules/superduperdb/db/mongodb/query.html#Find.download_update"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#superduperdb.db.mongodb.query.Find.download_update" title="Permalink to this definition">#</a></dt>
-<dd><p>Download an updated version of this query</p>
+<dd><p>Update a single document with the <code class="docutils literal notranslate"><span class="pre">bytes</span></code> provided at the <code class="docutils literal notranslate"><span class="pre">key</span></code> provided.</p>
 <p>TODO: improve this comment.</p>
 <dl class="field-list simple">
 <dt class="field-odd">Parameters<span class="colon">:</span></dt>
@@ -1643,6 +1706,7 @@ the fold specified</p>
 <dd class="field-odd"><ul class="simple">
 <li><p><strong>vector_index</strong> – The name of the vector index to use</p></li>
 <li><p><strong>n</strong> – The number of documents to return</p></li>
+<li><p><strong>max_ids</strong> – The maximum number of ids to use for the like query</p></li>
 </ul>
 </dd>
 </dl>
@@ -1682,15 +1746,15 @@ the fold specified</p>
 <dl class="py method">
 <dt class="sig sig-object py" id="superduperdb.db.mongodb.query.Find.model_update">
 <span class="sig-name descname"><span class="pre">model_update</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">db</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference internal" href="superduperdb.db.base.html#superduperdb.db.base.db.DB" title="superduperdb.db.base.db.DB"><span class="pre">DB</span></a></span></em>, <em class="sig-param"><span class="n"><span class="pre">ids</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">t.Sequence</span><span class="p"><span class="pre">[</span></span><span class="pre">t.Any</span><span class="p"><span class="pre">]</span></span></span></em>, <em class="sig-param"><span class="n"><span class="pre">key</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">model</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference internal" href="superduperdb.container.html#superduperdb.container.model.Model" title="superduperdb.container.model.Model"><span class="pre">Model</span></a></span></em>, <em class="sig-param"><span class="n"><span class="pre">outputs</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">t.Sequence</span><span class="p"><span class="pre">[</span></span><span class="pre">t.Any</span><span class="p"><span class="pre">]</span></span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">None</span></span></span><a class="reference internal" href="../_modules/superduperdb/db/mongodb/query.html#Find.model_update"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#superduperdb.db.mongodb.query.Find.model_update" title="Permalink to this definition">#</a></dt>
-<dd><p>Add outputs of <code class="docutils literal notranslate"><span class="pre">model</span></code> to the db <code class="docutils literal notranslate"><span class="pre">db</span></code>.</p>
+<dd><p>Add the outputs of a model to the database</p>
 <dl class="field-list simple">
 <dt class="field-odd">Parameters<span class="colon">:</span></dt>
 <dd class="field-odd"><ul class="simple">
-<li><p><strong>db</strong> – db</p></li>
-<li><p><strong>model</strong> – model identifier to be updated against</p></li>
-<li><p><strong>key</strong> – key on which model was applied</p></li>
-<li><p><strong>outputs</strong> – (encoded) outputs to be added</p></li>
-<li><p><strong>ids</strong> – ids of input documents corresponding to each output</p></li>
+<li><p><strong>db</strong> – The DB instance to use</p></li>
+<li><p><strong>ids</strong> – The ids of the documents to update</p></li>
+<li><p><strong>key</strong> – The key to update</p></li>
+<li><p><strong>model</strong> – The model to update</p></li>
+<li><p><strong>outputs</strong> – The outputs to add</p></li>
 </ul>
 </dd>
 </dl>
@@ -2316,6 +2380,7 @@ the update was made.</p>
 <li><a class="reference internal" href="#superduperdb.db.mongodb.artifacts.MongoArtifactStore"><code class="docutils literal notranslate"><span class="pre">MongoArtifactStore</span></code></a><ul>
 <li><a class="reference internal" href="#superduperdb.db.mongodb.artifacts.MongoArtifactStore.__init__"><code class="docutils literal notranslate"><span class="pre">MongoArtifactStore.__init__()</span></code></a></li>
 <li><a class="reference internal" href="#superduperdb.db.mongodb.artifacts.MongoArtifactStore.delete_artifact"><code class="docutils literal notranslate"><span class="pre">MongoArtifactStore.delete_artifact()</span></code></a></li>
+<li><a class="reference internal" href="#superduperdb.db.mongodb.artifacts.MongoArtifactStore.drop"><code class="docutils literal notranslate"><span class="pre">MongoArtifactStore.drop()</span></code></a></li>
 </ul>
 </li>
 </ul>
@@ -2332,12 +2397,14 @@ the update was made.</p>
 <li><a class="reference internal" href="#superduperdb.db.mongodb.cdc.CDCHandler.create_vector_listener_task"><code class="docutils literal notranslate"><span class="pre">CDCHandler.create_vector_listener_task()</span></code></a></li>
 <li><a class="reference internal" href="#superduperdb.db.mongodb.cdc.CDCHandler.get_batch_from_queue"><code class="docutils literal notranslate"><span class="pre">CDCHandler.get_batch_from_queue()</span></code></a></li>
 <li><a class="reference internal" href="#superduperdb.db.mongodb.cdc.CDCHandler.on_create"><code class="docutils literal notranslate"><span class="pre">CDCHandler.on_create()</span></code></a></li>
+<li><a class="reference internal" href="#superduperdb.db.mongodb.cdc.CDCHandler.on_delete"><code class="docutils literal notranslate"><span class="pre">CDCHandler.on_delete()</span></code></a></li>
 <li><a class="reference internal" href="#superduperdb.db.mongodb.cdc.CDCHandler.on_update"><code class="docutils literal notranslate"><span class="pre">CDCHandler.on_update()</span></code></a></li>
 <li><a class="reference internal" href="#superduperdb.db.mongodb.cdc.CDCHandler.run"><code class="docutils literal notranslate"><span class="pre">CDCHandler.run()</span></code></a></li>
 <li><a class="reference internal" href="#superduperdb.db.mongodb.cdc.CDCHandler.submit_task_workflow"><code class="docutils literal notranslate"><span class="pre">CDCHandler.submit_task_workflow()</span></code></a></li>
 </ul>
 </li>
 <li><a class="reference internal" href="#superduperdb.db.mongodb.cdc.CDCKeys"><code class="docutils literal notranslate"><span class="pre">CDCKeys</span></code></a><ul>
+<li><a class="reference internal" href="#superduperdb.db.mongodb.cdc.CDCKeys.deleted_document_data_key"><code class="docutils literal notranslate"><span class="pre">CDCKeys.deleted_document_data_key</span></code></a></li>
 <li><a class="reference internal" href="#superduperdb.db.mongodb.cdc.CDCKeys.document_data_key"><code class="docutils literal notranslate"><span class="pre">CDCKeys.document_data_key</span></code></a></li>
 <li><a class="reference internal" href="#superduperdb.db.mongodb.cdc.CDCKeys.document_key"><code class="docutils literal notranslate"><span class="pre">CDCKeys.document_key</span></code></a></li>
 <li><a class="reference internal" href="#superduperdb.db.mongodb.cdc.CDCKeys.operation_type"><code class="docutils literal notranslate"><span class="pre">CDCKeys.operation_type</span></code></a></li>
@@ -2395,6 +2462,7 @@ the update was made.</p>
 <li><a class="reference internal" href="#superduperdb.db.mongodb.cdc.MongoEventMixin.DEFAULT_ID"><code class="docutils literal notranslate"><span class="pre">MongoEventMixin.DEFAULT_ID</span></code></a></li>
 <li><a class="reference internal" href="#superduperdb.db.mongodb.cdc.MongoEventMixin.EXCLUSION_KEYS"><code class="docutils literal notranslate"><span class="pre">MongoEventMixin.EXCLUSION_KEYS</span></code></a></li>
 <li><a class="reference internal" href="#superduperdb.db.mongodb.cdc.MongoEventMixin.on_create"><code class="docutils literal notranslate"><span class="pre">MongoEventMixin.on_create()</span></code></a></li>
+<li><a class="reference internal" href="#superduperdb.db.mongodb.cdc.MongoEventMixin.on_delete"><code class="docutils literal notranslate"><span class="pre">MongoEventMixin.on_delete()</span></code></a></li>
 <li><a class="reference internal" href="#superduperdb.db.mongodb.cdc.MongoEventMixin.on_update"><code class="docutils literal notranslate"><span class="pre">MongoEventMixin.on_update()</span></code></a></li>
 </ul>
 </li>
@@ -2403,34 +2471,25 @@ the update was made.</p>
 </ul>
 </li>
 <li><a class="reference internal" href="#superduperdb.db.mongodb.cdc.Packet"><code class="docutils literal notranslate"><span class="pre">Packet</span></code></a><ul>
-<li><a class="reference internal" href="#superduperdb.db.mongodb.cdc.Packet.Config"><code class="docutils literal notranslate"><span class="pre">Packet.Config</span></code></a><ul>
-<li><a class="reference internal" href="#superduperdb.db.mongodb.cdc.Packet.Config.arbitrary_types_allowed"><code class="docutils literal notranslate"><span class="pre">Packet.Config.arbitrary_types_allowed</span></code></a></li>
-</ul>
-</li>
 <li><a class="reference internal" href="#superduperdb.db.mongodb.cdc.Packet.event_type"><code class="docutils literal notranslate"><span class="pre">Packet.event_type</span></code></a></li>
 <li><a class="reference internal" href="#superduperdb.db.mongodb.cdc.Packet.ids"><code class="docutils literal notranslate"><span class="pre">Packet.ids</span></code></a></li>
 <li><a class="reference internal" href="#superduperdb.db.mongodb.cdc.Packet.query"><code class="docutils literal notranslate"><span class="pre">Packet.query</span></code></a></li>
 </ul>
 </li>
 <li><a class="reference internal" href="#superduperdb.db.mongodb.cdc.copy_vectors"><code class="docutils literal notranslate"><span class="pre">copy_vectors()</span></code></a></li>
+<li><a class="reference internal" href="#superduperdb.db.mongodb.cdc.delete_vectors"><code class="docutils literal notranslate"><span class="pre">delete_vectors()</span></code></a></li>
+<li><a class="reference internal" href="#superduperdb.db.mongodb.cdc.vector_task_factory"><code class="docutils literal notranslate"><span class="pre">vector_task_factory()</span></code></a></li>
 </ul>
 </li>
 <li><a class="reference internal" href="#module-superduperdb.db.mongodb.data_backend">superduperdb.db.mongodb.data_backend module</a><ul>
 <li><a class="reference internal" href="#superduperdb.db.mongodb.data_backend.MongoDataBackend"><code class="docutils literal notranslate"><span class="pre">MongoDataBackend</span></code></a><ul>
 <li><a class="reference internal" href="#superduperdb.db.mongodb.data_backend.MongoDataBackend.db"><code class="docutils literal notranslate"><span class="pre">MongoDataBackend.db</span></code></a></li>
+<li><a class="reference internal" href="#superduperdb.db.mongodb.data_backend.MongoDataBackend.drop"><code class="docutils literal notranslate"><span class="pre">MongoDataBackend.drop()</span></code></a></li>
 <li><a class="reference internal" href="#superduperdb.db.mongodb.data_backend.MongoDataBackend.get_output_from_document"><code class="docutils literal notranslate"><span class="pre">MongoDataBackend.get_output_from_document()</span></code></a></li>
 <li><a class="reference internal" href="#superduperdb.db.mongodb.data_backend.MongoDataBackend.id_field"><code class="docutils literal notranslate"><span class="pre">MongoDataBackend.id_field</span></code></a></li>
+<li><a class="reference internal" href="#superduperdb.db.mongodb.data_backend.MongoDataBackend.models"><code class="docutils literal notranslate"><span class="pre">MongoDataBackend.models</span></code></a></li>
 <li><a class="reference internal" href="#superduperdb.db.mongodb.data_backend.MongoDataBackend.set_content_bytes"><code class="docutils literal notranslate"><span class="pre">MongoDataBackend.set_content_bytes()</span></code></a></li>
 <li><a class="reference internal" href="#superduperdb.db.mongodb.data_backend.MongoDataBackend.unset_outputs"><code class="docutils literal notranslate"><span class="pre">MongoDataBackend.unset_outputs()</span></code></a></li>
-</ul>
-</li>
-</ul>
-</li>
-<li><a class="reference internal" href="#module-superduperdb.db.mongodb.loading">superduperdb.db.mongodb.loading module</a><ul>
-<li><a class="reference internal" href="#superduperdb.db.mongodb.loading.MongoIterable"><code class="docutils literal notranslate"><span class="pre">MongoIterable</span></code></a><ul>
-<li><a class="reference internal" href="#superduperdb.db.mongodb.loading.MongoIterable.client"><code class="docutils literal notranslate"><span class="pre">MongoIterable.client</span></code></a></li>
-<li><a class="reference internal" href="#superduperdb.db.mongodb.loading.MongoIterable.collection"><code class="docutils literal notranslate"><span class="pre">MongoIterable.collection</span></code></a></li>
-<li><a class="reference internal" href="#superduperdb.db.mongodb.loading.MongoIterable.database"><code class="docutils literal notranslate"><span class="pre">MongoIterable.database</span></code></a></li>
 </ul>
 </li>
 </ul>
@@ -2443,6 +2502,7 @@ the update was made.</p>
 <li><a class="reference internal" href="#superduperdb.db.mongodb.metadata.MongoMetaDataStore.create_job"><code class="docutils literal notranslate"><span class="pre">MongoMetaDataStore.create_job()</span></code></a></li>
 <li><a class="reference internal" href="#superduperdb.db.mongodb.metadata.MongoMetaDataStore.create_parent_child"><code class="docutils literal notranslate"><span class="pre">MongoMetaDataStore.create_parent_child()</span></code></a></li>
 <li><a class="reference internal" href="#superduperdb.db.mongodb.metadata.MongoMetaDataStore.delete_component_version"><code class="docutils literal notranslate"><span class="pre">MongoMetaDataStore.delete_component_version()</span></code></a></li>
+<li><a class="reference internal" href="#superduperdb.db.mongodb.metadata.MongoMetaDataStore.drop"><code class="docutils literal notranslate"><span class="pre">MongoMetaDataStore.drop()</span></code></a></li>
 <li><a class="reference internal" href="#superduperdb.db.mongodb.metadata.MongoMetaDataStore.get_component_version_children"><code class="docutils literal notranslate"><span class="pre">MongoMetaDataStore.get_component_version_children()</span></code></a></li>
 <li><a class="reference internal" href="#superduperdb.db.mongodb.metadata.MongoMetaDataStore.get_component_version_parents"><code class="docutils literal notranslate"><span class="pre">MongoMetaDataStore.get_component_version_parents()</span></code></a></li>
 <li><a class="reference internal" href="#superduperdb.db.mongodb.metadata.MongoMetaDataStore.get_job"><code class="docutils literal notranslate"><span class="pre">MongoMetaDataStore.get_job()</span></code></a></li>
@@ -2687,13 +2747,12 @@ the update was made.</p>
       
     </aside>
   </div>
-</div><script data-url_root="../" id="documentation_options" src="../_static/documentation_options.js"></script>
-    <script src="../_static/doctools.js"></script>
-    <script src="../_static/sphinx_highlight.js"></script>
-    <script src="../_static/scripts/furo.js"></script>
-    <script src="../_static/clipboard.min.js"></script>
-    <script src="../_static/copybutton.js"></script>
+</div><script data-url_root="../" id="documentation_options" src="../_static/documentation_options.js?v=b3ba4146"></script>
+    <script src="../_static/doctools.js?v=888ff710"></script>
+    <script src="../_static/sphinx_highlight.js?v=4825356b"></script>
+    <script src="../_static/scripts/furo.js?v=32e29ea5"></script>
+    <script src="../_static/clipboard.min.js?v=a7894cd8"></script>
+    <script src="../_static/copybutton.js?v=f281be69"></script>
     <script crossorigin="anonymous" integrity="sha256-Ae2Vz/4ePdIu6ZyI/5ZGsYnb+m0JlOmKPjt6XZ9JJkA=" src="https://cdnjs.cloudflare.com/ajax/libs/require.js/2.3.4/require.min.js"></script>
-    <script src="https://cdn.jsdelivr.net/npm/@jupyter-widgets/html-manager@^1.0.1/dist/embed-amd.js"></script>
     </body>
 </html>
